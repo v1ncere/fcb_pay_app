@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fcb_pay_app/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -59,6 +60,6 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   }
 
   void navigationPage() {
-    // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const LoginWidget()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Home()));
   }
 }

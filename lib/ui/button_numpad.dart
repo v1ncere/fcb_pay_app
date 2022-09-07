@@ -14,7 +14,7 @@ class ButtonNumPad extends StatelessWidget {
         elevation: 0,
         backgroundColor: const Color(0xFFf5f5f8),
         onPressed: onPressed,
-        label: Text(num, style: const TextStyle(color: Color(0xFF687ea1)),)),
+        label: Text(num, style: const TextStyle(color: Color(0xFF687ea1)))),
     );
   }
 }

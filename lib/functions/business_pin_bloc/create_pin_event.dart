@@ -6,14 +6,14 @@ abstract class CreatePinEvent {
   const CreatePinEvent({this.pinNum});
 }
 
-class CreatePinAddEvent extends CreatePinEvent{
+class CreatePinAddEvent extends CreatePinEvent {
   const CreatePinAddEvent({required int pinNum}) : super(pinNum: pinNum);
 }
 
-class CreatePinEraseEvent extends CreatePinEvent{
+class CreatePinEraseEvent extends CreatePinEvent {
   const CreatePinEraseEvent() : super();
 }
 
-class CreateNullPinEvent extends CreatePinEvent{
+class CreateNullPinEvent extends CreatePinEvent {
   const CreateNullPinEvent() : super();
 }

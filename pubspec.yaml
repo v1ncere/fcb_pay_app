@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   hive_flutter: ^1.1.0
   flutter_bloc: ^8.1.1
+  flutter_launcher_icons: ^0.10.0
 
 dev_dependencies:
   flutter_test:
@@ -20,9 +21,13 @@ dev_dependencies:
 
   flutter_lints: ^1.0.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/fcb-logo.png"
+
 flutter:
   uses-material-design: true
-
   assets:
     - assets/fcb-logo.png
 

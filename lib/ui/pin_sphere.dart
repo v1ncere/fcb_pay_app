@@ -7,7 +7,7 @@ class PinSphere extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.fromLTRB(15.0, 32.0, 15.0, 32.0),
       child: Container(
         width: 15,
         height: 15,
