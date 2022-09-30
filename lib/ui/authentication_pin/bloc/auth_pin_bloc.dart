@@ -10,12 +10,13 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
   final PinRepository pinRepository;
 
   AuthPinBloc({required this.pinRepository}) : super(const AuthPinState(pinStatus: AuthPinStatus.enterPin)) {
+    
     on<AuthPinAddEvent>((event, emit) async {
       String pin = "${state.pin}${event.pinNum}";
-      if(pin.length < 4){
+      if(pin.length < 6){
         emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.enterPin));
       }
-      else if (await pinRepository.pinEquals(pin)){
+      else if (await pinRepository.pinEquals(pin)) {
         emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.equals));
       }
       else{
@@ -25,8 +26,12 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
     });
 
     on<AuthPinEraseEvent>((event, emit) {
-      String pin = state.pin.substring(0, state.pin.length - 1);
-      emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.enterPin));
+      if(state.pin.isEmpty) {
+        emit(const AuthPinState(pinStatus: AuthPinStatus.enterPin));
+      } else {
+        String pin = state.pin.substring(0, state.pin.length - 1);
+        emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.enterPin));
+      }
     });
 
     on<AuthNullPinEvent>((event, emit) {

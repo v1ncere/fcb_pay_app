@@ -12,8 +12,8 @@ class PinSphere extends StatelessWidget {
         width: 15,
         height: 15,
         decoration: BoxDecoration(
-          color: input ? const Color(0xFF7c56ee) : null,
-          border:  Border.all(color: const Color(0xFF687ea1), width: 1),
+          color: input ? const Color(0xFF009966) : null,
+          border:  Border.all(color: const Color(0xFF009966), width: 1),
           shape: BoxShape.circle
         ),
       ),

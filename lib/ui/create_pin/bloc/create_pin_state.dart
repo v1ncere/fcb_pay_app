@@ -11,7 +11,7 @@ class CreatePinState {
   const CreatePinState({this.firstPin = "", this.secondPin = "", required this.pinStatus});
 
   int getCountOfPin() {
-    if (firstPin.length < 4) {
+    if (firstPin.length < 6) {
       return firstPin.length;
     } else {
       return secondPin.length;

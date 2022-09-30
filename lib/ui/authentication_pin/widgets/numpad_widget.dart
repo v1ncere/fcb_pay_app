@@ -1,70 +1,11 @@
-import 'package:fcb_pay_app/db/pin_repository.dart';
-import 'package:fcb_pay_app/functions/business_pin_bloc/auth_pin_bloc.dart';
-import 'package:fcb_pay_app/pages/home.dart';
-import 'package:fcb_pay_app/ui/button_numpad.dart';
-import 'package:fcb_pay_app/ui/pin_sphere.dart';
+import 'package:fcb_pay_app/ui/authentication_pin/bloc/auth_pin_bloc.dart';
+import 'package:fcb_pay_app/ui/widgets/button_numpad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AuthPin extends StatelessWidget {
-  static const String setupPIN = "Setup PIN";
-  static const String useSixDigitsPIN = "Use 6-digits PIN";
-  static const String authenticationSuccess = "Login Success";
-  static const String authenticationFailed = "Login Failed";
+class NumPad extends StatelessWidget {
+  const NumPad({Key? key}) : super(key: key);
 
-  //static const String ok = "OK";
-
-  const AuthPin({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BlocProvider(
-          lazy: false,
-          create: (_) => AuthPinBloc(pinRepository: HivePinRepository()),
-          child: BlocListener<AuthPinBloc, AuthPinState>(
-            listener: (context, state) {
-              if (state.pinStatus == AuthPinStatus.equals) {
-                showDialog(
-                  context: context,
-                  builder: (context) => const AlertDialog(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                    title: Text(authenticationSuccess),
-                    actionsAlignment: MainAxisAlignment.center,
-                  ),
-                );
-                Future.delayed(const Duration(seconds: 2), () => Navigator.pushAndRemoveUntil(context, Home.route(), (_) => false));
-              } else if (state.pinStatus == AuthPinStatus.unequals) {
-                showDialog(
-                  context: context,
-                  builder: (context) => const AlertDialog(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                    title: Text(authenticationFailed),
-                    actionsAlignment: MainAxisAlignment.center,
-                  )
-                );
-              }
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(flex: 2, child: _MainPart()),
-                Expanded(flex: 3, child: _NumPad()),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const AuthPin());
-  }
-}
-
-class _NumPad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -136,32 +77,6 @@ class _NumPad extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _MainPart extends StatelessWidget {
-  static const String enterYourPIN = "Enter your PIN";
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthPinBloc, AuthPinState>(
-      buildWhen: (previous, current) => previous.pin != current.pin,
-      builder: (context, state) {
-        return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Flexible(
-            flex: 2,
-            child: Text(enterYourPIN, style: TextStyle(color: Color(0xFF687ea1), fontSize: 30)),
-          ),
-          Flexible(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) => PinSphere(input: index < state.getCountsOfPIN())),
-            ),
-          ),
-        ]);
-      },
     );
   }
 }

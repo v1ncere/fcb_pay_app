@@ -6,14 +6,14 @@ abstract class AuthPinEvent {
   const AuthPinEvent({this.pinNum});
 }
 
-class AuthPinAddEvent extends AuthPinEvent{
+class AuthPinAddEvent extends AuthPinEvent {
   const AuthPinAddEvent({required int pinNum}) : super(pinNum: pinNum);
 }
 
-class AuthPinEraseEvent extends AuthPinEvent{
+class AuthPinEraseEvent extends AuthPinEvent {
   const AuthPinEraseEvent() : super();
 }
 
-class AuthNullPinEvent extends AuthPinEvent{
+class AuthNullPinEvent extends AuthPinEvent {
   const AuthNullPinEvent() : super();
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:fcb_pay_app/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -31,7 +30,8 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(fit: StackFit.expand,
+      body: Stack(
+        fit: StackFit.expand,
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -60,6 +60,6 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Home()));
+    Navigator.of(context).pushReplacementNamed('/auth_pin');
   }
 }

@@ -9,17 +9,18 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
   final PinRepository pinRepository;
 
   CreatePinBloc({required this.pinRepository}) : super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
+    
     on<CreatePinAddEvent>((event, emit) {
-      if (state.firstPin.length < 4) {
+      if (state.firstPin.length < 6) {
         String firstPIN = "${state.firstPin}${event.pinNum}";
-        if (firstPIN.length < 4) {
+        if (firstPIN.length < 6) {
           emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterFirst));
         } else {
           emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterSecond));
         }
       } else {
         String secondPIN = "${state.secondPin}${event.pinNum}";
-        if (secondPIN.length < 4) {
+        if (secondPIN.length < 6) {
           emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
         } else if (secondPIN == state.firstPin) {
           pinRepository.addPin(secondPIN);
@@ -29,10 +30,11 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
         }
       }
     });
+
     on<CreatePinEraseEvent>((event, emit) {
       if (state.firstPin.isEmpty) {
         emit(const CreatePinState(pinStatus: PinStatus.enterFirst));
-      } else if (state.firstPin.length < 4) {
+      } else if (state.firstPin.length < 6) {
         String firstPIN = state.firstPin.substring(0, state.firstPin.length - 1);
         emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterFirst));
       } else if (state.secondPin.isEmpty) {
@@ -42,6 +44,7 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
         emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
       }
     });
+
     on<CreateNullPinEvent>((event, emit) {
       emit(const CreatePinState(pinStatus: PinStatus.enterFirst));
     });
