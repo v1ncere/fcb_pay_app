@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1032216805729",
+    "firebase_url": "https://fcbpay-website-7c029-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fcbpay-website-7c029",
+    "storage_bucket": "fcbpay-website-7c029.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032216805729:android:cc9a147b72111fb0214520",
+        "android_client_info": {
+          "package_name": "com.example.fcb_pay_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032216805729-8pdet7p4inqugn2n3tbmqlaunvg8dk5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvsMsGwLwUvD5qVxefBGSm6LG2QRsPswA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032216805729-8pdet7p4inqugn2n3tbmqlaunvg8dk5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

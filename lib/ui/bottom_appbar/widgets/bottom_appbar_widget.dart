@@ -1,24 +1,29 @@
-import 'package:fcb_pay_app/ui/home/cubit/bottom_navigation_cubit.dart';
-import 'package:fcb_pay_app/ui/home/tabs/tabs_barrel.dart';
+import 'package:fcb_pay_app/ui/about_us/about_us.dart';
+import 'package:fcb_pay_app/ui/bottom_appbar/cubit/bottom_appbar_cubit.dart';
+import 'package:fcb_pay_app/ui/bottom_appbar/widgets/bottom_appbar_button.dart';
+import 'package:fcb_pay_app/ui/home/home.dart';
+import 'package:fcb_pay_app/ui/payment_transaction/payment_transaction.dart';
+import 'package:fcb_pay_app/ui/scanner/scanner.dart';
+import 'package:fcb_pay_app/ui/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeBottomAppbarWidget extends StatelessWidget {
+  const HomeBottomAppbarWidget({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
-    final selectedTab = context.select((BottomNavigationCubit cubit) => cubit.state.tab);
+    final selectedTab = context.select((BottomAppbarCubit cubit) => cubit.state.tab);
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
         children: const [
-          HomeTab(text: "Hey",),
-          PayTransactionTab(number: 11),
-          ScannerTab(text: "Scanner",),
-          SettingsTab(text: "Settings",),
-          AboutUsTab(text: "AboutUs",)
+          Home(),
+          PaymentTransaction(),
+          Scanner(),
+          Settings(),
+          AboutUs(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -30,28 +35,28 @@ class HomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _HomeTabButton(
+              BottomAppbarButton(
                 padding: const EdgeInsets.all(0.0),
                 groupValue: selectedTab,
-                value: BottomNavTab.home,
+                value: BottomAppbarTab.home,
                 icon: const Icon(UniconsLine.estate),
               ),
-              _HomeTabButton(
+              BottomAppbarButton(
                 padding: const EdgeInsets.only(right: 28.0),
                 groupValue: selectedTab,
-                value: BottomNavTab.pay,
+                value: BottomAppbarTab.pay,
                 icon: const Icon(UniconsLine.transaction),
               ),
-              _HomeTabButton(
+              BottomAppbarButton(
                 padding: const EdgeInsets.only(left: 28.0),
                 groupValue: selectedTab,
-                value: BottomNavTab.settings,
+                value: BottomAppbarTab.settings,
                 icon: const Icon(UniconsLine.setting),
               ),
-              _HomeTabButton(
+              BottomAppbarButton(
                 padding: const EdgeInsets.all(0.0),
                 groupValue: selectedTab,
-                value: BottomNavTab.about,
+                value: BottomAppbarTab.about,
                 icon: const Icon(UniconsLine.info_circle),
               ),
             ],
@@ -64,7 +69,7 @@ class HomeScreen extends StatelessWidget {
         child: FittedBox(
           child: FloatingActionButton(
             backgroundColor: Colors.white,
-            onPressed: () => context.read<BottomNavigationCubit>().setTab(BottomNavTab.scanner),
+            onPressed: () => context.read<BottomAppbarCubit>().setTab(BottomAppbarTab.scanner),
             child: Container(
               height: 65.0,
               width: 65.0,
@@ -81,31 +86,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _HomeTabButton extends StatelessWidget {
-  const _HomeTabButton({
-    required this.groupValue,
-    required this.value,
-    required this.icon,
-    required this.padding,
-  });
-
-  final BottomNavTab groupValue;
-  final BottomNavTab value;
-  final Widget icon;
-  final EdgeInsetsGeometry padding;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      padding: padding,
-      onPressed: () => context.read<BottomNavigationCubit>().setTab(value),
-      iconSize: 32,
-      color: groupValue != value ? Colors.black45 : const Color(0xFF009C05),
-      icon: icon,
     );
   }
 }

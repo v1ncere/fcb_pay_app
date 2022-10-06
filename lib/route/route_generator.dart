@@ -1,6 +1,6 @@
-import 'package:fcb_pay_app/ui/authentication_pin/page/authentication_pin.dart';
-import 'package:fcb_pay_app/ui/create_pin/page/create_pin.dart';
-import 'package:fcb_pay_app/ui/home/home.dart';
+import 'package:fcb_pay_app/ui/authentication_pin/authentication_pin.dart';
+import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
+import 'package:fcb_pay_app/ui/create_pin/create_pin.dart';
 import 'package:fcb_pay_app/ui/splash/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class RouteGenerator {
       case '/auth_pin':
         return MaterialPageRoute(builder: (_) => const AuthPin());
       case '/home':
-        return MaterialPageRoute(builder: (_) => const Home());
+        return MaterialPageRoute(builder: (_) => const BottomAppbar());
       default:
         return _error();
     }

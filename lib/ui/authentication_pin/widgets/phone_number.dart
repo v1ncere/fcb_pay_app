@@ -5,15 +5,17 @@ class PhoneNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const[
-          Text('Phone Number: ', style: TextStyle(color: Color(0xFF687ea1), fontSize: 16)),
-          Text('09504168689', style: TextStyle(color: Color(0xFF687ea1), fontSize: 22)),
-        ]
-      )
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const[
+        Flexible(
+          flex: 1,
+          child: Text('Phone Number: ', style: TextStyle(color: Color(0xFF687ea1), fontSize: 16))),
+        Flexible(
+          flex: 1,
+          child: Text('09504168689', style: TextStyle(color: Color(0xFF687ea1), fontSize: 22))),
+      ]
     );
   }
 }
