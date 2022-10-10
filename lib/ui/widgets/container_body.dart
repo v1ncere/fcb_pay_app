@@ -12,7 +12,7 @@ class ContainerBody extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color:const Color(0xFFEEEEEE),
+          color:const Color(0xFFF7F7F7),
           borderRadius: const BorderRadius.only(
             topRight: Radius.circular(15.0),
             topLeft: Radius.circular(15.0),

@@ -7,7 +7,6 @@ class Accounts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         Text('  Accounts',
           style: TextStyle(
@@ -29,7 +28,7 @@ class AccountCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
         height: 55,
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width * .95,
         child: Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
           child: Row(

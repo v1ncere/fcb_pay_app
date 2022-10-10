@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:fcb_pay_app/db/pin_repository.dart';
+import 'package:fcb_pay_app/repository/pin_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'create_pin_event.dart';

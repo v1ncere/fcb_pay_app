@@ -1,3 +1,4 @@
+import 'package:fcb_pay_app/ui/home/widgets/accounts.dart';
 import 'package:fcb_pay_app/ui/home/widgets/balance/balance.dart';
 import 'package:fcb_pay_app/ui/home/widgets/header.dart';
 import 'package:fcb_pay_app/ui/widgets/container_body.dart';
@@ -14,10 +15,12 @@ class Home extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             HeaderTitle(),
+            SizedBox(height: 20.0),
             ContainerBody(
               children: [
               Balance(),
-              // Accounts(),
+              SizedBox(height: 20.0),
+              Accounts(),
             ]
           )
         ],

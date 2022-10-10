@@ -16,8 +16,8 @@ class WalletBalance extends StatelessWidget {
       color: const Color(0xFF30DD5B),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
-        height: 200,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width * .95,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(

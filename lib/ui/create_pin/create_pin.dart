@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/db/pin_repository.dart';
+import 'package:fcb_pay_app/repository/pin_repository.dart';
 import 'package:fcb_pay_app/ui/create_pin/bloc/create_pin_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

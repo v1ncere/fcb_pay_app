@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/db/pin_repository.dart';
+import 'package:fcb_pay_app/repository/pin_repository.dart';
 import 'package:fcb_pay_app/ui/authentication_pin/bloc/auth_pin_bloc.dart';
 import 'package:fcb_pay_app/ui/authentication_pin/widgets/phone_number.dart';
 import 'package:fcb_pay_app/ui/authentication_pin/widgets/widgets_barrel.dart';

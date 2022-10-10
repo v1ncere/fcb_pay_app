@@ -20,7 +20,7 @@ class HeaderTitle extends StatelessWidget {
             ),
             SizedBox(height: 8.0),
             Text(
-              'What would you like to pay?  ', 
+              'Vincent G. Gripo', 
               style: TextStyle(
                 fontWeight: FontWeight.w400, 
                 fontSize: 14.0,
@@ -28,8 +28,8 @@ class HeaderTitle extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(width: 18.0),
-        const Text("FCB", style: TextStyle(fontSize: 50),)
+        const SizedBox(width: 16.0),
+        const Text("FCB", style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color:Color.fromARGB(255, 0, 151, 38),),)
       ],
     );
   }
