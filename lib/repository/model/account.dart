@@ -1,20 +1,25 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-part 'account.g.dart';
-
-@JsonSerializable(fieldRename: FieldRename.snake)
 class AccountModel {
+  final int account;
+  final int balance;
+  final int walletBalance;
   const AccountModel({
     required this.account,
     required this.balance,
     required this.walletBalance,
   });
 
-  final int account;
-  final int balance;
-  final int walletBalance;
+  Map<String, dynamic> toMap() {
+    return {
+      'account': account,
+      'balance': balance,
+      'wallet_balance': walletBalance,
+    };
+  }
 
-  factory AccountModel.fromJson(Map<String, dynamic> json) => _$AccountModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AccountModelToJson(this);
+  AccountModel.fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
+    : account = doc.data()!['account'],
+      balance = doc.data()!['balance'],
+      walletBalance = doc.data()!['wallet_balance'];
 }

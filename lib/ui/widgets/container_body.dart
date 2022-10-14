@@ -12,7 +12,7 @@ class ContainerBody extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color:const Color(0xFFF7F7F7),
+          color:const Color(0xFFFFFFFF),
           borderRadius: const BorderRadius.only(
             topRight: Radius.circular(15.0),
             topLeft: Radius.circular(15.0),
@@ -20,11 +20,10 @@ class ContainerBody extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color:const Color(0xFF000000).withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 6,
-              offset: const Offset(0, 3)
-            ),
-          ]
+              spreadRadius: 1,
+              blurRadius: 4,
+              offset: const Offset(0, -2),
+          )]
         ),
         child: ListView(
           children: children
