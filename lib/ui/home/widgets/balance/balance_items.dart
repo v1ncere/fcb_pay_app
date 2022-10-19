@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unicons/unicons.dart';
 
 class BalanceItems extends StatelessWidget {
   const BalanceItems({Key? key, required this.account, required this.balance, required this.walletBalance}) : super(key : key);
