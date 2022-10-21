@@ -20,16 +20,14 @@ class CardButtonSelection extends StatelessWidget {
               CardButton(iconData: UniconsLine.history_alt, text: "History", colors: Color(0xFFDBD80B)),
           ]),
           const SizedBox(height: 10.0,),
-          Padding(
-            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                CardButton(iconData: UniconsLine.qrcode_scan, text: "QR Pay", colors: Color(0xFF02AE08)),
-                CardButton(iconData: UniconsLine.bill, text: "Bills Payment", colors: Color(0xFF02AE08)),
-                CardButton(iconData: UniconsLine.transaction, text: "Fund Transfer", colors: Color(0xFF02AE08)),
-            ]),
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              CardButton(iconData: UniconsLine.qrcode_scan, text: "QR Pay", colors: Color(0xFF02AE08)),
+              CardButton(iconData: UniconsLine.bill, text: "Bills Payment", colors: Color(0xFF02AE08)),
+              CardButton(iconData: UniconsLine.transaction, text: "Fund Transfer", colors: Color(0xFF02AE08)),
+              CardButton(iconData: UniconsLine.money_insert, text: "PESOnet Transfer", colors: Color(0xFF02AE08)),
+          ]),
       ]),
     );
   }

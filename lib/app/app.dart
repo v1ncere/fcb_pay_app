@@ -10,8 +10,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'FCBPay',
       debugShowCheckedModeBanner: false,
-      theme: FlutterTodosTheme(context: context).light,
-      darkTheme: FlutterTodosTheme(context: context).dark,
+      theme: FlutterTheme(context: context).light,
+      darkTheme: FlutterTheme(context: context).dark,
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
     );

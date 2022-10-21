@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/ui/create_pin/bloc/create_pin_bloc.dart';
+import 'package:fcb_pay_app/ui/pin/create_pin/bloc/create_pin_bloc.dart';
 import 'package:fcb_pay_app/ui/widgets/button_numpad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

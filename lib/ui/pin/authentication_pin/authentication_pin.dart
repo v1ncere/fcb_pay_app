@@ -1,7 +1,6 @@
 import 'package:fcb_pay_app/repository/pin_repository.dart';
-import 'package:fcb_pay_app/ui/authentication_pin/bloc/auth_pin_bloc.dart';
-import 'package:fcb_pay_app/ui/authentication_pin/widgets/phone_number.dart';
-import 'package:fcb_pay_app/ui/authentication_pin/widgets/widgets_barrel.dart';
+import 'package:fcb_pay_app/ui/pin/authentication_pin/bloc/auth_pin_bloc.dart';
+import 'package:fcb_pay_app/ui/pin/authentication_pin/widgets/widgets_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

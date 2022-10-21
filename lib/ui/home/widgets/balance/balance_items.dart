@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BalanceItems extends StatelessWidget {
-  const BalanceItems({Key? key, required this.account, required this.balance, required this.walletBalance}) : super(key : key);
+  const BalanceItems({
+    Key? key,
+    required this.account,
+    required this.balance,
+    required this.walletBalance
+  }) : super(key : key);
   final int account;
   final int balance;
   final int walletBalance;
@@ -61,6 +66,7 @@ class BalanceItems extends StatelessWidget {
                       const SizedBox(height: 5),
                       Text("P${balance.toStringAsFixed(2)}", style: const TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                         fontSize: 22),
                       ),
                     ]

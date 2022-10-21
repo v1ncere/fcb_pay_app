@@ -1,6 +1,5 @@
-import 'package:fcb_pay_app/ui/authentication_pin/authentication_pin.dart';
 import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/ui/create_pin/create_pin.dart';
+import 'package:fcb_pay_app/ui/pin/pin_barrel.dart';
 import 'package:fcb_pay_app/ui/splash/splash.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,8 @@
 import 'package:fcb_pay_app/repository/pin_repository.dart';
-import 'package:fcb_pay_app/ui/create_pin/bloc/create_pin_bloc.dart';
+import 'package:fcb_pay_app/ui/pin/create_pin/bloc/create_pin_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fcb_pay_app/ui/create_pin/widget/widget_barrel.dart';
+import 'package:fcb_pay_app/ui/pin/create_pin/widget/widget_barrel.dart';
 
 class CreatePin extends StatelessWidget {
   const CreatePin({Key? key}) : super(key: key);

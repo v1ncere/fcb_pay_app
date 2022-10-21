@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FlutterTodosTheme {
-  FlutterTodosTheme({required this.context});
+class FlutterTheme {
+  FlutterTheme({required this.context});
   final BuildContext context;
 
   ThemeData get light {
@@ -12,7 +12,7 @@ class FlutterTodosTheme {
         color: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: const IconThemeData(color: Colors.black)
       ),
-      colorScheme: ColorScheme.fromSwatch(accentColor: const Color(0xFF30DD5B),),
+      colorScheme: ColorScheme.fromSwatch(accentColor: const Color(0xFF30DD5B)),
       snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
       toggleableActiveColor: const Color(0xFF30DD5B),
     );

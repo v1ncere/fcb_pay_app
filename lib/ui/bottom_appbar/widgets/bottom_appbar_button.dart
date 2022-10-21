@@ -1,27 +1,28 @@
 import 'package:fcb_pay_app/ui/bottom_appbar/cubit/bottom_appbar_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomAppbarButton extends StatelessWidget {
-  const BottomAppbarButton({Key? key, 
+  const BottomAppbarButton({
+    Key? key,
     required this.groupValue,
     required this.value,
     required this.icon,
     required this.padding,
+    required this.controller,
   }) : super(key: key);
-
   final BottomAppbarTab groupValue;
   final BottomAppbarTab value;
   final Widget icon;
   final EdgeInsetsGeometry padding;
+  final PageController controller;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       padding: padding,
-      onPressed: () => context.read<BottomAppbarCubit>().setTab(value),
-      iconSize: 32,
-      color: groupValue != value ? Colors.black45 : const Color(0xFF009C05),
+      onPressed: () => controller.jumpToPage(value.index), //context.read<BottomAppbarCubit>().setTab(value),
+      iconSize: groupValue != value ? 32 : 35,
+      color: groupValue != value ? Colors.white70 : const Color(0xFFFFFFFF),
       icon: icon,
     );
   }
