@@ -1,6 +1,6 @@
 import 'package:fcb_pay_app/repository/account_repository/bloc/account_repo_bloc.dart';
 import 'package:fcb_pay_app/ui/home/cubit/home_cubit.dart';
-import 'package:fcb_pay_app/ui/home/widgets/balance/balance_items.dart';
+import 'package:fcb_pay_app/ui/home/widgets/balance_card_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

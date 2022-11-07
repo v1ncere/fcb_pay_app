@@ -60,6 +60,6 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/auth_pin');
+    Navigator.of(context).pushReplacementNamed('/register');
   }
 }

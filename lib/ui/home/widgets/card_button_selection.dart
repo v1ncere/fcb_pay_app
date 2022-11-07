@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/ui/widgets/card_buttons.dart';
+import 'package:fcb_pay_app/ui/home/widgets/card_button_item.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 

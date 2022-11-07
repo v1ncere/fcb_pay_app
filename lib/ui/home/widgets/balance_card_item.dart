@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unicons/unicons.dart';
 
 class BalanceItems extends StatelessWidget {
   const BalanceItems({
@@ -48,7 +49,7 @@ class BalanceItems extends StatelessWidget {
                       backgroundColor: const Color(0xFFFFFFFF),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     ),
-                    icon: const Icon(Icons.wallet, color: Color(0xFF30DD5B),), 
+                    icon: const Icon(UniconsLine.wallet, color: Color(0xFF30DD5B),), 
                     label: const Text('Top up', style: TextStyle(color: Color(0xFF30DD5B))), 
                     onPressed: () { },
                   )

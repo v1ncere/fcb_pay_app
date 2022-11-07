@@ -9,15 +9,14 @@ class ScannerWidget extends StatefulWidget {
 }
 
 class ScannerState extends State<ScannerWidget> {
-
-  MobileScannerController cameraController = MobileScannerController();
+  final cameraController = MobileScannerController();
 
   @override
   void dispose() {
-
     cameraController.dispose();
     super.dispose();
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

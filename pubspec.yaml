@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -21,6 +21,10 @@ dependencies:
   json_annotation: ^4.7.0
   carousel_slider: ^4.1.1
   mobile_scanner: ^2.0.0
+  firebase_auth: ^3.11.2
+  google_sign_in: ^5.4.2
+  meta: ^1.8.0
+  formz: ^0.4.1
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +33,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   build_runner: ^2.2.1
   flutter_launcher_icons: "^0.10.0"
+  plugin_platform_interface: ^2.1.3
 
 flutter_icons:
   android: true
@@ -39,3 +44,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/fcb-logo.png
+    - assets/login.svg

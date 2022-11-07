@@ -1,3 +1,4 @@
+import 'package:fcb_pay_app/ui/register/register.dart';
 import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/ui/pin/pin_barrel.dart';
 import 'package:fcb_pay_app/ui/splash/splash.dart';
@@ -14,6 +15,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AuthPin());
       case '/home':
         return MaterialPageRoute(builder: (_) => const BottomAppbar());
+      case '/register':
+        return MaterialPageRoute(builder: (_) => const Register());
       default:
         return _error();
     }

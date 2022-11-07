@@ -13,12 +13,12 @@ class HeaderTitle extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Welcome 👋', style: TextStyle(
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
               fontSize: 25.0,
             )),
             const SizedBox(height: 8.0),
             Text(name, style: const TextStyle(
-              fontWeight: FontWeight.w400, 
+              fontWeight: FontWeight.w500, 
               fontSize: 14.0,
             )),
           ],
