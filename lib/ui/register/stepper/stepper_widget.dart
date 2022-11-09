@@ -1,3 +1,5 @@
+import 'package:fcb_pay_app/ui/register/form_inputs/account/account_barrel.dart';
+import 'package:fcb_pay_app/ui/register/form_inputs/address/view/view_barrel.dart';
 import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,39 +34,13 @@ class StepperWidget extends StatelessWidget {
     return <Step> [
       Step(
         title: const Text('Account'),
-        content: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: TextFormField(decoration: const InputDecoration(labelText: 'Email Address', border: OutlineInputBorder())),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: TextFormField(decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder())),
-            ),
-          ],
-        ),
+        content: const AccountPage(),
         isActive: currentStep >= 0,
         state: currentStep >= 0 ? StepState.complete : StepState.disabled
       ),
       Step(
         title: const Text('Address'),
-        content: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: TextFormField(
-                decoration: const InputDecoration(labelText: 'Home Address', border: OutlineInputBorder()),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: TextFormField(
-                decoration: const InputDecoration(labelText: 'Postcode', border: OutlineInputBorder()),
-              ),
-            ),
-          ],
-        ),
+        content: const AddressPage(),
         isActive: currentStep >= 1,
         state: currentStep >= 1 ? StepState.complete : StepState.disabled,
       ),
