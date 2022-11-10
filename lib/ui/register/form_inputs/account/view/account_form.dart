@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/ui/register/form_inputs/account/bloc/account_bloc.dart';
+import 'package:fcb_pay_app/ui/register/form_inputs/bloc/inputs_bloc.dart';
 import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,12 +34,12 @@ class AccountForm extends StatelessWidget {
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountBloc, AccountState>(
+    return BlocBuilder<InputsBloc, InputsState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
           key: const Key('account_emailInput_textField'),
-          onChanged: (value) => context.read<AccountBloc>().add(EmailChanged(value)),
+          onChanged: (value) => context.read<InputsBloc>().add(EmailChanged(value)),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -55,12 +55,12 @@ class _EmailInput extends StatelessWidget {
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountBloc, AccountState>(
+    return BlocBuilder<InputsBloc, InputsState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextField(
           key: const Key('account_passwordInput_textField'),
-          onChanged: (value) => context.read<AccountBloc>().add(PasswordChanged(value)),
+          onChanged: (value) => context.read<InputsBloc>().add(PasswordChanged(value)),
           obscureText: true,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -76,12 +76,12 @@ class _PasswordInput extends StatelessWidget {
 class _ConfirmPasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountBloc, AccountState>(
+    return BlocBuilder<InputsBloc, InputsState>(
       buildWhen: (previous, current) => previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
         return TextField(
           key: const Key('account_confirmPasswordInput_textField'),
-          onChanged: (value) => context.read<AccountBloc>().add(ConfirmedPasswordChanged(state.password.value, value)),
+          onChanged: (value) => context.read<InputsBloc>().add(ConfirmedPasswordChanged(state.password.value, value)),
           obscureText: true,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -97,7 +97,7 @@ class _ConfirmPasswordInput extends StatelessWidget {
 class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountBloc, AccountState>(
+    return BlocBuilder<InputsBloc, InputsState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return ElevatedButton(
@@ -116,7 +116,7 @@ class _SubmitButton extends StatelessWidget {
 class _CancelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountBloc, AccountState>(
+    return BlocBuilder<InputsBloc, InputsState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return TextButton(

@@ -1,20 +1,19 @@
-import 'package:fcb_pay_app/ui/register/form_inputs/bloc/inputs_bloc.dart';
-import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-class AddressForm extends StatelessWidget {
-  const AddressForm({Key? key}) : super(key: key);
+import 'package:fcb_pay_app/ui/register/form_inputs/bloc/inputs_bloc.dart';
+import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
+
+class MobileNumberForm extends StatelessWidget {
+  const MobileNumberForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          _HomeAddressInput(),
-          const SizedBox(height: 12.0),
-          _PostCodeInput(),
+          _MobileNumberInput(),
           const SizedBox(height: 12.0),
           Row(
             children: [
@@ -22,39 +21,18 @@ class AddressForm extends StatelessWidget {
               const SizedBox(width: 8.0),
               _CancelButton(),
             ],
-          )
+          )          
         ]
       ),
     );
   }
 }
 
-class _HomeAddressInput extends StatelessWidget {
+class _MobileNumberInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<InputsBloc, InputsState>(
-      buildWhen: (previous, current) => previous.homeAddress != current.homeAddress,
-      builder: (context, state) {
-        return TextField(
-          key: const Key('address_homeAdressInput_textField'),
-          onChanged: (value) => context.read<InputsBloc>().add(HomeAddressChanged(value)),
-          keyboardType: TextInputType.streetAddress,
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            labelText: 'Home Address',
-            errorText: state.homeAddress.invalid ? state.homeAddress.error?.message : null,
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _PostCodeInput extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<InputsBloc, InputsState>(
-      buildWhen: (previous, current) => previous.postCode != current.postCode,
+      buildWhen: (previous, current) => previous.mobileNumber != current.mobileNumber,
       builder: (context, state) {
         return TextField(
           key: const Key('address_postCodeInput_textField'),

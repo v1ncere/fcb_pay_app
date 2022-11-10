@@ -1,8 +1,10 @@
-import 'package:fcb_pay_app/ui/register/form_inputs/account/account_barrel.dart';
-import 'package:fcb_pay_app/ui/register/form_inputs/address/view/view_barrel.dart';
-import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:fcb_pay_app/ui/register/form_inputs/account/account_barrel.dart';
+import 'package:fcb_pay_app/ui/register/form_inputs/address/view/view_barrel.dart';
+import 'package:fcb_pay_app/ui/register/form_inputs/mobile_number/mobile_number_barrel.dart';
+import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
 
 class StepperWidget extends StatelessWidget {
   const StepperWidget({Key? key}) : super(key: key);
@@ -46,16 +48,7 @@ class StepperWidget extends StatelessWidget {
       ),
       Step(
         title: const Text('Mobile Number'),
-        content: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: TextFormField(
-                decoration: const InputDecoration(labelText: 'Mobile Number', border: OutlineInputBorder()),
-              ),
-            ),
-          ],
-        ),
+        content: const MobileNumberPage(),
         isActive: currentStep >= 2,
         state: currentStep >= 2 ? StepState.complete : StepState.disabled,
       ),
