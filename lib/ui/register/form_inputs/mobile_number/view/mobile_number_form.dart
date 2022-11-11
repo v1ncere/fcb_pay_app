@@ -37,10 +37,10 @@ class _MobileNumberInput extends StatelessWidget {
         return TextField(
           key: const Key('address_postCodeInput_textField'),
           onChanged: (value) => context.read<InputsBloc>().add(PostCodeChanged(value)),
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.phone,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            labelText: 'Postcode',
+            labelText: 'Mobile number',
             errorText: state.postCode.invalid ? state.postCode.error?.message : null,
           ),
         );
@@ -52,17 +52,25 @@ class _MobileNumberInput extends StatelessWidget {
 class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InputsBloc, InputsState>(
+    return BlocConsumer<InputsBloc, InputsState>(
+      listenWhen: (previous, current) => previous.status != current.status,
+      listener: (context, state) {
+        if (state.status.isSubmissionSuccess) {
+          Navigator.of(context).pushReplacementNamed('/login');
+        }
+      },
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return ElevatedButton(
-          key: const Key('addressForm_submitButton_elevatedButton'),
-          style: ElevatedButton.styleFrom(elevation: 0),
-          onPressed: state.status.isValidated
-            ? context.read<StepperCubit>().stepContinued
-            : null,
-          child: const Text('SUBMIT'),
-        );
+        return state.status.isSubmissionInProgress
+          ? const CircularProgressIndicator()
+          : ElevatedButton(
+              key: const Key('personalInfoForm_submitButton_elevatedButton'),
+              style: ElevatedButton.styleFrom(elevation: 0),
+              onPressed: state.status.isValidated
+                ? () => context.read<InputsBloc>().add(FormSubmitted())
+                : null,
+              child: const Text('SUBMIT'),
+            );
       },
     );
   }

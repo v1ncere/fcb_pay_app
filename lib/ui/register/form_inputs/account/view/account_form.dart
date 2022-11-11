@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 class AccountForm extends StatelessWidget {
-  const AccountForm({Key? key}) : super(key: key);
+  const AccountForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class _CancelButton extends StatelessWidget {
       builder: (context, state) {
         return TextButton(
           key: const Key('accountForm_cancelButton_elevatedButton'),
-          onPressed: () => context.read<StepperCubit>().stepCancelled,
+          onPressed: () => Navigator.of(context).pushReplacementNamed('/login'),
           child: const Text('CANCEL'),
         );
       },

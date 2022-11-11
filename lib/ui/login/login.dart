@@ -11,9 +11,17 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
-      child: const LoginWidget(),
+    return RepositoryProvider(
+      create: (context) => AuthenticationRepository(),
+        child: BlocProvider(
+        create: (context) => LoginCubit(context.read<AuthenticationRepository>()),
+        child: const Scaffold(
+          body: Padding(
+            padding: EdgeInsets.only(left: 30.0, right: 30.0),
+            child: LoginWidget(),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -2,8 +2,6 @@ import 'package:fcb_pay_app/ui/login/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:unicons/unicons.dart';
-
 class LoginWidget extends StatelessWidget {
   const LoginWidget({Key? key}) : super(key: key);
 
@@ -22,7 +20,7 @@ class LoginWidget extends StatelessWidget {
         }
       },
       child: Align(
-        alignment: const Alignment(0, -1 / 3),
+        alignment: const Alignment(0, -1/3),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -33,12 +31,16 @@ class LoginWidget extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _EmailInput(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               _PasswordInput(),
-              const SizedBox(height: 8),
-              _LoginButton(),
-              const SizedBox(height: 8),
-              _GoogleLoginButton(),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _SignInText(),
+                  _LoginButton(),
+                ],
+              ),
               const SizedBox(height: 4),
               _SignUpButton(),
             ],
@@ -60,8 +62,11 @@ class _EmailInput extends StatelessWidget{
           onChanged: (value) => context.read<LoginCubit>().emailChanged(value),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            labelText: 'email',
-            helperText: '',
+            filled: true,
+            fillColor: const Color(0x1FB3B3B3),
+            focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF009405), width: 2.0)),
+            border: const OutlineInputBorder(),
+            labelText: 'Email',
             errorText: state.email.invalid ? 'invalid email' : null,
           ),
         );
@@ -81,12 +86,28 @@ class _PasswordInput extends StatelessWidget{
           onChanged: (value) => context.read<LoginCubit>().passwordChanged(value),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'password',
-            helperText: '',
+            filled: true,
+            fillColor: const Color(0x1FB3B3B3),
+            focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF009405), width: 2.0)),
+            border: const OutlineInputBorder(),
+            labelText: 'Password',
             errorText: state.password.invalid ? 'invalid password' : null,
           ),
         );
       },
+    );
+  }
+}
+
+class _SignInText extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Text('Sign In',
+      style: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF009405),
+      ),
     );
   }
 }
@@ -99,40 +120,23 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
           ? const CircularProgressIndicator()
-          : ElevatedButton(
-            key: const Key('loginForm_continue_raisedButton'),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)
+          : ClipOval(
+            child: Material(
+              color:const Color(0xFF009405), // Button color
+              child: InkWell(
+                splashColor: Colors.red, // Splash color
+                onTap: 
+                  state.status.isValidated
+                    ? () => context.read<LoginCubit>().logInWithCredentials()
+                    : null,
+                child: const SizedBox(
+                  width: 56,
+                  height: 56, 
+                  child: Icon(Icons.arrow_forward, color: Colors.white,)),
               ),
-              backgroundColor: const Color(0xFFFFD600)
             ),
-            onPressed: state.status.isValidated
-              ? () => context.read<LoginCubit>().logInWithCredentials()
-              : null,
-            child: const Text('LOGIN'),
           );
       },
-    );
-  }
-}
-
-class _GoogleLoginButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      key: const Key('loginForm_googleLogin_raisedButton'),
-      label: const Text(
-        'SIGN IN WITH GOOGLE',
-        style: TextStyle(color:Colors.white),
-      ),
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30)
-        ),
-      ),
-      icon: const Icon(UniconsLine.google, color: Colors.white,),
-      onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
     );
   }
 }
@@ -143,10 +147,11 @@ class _SignUpButton extends StatelessWidget {
     return TextButton(
       key: const Key('loginForm_createAccount_flatButton'),
       onPressed: () => Navigator.of(context).pushNamed('/register'),
-      child: Text(
+      child: const Text(
         'CREATE ACCOUNT',
-        style: TextStyle(color: Theme.of(context).primaryColor),
-      ),
+          style: TextStyle(color: Color(0xFF009405),
+        ),
+      )
     );
   }
 }

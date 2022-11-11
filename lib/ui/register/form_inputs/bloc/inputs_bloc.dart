@@ -1,17 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:formz/formz.dart';
+
 import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
 import 'package:fcb_pay_app/ui/register/form_inputs/account/account_barrel.dart';
 import 'package:fcb_pay_app/ui/register/form_inputs/address/address_barrel.dart';
 import 'package:fcb_pay_app/ui/register/form_inputs/mobile_number/models/mobile_number.dart';
-import 'package:formz/formz.dart';
 
 part 'inputs_event.dart';
 part 'inputs_state.dart';
 
 class InputsBloc extends Bloc<InputsEvent, InputsState> {
   final AuthenticationRepository authenticationRepository;
-  InputsBloc({required this.authenticationRepository}) : super(const InputsState()) {
+  InputsBloc({required this.authenticationRepository})
+    : super(const InputsState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<ConfirmedPasswordChanged>(_onConfirmedPasswordChanged);
