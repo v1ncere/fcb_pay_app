@@ -6,10 +6,12 @@ class SettingsButton extends StatelessWidget {
     required this.iconData,
     required this.text,
     required this.colors,
+    required this.methods,
   }) : super(key: key);
   final IconData iconData;
   final String text;
   final Color colors;
+  final Function methods;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,7 @@ class SettingsButton extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(8.0),
             splashColor: Colors.black12,
-            onTap: () {
-              
-            },
+            onTap: () => methods(),
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Row(

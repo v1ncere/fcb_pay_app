@@ -115,16 +115,22 @@ class _SignInText extends StatelessWidget {
 class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listenWhen: (previous, current) => previous.status != current.status,
+      listener: (context, state) {
+        if (state.status.isSubmissionSuccess) {
+          Navigator.of(context).pushReplacementNamed('/home');
+        }
+      },
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
           ? const CircularProgressIndicator()
           : ClipOval(
             child: Material(
-              color:const Color(0xFF009405), // Button color
+              color:const Color(0xFF009405),
               child: InkWell(
-                splashColor: Colors.red, // Splash color
+                splashColor: Colors.red,
                 onTap: 
                   state.status.isValidated
                     ? () => context.read<LoginCubit>().logInWithCredentials()

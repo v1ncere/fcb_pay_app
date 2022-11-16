@@ -106,7 +106,7 @@ class _SubmitButton extends StatelessWidget {
           onPressed: state.status.isValidated
             ? context.read<StepperCubit>().stepContinued
             : null,
-          child: const Text('SUBMIT'),
+          child: const Text('NEXT'),
         );
       },
     );

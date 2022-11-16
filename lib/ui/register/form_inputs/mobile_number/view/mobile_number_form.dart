@@ -85,7 +85,7 @@ class _CancelButton extends StatelessWidget {
         return TextButton(
           key: const Key('addressForm_cancelButton_elevatedButton'),
           onPressed: () => context.read<StepperCubit>().stepCancelled,
-          child: const Text('CANCEL'),
+          child: const Text('BACK'),
         );
       },
     );

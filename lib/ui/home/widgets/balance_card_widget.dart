@@ -33,10 +33,10 @@ class Balance extends StatelessWidget {
               ),
               items: state.accountModel.map((accounts) {
                 return BalanceItems(
-                    account: accounts.account,
-                    balance: accounts.balance,
-                    walletBalance: accounts.walletBalance,
-                  );
+                  account: accounts.account,
+                  balance: accounts.balance,
+                  walletBalance: accounts.walletBalance,
+                );
               }).toList(),
             ),
             Row(

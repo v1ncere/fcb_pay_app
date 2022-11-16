@@ -8,9 +8,9 @@ class BalanceItems extends StatelessWidget {
     required this.balance,
     required this.walletBalance
   }) : super(key : key);
-  final int account;
-  final int balance;
-  final int walletBalance;
+  final int? account;
+  final int? balance;
+  final int? walletBalance;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class BalanceItems extends StatelessWidget {
                         fontSize: 12),
                       ),
                       const SizedBox(height: 5),
-                      Text("P${walletBalance.toStringAsFixed(2)}",
+                      Text("P${walletBalance?.toStringAsFixed(2)}",
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -65,7 +65,7 @@ class BalanceItems extends StatelessWidget {
                         fontSize: 12),
                       ),
                       const SizedBox(height: 5),
-                      Text("P${balance.toStringAsFixed(2)}", style: const TextStyle(
+                      Text("P${balance?.toStringAsFixed(2)}", style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 22),
