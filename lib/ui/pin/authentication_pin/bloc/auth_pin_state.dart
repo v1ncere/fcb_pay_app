@@ -4,15 +4,20 @@ enum AuthPinStatus { enterPin, equals , unequals }
 
 @immutable
 class AuthPinState {
+  const AuthPinState({
+    required this.pinStatus,
+    this.pin = ""
+  });
   final AuthPinStatus pinStatus;
   final String pin;
 
-  const AuthPinState({required this.pinStatus, this.pin = ""});
-
-  AuthPinState copyWith({AuthPinStatus? pinStatus, String? pin}) {
+  AuthPinState copyWith({
+    AuthPinStatus? pinStatus,
+    String? pin,
+  }) {
     return AuthPinState(
       pinStatus: pinStatus ?? this.pinStatus, 
-      pin: pin ?? this.pin
+      pin: pin ?? this.pin,
     );
   }
 

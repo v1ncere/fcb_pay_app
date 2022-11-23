@@ -1,10 +1,12 @@
-import 'package:fcb_pay_app/repository/cache.dart';
-import 'package:fcb_pay_app/repository/model/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+
+import 'package:fcb_pay_app/repository/cache.dart';
+import 'package:fcb_pay_app/repository/model/account.dart';
 
 class SignUpWithEmailAndPasswordFailure implements Exception {
   const SignUpWithEmailAndPasswordFailure([
@@ -140,24 +142,37 @@ class AuthenticationRepository {
   @visibleForTesting
   static const userCacheKey = '__user_cache_key__';
 
-  Stream<User> get user {
+  Stream<AccountModel> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
+      final user = firebaseUser == null ? AccountModel.empty : firebaseUser.toUser;
       _cache.write(key: userCacheKey, value: user);
       return user;
     });
   }
 
-  User get currentUser {
-    return _cache.read<User>(key: userCacheKey) ?? User.empty;
+  AccountModel get currentUser {
+    return _cache.read<AccountModel>(key: userCacheKey) ?? AccountModel.empty;
   }
 
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String accountNumber,
+    required int balance,
+    required int walletBalance
+  }) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      ).then((value) async {
+        await FirebaseFirestore.instance.collection('accounts').doc(accountNumber).set({
+          'user_id': _firebaseAuth.currentUser!.uid,
+          'account': int.parse(accountNumber),
+          'balance': 0,
+          'wallet_balance': 0,
+        });
+      });
     } on FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
@@ -215,11 +230,9 @@ class AuthenticationRepository {
 }
 
 extension on firebase_auth.User {
-  User get toUser {
-    return User(
-      id: uid,
-      email: email,
-      photo: photoURL
+  AccountModel get toUser {
+    return AccountModel(
+      userId: uid,
     );
   }
 }

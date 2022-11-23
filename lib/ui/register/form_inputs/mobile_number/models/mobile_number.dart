@@ -9,17 +9,15 @@ enum MobileNumberValidationError {
 }
 
 class MobileNumber extends FormzInput<String, MobileNumberValidationError> {
-
   const MobileNumber.pure() : super.pure('');
   const MobileNumber.dirty([super.value = '']) : super.dirty();
-
-  static final _passwordRegExp = RegExp(r'^([+]\d{2}[ ])?\d{10}$');
+  static final _mobileRegExp = RegExp(r'(^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$)');
 
   @override
   MobileNumberValidationError? validator(String value) {
     return value.isEmpty
       ? MobileNumberValidationError.required
-      : _passwordRegExp.hasMatch(value)
+      : _mobileRegExp.hasMatch(value)
         ? null
         : MobileNumberValidationError.invalid;
   }

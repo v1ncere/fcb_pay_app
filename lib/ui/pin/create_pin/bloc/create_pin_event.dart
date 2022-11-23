@@ -2,12 +2,16 @@ part of 'create_pin_bloc.dart';
 
 @immutable
 abstract class CreatePinEvent {
+  const CreatePinEvent({
+    this.pinNum
+  });
   final int? pinNum;
-  const CreatePinEvent({this.pinNum});
 }
 
 class CreatePinAddEvent extends CreatePinEvent {
-  const CreatePinAddEvent({required int pinNum}) : super(pinNum: pinNum);
+  const CreatePinAddEvent({
+    required int pinNum
+  }) : super(pinNum: pinNum);
 }
 
 class CreatePinEraseEvent extends CreatePinEvent {

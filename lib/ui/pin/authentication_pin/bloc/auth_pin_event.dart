@@ -2,12 +2,16 @@ part of 'auth_pin_bloc.dart';
 
 @immutable
 abstract class AuthPinEvent {
+  const AuthPinEvent({
+    this.pinNum
+  });
   final int? pinNum;
-  const AuthPinEvent({this.pinNum});
 }
 
 class AuthPinAddEvent extends AuthPinEvent {
-  const AuthPinAddEvent({required int pinNum}) : super(pinNum: pinNum);
+  const AuthPinAddEvent({
+    required int pinNum
+  }) : super(pinNum: pinNum);
 }
 
 class AuthPinEraseEvent extends AuthPinEvent {

@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
 import 'package:formz/formz.dart';
+
+import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
 
 import '../../register/form_inputs/account/models/model_barrel.dart';
 
@@ -9,7 +10,6 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(const LoginState());
-
   final AuthenticationRepository _authenticationRepository;
 
   void emailChanged(String value) {
@@ -17,7 +17,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email, state.password]),
+        status: Formz.validate([
+          email,
+          state.password,
+        ]),
       ),
     );
   }
@@ -27,7 +30,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         password: password,
-        status: Formz.validate([state.email, password]),
+        status: Formz.validate([
+          state.email,
+          password,
+        ]),
       ),
     );
   }
@@ -42,23 +48,6 @@ class LoginCubit extends Cubit<LoginState> {
       );
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on LogInWithEmailAndPasswordFailure catch (e) {
-      emit(
-        state.copyWith(
-          errorMessage: e.message,
-          status: FormzStatus.submissionFailure,
-        ),
-      );
-    } catch (_) {
-      emit(state.copyWith(status: FormzStatus.submissionFailure));
-    }
-  }
-
-  Future<void> logInWithGoogle() async {
-    emit(state.copyWith(status: FormzStatus.submissionInProgress));
-    try {
-      await _authenticationRepository.logInWithGoogle();
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
-    } on LogInWithGoogleFailure catch (e) {
       emit(
         state.copyWith(
           errorMessage: e.message,

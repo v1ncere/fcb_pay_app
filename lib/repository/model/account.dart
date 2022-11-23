@@ -2,16 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class AccountModel extends Equatable{
-  final String userId;
-  final int? account;
-  final int? balance;
-  final int? walletBalance;
   const AccountModel({
     required this.userId,
     this.account,
     this.balance,
     this.walletBalance,
   });
+
+  final String userId;
+  final int? account;
+  final int? balance;
+  final int? walletBalance;
 
   Map<String, dynamic> toMap() {
     return {
@@ -31,6 +32,10 @@ class AccountModel extends Equatable{
     );
     return accountModel;
   }
+
+  static const empty = AccountModel(userId: '');
+  bool get isEmpty => this == AccountModel.empty;
+  bool get isNotEmpty => this != AccountModel.empty;
   
   @override
   List<Object?> get props => [

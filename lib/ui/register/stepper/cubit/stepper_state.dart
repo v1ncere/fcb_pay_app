@@ -6,7 +6,9 @@ class StepperState extends Equatable {
   });
   final int currentStep;
 
-  StepperState copyWith({int? currentStep}) {
+  StepperState copyWith({
+    int? currentStep,
+  }) {
     return StepperState(
       currentStep: currentStep ?? this.currentStep,
     );

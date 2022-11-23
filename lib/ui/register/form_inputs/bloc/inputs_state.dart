@@ -5,8 +5,7 @@ class InputsState extends Equatable {
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.confirmedPassword = const ConfirmedPassword.pure(),
-    this.homeAddress = const HomeAddress.pure(),
-    this.postCode = const PostCode.pure(),
+    this.accountNumber = const AccountNumber.pure(),
     this.mobileNumber = const MobileNumber.pure(),
     this.status = FormzStatus.pure,
   });
@@ -14,8 +13,7 @@ class InputsState extends Equatable {
   final Email email;
   final Password password;
   final ConfirmedPassword confirmedPassword;
-  final HomeAddress homeAddress;
-  final PostCode postCode;
+  final AccountNumber accountNumber;
   final MobileNumber mobileNumber;
   final FormzStatus status;
   
@@ -23,8 +21,7 @@ class InputsState extends Equatable {
     Email? email,
     Password? password,
     ConfirmedPassword? confirmedPassword,
-    HomeAddress? homeAddress,
-    PostCode? postCode,
+    AccountNumber? accountNumber,
     MobileNumber? mobileNumber,
     FormzStatus? status,
   }) {
@@ -32,8 +29,7 @@ class InputsState extends Equatable {
       email: email ?? this.email,
       password: password ?? this.password,
       confirmedPassword: confirmedPassword ?? this.confirmedPassword,
-      homeAddress: homeAddress ?? this.homeAddress,
-      postCode: postCode ?? this.postCode,
+      accountNumber: accountNumber ?? this.accountNumber,
       mobileNumber: mobileNumber ?? this.mobileNumber,
       status: status ?? this.status,
     );
@@ -44,8 +40,7 @@ class InputsState extends Equatable {
     email,
     password,
     confirmedPassword,
-    homeAddress,
-    postCode,
+    accountNumber,
     mobileNumber,
     status
   ];

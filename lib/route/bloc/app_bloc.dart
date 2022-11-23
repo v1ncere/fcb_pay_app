@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
-import 'package:fcb_pay_app/repository/model/user.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
+import 'package:fcb_pay_app/repository/model/account.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';
@@ -24,7 +26,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         }
 
   final AuthenticationRepository _authenticationRepository;
-  late final StreamSubscription<User> _userSubscription;
+  late final StreamSubscription<AccountModel> _userSubscription;
 
   void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
     emit(

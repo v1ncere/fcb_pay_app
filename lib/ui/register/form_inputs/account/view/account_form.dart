@@ -2,7 +2,6 @@ import 'package:fcb_pay_app/ui/register/form_inputs/bloc/inputs_bloc.dart';
 import 'package:fcb_pay_app/ui/register/stepper/cubit/stepper_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 
 class AccountForm extends StatelessWidget {
   const AccountForm({super.key});
@@ -38,7 +37,7 @@ class _EmailInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
-          key: const Key('account_emailInput_textField'),
+          key: const Key('email_textfield'),
           onChanged: (value) => context.read<InputsBloc>().add(EmailChanged(value)),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
@@ -59,7 +58,7 @@ class _PasswordInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextField(
-          key: const Key('account_passwordInput_textField'),
+          key: const Key('password_textfield'),
           onChanged: (value) => context.read<InputsBloc>().add(PasswordChanged(value)),
           obscureText: true,
           decoration: InputDecoration(
@@ -80,12 +79,12 @@ class _ConfirmPasswordInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
         return TextField(
-          key: const Key('account_confirmPasswordInput_textField'),
+          key: const Key('confirm_password_textfield'),
           onChanged: (value) => context.read<InputsBloc>().add(ConfirmedPasswordChanged(state.password.value, value)),
           obscureText: true,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            labelText: 'Password',
+            labelText: 'Confirm Password',
             errorText: state.confirmedPassword.invalid ? state.confirmedPassword.error?.message : null,
           ),
         );
@@ -101,11 +100,9 @@ class _SubmitButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return ElevatedButton(
-          key: const Key('accountForm_submitButton_elevatedButton'),
+          key: const Key('account_submit_elevated_button'),
           style: ElevatedButton.styleFrom(elevation: 0),
-          onPressed: state.status.isValidated
-            ? context.read<StepperCubit>().stepContinued
-            : null,
+          onPressed: context.read<StepperCubit>().stepContinued,
           child: const Text('NEXT'),
         );
       },
@@ -120,7 +117,7 @@ class _CancelButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return TextButton(
-          key: const Key('accountForm_cancelButton_elevatedButton'),
+          key: const Key('account_cancel_elevated_button'),
           onPressed: () => Navigator.of(context).pushReplacementNamed('/login'),
           child: const Text('CANCEL'),
         );

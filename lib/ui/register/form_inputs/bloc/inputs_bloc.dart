@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
 import 'package:fcb_pay_app/ui/register/form_inputs/account/account_barrel.dart';
-import 'package:fcb_pay_app/ui/register/form_inputs/address/address_barrel.dart';
+import 'package:fcb_pay_app/ui/register/form_inputs/account_number/account_number_barrel.dart';
 import 'package:fcb_pay_app/ui/register/form_inputs/mobile_number/models/mobile_number.dart';
 
 part 'inputs_event.dart';
@@ -17,8 +17,7 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<ConfirmedPasswordChanged>(_onConfirmedPasswordChanged);
-    on<HomeAddressChanged>(_onHomeAddressChanged);
-    on<PostCodeChanged>(_onPostCodeChanged);
+    on<AccountNumberChanged>(_onAccountNumberChanged);
     on<MobileNumberChanged>(_onMobileNumberChanged);
     on<FormSubmitted>(_onFormSubmitted);
   }
@@ -30,7 +29,9 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
       status: Formz.validate([
         email,
         state.password,
-        state.confirmedPassword
+        state.confirmedPassword,
+        state.accountNumber,
+        state.mobileNumber,
       ]),
     ));
   }
@@ -42,7 +43,9 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
       status: Formz.validate([
         state.email,
         password,
-        state.confirmedPassword
+        state.confirmedPassword,
+        state.accountNumber,
+        state.mobileNumber,
       ]),
     ));
   }
@@ -57,29 +60,23 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
       status: Formz.validate([
         state.email,
         state.password,
-        confirmedPassword
+        confirmedPassword,
+        state.accountNumber,
+        state.mobileNumber,
       ]),
     ));
   }
 
-  void _onHomeAddressChanged(HomeAddressChanged event, Emitter<InputsState> emit) {
-    final homeAddress = HomeAddress.dirty(event.homeAddress);
+  void _onAccountNumberChanged(AccountNumberChanged event, Emitter<InputsState> emit) {
+    final postCode = AccountNumber.dirty(event.accountNumber);
     emit(state.copyWith(
-      homeAddress: homeAddress,
+      accountNumber: postCode,
       status: Formz.validate([
-        homeAddress,
-        state.postCode,
-      ]),
-    ));
-  }
-
-  void _onPostCodeChanged(PostCodeChanged event, Emitter<InputsState> emit) {
-    final postCode = PostCode.dirty(event.postCode);
-    emit(state.copyWith(
-      postCode: postCode,
-      status: Formz.validate([
-        state.homeAddress,
+        state.email,
+        state.password,
+        state.confirmedPassword,
         postCode,
+        state.mobileNumber,
       ]),
     ));
   }
@@ -89,6 +86,10 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
     emit(state.copyWith(
       mobileNumber: mobileNumber,
       status: Formz.validate([
+        state.email,
+        state.password,
+        state.confirmedPassword,
+        state.accountNumber,
         mobileNumber,
       ]),
     ));
@@ -101,6 +102,9 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
       await authenticationRepository.signUp(
         email: state.email.value,
         password: state.password.value,
+        accountNumber: state.accountNumber.value.replaceAll(" ", "").toString(),
+        balance: 0,
+        walletBalance: 0,
       );
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } catch (_) {

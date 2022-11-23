@@ -40,12 +40,12 @@ class HomeAddressChanged extends InputsEvent {
   List<Object> get props => [homeAddress];
 }
 
-class PostCodeChanged extends InputsEvent {
-  const PostCodeChanged(this.postCode);
-  final String postCode;
+class AccountNumberChanged extends InputsEvent {
+  const AccountNumberChanged(this.accountNumber);
+  final String accountNumber;
 
   @override
-  List<Object> get props => [postCode];
+  List<Object> get props => [accountNumber];
 }
 
 class MobileNumberChanged extends InputsEvent {

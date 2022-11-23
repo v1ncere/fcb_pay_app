@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fcb_pay_app/repository/account_repository/base_account_repo.dart';
-import 'package:fcb_pay_app/repository/model/account.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AccountRepository extends BaseAccountRepository {
-  final FirebaseFirestore _firebaseFirestore;
+import 'package:fcb_pay_app/repository/model/account.dart';
 
-  AccountRepository({FirebaseFirestore? firebaseFirestore})
-    : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
+abstract class BaseAccountRepository {
+  Stream<List<AccountModel>> getAllAccount();
+}
+
+class AccountRepository extends BaseAccountRepository {
+  AccountRepository({
+    FirebaseFirestore? firebaseFirestore
+  }) : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
+  final FirebaseFirestore _firebaseFirestore;
 
   @override
   Stream<List<AccountModel>> getAllAccount() {

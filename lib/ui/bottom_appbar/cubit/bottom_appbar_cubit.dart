@@ -6,5 +6,5 @@ part 'bottom_appbar_state.dart';
 class BottomAppbarCubit extends Cubit<BottomAppbarState> {
   BottomAppbarCubit() : super(const BottomAppbarState());
 
-  void setTab(BottomAppbarTab tab) => emit(BottomAppbarState(tab: tab));
+  void setTab(BottomAppbarTab tab) => emit(state.copyWith(tab: tab));
 }

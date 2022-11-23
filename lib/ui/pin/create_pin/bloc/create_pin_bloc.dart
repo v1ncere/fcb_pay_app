@@ -1,53 +1,58 @@
 import 'package:bloc/bloc.dart';
-import 'package:fcb_pay_app/repository/pin_repository.dart';
 import 'package:meta/meta.dart';
+
+import 'package:fcb_pay_app/repository/pin_repository.dart';
 
 part 'create_pin_event.dart';
 part 'create_pin_state.dart';
 
 class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
   final PinRepository pinRepository;
+  CreatePinBloc({
+    required this.pinRepository,
+  }) : super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
+    on<CreatePinAddEvent>(_onAddPin);
+    on<CreatePinEraseEvent>(_onErasePin);
+    on<CreateNullPinEvent>(_onNullPin);
+  }
 
-  CreatePinBloc({required this.pinRepository}) : super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
-    
-    on<CreatePinAddEvent>((event, emit) {
-      if (state.firstPin.length < 6) {
-        String firstPIN = "${state.firstPin}${event.pinNum}";
-        if (firstPIN.length < 6) {
-          emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterFirst));
-        } else {
-          emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterSecond));
-        }
-      } else {
-        String secondPIN = "${state.secondPin}${event.pinNum}";
-        if (secondPIN.length < 6) {
-          emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
-        } else if (secondPIN == state.firstPin) {
-          pinRepository.addPin(secondPIN);
-          emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.equals));
-        } else {
-          emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.unequals));
-        }
-      }
-    });
-
-    on<CreatePinEraseEvent>((event, emit) {
-      if (state.firstPin.isEmpty) {
-        emit(const CreatePinState(pinStatus: PinStatus.enterFirst));
-      } else if (state.firstPin.length < 6) {
-        String firstPIN = state.firstPin.substring(0, state.firstPin.length - 1);
+  void _onAddPin(CreatePinAddEvent event, Emitter<CreatePinState> emit) {
+    if (state.firstPin.length < 6) {
+      String firstPIN = "${state.firstPin}${event.pinNum}";
+      if (firstPIN.length < 6) {
         emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterFirst));
-      } else if (state.secondPin.isEmpty) {
-        emit(state.copyWith(pinStatus: PinStatus.enterSecond));
       } else {
-        String secondPIN = state.secondPin.substring(0, state.secondPin.length - 1);
-        emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
+        emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterSecond));
       }
-    });
+    } else {
+      String secondPIN = "${state.secondPin}${event.pinNum}";
+      if (secondPIN.length < 6) {
+        emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
+      } else if (secondPIN == state.firstPin) {
+        pinRepository.addPin(secondPIN);
+        emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.equals));
+      } else {
+        emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.unequals));
+      }
+    }
+  }
 
-    on<CreateNullPinEvent>((event, emit) {
+  void _onErasePin(CreatePinEraseEvent event, Emitter<CreatePinState> emit) {
+    if (state.firstPin.isEmpty) {
       emit(const CreatePinState(pinStatus: PinStatus.enterFirst));
-    });
+    } else if (state.firstPin.length < 6) {
+      String firstPIN = state.firstPin.substring(0, state.firstPin.length - 1);
+      emit(CreatePinState(firstPin: firstPIN, pinStatus: PinStatus.enterFirst));
+    } else if (state.secondPin.isEmpty) {
+      emit(state.copyWith(pinStatus: PinStatus.enterSecond));
+    } else {
+      String secondPIN = state.secondPin.substring(0, state.secondPin.length - 1);
+      emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
+    }
+  }
+
+  void _onNullPin(CreateNullPinEvent event, Emitter<CreatePinState> emit) {
+    emit(const CreatePinState(pinStatus: PinStatus.enterFirst));
   }
 
   @override

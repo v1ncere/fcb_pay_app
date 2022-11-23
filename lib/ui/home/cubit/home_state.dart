@@ -1,7 +1,9 @@
 part of 'home_cubit.dart';
 
 class HomeState extends Equatable {
-  const HomeState({this.currentIndex = 0});
+  const HomeState({
+    this.currentIndex = 0
+  });
   final int currentIndex;
 
   @override
