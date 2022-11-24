@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountNumberForm extends StatelessWidget {
-  const AccountNumberForm({Key? key}) : super(key: key);
+  const AccountNumberForm({super.key});
 
   @override
   Widget build(BuildContext context) {

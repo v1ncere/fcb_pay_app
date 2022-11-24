@@ -7,7 +7,7 @@ import 'package:fcb_pay_app/ui/home/cubit/home_cubit.dart';
 import 'package:fcb_pay_app/ui/home/widgets/balance_card_item.dart';
 
 class Balance extends StatelessWidget {
-  const Balance({Key? key}) : super(key: key);
+  const Balance({super.key});
 
   @override
   Widget build(BuildContext context) {

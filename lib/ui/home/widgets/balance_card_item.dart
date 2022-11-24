@@ -3,11 +3,11 @@ import 'package:unicons/unicons.dart';
 
 class BalanceItems extends StatelessWidget {
   const BalanceItems({
-    Key? key,
+    super.key,
     required this.account,
     required this.balance,
     required this.walletBalance
-  }) : super(key : key);
+  });
   final int? account;
   final int? balance;
   final int? walletBalance;

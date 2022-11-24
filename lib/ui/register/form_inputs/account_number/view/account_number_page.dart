@@ -2,7 +2,7 @@ import 'package:fcb_pay_app/ui/register/form_inputs/account_number/view/account_
 import 'package:flutter/material.dart';
 
 class AccountNumberPage extends StatelessWidget {
-  const AccountNumberPage({Key? key}) : super(key: key);
+  const AccountNumberPage({super.key});
 
   @override
   Widget build(BuildContext context) {

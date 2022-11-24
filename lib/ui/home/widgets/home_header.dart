@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class HeaderTitle extends StatelessWidget {
-  const HeaderTitle({Key? key, required this.name}) : super(key: key);
+  const HeaderTitle({
+    super.key,
+    required this.name
+  });
   final String name;
 
   @override

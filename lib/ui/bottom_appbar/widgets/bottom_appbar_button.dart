@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class BottomAppbarButton extends StatelessWidget {
   const BottomAppbarButton({
-    Key? key,
+    super.key,
     required this.groupValue,
     required this.value,
     required this.icon,
     required this.padding,
     required this.controller,
-  }) : super(key: key);
+  });
   final BottomAppbarTab groupValue;
   final BottomAppbarTab value;
   final Widget icon;
@@ -20,7 +20,7 @@ class BottomAppbarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       padding: padding,
-      onPressed: () => controller.jumpToPage(value.index), //context.read<BottomAppbarCubit>().setTab(value),
+      onPressed: () => controller.jumpToPage(value.index),
       iconSize: groupValue != value ? 32 : 35,
       color: groupValue != value ? Colors.white70 : const Color(0xFFFFFFFF),
       icon: icon,

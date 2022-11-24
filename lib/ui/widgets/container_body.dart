@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContainerBody extends StatelessWidget {
-  const ContainerBody({Key? key, required this.children}) : super(key: key);
+  const ContainerBody({
+    super.key,
+    required this.children
+  });
   final List<Widget> children;
 
   @override

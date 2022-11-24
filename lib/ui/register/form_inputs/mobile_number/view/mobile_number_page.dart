@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fcb_pay_app/ui/register/form_inputs/mobile_number/view/mobile_number_form.dart';
 
 class MobileNumberPage extends StatelessWidget {
-  const MobileNumberPage({Key? key}) : super(key: key);
+  const MobileNumberPage({super.key});
 
   @override
   Widget build(BuildContext context) {

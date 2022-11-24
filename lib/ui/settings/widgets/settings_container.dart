@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class SettingsContainer extends StatelessWidget {
-  const SettingsContainer({Key? key, required this.children}) : super(key: key);
+  const SettingsContainer({
+    super.key,
+    required this.children
+  });
   final List<Widget> children;
 
   @override

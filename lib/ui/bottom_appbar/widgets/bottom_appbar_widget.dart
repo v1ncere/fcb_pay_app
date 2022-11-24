@@ -1,14 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:unicons/unicons.dart';
+
 import 'package:fcb_pay_app/ui/bottom_appbar/cubit/bottom_appbar_cubit.dart';
 import 'package:fcb_pay_app/ui/bottom_appbar/widgets/bottom_appbar_button.dart';
 import 'package:fcb_pay_app/ui/home/home.dart';
 import 'package:fcb_pay_app/ui/scanner/scanner.dart';
 import 'package:fcb_pay_app/ui/settings/settings.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:unicons/unicons.dart';
 
 class HomeBottomAppbarWidget extends StatelessWidget {
-  const HomeBottomAppbarWidget({Key? key}) : super(key: key);
+  const HomeBottomAppbarWidget({super.key});
+  
   @override
   Widget build(BuildContext context) {
     final _selectedTab = context.select((BottomAppbarCubit cubit) => cubit.state.tab);
@@ -24,15 +26,6 @@ class HomeBottomAppbarWidget extends StatelessWidget {
           Settings(),
         ],
       ),
-      // IndexedStack WILL LOAD ALL PAGES: tendency the app will crash
-      // IndexedStack(
-      //   index: selectedTab.index,
-      //   children: const [
-      //     Home(),
-      //     Scanner(),
-      //     Settings(),
-      //   ],
-      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.hardEdge,
@@ -67,7 +60,7 @@ class HomeBottomAppbarWidget extends StatelessWidget {
         child: FittedBox(
           child: FloatingActionButton(
             backgroundColor: Colors.white,
-            onPressed: () => _controller.jumpToPage(BottomAppbarTab.scanner.index), // context.read<BottomAppbarCubit>().setTab(BottomAppbarTab.scanner),
+            onPressed: () => _controller.jumpToPage(BottomAppbarTab.scanner.index),
             child: Container(
               height: 65.0,
               width: 65.0,

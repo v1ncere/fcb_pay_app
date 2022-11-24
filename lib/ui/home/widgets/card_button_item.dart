@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class CardButton extends StatelessWidget {
   const CardButton({
-    Key? key,
+    super.key,
     required this.iconData,
     required this.text,
     required this.colors
-  }) : super(key: key);
+  });
   final IconData iconData;
   final String text;
   final Color colors;

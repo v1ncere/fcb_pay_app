@@ -1,10 +1,11 @@
-import 'package:fcb_pay_app/ui/pin/authentication_pin/bloc/auth_pin_bloc.dart';
-import 'package:fcb_pay_app/ui/widgets/button_numpad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:fcb_pay_app/ui/pin/authentication_pin/bloc/auth_pin_bloc.dart';
+import 'package:fcb_pay_app/ui/widgets/button_numpad.dart';
+
 class NumPad extends StatelessWidget {
-  const NumPad({Key? key}) : super(key: key);
+  const NumPad({super.key});
 
   @override
   Widget build(BuildContext context) {

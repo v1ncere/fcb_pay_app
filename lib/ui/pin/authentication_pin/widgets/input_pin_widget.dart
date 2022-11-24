@@ -1,10 +1,11 @@
-import 'package:fcb_pay_app/ui/pin/authentication_pin/bloc/auth_pin_bloc.dart';
-import 'package:fcb_pay_app/ui/widgets/pin_sphere.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:fcb_pay_app/ui/pin/authentication_pin/bloc/auth_pin_bloc.dart';
+import 'package:fcb_pay_app/ui/widgets/pin_sphere.dart';
+
 class MainPart extends StatelessWidget {
-  const MainPart({Key? key}) : super(key: key);
+  const MainPart({super.key});
   static const String enterYourPIN = "Please enter your PIN";
 
   @override

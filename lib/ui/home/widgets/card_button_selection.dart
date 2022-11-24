@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
 class CardButtonSelection extends StatelessWidget {
-  const CardButtonSelection({Key? key}) : super(key: key);
+  const CardButtonSelection({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({
-    Key? key,
+    super.key,
     required this.iconData,
     required this.text,
     required this.colors,
     required this.methods,
-  }) : super(key: key);
+  });
   final IconData iconData;
   final String text;
   final Color colors;

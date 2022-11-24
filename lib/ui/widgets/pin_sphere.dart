@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 class PinSphere extends StatelessWidget {
+  const PinSphere({
+    super.key,
+    required this.input
+  });
   final bool input;
-  const PinSphere({Key? key, required this.input}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

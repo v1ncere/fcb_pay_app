@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
 class SettingsSelection extends StatelessWidget {
-  const SettingsSelection({Key? key}) : super(key: key);
+  const SettingsSelection({super.key});
 
   @override
   Widget build(BuildContext context) {

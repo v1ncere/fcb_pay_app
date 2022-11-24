@@ -1,9 +1,10 @@
-import 'package:fcb_pay_app/ui/login/login.dart';
-import 'package:fcb_pay_app/ui/register/register.dart';
-import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/ui/pin/pin_barrel.dart';
-import 'package:fcb_pay_app/ui/splash/splash.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
+import 'package:fcb_pay_app/ui/login/login.dart';
+import 'package:fcb_pay_app/ui/pin/pin_barrel.dart';
+import 'package:fcb_pay_app/ui/register/register.dart';
+import 'package:fcb_pay_app/ui/splash/splash.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ButtonNumPad extends StatelessWidget {
-  const ButtonNumPad({Key? key, required this.num, this.onPressed}) : super(key: key);
+  const ButtonNumPad({
+    super.key,
+    required this.num,
+    this.onPressed
+  });
 
   final String num;
   final VoidCallback? onPressed;

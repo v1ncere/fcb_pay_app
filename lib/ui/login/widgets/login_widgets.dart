@@ -1,9 +1,11 @@
-import 'package:fcb_pay_app/ui/login/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+
+import 'package:fcb_pay_app/ui/login/cubit/login_cubit.dart';
+
 class LoginWidget extends StatelessWidget {
-  const LoginWidget({Key? key}) : super(key: key);
+  const LoginWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

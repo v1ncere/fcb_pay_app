@@ -3,7 +3,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:unicons/unicons.dart';
 
 class ScannerWidget extends StatefulWidget {
-  const ScannerWidget({Key? key}) : super(key: key);
+  const ScannerWidget({super.key});
   @override
   State<ScannerWidget> createState() => ScannerState();
 }
