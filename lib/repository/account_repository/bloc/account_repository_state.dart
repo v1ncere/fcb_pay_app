@@ -11,10 +11,10 @@ class AccountLoading extends AccountRepositoryState {}
 
 class AccountLoaded extends AccountRepositoryState {
   const AccountLoaded({
-    this.accountModel = const <AccountModel>[]
+    this.account = const <Account>[]
   });
-  final List<AccountModel> accountModel;
+  final List<Account> account;
 
   @override
-  List<Object> get props => [accountModel];
+  List<Object> get props => [account];
 }

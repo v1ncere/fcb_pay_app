@@ -13,7 +13,7 @@ class AppUserChanged extends AppEvent {
   
   @visibleForTesting
   const AppUserChanged(this.user);
-  final AccountModel user;
+  final Account user;
 
   @override
   List<Object> get props => [];

@@ -13,20 +13,29 @@ class AccountRepositoryBloc extends Bloc<AccountRepositoryEvent, AccountReposito
   StreamSubscription? _streamSubscription;
 
   AccountRepositoryBloc({
-    required AccountRepository accountRepository
-  }) : _accountRepository = accountRepository, super(AccountLoading()) {
-    on<LoadAccounts>(_loadAccounts);
-    on<UpdateAccounts>(_updateAccounts);
-  }
+    required AccountRepository accountRepository,
+  }): _accountRepository = accountRepository, 
+      super(AccountLoading()) {
+        on<LoadAccounts>(_loadAccounts);
+        on<UpdateAccounts>(_updateAccounts);
+      }
 
-  void _loadAccounts(LoadAccounts event, Emitter<AccountRepositoryState> emit) async {
+  void _loadAccounts(
+    LoadAccounts event,
+    Emitter<AccountRepositoryState> emit
+  ) async {
     _streamSubscription?.cancel();
     _streamSubscription = _accountRepository
     .getAllAccount()
-    .listen((accounts) => add(UpdateAccounts(accounts)));
+    .listen((accounts) {
+      add(UpdateAccounts(accounts));
+    });
   }
 
-  void _updateAccounts(UpdateAccounts event, Emitter<AccountRepositoryState> emit) async {
-    emit(AccountLoaded(accountModel: event.accounts));
+  void _updateAccounts(
+    UpdateAccounts event,
+    Emitter<AccountRepositoryState> emit
+  ) async {
+    emit(AccountLoaded(account: event.accounts));
   }
 }

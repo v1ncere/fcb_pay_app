@@ -11,8 +11,9 @@ class LoadAccounts extends AccountRepositoryEvent {}
 
 class UpdateAccounts extends AccountRepositoryEvent {
   const UpdateAccounts(this.accounts);
-  final List<AccountModel> accounts;
+  final List<Account> accounts;
 
   @override
   List<Object> get props => [accounts];
 }
+

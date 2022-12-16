@@ -7,8 +7,8 @@ abstract class PinRepository {
 }
 
 class HivePinRepository extends PinRepository {
-  static const String _boxName = 'pin_box';
-  static const String _keyName = 'pin_key';
+  static const String _boxName = 'PIN_BOX';
+  static const String _keyName = 'PIN_KEY';
 
   @override
   void addPin(String pin) async {
@@ -30,9 +30,7 @@ class HivePinRepository extends PinRepository {
   void close() async {
     if (Hive.isBoxOpen(_boxName)) {
       Box<String> box = Hive.box(_boxName);
-      var v = await box.close();
-      return v;
-      // return await Hive.box(_boxName).close();
+      return await box.close();
     }
   }
 }

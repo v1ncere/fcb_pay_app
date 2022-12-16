@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fcb_pay_app/route/route_generator.dart';
 import 'package:fcb_pay_app/theme/theme.dart';
-import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
