@@ -55,8 +55,8 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   }
 
   Future<Timer> startTime() async {
-    Duration _duration = const Duration(seconds: 2);
-    return Timer(_duration, navigationPage);
+    Duration duration = const Duration(seconds: 2);
+    return Timer(duration, navigationPage);
   }
 
   void navigationPage() {

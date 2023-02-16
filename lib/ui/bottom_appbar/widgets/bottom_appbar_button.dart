@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/ui/bottom_appbar/cubit/bottom_appbar_cubit.dart';
+import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class BottomAppbarButton extends StatelessWidget {

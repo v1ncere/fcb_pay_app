@@ -13,8 +13,30 @@ class FlutterTheme {
         iconTheme: const IconThemeData(color: Colors.black)
       ),
       colorScheme: ColorScheme.fromSwatch(accentColor: const Color(0xFF30DD5B)),
-      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
-      toggleableActiveColor: const Color(0xFF30DD5B),
+      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating), switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      ), radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      ), checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      ),
     );
   }
 
@@ -30,8 +52,30 @@ class FlutterTheme {
         brightness: Brightness.dark,
         accentColor: const Color(0xFF30DD5B),
       ),
-      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
-      toggleableActiveColor: const Color(0xFF30DD5B),
+      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating), switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      ), radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      ), checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) { return null; }
+      if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+      return null;
+      }),
+      ),
     );
   }
 }

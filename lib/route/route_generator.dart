@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:fcb_pay_app/ui/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/ui/login/login.dart';
-import 'package:fcb_pay_app/ui/pin/pin_barrel.dart';
-import 'package:fcb_pay_app/ui/register/register.dart';
-import 'package:fcb_pay_app/ui/splash/splash.dart';
+import 'package:fcb_pay_app/ui/ui.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,13 +9,29 @@ class RouteGenerator {
       case '/create_pin':
         return MaterialPageRoute(builder: (_) => const CreatePin());
       case '/auth_pin':
-        return MaterialPageRoute(builder: (_) => const AuthPin());
+        return MaterialPageRoute(builder: (_) => const AuthPinPage());
       case '/home':
         return MaterialPageRoute(builder: (_) => const BottomAppbar());
       case '/register':
-        return MaterialPageRoute(builder: (_) => const Register());
+        return MaterialPageRoute(builder: (_) => const RegisterPage());
       case '/login':
-        return MaterialPageRoute(builder: (_) => const Login());
+        return MaterialPageRoute(builder: (_) => const LoginPage());
+      case '/add_account':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
+      case '/delete_account':
+        return MaterialPageRoute(builder: (_) => const DeleteAccountPage());
+      case '/transfer_to_pitakard':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
+      case '/history':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
+      case '/qr_pay':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
+      case '/bills_payment':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
+      case '/fund_transfer':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
+      case '/pesonet':
+        return MaterialPageRoute(builder: (_) => const AddAccountPage());
       default:
         return _error();
     }

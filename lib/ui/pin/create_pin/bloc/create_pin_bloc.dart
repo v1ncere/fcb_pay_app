@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import 'package:fcb_pay_app/repository/pin_repository.dart';
+import 'package:fcb_pay_app/repository/repository.dart';
 
 part 'create_pin_event.dart';
 part 'create_pin_state.dart';

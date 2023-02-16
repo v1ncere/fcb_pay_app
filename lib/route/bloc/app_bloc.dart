@@ -1,11 +1,8 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
-import 'package:fcb_pay_app/repository/model/account.dart';
+import 'package:fcb_pay_app/repository/repository.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';

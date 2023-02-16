@@ -1,6 +1,6 @@
-import 'package:fcb_pay_app/ui/home/widgets/card_button_item.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
+import 'package:fcb_pay_app/ui/home/home.dart';
 
 class CardButtonSelection extends StatelessWidget {
   const CardButtonSelection({super.key});
@@ -13,20 +13,20 @@ class CardButtonSelection extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              CardButton(iconData: UniconsLine.user_plus, text: "Add Account", colors: Color.fromARGB(255, 0, 183, 255)),
-              CardButton(iconData: UniconsLine.user_minus, text: "Delete Account", colors: Color(0xFFF73232)),
-              CardButton(iconData: UniconsLine.exchange_alt, text: "Transfer to Pitakard", colors: Color.fromARGB(255, 221, 144, 0)),
-              CardButton(iconData: UniconsLine.history_alt, text: "History", colors: Color(0xFFDBD80B)),
+            children: [
+              CardButton(iconData: UniconsLine.user_plus, text: "Add Account", colors:const Color.fromARGB(255, 0, 183, 255), function: () => Navigator.of(context).pushNamed('/add_account')),
+              CardButton(iconData: UniconsLine.user_minus, text: "Delete Account", colors:const Color(0xFFF73232), function: () => Navigator.of(context).pushNamed('/delete_account')),
+              CardButton(iconData: UniconsLine.exchange_alt, text: "Transfer to Pitakard", colors:const Color.fromARGB(255, 221, 144, 0), function: () => Navigator.of(context).pushNamed('/add_account')),
+              CardButton(iconData: UniconsLine.history_alt, text: "History", colors:const Color(0xFFDBD80B), function: () => Navigator.of(context).pushNamed('/add_account')),
           ]),
           const SizedBox(height: 10.0,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              CardButton(iconData: UniconsLine.qrcode_scan, text: "QR Pay", colors: Color(0xFF02AE08)),
-              CardButton(iconData: UniconsLine.bill, text: "Bills Payment", colors: Color(0xFF02AE08)),
-              CardButton(iconData: UniconsLine.transaction, text: "Fund Transfer", colors: Color(0xFF02AE08)),
-              CardButton(iconData: UniconsLine.money_insert, text: "PESOnet Transfer", colors: Color(0xFF02AE08)),
+            children: [
+              CardButton(iconData: UniconsLine.qrcode_scan, text: "QR Pay", colors:const Color(0xFF02AE08), function: () => Navigator.of(context).pushNamed('/add_account')),
+              CardButton(iconData: UniconsLine.bill, text: "Bills Payment", colors:const Color(0xFF02AE08), function: () => Navigator.of(context).pushNamed('/add_account')),
+              CardButton(iconData: UniconsLine.transaction, text: "Fund Transfer", colors:const Color(0xFF02AE08), function: () => Navigator.of(context).pushNamed('/add_account')),
+              CardButton(iconData: UniconsLine.money_insert, text: "PESOnet Transfer", colors:const Color(0xFF02AE08), function: () => Navigator.of(context).pushNamed('/add_account')),
           ]),
       ]),
     );

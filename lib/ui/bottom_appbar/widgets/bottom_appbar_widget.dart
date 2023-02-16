@@ -2,28 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
-import 'package:fcb_pay_app/ui/bottom_appbar/cubit/bottom_appbar_cubit.dart';
-import 'package:fcb_pay_app/ui/bottom_appbar/widgets/bottom_appbar_button.dart';
-import 'package:fcb_pay_app/ui/home/home.dart';
-import 'package:fcb_pay_app/ui/scanner/scanner.dart';
-import 'package:fcb_pay_app/ui/settings/settings.dart';
+import 'package:fcb_pay_app/ui/ui.dart';
 
 class HomeBottomAppbarWidget extends StatelessWidget {
   const HomeBottomAppbarWidget({super.key});
   
   @override
   Widget build(BuildContext context) {
-    final _selectedTab = context.select((BottomAppbarCubit cubit) => cubit.state.tab);
-    final _controller = PageController(initialPage: _selectedTab.index);
+    final selectedTab = context.select((BottomAppbarCubit cubit) => cubit.state.tab);
+    final controller = PageController(initialPage: selectedTab.index);
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        controller: _controller,
+        controller: controller,
         onPageChanged: (index) => context.read<BottomAppbarCubit>().setTab(BottomAppbarTab.values[index]),
         children: const [
-          Home(),
-          Scanner(),
-          Settings(),
+          HomePage(),
+          ScannerPage(),
+          SettingsPage(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -39,16 +35,16 @@ class HomeBottomAppbarWidget extends StatelessWidget {
             children: [
               BottomAppbarButton(
                 padding: const EdgeInsets.all(0.0),
-                groupValue: _selectedTab,
+                groupValue: selectedTab,
                 value: BottomAppbarTab.home,
-                controller: _controller,
+                controller: controller,
                 icon: const Icon(UniconsSolid.house_user),
               ),
               BottomAppbarButton(
                 padding: const EdgeInsets.all(0.0),
-                groupValue: _selectedTab,
+                groupValue: selectedTab,
                 value: BottomAppbarTab.settings,
-                controller: _controller,
+                controller: controller,
                 icon: const Icon(Icons.settings_rounded),
               ),
             ],
@@ -60,7 +56,7 @@ class HomeBottomAppbarWidget extends StatelessWidget {
         child: FittedBox(
           child: FloatingActionButton(
             backgroundColor: Colors.white,
-            onPressed: () => _controller.jumpToPage(BottomAppbarTab.scanner.index),
+            onPressed: () => controller.jumpToPage(BottomAppbarTab.scanner.index),
             child: Container(
               height: 65.0,
               width: 65.0,

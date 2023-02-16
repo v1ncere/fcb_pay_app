@@ -5,11 +5,13 @@ class CardButton extends StatelessWidget {
     super.key,
     required this.iconData,
     required this.text,
-    required this.colors
+    required this.colors,
+    required this.function,
   });
   final IconData iconData;
   final String text;
   final Color colors;
+  final Function function;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,7 @@ class CardButton extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(20.0),
             splashColor: Colors.black12,
-            onTap: () {
-              
-            },
+            onTap: () =>  function(),
             child: Padding(
               padding: const EdgeInsets.all( 8.0),
               child: Column(

@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
+import 'package:fcb_pay_app/repository/repository.dart';
 
 part 'settings_state.dart';
 
