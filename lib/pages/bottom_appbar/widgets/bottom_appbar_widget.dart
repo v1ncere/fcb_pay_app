@@ -1,9 +1,9 @@
+import 'package:fcb_pay_app/pages/home_webview/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 import 'package:fcb_pay_app/pages/settings/settings.dart';
 
@@ -20,7 +20,7 @@ class HomeBottomAppbarWidget extends StatelessWidget {
         controller: controller,
         onPageChanged: (index) => context.read<BottomAppbarCubit>().setTab(BottomAppbarTab.values[index]),
         children: const [
-          HomePage(),
+          HomeWebviewPage(),
           ScannerPage(),
           SettingsPage(),
         ],

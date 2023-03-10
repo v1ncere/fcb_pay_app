@@ -1,5 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/repository/repository.dart';
 
@@ -7,7 +7,7 @@ part 'accounts_event.dart';
 part 'accounts_state.dart';
 
 class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
-  final AccountHiveRepository _accountHiveRepository;
+  final HiveRepository _accountHiveRepository;
   List<Account> _accounts = [];
   AccountsBloc(this._accountHiveRepository) : super(AccountsInitialState()) {
     on<AccountInitialEvent>(_onInitialAccountEventToState);

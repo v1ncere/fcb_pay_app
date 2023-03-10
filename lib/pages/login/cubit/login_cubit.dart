@@ -9,7 +9,7 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(const LoginState());
-  final AuthenticationRepository _authenticationRepository;
+  final FirebaseAuthRepository _authenticationRepository;
 
   void emailChanged(String value) {
     final email = Email.dirty(value);

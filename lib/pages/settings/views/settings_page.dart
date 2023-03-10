@@ -9,9 +9,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AuthenticationRepository(),
+      create: (context) => FirebaseAuthRepository(),
         child: BlocProvider(
-          create: (context) => SettingsCubit(context.read<AuthenticationRepository>()),
+          create: (context) => SettingsCubit(context.read<FirebaseAuthRepository>()),
           child: const Center(
             child: SettingsSelection(),
           ),

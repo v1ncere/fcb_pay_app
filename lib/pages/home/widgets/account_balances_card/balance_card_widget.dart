@@ -13,7 +13,7 @@ class Balance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final current = context.select((HomeCubit cubit) => cubit.state.currentIndex);
-    return BlocBuilder<AccountRepositoryBloc, AccountRepositoryState>(
+    return BlocBuilder<FirebaseFirestoreRepositoryBloc, FirebaseFirestoreRepositoryState>(
       builder: (context, state) {
         if(state is AccountLoading) {
           return const Center(child: CircularProgressIndicator());

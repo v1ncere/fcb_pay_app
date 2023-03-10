@@ -11,7 +11,7 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required AuthenticationRepository authenticationRepository
+    required FirebaseAuthRepository authenticationRepository
   }): _authenticationRepository = authenticationRepository,
       super(
         authenticationRepository.currentUser.isNotEmpty
@@ -25,7 +25,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         );
       }
 
-  final AuthenticationRepository _authenticationRepository;
+  final FirebaseAuthRepository _authenticationRepository;
   late final StreamSubscription<Account> _userSubscription;
 
   void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {

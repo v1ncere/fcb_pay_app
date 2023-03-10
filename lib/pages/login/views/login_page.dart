@@ -12,9 +12,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AuthenticationRepository(),
+      create: (context) => FirebaseAuthRepository(),
         child: BlocProvider(
-        create: (context) => LoginCubit(context.read<AuthenticationRepository>()),
+        create: (context) => LoginCubit(context.read<FirebaseAuthRepository>()),
         child: const Scaffold(
           body: Padding(
             padding: EdgeInsets.only(left: 30.0, right: 30.0),

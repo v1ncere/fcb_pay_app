@@ -2,14 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
-import 'package:fcb_pay_app/repository/authentication_repository/authentication_repository.dart';
+import 'package:fcb_pay_app/repository/repository.dart';
 import 'package:fcb_pay_app/pages/register/register.dart';
 
 part 'inputs_event.dart';
 part 'inputs_state.dart';
 
 class InputsBloc extends Bloc<InputsEvent, InputsState> {
-  final AuthenticationRepository authenticationRepository;
+  final FirebaseAuthRepository authenticationRepository;
   InputsBloc({required this.authenticationRepository})
     : super(const InputsState()) {
     on<EmailChanged>(_onEmailChanged);

@@ -7,10 +7,10 @@ part 'account_state.dart';
 
 class AccountCubit extends Cubit<AccountState> {
   AccountCubit({
-    required AccountHiveRepository accountHiveRepository,
+    required HiveRepository accountHiveRepository,
   }): _accountHiveRepository = accountHiveRepository,
       super(const AccountState());
-  final AccountHiveRepository _accountHiveRepository;
+  final HiveRepository _accountHiveRepository;
 
   setData() async {
     emit(AccountState(account: await _accountHiveRepository.getAccounts()));

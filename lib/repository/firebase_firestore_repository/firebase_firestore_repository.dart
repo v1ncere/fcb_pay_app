@@ -3,19 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:fcb_pay_app/repository/repository.dart';
 
-abstract class BaseAccountRepository {
+abstract class BaseFirebaseFirestoreRepository {
   Stream<List<Account>> getAllAccount();
 }
 
-class AccountRepository extends BaseAccountRepository {
-  AccountRepository({
-    FirebaseFirestore? firebaseFirestore
-  }): _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
+class FirebaseFirestoreRepository extends BaseFirebaseFirestoreRepository {
+  FirebaseFirestoreRepository({FirebaseFirestore? firebaseFirestore})
+    : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
   final FirebaseFirestore _firebaseFirestore;
 
   @override
-  Stream<List<Account>> getAllAccount() {
-    return _firebaseFirestore.collection('accounts')
+  Stream<List<Account>> getAllAccount() { // get all data from accounts node
+    return _firebaseFirestore.collection("accounts")
     .where('user_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
     .snapshots()
     .map((snapshot) {

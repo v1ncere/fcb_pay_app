@@ -6,8 +6,8 @@ import 'package:meta/meta.dart';
 
 import 'package:fcb_pay_app/repository/repository.dart';
 
-class AuthenticationRepository {
-  AuthenticationRepository({
+class FirebaseAuthRepository {
+  FirebaseAuthRepository({
     CacheClient? cache,
     firebase_auth.FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,

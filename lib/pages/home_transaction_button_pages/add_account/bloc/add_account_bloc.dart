@@ -10,7 +10,7 @@ part 'add_account_event.dart';
 part 'add_account_state.dart';
 
 class AddAccountBloc extends Bloc<AddAccountEvent, AddAccountState> {
-  final AccountHiveRepository accountHiveRepository;
+  final HiveRepository accountHiveRepository;
   AddAccountBloc({required this.accountHiveRepository})
     : super(const AddAccountState()) {
     on<AccountNumberChanged>(_onAccountNumberChanged);

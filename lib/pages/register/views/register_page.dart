@@ -11,17 +11,17 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AuthenticationRepository(),
+      create: (context) => FirebaseAuthRepository(),
       child: MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => InputsBloc(authenticationRepository: context.read<AuthenticationRepository>())
+          create: (context) => InputsBloc(authenticationRepository: context.read<FirebaseAuthRepository>())
         ),
         BlocProvider(
           create: (context) => StepperCubit(3)
         ),
         BlocProvider(
-          create: (context) => LoginCubit(context.read<AuthenticationRepository>())
+          create: (context) => LoginCubit(context.read<FirebaseAuthRepository>())
         )
       ],
       child: const StepperWidget()

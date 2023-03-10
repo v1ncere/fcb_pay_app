@@ -1,7 +1,7 @@
 import 'package:fcb_pay_app/repository/repository.dart';
 import 'package:hive_flutter/adapters.dart';
 
-abstract class BaseAccountHiveRepository {
+abstract class BaseHiveRepository {
   Future<Box> accountBox();
   Future<List<Account>> getAccounts();
   Future<void> addAccount(Account acct);
@@ -10,7 +10,7 @@ abstract class BaseAccountHiveRepository {
   Future<void> clearAccounts();
 }
 
-class AccountHiveRepository extends BaseAccountHiveRepository {
+class HiveRepository extends BaseHiveRepository {
   final String _boxName = "ACCOUNT";
 
   @override
