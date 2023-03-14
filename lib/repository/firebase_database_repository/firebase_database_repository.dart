@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import 'package:fcb_pay_app/repository/models/display_model.dart';
+import 'package:fcb_pay_app/repository/repository.dart';
 
 abstract class BaseFirebaseDatabaseRepository {
   Future<DisplayModel?> getDisplay();
   Future<void> deleteDisplay();
+
+  Future<ReplyModel?> getReply();
+  Future<String?> deleteReply();
 }
 
 class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
@@ -15,8 +18,7 @@ class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
 
   @override
   Future<DisplayModel?> getDisplay() async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
-    var snapshot = await _firebaseDatabase.ref("display").child(userId).get();
+    var snapshot = await _firebaseDatabase.ref("display").child(getCurrentUserId()).get();
 
     if (snapshot.value != null) {
       DisplayModel display = DisplayModel.fromSnapshot(snapshot);
@@ -28,7 +30,49 @@ class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
 
   @override
   Future<void> deleteDisplay() async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
-    await _firebaseDatabase.ref("display").child(userId).remove();
+    await _firebaseDatabase.ref("display").child(getCurrentUserId()).remove();
+  }
+
+  @override
+  Future<ReplyModel?> getReply() async {
+    try {
+      final snapshot = await _firebaseDatabase.ref("reply").orderByChild("owner_id").equalTo(getCurrentUserId()).get();
+      if (snapshot.exists) {
+        ReplyModel reply = ReplyModel.fromDataSnapshot(snapshot);
+        return reply;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
+  Future<String?> deleteReply() async {
+    final parentNodeRef = _firebaseDatabase.ref("reply");
+    final valueQuery = parentNodeRef.orderByChild("owner_id").equalTo(getCurrentUserId());
+
+    try {
+      final event = await valueQuery.once();
+      final snapshot = event.snapshot;
+      
+      if (snapshot.value != null) {
+        final values = snapshot.value as Map<dynamic, dynamic>;
+        final childNodeKey = values.keys.first;
+        final childNodeRef = parentNodeRef.child(childNodeKey);
+
+        await childNodeRef.remove();
+        return 'Child node removed successfully!';
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return 'Error removing child node: $error';
+    }
+  }
+
+  String getCurrentUserId() {
+    return FirebaseAuth.instance.currentUser!.uid;
   }
 }

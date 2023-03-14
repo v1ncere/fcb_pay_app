@@ -18,7 +18,7 @@ class Balance extends StatelessWidget {
         if(state is AccountLoading) {
           return const Center(child: CircularProgressIndicator());
         }
-        if(state is AccountLoaded) {
+        if(state is AccountLoad) {
           return ValueListenableBuilder(
             valueListenable: Hive.box<Account>("ACCOUNT").listenable(),
             builder: (context, Box<Account> box, _) {

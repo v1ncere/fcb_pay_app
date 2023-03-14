@@ -7,3 +7,4 @@ export 'models/models.dart';
 export 'pin_repository/pin_repository.dart';
 export 'firebase_database_repository/firebase_database_repository.dart';
 export 'firebase_database_repository/bloc/firebase_database_repository_bloc.dart';
+export 'hive_repository/hive_reply_repository.dart';

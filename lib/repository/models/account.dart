@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
+
 part 'account.g.dart';
 
 @HiveType(typeId: 0)
@@ -67,10 +68,5 @@ class Account extends Equatable {
   bool get isNotEmpty => this != Account.empty;
   
   @override
-  List<Object?> get props => [
-    userID,
-    account,
-    balance,
-    walletBalance,
-  ];
+  List<Object?> get props => [userID, account, balance, walletBalance];
 }

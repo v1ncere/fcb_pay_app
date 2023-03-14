@@ -27,8 +27,8 @@ class DisplayModel {
   // Convert Display object to Firebase JSON format
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["html"] = html;
-    data["owner"] = owner;
+      data["html"] = html;
+      data["owner"] = owner;
     return data;
   }
 }

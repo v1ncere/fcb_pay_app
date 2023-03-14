@@ -49,8 +49,7 @@ class FirebaseAuthRepository {
         email: email,
         password: password,
       ).then((value) async {
-        await FirebaseFirestore.instance
-        .collection('accounts')
+        await FirebaseFirestore.instance.collection('accounts')
         .doc(accountNumber)
         .set({
           'user_id': _firebaseAuth.currentUser!.uid,

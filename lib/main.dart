@@ -14,8 +14,10 @@ void main() async {
   final dbDirectory = await getApplicationSupportDirectory();
   Hive.init(dbDirectory.path);
   Hive.registerAdapter(AccountAdapter());
-  final accountHiveRepository = HiveRepository();
-  await accountHiveRepository.accountBox();
+  Hive.registerAdapter(ReplyModelAdapter());
+  Hive.registerAdapter(RequestModelAdapter());
+  await HiveRepository().accountBox();
+  await HiveReplyRepository().replyBox();
   
   runApp(const App());
 }

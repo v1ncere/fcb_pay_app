@@ -36,6 +36,6 @@ class FirebaseFirestoreRepositoryBloc extends Bloc<FirebaseFirestoreRepositoryEv
     for (var element in event.accounts) {
       await _hiveRepository.putAccount(element);
     }
-    emit(AccountLoaded(account: event.accounts));
+    emit(AccountLoad(account: event.accounts));
   }
 }

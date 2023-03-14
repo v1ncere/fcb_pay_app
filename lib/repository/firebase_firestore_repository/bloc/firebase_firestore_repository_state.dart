@@ -9,8 +9,8 @@ abstract class FirebaseFirestoreRepositoryState extends Equatable {
 
 class AccountLoading extends FirebaseFirestoreRepositoryState {}
 
-class AccountLoaded extends FirebaseFirestoreRepositoryState {
-  const AccountLoaded({this.account = const <Account>[]});
+class AccountLoad extends FirebaseFirestoreRepositoryState {
+  const AccountLoad({this.account = const <Account>[]});
   final List<Account> account;
 
   @override

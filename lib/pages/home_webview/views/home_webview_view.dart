@@ -17,7 +17,12 @@ class _HomeWebviewViewState extends State<HomeWebviewView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("App Dynamic", style: TextStyle(color: Colors.green),)),
+      appBar: AppBar(
+        title: const Text(
+          "App Dynamic",
+          style: TextStyle(color: Colors.green),
+        ),
+      ),
       body: BlocBuilder<HomeWebviewBloc, HomeWebviewState>(
         builder: (context, state) {
           if(state is HomeWebviewLoading) {
