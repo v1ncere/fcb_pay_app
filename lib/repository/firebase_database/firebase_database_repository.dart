@@ -5,10 +5,9 @@ import 'package:fcb_pay_app/repository/repository.dart';
 
 abstract class BaseFirebaseDatabaseRepository {
   Future<DisplayModel?> getDisplay();
-  Future<void> deleteDisplay();
 
-  Future<ReplyModel?> getReply();
-  Future<String?> deleteReply();
+  Future<ServerReply?> getServerReply();
+  Future<String?> deleteServerReply();
 }
 
 class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
@@ -29,17 +28,16 @@ class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
   }
 
   @override
-  Future<void> deleteDisplay() async {
-    await _firebaseDatabase.ref("display").child(getCurrentUserId()).remove();
-  }
-
-  @override
-  Future<ReplyModel?> getReply() async {
+  Future<ServerReply?> getServerReply() async {
     try {
-      final snapshot = await _firebaseDatabase.ref("reply").orderByChild("owner_id").equalTo(getCurrentUserId()).get();
+      final snapshot = await _firebaseDatabase.ref('server_reply')
+      .orderByChild('owner_id')
+      .equalTo(getCurrentUserId())
+      .get();
+      
       if (snapshot.exists) {
-        ReplyModel reply = ReplyModel.fromDataSnapshot(snapshot);
-        return reply;
+        ServerReply serverReply = ServerReply.fromDataSnapshot(snapshot);
+        return serverReply;
       } else {
         return null;
       }
@@ -49,9 +47,9 @@ class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
   }
 
   @override
-  Future<String?> deleteReply() async {
-    final parentNodeRef = _firebaseDatabase.ref("reply");
-    final valueQuery = parentNodeRef.orderByChild("owner_id").equalTo(getCurrentUserId());
+  Future<String?> deleteServerReply() async {
+    final parentNodeRef = _firebaseDatabase.ref('server_reply');
+    final valueQuery = parentNodeRef.orderByChild('owner_id').equalTo(getCurrentUserId());
 
     try {
       final event = await valueQuery.once();
@@ -63,12 +61,12 @@ class FirebaseDatabaseRepository extends BaseFirebaseDatabaseRepository {
         final childNodeRef = parentNodeRef.child(childNodeKey);
 
         await childNodeRef.remove();
-        return 'Child node removed successfully!';
+        return 'Server data reply removed successfully!';
       } else {
         return null;
       }
     } catch (error) {
-      return 'Error removing child node: $error';
+      return 'Error removing server data reply: $error';
     }
   }
 

@@ -30,6 +30,8 @@ dependencies:
   flutter_html: ^2.2.1
   firebase_database: ^10.0.15
   shimmer: ^2.0.0
+  crypto: ^3.0.2
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
