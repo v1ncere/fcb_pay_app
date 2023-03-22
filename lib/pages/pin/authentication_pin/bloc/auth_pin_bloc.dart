@@ -8,21 +8,22 @@ part 'auth_pin_event.dart';
 part 'auth_pin_state.dart';
 
 class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
-  final PinRepository pinRepository;
+  final BaseHivePinService _baseHivePinService;
 
   AuthPinBloc({
-    required this.pinRepository
-  }) : super(const AuthPinState(pinStatus: AuthPinStatus.enterPin)) {
-    on<AuthPinAddEvent>(_onAddPin);
-    on<AuthPinEraseEvent>(_onErasePin);
-    on<AuthNullPinEvent>(_onNullPin);
-  }
+    required  BaseHivePinService baseHivePinService,
+  }) : _baseHivePinService = baseHivePinService,
+      super(const AuthPinState(pinStatus: AuthPinStatus.enterPin)) {
+        on<AuthPinAddEvent>(_onAddPin);
+        on<AuthPinEraseEvent>(_onErasePin);
+        on<AuthNullPinEvent>(_onNullPin);
+      }
 
   void _onAddPin(AuthPinAddEvent event, Emitter<AuthPinState> emit) async {
     String pin = "${state.pin}${event.pinNum}";
     if(pin.length < 6) {
       emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.enterPin));
-    } else if (await pinRepository.pinEquals(pin)) {
+    } else if (await _baseHivePinService.pinEquals(pin)) {
       emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.equals));
     } else {
       emit(AuthPinState(pin: pin, pinStatus: AuthPinStatus.unequals));

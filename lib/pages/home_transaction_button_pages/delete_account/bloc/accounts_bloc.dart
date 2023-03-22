@@ -7,7 +7,7 @@ part 'accounts_event.dart';
 part 'accounts_state.dart';
 
 class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
-  final HiveRepository _accountHiveRepository;
+  final HiveAccountService _accountHiveRepository;
   List<Account> _accounts = [];
   AccountsBloc(this._accountHiveRepository) : super(AccountsInitialState()) {
     on<AccountInitialEvent>(_onInitialAccountEventToState);

@@ -1,18 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hive_flutter/adapters.dart';
 
-part 'account.g.dart';
-
-@HiveType(typeId: 0)
 class Account extends Equatable {
-  @HiveField(0)
   final String userID;
-  @HiveField(1)
   final int? account;
-  @HiveField(2)
   final int? balance;
-  @HiveField(3)
   final int? walletBalance;
 
   const Account({
@@ -51,9 +43,7 @@ class Account extends Equatable {
       balance = map['balance'],
       walletBalance = map['wallet_balance'];
 
-  static Account fromSnapshot(
-    DocumentSnapshot snapshot
-  ) {
+  static Account fromSnapshot(DocumentSnapshot snapshot) {
     Account accountModel = Account(
       userID: snapshot['user_id'],
       account: snapshot['account'],

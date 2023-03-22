@@ -9,9 +9,9 @@ class DeleteAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => HiveRepository(),
+      create: (context) => HiveAccountService(),
       child: BlocProvider(
-        create: (context) => AccountsBloc(HiveRepository())..add(AccountInitialEvent()),
+        create: (context) => AccountsBloc(HiveAccountService())..add(AccountInitialEvent()),
         child: const DeleteAccountForm(),
       ),
     );

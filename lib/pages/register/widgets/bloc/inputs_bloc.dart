@@ -9,8 +9,8 @@ part 'inputs_event.dart';
 part 'inputs_state.dart';
 
 class InputsBloc extends Bloc<InputsEvent, InputsState> {
-  final FirebaseAuthRepository authenticationRepository;
-  InputsBloc({required this.authenticationRepository})
+  final FirebaseAuthService authService;
+  InputsBloc({required this.authService})
     : super(const InputsState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
@@ -97,7 +97,7 @@ class InputsBloc extends Bloc<InputsEvent, InputsState> {
     if(state.status.isValidated) {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       try {
-        await authenticationRepository.signUp(
+        await authService.signUp(
           email: state.email.value,
           password: state.password.value,
           accountNumber: state.accountNumber.value.replaceAll(" ", "").toString(),

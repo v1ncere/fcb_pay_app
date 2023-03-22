@@ -28,7 +28,7 @@ class CreatePin extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           lazy: false,
-          create: (_) => CreatePinBloc(pinRepository: HivePinRepository()),
+          create: (_) => CreatePinBloc(baseHivePinService: HivePinService()),
           child: BlocListener<CreatePinBloc, CreatePinState>(
             listener: (context, state) {
               if (state.pinStatus == PinStatus.equals) {

@@ -24,16 +24,16 @@ class UserRequest extends Equatable{
     );
   }
 
-  UserRequest.fromDataSnapshot(DataSnapshot snapshot) 
+  UserRequest.fromDataSnapshot(DataSnapshot snapshot)
     : dataRequest = (snapshot.value as Map?)?["data_request"] as String? ?? "",
       ownerId = (snapshot.value as Map?)?["owner_id"] as String? ?? "",
       timeStamp = (snapshot.value as Map?)?["time_stamp"] as DateTime? ?? DateTime.now();
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-      data["data_request"] = dataRequest;
-      data["owner_id"] = ownerId;
-      data["time_stamp"] = timeStamp;
+    data["data_request"] = dataRequest;
+    data["owner_id"] = ownerId;
+    data["time_stamp"] = timeStamp;
     return data;
   }
   

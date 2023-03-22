@@ -11,21 +11,21 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required FirebaseAuthRepository authenticationRepository
-  }): _authenticationRepository = authenticationRepository,
+    required FirebaseAuthService authService
+  }): _authService = authService,
       super(
-        authenticationRepository.currentUser.isNotEmpty
-          ? AppState.authenticated(authenticationRepository.currentUser)
+        authService.currentUser.isNotEmpty
+          ? AppState.authenticated(authService.currentUser)
           : const AppState.unauthenticated(),
       ) {
         on<AppUserChanged>(_onUserChanged);
         on<AppLogoutRequested>(_onLogoutRequested);
-        _userSubscription = _authenticationRepository.user.listen(
+        _userSubscription = _authService.user.listen(
           (user) => add(AppUserChanged(user)),
         );
       }
 
-  final FirebaseAuthRepository _authenticationRepository;
+  final FirebaseAuthService _authService;
   late final StreamSubscription<Account> _userSubscription;
 
   void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
@@ -37,7 +37,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {
-    unawaited(_authenticationRepository.logOut());
+    unawaited(_authService.logOut());
   }
 
   @override

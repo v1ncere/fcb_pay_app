@@ -10,9 +10,9 @@ class AddAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => HiveRepository(),
+      create: (context) => HiveAccountService(),
       child: BlocProvider(
-        create: (context) => AddAccountBloc(accountHiveRepository: HiveRepository()),
+        create: (context) => AddAccountBloc(accountHiveRepository: HiveAccountService()),
         child: const AddAccountForm(),
       ),
     );

@@ -1,4 +1,3 @@
 export 'account.dart';
-export 'display_model.dart';
-export 'server_reply.dart';
+export 'home_display.dart';
 export 'user_request.dart';

@@ -6,7 +6,7 @@ part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit(this.authenticationRepository) : super(const SettingsState());
-  final FirebaseAuthRepository authenticationRepository;
+  final FirebaseAuthService authenticationRepository;
 
   Future<void> logOut() async {
     authenticationRepository.logOut();

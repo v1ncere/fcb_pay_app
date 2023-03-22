@@ -7,10 +7,11 @@ part 'create_pin_event.dart';
 part 'create_pin_state.dart';
 
 class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
-  final PinRepository pinRepository;
+  final BaseHivePinService _baseHivePinService;
   CreatePinBloc({
-    required this.pinRepository,
-  }) : super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
+    required BaseHivePinService baseHivePinService,
+  }): _baseHivePinService = baseHivePinService,
+  super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
     on<CreatePinAddEvent>(_onAddPin);
     on<CreatePinEraseEvent>(_onErasePin);
     on<CreateNullPinEvent>(_onNullPin);
@@ -29,7 +30,7 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
       if (secondPIN.length < 6) {
         emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.enterSecond));
       } else if (secondPIN == state.firstPin) {
-        pinRepository.addPin(secondPIN);
+        _baseHivePinService.addPin(secondPIN);
         emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.equals));
       } else {
         emit(state.copyWith(secondPin: secondPIN, pinStatus: PinStatus.unequals));
@@ -57,7 +58,7 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
 
   @override
   Future<void> close() {
-    pinRepository.close();
+    _baseHivePinService.close();
     return super.close();
   }
 }
