@@ -12,9 +12,6 @@ class _ShimmerLoaderState extends State<ShimmerLoader> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Loading List'),
-      ),
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),

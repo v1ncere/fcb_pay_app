@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 Map<String, Style> style() => {
   "html": Style(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.transparent,
   ),
   "table": Style(
     backgroundColor:const Color.fromARGB(0x50, 0xee, 0xee, 0xee)

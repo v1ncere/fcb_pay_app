@@ -17,7 +17,8 @@ class HomeDisplayPage extends StatelessWidget {
         create: (context) => HomeDisplayBloc(
           firebaseDatabaseService: FirebaseDatabaseService(),
         )..add(HomeDisplayLoaded()),
-        child: const HomeDisplayView(),),
+        child: const HomeDisplayView(),
+      ),
     );
   }
 }
