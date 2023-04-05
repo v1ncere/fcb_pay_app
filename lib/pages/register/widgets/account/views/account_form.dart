@@ -1,29 +1,34 @@
-import 'package:fcb_pay_app/pages/register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs.dart';
+
+import 'package:fcb_pay_app/pages/register/register.dart';
 
 class AccountForm extends StatelessWidget {
   const AccountForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _EmailInput(),
-          const SizedBox(height: 12.0),
-          _PasswordInput(),
-          const SizedBox(height: 12.0),
-          _ConfirmPasswordInput(),
-          const SizedBox(height: 12.0),
-          Row(
-            children: [
-              _SubmitButton(),
-              const SizedBox(width: 8.0),
-              _CancelButton(),
-            ],
-          )
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _EmailInput(),
+            const SizedBox(height: 12.0),
+            _PasswordInput(),
+            const SizedBox(height: 12.0),
+            _ConfirmPasswordInput(),
+            const SizedBox(height: 12.0),
+            Row(
+              children: [
+                _SubmitButton(),
+                const SizedBox(width: 8.0),
+                _CancelButton(),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -37,12 +42,12 @@ class _EmailInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('email_textfield'),
-          onChanged: (value) => context.read<InputsBloc>().add(EmailChanged(value)),
+          onChanged: (email) => context.read<InputsBloc>().add(EmailChanged(email)),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Email',
-            errorText: state.email.invalid ? state.email.error?.message : null,
+            errorText: state.email.displayError?.text(),
           ),
         );
       },
@@ -58,12 +63,12 @@ class _PasswordInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('password_textfield'),
-          onChanged: (value) => context.read<InputsBloc>().add(PasswordChanged(value)),
+          onChanged: (password) => context.read<InputsBloc>().add(PasswordChanged(password)),
           obscureText: true,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Password',
-            errorText: state.password.invalid ? state.password.error?.message : null,
+            errorText: state.password.displayError?.text(),
           ),
         );
       },
@@ -79,12 +84,12 @@ class _ConfirmPasswordInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('confirm_password_textfield'),
-          onChanged: (value) => context.read<InputsBloc>().add(ConfirmedPasswordChanged(state.password.value, value)),
+          onChanged: (password) => context.read<InputsBloc>().add(ConfirmedPasswordChanged(state.password.value, password)),
           obscureText: true,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Confirm Password',
-            errorText: state.confirmedPassword.invalid ? state.confirmedPassword.error?.message : null,
+            errorText: state.confirmedPassword.displayError?.text(),
           ),
         );
       },

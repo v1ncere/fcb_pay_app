@@ -1,4 +1,4 @@
-import 'package:fcb_pay_app/global_widgets/container_body.dart';
+import 'package:fcb_pay_app/global_widgets/custom_widgets/container_body.dart';
 import 'package:fcb_pay_app/pages/home_display/home_display.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +12,9 @@ class HomeDisplayView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Column(
-            children: const[
-              Header(name: 'Vincent is Neggas'),
-              SizedBox(height: 20.0,),
+            children: const [
+              Header(),
+              SizedBox(height: 20.0),
               ContainerBody(
                 children: [
                   CardHomeDisplay(),

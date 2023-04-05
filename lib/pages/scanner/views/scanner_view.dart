@@ -10,12 +10,6 @@ class ScannerView extends StatefulWidget {
 
 class ScannerState extends State<ScannerView> {
   final cameraController = MobileScannerController();
-
-  @override
-  void dispose() {
-    cameraController.dispose();
-    super.dispose();
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -31,7 +25,7 @@ class ScannerState extends State<ScannerView> {
               icon: ValueListenableBuilder(
                 valueListenable: cameraController.torchState,
                 builder: (context, state, child) {
-                  switch (state as TorchState) {
+                  switch (state) {
                     case TorchState.off:
                       return const Icon(UniconsLine.bolt_slash, color: Colors.grey);
                     case TorchState.on:
@@ -47,7 +41,7 @@ class ScannerState extends State<ScannerView> {
               icon: ValueListenableBuilder(
                 valueListenable: cameraController.cameraFacingState,
                 builder: (context, state, child) {
-                  switch (state as CameraFacing) {
+                  switch (state) {
                     case CameraFacing.front:
                       return const Icon(UniconsLine.exchange, color: Colors.green);
                     case CameraFacing.back:
@@ -64,11 +58,17 @@ class ScannerState extends State<ScannerView> {
           controller: cameraController,
           onDetect: (capture) {
             final List<Barcode> barcodes = capture.barcodes;
-            // final Uint8List? image = capture.image;
+            //final Uint8List? image = capture.image;
             for (final barcode in barcodes) {
-              debugPrint('Barcode found! ${barcode.rawValue}');
+              debugPrint('BARCODE FOUND! ${barcode.rawValue}');
             }
         }),
     );
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
   }
 }

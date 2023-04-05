@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 Map<String, Style> style() => {
   "html": Style(
     backgroundColor: Colors.transparent,
+    color: Colors.white
   ),
   "table": Style(
     backgroundColor:const Color.fromARGB(0x50, 0xee, 0xee, 0xee)
@@ -21,7 +22,10 @@ Map<String, Style> style() => {
     padding:const EdgeInsets.all(6),
     alignment: Alignment.topLeft,
   ),
-  "h5": Style(maxLines: 2, textOverflow: TextOverflow.fade),
+  "h5": Style(
+    maxLines: 2,
+    textOverflow: TextOverflow.fade,
+  ),
   "var": Style(fontFamily: 'serif'),
 };
 

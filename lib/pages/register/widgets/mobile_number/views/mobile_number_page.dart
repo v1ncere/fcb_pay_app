@@ -7,9 +7,6 @@ class MobileNumberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(12.0),
-      child: MobileNumberForm(),
-    );
+    return const MobileNumberForm();
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs.dart';
+
+import 'package:fcb_pay_app/functions/account_number_formatter.dart';
 import 'package:fcb_pay_app/pages/register/register.dart';
 
 class AccountNumberForm extends StatelessWidget {
@@ -7,46 +10,26 @@ class AccountNumberForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          //_HomeAddressInput(),
-          // const SizedBox(height: 12.0),
-          _AccountNumberInput(),
-          const SizedBox(height: 12.0),
-          Row(
-            children: [
-              _SubmitButton(),
-              const SizedBox(width: 8.0),
-              _CancelButton(),
-            ],
-          )
-        ]
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _AccountNumberInput(),
+            const SizedBox(height: 12.0),
+            Row(
+              children: [
+                _SubmitButton(),
+                const SizedBox(width: 8.0),
+                _CancelButton(),
+              ],
+            )
+          ]
+        ),
       ),
     );
   }
 }
-
-// class _HomeAddressInput extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<InputsBloc, InputsState>(
-//       buildWhen: (previous, current) => previous.homeAddress != current.homeAddress,
-//       builder: (context, state) {
-//         return TextField(
-//           key: const Key('address_homeAdressInput_textField'),
-//           onChanged: (value) => context.read<InputsBloc>().add(HomeAddressChanged(value)),
-//           keyboardType: TextInputType.streetAddress,
-//           decoration: InputDecoration(
-//             border: const OutlineInputBorder(),
-//             labelText: 'Home Address',
-//             errorText: state.homeAddress.invalid ? state.homeAddress.error?.message : null,
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
 
 class _AccountNumberInput extends StatelessWidget {
   final AccountsInputFormatter accountsInputFormatter = AccountsInputFormatter();
@@ -59,12 +42,12 @@ class _AccountNumberInput extends StatelessWidget {
         return TextField(
           key: const Key('account_number_textfield'),
           inputFormatters: [accountsInputFormatter],
-          onChanged: (value) => context.read<InputsBloc>().add(AccountNumberChanged(value)),
+          onChanged: (account) => context.read<InputsBloc>().add(AccountNumberChanged(account)),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText: 'Account Number',
-            errorText: state.accountNumber.invalid ? state.accountNumber.error?.message : null,
+            errorText: state.accountNumber.displayError?.text(),
           ),
         );
       },

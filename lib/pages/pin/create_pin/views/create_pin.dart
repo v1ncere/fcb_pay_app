@@ -59,7 +59,7 @@ class CreatePin extends StatelessWidget {
                     actions: [
                       TextButton(
                         onPressed: () {
-                          BlocProvider.of<CreatePinBloc>(context).add(const CreateNullPinEvent());
+                          BlocProvider.of<CreatePinBloc>(context).add(CreateNullPinEvent());
                           Navigator.of(context).pop();
                         },
                         child: const Text(ok),

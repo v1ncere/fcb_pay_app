@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/pin/pin.dart';
 import 'package:fcb_pay_app/global_widgets/global_widgets.dart';
+import 'package:fcb_pay_app/pages/pin/pin.dart';
 
 class CreateNumPad extends StatelessWidget {
   const CreateNumPad({super.key});
@@ -20,13 +20,25 @@ class CreateNumPad extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: ButtonNumPad(num: "1", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 1)))),
+                  child: ButtonNumPad(
+                    num: "1",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(1))
+                  )
+                ),
                 const SizedBox(width: 40),
                 Expanded(
-                  child: ButtonNumPad(num: "2", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 2)))),
+                  child: ButtonNumPad(
+                    num: "2",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(2))
+                  )
+                ),
                 const SizedBox(width: 40),
                 Expanded(
-                  child: ButtonNumPad(num: "3", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 3)))),
+                  child: ButtonNumPad(
+                    num: "3",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(3))
+                  )
+                ),
               ],
             ),
           ),
@@ -35,13 +47,25 @@ class CreateNumPad extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: ButtonNumPad(num: "4", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 4)))),
+                  child: ButtonNumPad(
+                    num: "4",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(4))
+                  )
+                ),
                 const SizedBox(width: 40),
                 Expanded(
-                  child: ButtonNumPad(num: "5", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 5)))),
+                  child: ButtonNumPad(
+                    num: "5",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(5))
+                  )
+                ),
                 const SizedBox(width: 40),
                 Expanded(
-                  child: ButtonNumPad(num: "6", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 6)))),
+                  child: ButtonNumPad(
+                    num: "6",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(6))
+                  )
+                ),
               ],
             ),
           ),
@@ -50,13 +74,25 @@ class CreateNumPad extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: ButtonNumPad(num: "7", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 7)))),
+                  child: ButtonNumPad(
+                    num: "7",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(7))
+                  )
+                ),
                 const SizedBox(width: 40),
                 Expanded(
-                  child: ButtonNumPad(num: "8", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 8)))),
+                  child: ButtonNumPad(
+                    num: "8",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(8))
+                  )
+                ),
                 const SizedBox(width: 40),
                 Expanded(
-                  child: ButtonNumPad(num: "9", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 9)))),
+                  child: ButtonNumPad(
+                    num: "9",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(9))
+                  )
+                ),
               ],
             ),
           ),
@@ -68,10 +104,18 @@ class CreateNumPad extends StatelessWidget {
                   child: SizedBox()),
                 const SizedBox(width: 50),
                 Expanded(
-                  child: ButtonNumPad(num: "0", onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(pinNum: 0)))),
+                  child: ButtonNumPad(
+                    num: "0",
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAddEvent(0))
+                  )
+                ),
                 const SizedBox(width: 50),
                 Expanded(
-                  child: IconButton(icon: const Icon(Icons.backspace), onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinEraseEvent()))),
+                  child: IconButton(
+                    icon: const Icon(Icons.backspace),
+                    onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(CreatePinEraseEvent())
+                  )
+                ),
               ],
             ),
           ),

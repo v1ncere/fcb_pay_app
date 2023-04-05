@@ -40,7 +40,8 @@ class SettingsButton extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w300,
-                        fontSize: 20.0), 
+                        fontSize: 20.0
+                      ), 
                     ),
                   ),
                 ],

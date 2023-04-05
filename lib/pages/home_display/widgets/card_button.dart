@@ -31,15 +31,17 @@ class CardButton extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(iconData, color: Colors.white,),
+                  Icon(iconData, color: Colors.white),
                   Flexible(
                     child: Text(text, 
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w500,
-                        fontSize: 12.0),
-                  )),
+                        fontSize: 12.0,
+                      ),
+                    )
+                  ),
                 ],
               ),
             ),

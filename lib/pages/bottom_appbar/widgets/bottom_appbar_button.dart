@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class BottomAppbarButton extends StatelessWidget {
   const BottomAppbarButton({
-    super.key,
+    super.key, 
     required this.groupValue,
     required this.value,
     required this.icon,

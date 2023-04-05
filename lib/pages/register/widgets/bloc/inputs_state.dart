@@ -1,21 +1,20 @@
 part of 'inputs_bloc.dart';
 
-class InputsState extends Equatable {
+class InputsState extends Equatable with FormzMixin {
   const InputsState({
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.confirmedPassword = const ConfirmedPassword.pure(),
     this.accountNumber = const AccountNumber.pure(),
     this.mobileNumber = const MobileNumber.pure(),
-    this.status = FormzStatus.pure,
+    this.status = FormzSubmissionStatus.initial,
   });
-
   final Email email;
   final Password password;
   final ConfirmedPassword confirmedPassword;
   final AccountNumber accountNumber;
   final MobileNumber mobileNumber;
-  final FormzStatus status;
+  final FormzSubmissionStatus status;
   
   InputsState copyWith({
     Email? email,
@@ -23,7 +22,7 @@ class InputsState extends Equatable {
     ConfirmedPassword? confirmedPassword,
     AccountNumber? accountNumber,
     MobileNumber? mobileNumber,
-    FormzStatus? status,
+    FormzSubmissionStatus? status,
   }) {
     return InputsState(
       email: email ?? this.email,
@@ -42,6 +41,17 @@ class InputsState extends Equatable {
     confirmedPassword,
     accountNumber,
     mobileNumber,
-    status
+    status,
+    isValid,
+    isPure,
+  ];
+  
+  @override
+  List<FormzInput> get inputs => [
+    email,
+    password,
+    confirmedPassword,
+    accountNumber,
+    mobileNumber
   ];
 }

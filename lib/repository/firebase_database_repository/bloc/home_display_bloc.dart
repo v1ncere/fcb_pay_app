@@ -16,18 +16,32 @@ class HomeDisplayBloc extends Bloc<HomeDisplayEvent, HomeDisplayState> {
     on<HomeDisplayUpdated>(_onHomeDisplayUpdated);
   }
   final FirebaseDatabaseService _firebaseDatabaseService;
-  StreamSubscription<HomeDisplay>? streamSubscription;
+  //StreamSubscription<HomeDisplay>? streamSubscription;
+  StreamSubscription<List<HomeDisplay>>? streamSubscription; // list
 
+  // list
   void _onHomeDisplayLoaded(HomeDisplayLoaded event, Emitter<HomeDisplayState> emit) {
     streamSubscription?.cancel;
-    streamSubscription = _firebaseDatabaseService.getHomeDisplayRealTime()
+    streamSubscription = _firebaseDatabaseService.getHomeDisplayListRealTime()
     .listen((event) async {
       add(HomeDisplayUpdated(event));
     });
-      
   }
 
   void _onHomeDisplayUpdated(HomeDisplayUpdated event, Emitter<HomeDisplayState> emit) async {
     emit(HomeDisplayLoad(homeDisplay: event.homeDisplay));
   }
+
+  // void _onHomeDisplayLoaded(HomeDisplayLoaded event, Emitter<HomeDisplayState> emit) {
+  //   streamSubscription?.cancel;
+  //   streamSubscription = _firebaseDatabaseService.getHomeDisplayRealTime()
+  //   .listen((event) async {
+  //     add(HomeDisplayUpdated(event));
+  //   });
+      
+  // }
+
+  // void _onHomeDisplayUpdated(HomeDisplayUpdated event, Emitter<HomeDisplayState> emit) async {
+  //   emit(HomeDisplayLoad(homeDisplay: event.homeDisplay));
+  // }
 }

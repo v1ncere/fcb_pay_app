@@ -7,7 +7,7 @@ class StepperWidget extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StepperCubit, StepperState>(
+    return BlocBuilder<StepperCubit, StepperState> (
       builder: (context, state) {
         return Scaffold(
           body: Padding(

@@ -9,7 +9,6 @@ import 'package:fcb_pay_app/pages/settings/settings.dart';
 
 class HomeBottomAppbarView extends StatelessWidget {
   const HomeBottomAppbarView({super.key});
-  
   @override
   Widget build(BuildContext context) {
     final selectedTab = context.select((BottomAppbarCubit cubit) => cubit.state.tab);

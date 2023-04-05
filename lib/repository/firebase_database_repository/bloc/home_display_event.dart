@@ -10,8 +10,11 @@ abstract class HomeDisplayEvent extends Equatable {
 class HomeDisplayLoaded extends HomeDisplayEvent {}
 
 class HomeDisplayUpdated extends HomeDisplayEvent {
+  // const HomeDisplayUpdated(this.homeDisplay);
+  // final HomeDisplay homeDisplay;
+
   const HomeDisplayUpdated(this.homeDisplay);
-  final HomeDisplay homeDisplay;
+  final List<HomeDisplay> homeDisplay;
 
   @override
   List<Object> get props => [homeDisplay];

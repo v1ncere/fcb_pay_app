@@ -24,10 +24,16 @@ class HomeDisplay  {
   }
 
   factory HomeDisplay.fromSnapshot(DataSnapshot snapshot) {
+    final data = snapshot.value as Map?;
+    final intTimestamp = data?['time_stamp'] as int?;
+    final timestamp = intTimestamp != null && intTimestamp.abs() <= 8640000000000000
+      ? DateTime.fromMillisecondsSinceEpoch(intTimestamp) 
+      : null;
+
     return HomeDisplay(
-      displayData: (snapshot.value as Map?)?["display_data"] as String? ?? "",
-      ownerId: (snapshot.value as Map?)?["owner_id"] as String? ?? "",
-      timeStamp: (snapshot.value as Map?)?["time_stamp"] as DateTime? ?? DateTime.now(),
+      displayData: data?['display_data'] as String? ?? '',
+      ownerId: data?['owner_id'] as String? ?? '',
+      timeStamp: timestamp ?? DateTime.now(),
     );
   }
 

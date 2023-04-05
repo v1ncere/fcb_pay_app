@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class UserRequest extends Equatable{
+class UserRequest {
   final String dataRequest;
   final String ownerId;
   final DateTime timeStamp;
@@ -24,19 +23,25 @@ class UserRequest extends Equatable{
     );
   }
 
-  UserRequest.fromDataSnapshot(DataSnapshot snapshot)
-    : dataRequest = (snapshot.value as Map?)?["data_request"] as String? ?? "",
-      ownerId = (snapshot.value as Map?)?["owner_id"] as String? ?? "",
-      timeStamp = (snapshot.value as Map?)?["time_stamp"] as DateTime? ?? DateTime.now();
+  factory UserRequest.fromSnapshot(DataSnapshot snapshot) {
+    final data = snapshot.value as Map?;
+    final intTimestamp = data?['time_stamp'] as int?;
+    final timestamp = intTimestamp != null && intTimestamp.abs() <= 8640000000000000
+      ? DateTime.fromMillisecondsSinceEpoch(intTimestamp) 
+      : null;
+
+    return UserRequest(
+      dataRequest: data?['data_request'] as String? ?? '',
+      ownerId: data?['owner_id'] as String? ?? '',
+      timeStamp: timestamp ?? DateTime.now(),
+    );
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["data_request"] = dataRequest;
     data["owner_id"] = ownerId;
-    data["time_stamp"] = timeStamp;
+    data["time_stamp"] = timeStamp.millisecondsSinceEpoch;
     return data;
   }
-  
-  @override
-  List<Object?> get props => [dataRequest, ownerId, timeStamp];
 }

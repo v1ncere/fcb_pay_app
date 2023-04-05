@@ -6,8 +6,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:fcb_pay_app/repository/repository.dart';
 
 abstract class BaseFirebaseDatabaseService {
+  Stream<List<HomeDisplay>> getHomeDisplayListRealTime();
   Stream<HomeDisplay> getHomeDisplayRealTime();
   Future<HomeDisplay?> getHomeDisplay();
+  Future<void> addUserAccount(UserRequest request);
 }
 
 class FirebaseDatabaseService extends BaseFirebaseDatabaseService {
@@ -17,7 +19,31 @@ class FirebaseDatabaseService extends BaseFirebaseDatabaseService {
     FirebaseDatabase? firebaseDatabase
   }): _firebaseDatabase = firebaseDatabase ?? FirebaseDatabase.instance;
 
-  // realtime ===============================================================
+  // USER AUTH ID: =============================================================
+  String userId() {
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
+
+  // realtime list =============================================================
+  @override
+  Stream<List<HomeDisplay>> getHomeDisplayListRealTime() {
+    return _firebaseDatabase.ref()
+    .child("home_display")
+    .orderByChild("owner_id")
+    .equalTo(userId())
+    .onValue.map((event) {
+      List<HomeDisplay> homeDisplays = [];
+      Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+      
+      snapshotValues.forEach((key, values) {
+        HomeDisplay homeDisplay = HomeDisplay.fromSnapshot(event.snapshot.child(key));
+        homeDisplays.add(homeDisplay);
+      });
+      return homeDisplays;
+    });
+  }
+
+  // realtime specific ===============================================================
   @override
   Stream<HomeDisplay> getHomeDisplayRealTime() {
     return _firebaseDatabase.ref("home_display")
@@ -26,7 +52,6 @@ class FirebaseDatabaseService extends BaseFirebaseDatabaseService {
     .onValue.map((event) {
       return HomeDisplay.fromSnapshot(event.snapshot);
     });
-    
   }
 
   // not realtime: ==========================================================
@@ -51,9 +76,13 @@ class FirebaseDatabaseService extends BaseFirebaseDatabaseService {
     }
   }
 
-  // user id: ================================================================
-
-  String userId() {
-    return FirebaseAuth.instance.currentUser!.uid;
+  // =========================================================================
+  // =========================================================================
+  @override
+  Future<void> addUserAccount(UserRequest request) async {
+    _firebaseDatabase
+    .ref("user_request")
+    .push()
+    .set(request.toJson());
   }
 }
