@@ -10,26 +10,24 @@ dependencies:
     sdk: flutter
   firebase_auth_repository:
     path: packages/firebase_auth_repository
+  firebase_realtimedb_repository:
+    path: packages/firebase_realtimedb_repository
   form_inputs:
     path: packages/form_inputs
+  hive_pin_repository:
+    path: packages/hive_pin_repository
 
   unicons: ^2.1.1
   cupertino_icons: ^1.0.5
   flutter_bloc: ^8.1.2
-  bloc: ^8.1.1
   equatable: ^2.0.5
-  firebase_core: ^2.8.0
-  firebase_database: ^10.0.16
+  firebase_core: ^2.9.0
   firebase_auth: ^4.4.0
-  json_serializable: ^6.6.1
-  json_annotation: ^4.8.0
   carousel_slider: ^4.2.1
   mobile_scanner: ^3.2.0
   meta: ^1.8.0
   formz: ^0.6.0
-  hive: ^2.2.3
   hive_flutter: ^1.1.0
-  hive_generator: ^2.0.0
   path_provider: ^2.0.14
   flutter_html: ^2.2.1
   shimmer: ^2.0.0

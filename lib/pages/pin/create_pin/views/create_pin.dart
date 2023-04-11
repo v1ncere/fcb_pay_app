@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/pages/pin/create_pin/create_pin.dart';
-import 'package:fcb_pay_app/repository/repository.dart';
+import 'package:hive_pin_repository/hive_pin_repository.dart';
 
 class CreatePin extends StatelessWidget {
   const CreatePin({super.key});
@@ -28,7 +28,7 @@ class CreatePin extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           lazy: false,
-          create: (_) => CreatePinBloc(baseHivePinService: HivePinService()),
+          create: (_) => CreatePinBloc(baseHivePinService: HivePinRepository()),
           child: BlocListener<CreatePinBloc, CreatePinState>(
             listener: (context, state) {
               if (state.pinStatus == PinStatus.equals) {

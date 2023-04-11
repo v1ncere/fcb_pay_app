@@ -3,19 +3,19 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import 'package:fcb_pay_app/repository/repository.dart';
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 
-abstract class BaseFirebaseDatabaseService {
+abstract class BaseFirebaseRealtimeDBRepository {
   Stream<List<HomeDisplay>> getHomeDisplayListRealTime();
   Stream<HomeDisplay> getHomeDisplayRealTime();
   Future<HomeDisplay?> getHomeDisplay();
   Future<void> addUserAccount(UserRequest request);
 }
 
-class FirebaseDatabaseService extends BaseFirebaseDatabaseService {
+class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   final FirebaseDatabase _firebaseDatabase;
   
-  FirebaseDatabaseService({
+  FirebaseRealtimeDBRepository({
     FirebaseDatabase? firebaseDatabase
   }): _firebaseDatabase = firebaseDatabase ?? FirebaseDatabase.instance;
 

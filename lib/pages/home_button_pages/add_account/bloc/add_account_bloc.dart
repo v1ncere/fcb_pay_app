@@ -1,23 +1,22 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-
-import 'package:fcb_pay_app/repository/repository.dart';
 
 part 'add_account_event.dart';
 part 'add_account_state.dart';
 
 class AddAccountBloc extends Bloc<AddAccountEvent, AddAccountState> {
   AddAccountBloc({
-    required FirebaseDatabaseService firebaseDatabaseService,
+    required FirebaseRealtimeDBRepository firebaseDatabaseService,
   }): _firebaseDatabaseService = firebaseDatabaseService, 
       super(const AddAccountState()) {
         on<AccountNumberChanged>(_onAccountNumberChanged);
         on<AccountFormSubmitted>(_onAccountFormSubmitted);
       }
-  final FirebaseDatabaseService _firebaseDatabaseService;
+  final FirebaseRealtimeDBRepository _firebaseDatabaseService;
 
   void _onAccountNumberChanged(AccountNumberChanged event, Emitter<AddAccountState> emit) {
     final accountNumber = AccountNumber.dirty(event.accountNumber);

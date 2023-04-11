@@ -1,21 +1,21 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/repository/repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 
 part 'home_display_event.dart';
 part 'home_display_state.dart';
 
 class HomeDisplayBloc extends Bloc<HomeDisplayEvent, HomeDisplayState> {
   HomeDisplayBloc({
-    required FirebaseDatabaseService firebaseDatabaseService,
+    required FirebaseRealtimeDBRepository firebaseDatabaseService,
   }): _firebaseDatabaseService = firebaseDatabaseService,
   super(HomeDisplayLoading()) {
     on<HomeDisplayLoaded>(_onHomeDisplayLoaded);
     on<HomeDisplayUpdated>(_onHomeDisplayUpdated);
   }
-  final FirebaseDatabaseService _firebaseDatabaseService;
+  final FirebaseRealtimeDBRepository _firebaseDatabaseService;
   //StreamSubscription<HomeDisplay>? streamSubscription;
   StreamSubscription<List<HomeDisplay>>? streamSubscription; // list
 

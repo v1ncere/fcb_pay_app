@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/pages/home_display/home_display.dart';
-import 'package:fcb_pay_app/repository/repository.dart';
 
 class CardHomeDisplay extends StatelessWidget {
   const CardHomeDisplay({super.key});

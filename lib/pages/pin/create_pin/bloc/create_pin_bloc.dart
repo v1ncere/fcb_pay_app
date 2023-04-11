@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/repository/repository.dart';
+import 'package:hive_pin_repository/hive_pin_repository.dart';
 
 part 'create_pin_event.dart';
 part 'create_pin_state.dart';
 
 class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
   CreatePinBloc({
-    required BaseHivePinService baseHivePinService,
+    required BaseHivePinRepository baseHivePinService,
   }): _baseHivePinService = baseHivePinService,
       super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
         on<CreatePinAddEvent>(_onAddPin);
         on<CreatePinEraseEvent>(_onErasePin);
         on<CreateNullPinEvent>(_onNullPin);
       }
-  final BaseHivePinService _baseHivePinService;
+  final BaseHivePinRepository _baseHivePinService;
 
   void _onAddPin(CreatePinAddEvent event, Emitter<CreatePinState> emit) {
     if (state.firstPin.length < 6) {

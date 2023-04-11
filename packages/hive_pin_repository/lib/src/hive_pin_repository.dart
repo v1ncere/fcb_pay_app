@@ -1,12 +1,12 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class BaseHivePinService {
+abstract class BaseHivePinRepository {
   void close();
   void addPin(String pin);
   Future<bool> pinEquals(String pin);
 }
 
-class HivePinService extends BaseHivePinService {
+class HivePinRepository extends BaseHivePinRepository {
   static const String _boxName = 'PIN_BOX';
   static const String _keyName = 'PIN_KEY';
 

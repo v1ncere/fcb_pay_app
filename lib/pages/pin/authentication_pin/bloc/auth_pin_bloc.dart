@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/repository/repository.dart';
+import 'package:hive_pin_repository/hive_pin_repository.dart';
 
 part 'auth_pin_event.dart';
 part 'auth_pin_state.dart';
 
 class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
   AuthPinBloc({
-    required  BaseHivePinService baseHivePinService,
+    required  BaseHivePinRepository baseHivePinService,
   }): _baseHivePinService = baseHivePinService,
   super( const AuthPinState(pinStatus: AuthPinStatus.enterPin)) {
     on<AuthPinAddEvent>(_onAddPin);
     on<AuthPinEraseEvent>(_onErasePin);
     on<AuthNullPinEvent>(_onNullPin);
   }
-  final BaseHivePinService _baseHivePinService;
+  final BaseHivePinRepository _baseHivePinService;
 
   // === add pin ================================================================
   void _onAddPin(AuthPinAddEvent event, Emitter<AuthPinState> emit) async {
