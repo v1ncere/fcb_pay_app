@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
-import 'package:fcb_pay_app/functions/phone_number_formatter.dart';
 import 'package:fcb_pay_app/pages/register/register.dart';
+import 'package:fcb_pay_app/utils/phone_number_formatter.dart';
 
 class MobileNumberForm extends StatelessWidget {
   const MobileNumberForm({super.key});

@@ -1,36 +1,75 @@
+import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
-  // final String name;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Welcome 👋', style: TextStyle(
-              color:Color.fromARGB(255, 0, 151, 38),
-              fontWeight: FontWeight.w700,
-              fontSize: 25.0,
-            )),
-            SizedBox(height: 8.0),
-            // Text(name, style: const TextStyle(
-            //   fontWeight: FontWeight.w500, 
-            //   fontSize: 14.0,
-            // )),
-          ],
+    return SizedBox(
+      height: 70.0,
+      width: MediaQuery.of(context).size.width,
+      child: ClipRect(
+        clipBehavior: Clip.antiAlias,
+        child: Material(
+          color: const Color.fromRGBO(0, 0, 0, 80),
+          borderRadius: BorderRadius.circular(10.0),
+          child: Padding(
+            padding: const EdgeInsets.all( 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: const[
+                    SizedBox(width: 10),
+                    Text(
+                      'VINCERE', 
+                      style:TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      splashRadius: 25,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.qrcode,
+                        size: 22,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push<void>(ScannerPage.route());
+                       },
+                    ),
+                    IconButton(
+                      splashRadius: 25,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.solidBell,
+                        size: 25,
+                        color: Colors.white,
+                      ),
+                      onPressed: () { },
+                    ),
+                    IconButton(
+                      splashRadius: 25,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.circleQuestion,
+                        size: 25,
+                        color: Colors.white,
+                      ),
+                      onPressed: () { },
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ),
         ),
-        const SizedBox(width: 16.0),
-        const Text("FCB", style: TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.bold,
-          color:Color.fromARGB(255, 0, 151, 38),
-        )),
-      ],
+      ),
     );
   }
 }

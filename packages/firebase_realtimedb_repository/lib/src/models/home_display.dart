@@ -1,22 +1,26 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class HomeDisplay  {
+  String? keyId;
   final String displayData;
   final String ownerId;
   final DateTime timeStamp;
 
-  const HomeDisplay({
+  HomeDisplay({
+    this.keyId,
     required this.displayData,
     required this.ownerId,
     required this.timeStamp,
   });
 
   HomeDisplay copyWith({
+    String? keyId,
     String? displayData,
     String? ownerId,
     DateTime? timeStamp,
   }) {
     return HomeDisplay(
+      keyId: keyId ?? this.keyId,
       displayData: displayData ?? this.displayData,
       ownerId: ownerId ?? this.ownerId,
       timeStamp: timeStamp ?? this.timeStamp
@@ -31,6 +35,7 @@ class HomeDisplay  {
       : null;
 
     return HomeDisplay(
+      keyId: snapshot.key,
       displayData: data?['display_data'] as String? ?? '',
       ownerId: data?['owner_id'] as String? ?? '',
       timeStamp: timestamp ?? DateTime.now(),

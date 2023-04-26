@@ -17,15 +17,15 @@ class ContainerBody extends StatelessWidget {
         decoration: BoxDecoration(
           color:const Color(0xFFFFFFFF),
           borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(15.0),
-            topLeft: Radius.circular(15.0),
+            topRight: Radius.circular(10.0),
+            topLeft: Radius.circular(10.0),
           ),
           boxShadow: [
             BoxShadow(
               color:const Color(0xFF000000).withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 4,
-              offset: const Offset(0, -2),
+              spreadRadius: 0.1,
+              blurRadius: 2,
+              offset: const Offset(0, -1),
             )
           ],
         ),

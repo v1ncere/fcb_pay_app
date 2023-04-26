@@ -10,6 +10,9 @@ abstract class BaseFirebaseRealtimeDBRepository {
   Stream<HomeDisplay> getHomeDisplayRealTime();
   Future<HomeDisplay?> getHomeDisplay();
   Future<void> addUserAccount(UserRequest request);
+
+  Stream<List<TransactionHistory>> getTransactionListRealTime();
+  Stream<TransactionHistory> getTransactionRealTime();
 }
 
 class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
@@ -28,25 +31,31 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   @override
   Stream<List<HomeDisplay>> getHomeDisplayListRealTime() {
     return _firebaseDatabase.ref()
-    .child("home_display")
-    .orderByChild("owner_id")
+    .child('home_display')
+    .orderByChild('owner_id')
     .equalTo(userId())
-    .onValue.map((event) {
+    .onValue
+    .map((event) {
       List<HomeDisplay> homeDisplays = [];
-      Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
-      
-      snapshotValues.forEach((key, values) {
-        HomeDisplay homeDisplay = HomeDisplay.fromSnapshot(event.snapshot.child(key));
-        homeDisplays.add(homeDisplay);
-      });
+      if (event.snapshot.exists) {
+        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        
+        snapshotValues.forEach((key, values) {
+          HomeDisplay homeDisplay = HomeDisplay.fromSnapshot(event.snapshot.child(key));
+          homeDisplays.add(homeDisplay);
+        });
+      }
       return homeDisplays;
+    }).handleError((error) {
+      print('Error occurred: $error');
+      return [];
     });
   }
 
   // realtime specific ===============================================================
   @override
   Stream<HomeDisplay> getHomeDisplayRealTime() {
-    return _firebaseDatabase.ref("home_display")
+    return _firebaseDatabase.ref('home_display')
     .child(userId())
     .limitToFirst(1)
     .onValue.map((event) {
@@ -57,7 +66,7 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   // not realtime: ==========================================================
   @override
   Future<HomeDisplay?> getHomeDisplay() async {
-    final parentNodeRef = _firebaseDatabase.ref("home_display");
+    final parentNodeRef = _firebaseDatabase.ref('home_display');
     final valueQuery = parentNodeRef
     .orderByChild("owner_id")
     .equalTo(userId());
@@ -81,8 +90,40 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   @override
   Future<void> addUserAccount(UserRequest request) async {
     _firebaseDatabase
-    .ref("user_request")
+    .ref('user_request')
     .push()
     .set(request.toJson());
+  }
+
+  // transaction query
+  @override
+  Stream<List<TransactionHistory>> getTransactionListRealTime() {
+    return _firebaseDatabase.ref('transaction_history')
+    .child(userId())
+    .onValue
+    .map((event) {
+      List<TransactionHistory> transactions = [];
+      if (event.snapshot.exists) {
+        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        snapshotValues.forEach((key, values) {
+          TransactionHistory history = TransactionHistory.fromSnapshot(event.snapshot.child(key));
+          transactions.add(history);
+        });
+      }
+      return transactions;
+    }).handleError((error) {
+      print('Error occurred: $error');
+      return [];
+    });
+  }
+
+  @override
+  Stream<TransactionHistory> getTransactionRealTime() {
+    return _firebaseDatabase.ref('transaction_history')
+    .child(userId())
+    .limitToFirst(1)
+    .onValue.map((event) {
+      return TransactionHistory.fromSnapshot(event.snapshot);
+    });
   }
 }

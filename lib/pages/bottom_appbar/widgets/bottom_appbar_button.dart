@@ -21,8 +21,8 @@ class BottomAppbarButton extends StatelessWidget {
     return IconButton(
       padding: padding,
       onPressed: () => controller.jumpToPage(value.index),
-      iconSize: groupValue != value ? 32 : 35,
-      color: groupValue != value ? Colors.white70 : const Color(0xFFFFFFFF),
+      iconSize: groupValue != value ? 20 : 26,
+      color: groupValue != value ? Colors.white54 : const Color(0xFFFFFFFF),
       icon: icon,
     );
   }

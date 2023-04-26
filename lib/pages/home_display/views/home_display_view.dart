@@ -9,22 +9,19 @@ class HomeDisplayView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: Column(
-            children: const [
-              Header(),
-              SizedBox(height: 20.0),
-              ContainerBody(
-                children: [
-                  CardHomeDisplay(),
-                  SizedBox(height: 20.0),
-                  CardButtonMenu(),
-                  SizedBox(height: 20.0),
-                ]
-              )
-            ],
-          ),
+        child: Column(
+          children: const [
+            Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Header(),
+            ),
+            ContainerBody(
+              children: [
+                SizedBox(height: 10),
+                CardHomeDisplay(),
+              ]
+            )
+          ],
         ),
       ),
     );

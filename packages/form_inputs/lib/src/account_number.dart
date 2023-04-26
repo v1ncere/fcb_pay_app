@@ -6,13 +6,13 @@ class AccountNumber extends FormzInput<String, AccountNumberValidationError> {
   const AccountNumber.pure() : super.pure('');
   const AccountNumber.dirty([super.value = '']) : super.dirty();
 
-  static final RegExp _postalCodeRegExp = RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]');
+  static final RegExp _regExp = RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]');
 
   @override
   AccountNumberValidationError? validator(String? value) {
     return value?.isEmpty == true
       ? AccountNumberValidationError.required
-      : _postalCodeRegExp.hasMatch(value!)
+      : _regExp.hasMatch(value!)
         ? null
         : AccountNumberValidationError.invalid;
   }

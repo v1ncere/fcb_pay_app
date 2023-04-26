@@ -68,7 +68,7 @@ class _EmailInput extends StatelessWidget {
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Color(0xFF009405),
-                width: 2.0
+                width: 2.0,
               )
             ),
             border: const OutlineInputBorder(),
@@ -126,15 +126,7 @@ class _SignInText extends StatelessWidget {
 class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginBloc, LoginState>(
-      listenWhen: (previous, current) => 
-        previous.status != current.status &&
-        current.isValid,
-      listener: (context, state) {
-        if (state.status.isSuccess) {
-          Navigator.of(context).pushReplacementNamed('/home');
-        }
-      },
+    return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) =>
         previous.status != current.status ||
         current.isValid,

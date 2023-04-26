@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unicons/unicons.dart';
-
 import 'package:fcb_pay_app/pages/home_display/home_display.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardButtonMenu extends StatelessWidget {
   const CardButtonMenu({super.key});
@@ -17,25 +16,25 @@ class CardButtonMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CardButton(
-                iconData: UniconsLine.bill,
-                text: "Bills Payment",
+                icon: FontAwesomeIcons.receipt,
+                text: "Pay Bills",
                 colors:const Color(0xFFC5B800),
                 function: () => Navigator.of(context).pushNamed('/add_account'),
               ),
               CardButton(
-                iconData: UniconsLine.transaction,
-                text: "Transfer to Pitakard",
+                icon: FontAwesomeIcons.creditCard,
+                text: "Pitakard Transfer",
                 colors:const Color.fromARGB(255, 221, 144, 0),
                 function: () => Navigator.of(context).pushNamed('/add_account'),
               ),
               CardButton(
-                iconData: UniconsLine.exchange_alt,
+                icon: FontAwesomeIcons.moneyBillTransfer,
                 text: "Fund Transfer",
                 colors:const Color(0xFFC55123),
                 function: () => Navigator.of(context).pushNamed('/add_account'),
               ),
               CardButton(
-                iconData: UniconsLine.coins,
+                icon: FontAwesomeIcons.pesoSign,
                 text: "PESOnet Transfer",
                 colors:const Color(0xFF1D99B8),
                 function: () => Navigator.of(context).pushNamed('/add_account'),

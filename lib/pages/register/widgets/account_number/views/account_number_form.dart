@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/functions/account_number_formatter.dart';
 import 'package:fcb_pay_app/pages/register/register.dart';
+import 'package:fcb_pay_app/utils/account_number_formatter.dart';
 
 class AccountNumberForm extends StatelessWidget {
   const AccountNumberForm({super.key});

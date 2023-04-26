@@ -10,6 +10,7 @@ class CardHomeDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final current = context.select((SliderCubit cubit) => cubit.state.sliderIndex);
+
     return BlocBuilder<HomeDisplayBloc, HomeDisplayState>(
       builder: (context, state) {
         if (state is HomeDisplayLoading) {
@@ -24,42 +25,38 @@ class CardHomeDisplay extends StatelessWidget {
           );
         }
         if (state is HomeDisplayLoad) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Column(
-              children: [
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 250.0,
-                    enlargeCenterPage: true,
-                    viewportFraction: 0.95,
-                    aspectRatio: 2.0,
-                    initialPage: 0,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index),
-                  ),
-                  items: state.homeDisplay.map((data) {
-                    return CardItem(data: data.displayData);
-                  }).toList(),
+          return Column(
+            children: [
+              CarouselSlider(
+                options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.95,
+                  height: MediaQuery.of(context).size.height * .68,
+                  initialPage: 0,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: map<Widget>(state.homeDisplay.toList(), (index, _) {
-                    return Container(
-                      width: 10.0,
-                      height: 10.0,
-                      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: current == index
-                          ? Colors.greenAccent
-                          : Colors.black12,
-                      ),
-                    );
-                  })
-                )
-              ],
-            ),
+                items: state.homeDisplay.map((data) {
+                  return CardItem(data: data.displayData);
+                }).toList(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: map<Widget>(state.homeDisplay.toList(), (index, _) {
+                  return Container(
+                    width: 10.0,
+                    height: 10.0,
+                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: current == index
+                        ? Colors.greenAccent
+                        : Colors.black12,
+                    ),
+                  );
+                })
+              )
+            ],
           );
         }
         if (state is HomeDisplayError) {

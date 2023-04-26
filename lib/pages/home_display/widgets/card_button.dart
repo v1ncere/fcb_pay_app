@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardButton extends StatelessWidget {
   const CardButton({
     super.key,
-    required this.iconData,
+    required this.icon,
     required this.text,
     required this.colors,
     required this.function,
   });
-  final IconData iconData;
+  final IconData icon;
   final String text;
   final Color colors;
   final Function function;
@@ -16,7 +17,7 @@ class CardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.fromSize(
-      size: const Size(80, 80),
+      size: const Size(75, 75),
       child: ClipRect(
         clipBehavior: Clip.antiAlias,
         child: Material(
@@ -31,7 +32,7 @@ class CardButton extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(iconData, color: Colors.white),
+                  FaIcon(icon, color: Colors.white),
                   Flexible(
                     child: Text(text, 
                       textAlign: TextAlign.center,

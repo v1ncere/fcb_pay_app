@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/theme/theme.dart';
+import 'package:fcb_pay_app/utils/theme.dart';
 
 class App extends StatelessWidget {
   const App({
     super.key,
     required FirebaseAuthRepository firebaseAuthRepository,
-  }): _firebaseAuthRepository = firebaseAuthRepository;
+  }) : _firebaseAuthRepository = firebaseAuthRepository;
   final FirebaseAuthRepository _firebaseAuthRepository;
 
   @override
