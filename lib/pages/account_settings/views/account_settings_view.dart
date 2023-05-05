@@ -76,14 +76,14 @@ class _AccountList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeDisplayBloc, HomeDisplayState> (
       builder: (context, state) {
-        if(state is HomeDisplayLoading) {
+        if(state is HomeDisplayLoadInProgress) {
           return const Padding(
             padding: EdgeInsets.all(15.0),
             child: Center(
               child: CircularProgressIndicator()),
           );
         }
-        if (state is HomeDisplayLoad) {
+        if (state is HomeDisplayLoadSuccess) {
           return ListView.separated(
             separatorBuilder: (context, index) => const Divider(height: 10.0,),
             shrinkWrap: true,
@@ -100,8 +100,16 @@ class _AccountList extends StatelessWidget {
 
           );
         }
-        if (state is HomeDisplayError) {
-          return Center(child: Text(state.error));
+        if (state is HomeDisplayLoadError) {
+          return Center(
+            child: Text(state.error,
+              style: const TextStyle(
+                color: Colors.black38,
+                fontWeight: FontWeight.w900,
+                fontSize: 16.0,
+              )
+            )
+          );
         }
         else {
           return const SizedBox.shrink();

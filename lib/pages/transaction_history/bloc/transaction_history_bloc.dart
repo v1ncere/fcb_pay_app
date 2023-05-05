@@ -11,25 +11,31 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
   TransactionHistoryBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
   }): _firebaseRealtimeDBRepository = firebaseRealtimeDBRepository,
-  super(TransactionHistoryLoading()) {
+  super(TransactionHistoryLoadInProgress()) {
     on<TransactionHistoryLoaded>(_onTransactionHistoryLoaded);
     on<TransactionHistoryUpdated>(_onTransactionHistoryUpdated);
   }
   final FirebaseRealtimeDBRepository _firebaseRealtimeDBRepository;
   StreamSubscription<List<TransactionHistory>>? streamSubscription;
 
-  void _onTransactionHistoryLoaded(TransactionHistoryLoaded event, Emitter<TransactionHistoryState> emit) async {
+  void _onTransactionHistoryLoaded(
+    TransactionHistoryLoaded event,
+    Emitter<TransactionHistoryState> emit
+  ) async {
     streamSubscription = _firebaseRealtimeDBRepository.getTransactionListRealTime()
     .listen((event) async {
       add(TransactionHistoryUpdated(event));
     });
   }
 
-  void _onTransactionHistoryUpdated(TransactionHistoryUpdated event, Emitter<TransactionHistoryState> emit) async {
+  void _onTransactionHistoryUpdated(
+    TransactionHistoryUpdated event,
+    Emitter<TransactionHistoryState> emit
+  ) async {
     if (event.transactions.isEmpty) {
-      emit(const TransactionHistoryError('EMPTY'));
+      emit(const TransactionHistoryLoadError('Empty'));
     } else {
-      emit(TransactionHistoryLoad(transactions: event.transactions));
+      emit(TransactionHistoryLoadSuccess(transactions: event.transactions));
     }
   }
 

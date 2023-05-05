@@ -14,6 +14,7 @@ Future<void> main() async {
 
   final firebaseAuthRepository = FirebaseAuthRepository();
   await firebaseAuthRepository.user.first;
+  await Hive.openBox('scannerBox');
   
   runApp(App(firebaseAuthRepository: firebaseAuthRepository));
 }

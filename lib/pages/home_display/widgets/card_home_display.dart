@@ -13,7 +13,7 @@ class CardHomeDisplay extends StatelessWidget {
 
     return BlocBuilder<HomeDisplayBloc, HomeDisplayState>(
       builder: (context, state) {
-        if (state is HomeDisplayLoading) {
+        if (state is HomeDisplayLoadInProgress) {
           return const Padding(
             padding: EdgeInsets.all(15.0),
             child: SizedBox(
@@ -24,7 +24,7 @@ class CardHomeDisplay extends StatelessWidget {
             ),
           );
         }
-        if (state is HomeDisplayLoad) {
+        if (state is HomeDisplayLoadSuccess) {
           return Column(
             children: [
               CarouselSlider(
@@ -59,8 +59,15 @@ class CardHomeDisplay extends StatelessWidget {
             ],
           );
         }
-        if (state is HomeDisplayError) {
-          return Center(child: Text(state.error));
+        if (state is HomeDisplayLoadError) {
+          return Center(
+            child: Text(state.error,
+              style: const TextStyle(
+                color: Colors.black38,
+                fontWeight: FontWeight.w700,
+              )
+            )
+          );
         }
         else {
           return const SizedBox.shrink();

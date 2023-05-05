@@ -18,17 +18,26 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
   final FirebaseAuthRepository _firebaseAuthService;
   
-  void _onLoginEmailChanged(LoginEmailChanged event, Emitter<LoginState> emit) {
+  void _onLoginEmailChanged(
+    LoginEmailChanged event,
+    Emitter<LoginState> emit
+  ) {
     final email = Email.dirty(event.email);
     emit(state.copyWith(email: email));
   }
 
-  void _onLoginPasswordChanged(LoginPasswordChanged event, Emitter<LoginState> emit) {
+  void _onLoginPasswordChanged(
+    LoginPasswordChanged event,
+    Emitter<LoginState> emit
+  ) {
     final password = Password.dirty(event.password);
     emit(state.copyWith(password: password));
   }
 
-  Future<void> _onLoggedInWithCredentials(LoggedInWithCredentials event, Emitter<LoginState> emit) async {
+  Future<void> _onLoggedInWithCredentials(
+    LoggedInWithCredentials event,
+    Emitter<LoginState> emit
+  ) async {
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
@@ -38,10 +47,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } on LogInWithEmailAndPasswordFailure catch (e) {
-        emit(state.copyWith(
-          errorMessage: e.message,
-          status: FormzSubmissionStatus.failure,
-        ));
+        emit(
+          state.copyWith(
+            errorMessage: e.message,
+            status: FormzSubmissionStatus.failure,
+          )
+        );
       } catch (e) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }

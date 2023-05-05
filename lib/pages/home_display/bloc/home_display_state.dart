@@ -7,21 +7,18 @@ abstract class HomeDisplayState extends Equatable {
   List<Object> get props => [];
 }
 
-class HomeDisplayLoading extends HomeDisplayState {}
+class HomeDisplayLoadInProgress extends HomeDisplayState {}
 
-class HomeDisplayLoad extends HomeDisplayState {
-  // const HomeDisplayLoad({required this.homeDisplay});
-  // final HomeDisplay homeDisplay;
-
-  const HomeDisplayLoad({this.homeDisplay = const <HomeDisplay>[]}); // list
-  final List<HomeDisplay> homeDisplay; // list
+class HomeDisplayLoadSuccess extends HomeDisplayState {
+  const HomeDisplayLoadSuccess({this.homeDisplay = const <HomeDisplay>[]});
+  final List<HomeDisplay> homeDisplay;
 
   @override
   List<Object> get props => [homeDisplay];
 }
 
-class HomeDisplayError extends HomeDisplayState {
-  const HomeDisplayError(this.error);
+class HomeDisplayLoadError extends HomeDisplayState {
+  const HomeDisplayLoadError(this.error);
   final String error;
 
   @override

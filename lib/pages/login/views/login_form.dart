@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
@@ -144,7 +145,11 @@ class _LoginButton extends StatelessWidget {
                 child: const SizedBox(
                   width: 56,
                   height: 56, 
-                  child: Icon(Icons.arrow_forward, color: Colors.white,)),
+                  child: Icon(
+                    FontAwesomeIcons.rightToBracket,
+                    color: Colors.white,
+                  )
+                ),
               ),
             ),
           );

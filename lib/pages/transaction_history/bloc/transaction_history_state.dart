@@ -7,18 +7,18 @@ abstract class TransactionHistoryState extends Equatable {
   List<Object> get props => [];
 }
 
-class TransactionHistoryLoading extends TransactionHistoryState {}
+class TransactionHistoryLoadInProgress extends TransactionHistoryState {}
 
-class TransactionHistoryLoad extends TransactionHistoryState {
-  const TransactionHistoryLoad({this.transactions = const <TransactionHistory>[]});
+class TransactionHistoryLoadSuccess extends TransactionHistoryState {
+  const TransactionHistoryLoadSuccess({this.transactions = const <TransactionHistory>[]});
   final List<TransactionHistory> transactions;
 
   @override
   List<Object> get props => [transactions];
 }
 
-class TransactionHistoryError extends TransactionHistoryState {
-  const TransactionHistoryError(this.error);
+class TransactionHistoryLoadError extends TransactionHistoryState {
+  const TransactionHistoryLoadError(this.error);
   final String error;
 
   @override

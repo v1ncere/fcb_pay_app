@@ -16,6 +16,8 @@ dependencies:
     path: packages/form_inputs
   hive_pin_repository:
     path: packages/hive_pin_repository
+  hive_repository:
+    path: packages/hive_repository
 
   cupertino_icons: ^1.0.5
   flutter_bloc: ^8.1.2

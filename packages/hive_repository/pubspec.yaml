@@ -1,0 +1,16 @@
+name: hive_repository
+description: Dart package which manages the hive storage.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive_flutter: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

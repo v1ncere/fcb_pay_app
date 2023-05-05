@@ -1,6 +1,7 @@
-import 'package:fcb_pay_app/pages/transaction_history/bloc/transaction_history_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:fcb_pay_app/pages/transaction_history/bloc/transaction_history_bloc.dart';
 
 class TransactionHistoryView extends StatelessWidget {
   const TransactionHistoryView({super.key});
@@ -20,14 +21,14 @@ class TransactionHistoryView extends StatelessWidget {
       ),
       body: BlocBuilder<TransactionHistoryBloc, TransactionHistoryState>(
         builder: (context, state) {
-          if (state is TransactionHistoryLoading) {
+          if (state is TransactionHistoryLoadInProgress) {
             return const Center(
               child: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-          if (state is TransactionHistoryLoad) {
+          if (state is TransactionHistoryLoadSuccess) {
             return ListView.builder(
               itemCount: state.transactions.length,
               itemBuilder: (context, index) {
@@ -45,13 +46,12 @@ class TransactionHistoryView extends StatelessWidget {
               },
             );
           }
-          if (state is TransactionHistoryError) {
+          if (state is TransactionHistoryLoadError) {
             return Center(
               child: Text(state.error,
                 style: const TextStyle(
                   color: Colors.black38,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 16.0,
+                  fontWeight: FontWeight.w700,
                 )
               )
             );

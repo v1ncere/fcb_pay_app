@@ -6,7 +6,5 @@ part 'slider_state.dart';
 class SliderCubit extends Cubit<SliderState> {
   SliderCubit() : super(const SliderState());
 
-  void setSliderIndex(index) {
-    emit(SliderState(sliderIndex: index));
-  }
+  void setSliderIndex(index) => emit(SliderState(sliderIndex: index));
 }

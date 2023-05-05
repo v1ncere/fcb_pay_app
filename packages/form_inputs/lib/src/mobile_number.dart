@@ -17,7 +17,7 @@ class MobileNumber extends FormzInput<String, MobileNumberValidationError> {
   }
 }
 
-extension MobileNumberValidationErrorExtension on MobileNumberValidationError {
+extension MobileNumberValidationErrorX on MobileNumberValidationError {
   String text() {
     switch (this) {
       case MobileNumberValidationError.required:

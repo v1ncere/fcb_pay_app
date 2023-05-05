@@ -579,6 +579,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0"
+  hive_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/hive_repository"
+      relative: true
+    source: path
+    version: "1.0.0"
   html:
     dependency: transitive
     description:
