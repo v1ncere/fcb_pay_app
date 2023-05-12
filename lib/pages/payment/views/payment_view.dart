@@ -5,15 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
-import 'package:fcb_pay_app/pages/payment/bloc/payment_bloc.dart';
+import 'package:fcb_pay_app/pages/payment/payment.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
   @override
   Widget build(BuildContext context) {
-    final date = DateTime.now();
-    return Scaffold(
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(15.0),
         child: BlocListener<PaymentBloc, PaymentState>(
           listenWhen: (previous, current) => previous.status != current.status,
@@ -21,16 +19,40 @@ class PaymentView extends StatelessWidget {
             if (state.status.isFailure) {
               ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
-              ..showSnackBar(SnackBar(content: Text(state.errorMsg ?? 'Authentication Failure')));
+              ..showSnackBar(SnackBar(content: Text(state.errorMsg ?? 'Oops! Something went wrong. Please try again.')));
             }
           },
           child: Column(
             children: [
+              _MerchantDisplay(),
+              const SizedBox(height: 50),
+              _TransactionAmountInput(),
+              const SizedBox(height: 20),
+              _PaymentSubmitButton()
+            ],
+          ),
+        )
+    );
+  }
+}
+
+class _MerchantDisplay extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DisplayPaymentDataBloc, DisplayPaymentDataState>(
+      builder: (context, state) {
+        if (state.status.onProgress) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (state.status.onSuccess) {
+          final date = DateTime.now();
+          return Column(
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("Merchant ID: [27-03]",
-                    style: TextStyle(
+                  Text(state.merchantId,
+                    style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black38,
                       fontSize: 12
@@ -47,55 +69,17 @@ class PaymentView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Merchant Name: [59]",
-                    style: TextStyle(
-                      color: Colors.black38,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12
-                    ),),
                   Text(
-                    "${date.hour}:${date.minute}",
+                    state.merchantName,
                     style: const TextStyle(
                       color: Colors.black38,
                       fontWeight: FontWeight.w700,
                       fontSize: 12
-                    ),),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Reference Label: [62-05]',
-                    style: TextStyle(
-                      color: Colors.black38,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12
                     ),
-                  )
-                ]
-              ),
-              const SizedBox(height: 50,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
+                  ),
                   Text(
-                    "Sender Transaction Ref: [OFI]",
-                    style: TextStyle(
-                      color: Colors.black38,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Trace Number: [CSO]",
-                    style: TextStyle(
+                    "${date.hour}:${date.minute}",
+                    style: const TextStyle(
                       color: Colors.black38,
                       fontWeight: FontWeight.w700,
                       fontSize: 12
@@ -103,19 +87,56 @@ class PaymentView extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
-              _TransactionAmountInput(),
-              const SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _PaymentSubmitButton(),
+                  Text(
+                    state.referenceLabel,
+                    style: const TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12
+                    ),
+                  )
+                ]
+              ),
+              const SizedBox(height: 40,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    state.senderTransactionRef,
+                    style: const TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12
+                    ),
+                  )
                 ],
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    state.traceNumber,
+                    style: const TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12
+                    ),
+                  ),
+                ],
+              ),
             ],
-          ),
-        )
-      ),
+          );
+        }
+        if (state.status.onFailure) {
+          return Center(child: Text(state.error));
+        }
+        else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 }
@@ -126,16 +147,14 @@ class _TransactionAmountInput extends StatelessWidget {
     return BlocBuilder<PaymentBloc,PaymentState>(
       buildWhen: (previous, current) => previous.amount != current.amount,
       builder: (context, state) {
-        return TextFormField(
+        return TextField(
+          key: const Key('transaction_amount_input'),
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')), 
             FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d*')),
           ],
-          key: const Key('transaction_amount_input'),
-          onChanged: (value) {
-            context.read<PaymentBloc>().add(PaymentTransactionAmountChanged(value));
-          },
+          onChanged: (amount) => context.read<PaymentBloc>().add(PaymentTransactionAmountChanged(amount)),
           style: const TextStyle(
             color: Colors.black45,
             fontWeight: FontWeight.w700,
@@ -162,47 +181,49 @@ class _PaymentSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PaymentBloc, PaymentState>(
-      buildWhen: (previous, current) => 
-        previous.status != current.status ||
-        current.isValid,
+      buildWhen: (previous, current) => previous.status != current.status || current.isValid,
       builder: (context, state) {
         return state.status.isInProgress
-        ? const CircularProgressIndicator()
-        : ClipRect(
-          child: Material(
-            borderRadius: BorderRadius.circular(8),
-            color: const Color(0xFF009405),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(8),
-              splashColor: Colors.white,
-              onTap: state.isValid
-                ? () => print('yamete kudasai')
-                : null,
-              child: SizedBox(
-                height: 45,
-                width: 75,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'PAY',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
+          ? const CircularProgressIndicator()
+          : Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ClipRect(
+                child: Material(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color(0xFF009405),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(8),
+                    splashColor: Colors.white38,
+                    onTap: state.isValid
+                      ? () => context.read<PaymentBloc>().add(PaymentSubmitted())
+                      : null,
+                    child: SizedBox(
+                      height: 45,
+                      width: 75,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text('PAY',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Icon(
+                            FontAwesomeIcons.coins, 
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(width: 5),
-                    Icon(
-                      FontAwesomeIcons.coins, 
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ],
-                )
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
+            ],
+          );
       },
     );
   }

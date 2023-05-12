@@ -32,19 +32,25 @@ class StepperWidget extends StatelessWidget {
         title: const Text('Email and Password'),
         content: const AccountPage(),
         isActive: currentStep >= 0,
-        state: currentStep >= 0 ? StepState.complete : StepState.disabled
+        state: currentStep >= 0
+          ? StepState.complete
+          : StepState.disabled
       ),
       Step(
         title: const Text('Account Number'),
         content: const AccountNumberPage(),
         isActive: currentStep >= 1,
-        state: currentStep >= 1 ? StepState.complete : StepState.disabled,
+        state: currentStep >= 1
+          ? StepState.complete
+          : StepState.disabled,
       ),
       Step(
         title: const Text('Mobile Number'),
         content: const MobileNumberPage(),
         isActive: currentStep >= 2,
-        state: currentStep >= 2 ? StepState.complete : StepState.disabled,
+        state: currentStep >= 2
+          ? StepState.complete
+          : StepState.disabled,
       ),
     ];
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-class AccountsInputFormatter extends TextInputFormatter {
+class NumberSeparatorFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     String text = newValue.text;

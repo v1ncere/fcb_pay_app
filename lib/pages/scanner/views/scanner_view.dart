@@ -58,7 +58,7 @@ class ScannerViewState extends State<ScannerView> {
             ..showSnackBar(SnackBar(content: Text(state.message)));
           }
           if (state.status.isSuccess) {
-            Navigator.of(context).pushReplacement(PaymentConfirmationPage.route());
+            Navigator.of(context).pushReplacement(PaymentPage.route());
           }
         },
         child: Stack(

@@ -65,14 +65,13 @@ class _EmailInput extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0x1FB3B3B3),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0xFF009405),
-                width: 2.0,
-              )
+            fillColor: Colors.black12,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none,
             ),
-            border: const OutlineInputBorder(),
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            prefixIcon: const Icon(FontAwesomeIcons.solidCircleUser),
             labelText: 'Email',
             errorText: state.email.displayError?.text(),
           ),
@@ -82,7 +81,7 @@ class _EmailInput extends StatelessWidget {
   }
 }
 
-class _PasswordInput extends StatelessWidget{
+class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
@@ -94,14 +93,13 @@ class _PasswordInput extends StatelessWidget{
           obscureText: true,
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0x1FB3B3B3),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0xFF009405),
-                width: 2.0
-              )
+            fillColor: Colors.black12,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none,
             ),
-            border: const OutlineInputBorder(),
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            prefixIcon: const Icon(FontAwesomeIcons.unlockKeyhole),
             labelText: 'Password',
             errorText: state.password.displayError?.text(),
           ),
@@ -138,7 +136,7 @@ class _LoginButton extends StatelessWidget {
             child: Material(
               color:const Color(0xFF009405),
               child: InkWell(
-                splashColor: Colors.red,
+                splashColor: Colors.white38,
                 onTap: state.isValid
                   ? () => context.read<LoginBloc>().add(LoggedInWithCredentials())
                   : null,

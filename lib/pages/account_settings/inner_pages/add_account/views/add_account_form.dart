@@ -5,7 +5,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
-import 'package:fcb_pay_app/utils/account_number_formatter.dart';
+import 'package:fcb_pay_app/utils/number_separator_formatter.dart';
 
 class AddAccountForm extends StatelessWidget {
   const AddAccountForm({super.key});
@@ -53,7 +53,7 @@ class AddAccountForm extends StatelessWidget {
 }
 
 class _AccountNumberInput extends StatelessWidget {
-  final AccountsInputFormatter _accountsInputFormatter = AccountsInputFormatter();
+  final NumberSeparatorFormatter _numberSeparatorFormatter = NumberSeparatorFormatter();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddAccountBloc, AddAccountState>(
@@ -61,7 +61,7 @@ class _AccountNumberInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('add_account_number_textfield'),
-          inputFormatters: [_accountsInputFormatter],
+          inputFormatters: [_numberSeparatorFormatter],
           onChanged: (value) => context.read<AddAccountBloc>().add(AccountNumberChanged(value)),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(

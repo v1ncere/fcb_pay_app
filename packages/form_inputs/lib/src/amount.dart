@@ -17,13 +17,13 @@ class Amount extends FormzInput<String, AmountValidationError> {
   }
 }
 
-extension AmountValidationErrorX on AmountValidationError {
+extension AmountValidationErrorExtention on AmountValidationError {
   String text() {
     switch (this) {
       case AmountValidationError.required:
         return 'Amount is required';
       case AmountValidationError.invalid:
-      return 'Amount is invalid. Please try again.';
+        return 'Amount is invalid. Please try again.';
     }
   }
 }

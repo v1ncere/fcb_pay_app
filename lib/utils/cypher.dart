@@ -9,42 +9,50 @@ final List<String> letters = [
   'F', 'h', 'L', 'i', 'x', 'Q', 'r', '&', 'G', 'M', 'b', 'O', 'u', '|', 'z', 'T', 'e', '8', 'V', 'p', 'W', 'j', 'Y',
 ];
 
-/// ENCRYPTING A STRING
+/// CUSTOM ENCRYPTION
 String encryption(String data) {
-  final List<String> date = ("${dayOfYear() + 2557}").split("");
-  final List<String> input = data.split("");
-  String encryptedKey = "";
-  int keyIndex = 0;
+  final List<String> date = ('${dayOfYear() + 2557}').split('');
+  final List<String> splitData = data.split('');
+  String encryptedData = '';
+  int index = 0;
   int counter = 0;
 
-  for (var element in input) {
-    counter = (counter < date.length) ? counter : 0;
-    keyIndex = letters.indexWhere((index) => index.contains(element)) + int.parse(date[counter]);
-    keyIndex = (letters.asMap().containsKey(keyIndex)) ? keyIndex : (letters.length - keyIndex).abs();
-    encryptedKey += letters[keyIndex];
+  for (var element in splitData) {
+    counter = (counter < date.length)
+      ? counter 
+      : 0;
+    index = letters.indexWhere((index) => index.contains(element)) + int.parse(date[counter]);
+    index = (letters.asMap().containsKey(index))
+      ? index
+      : (letters.length - index).abs();
+    encryptedData += letters[index];
     counter++;
   }
 
-  return encryptedKey;
+  return encryptedData;
 }
 
-/// DECRYPTING AN ENCRYPTED STRING
+/// DECRYPT
 String decryption(String data) {
-  final List<String> date = ("${dayOfYear() + 2557}").split("");
-  final List<String> input = data.split("");
-  String decryptedKey = "";
-  int keyIndex = 0;
+  final List<String> date = ("${dayOfYear() + 2557}").split('');
+  final List<String> splitData = data.split('');
+  String decryptedData = '';
+  int index = 0;
   int counter = 0;
 
-  for (var element in input) {
-    counter = (counter < date.length) ? counter : 0;
-    keyIndex = letters.length + letters.indexWhere((index) => index.contains(element)) - int.parse(date[counter]);
-    keyIndex = (letters.asMap().containsKey(keyIndex)) ? keyIndex : (letters.length - keyIndex).abs();
-    decryptedKey += letters[keyIndex];
+  for (var element in splitData) {
+    counter = (counter < date.length)
+      ? counter
+      : 0;
+    index = letters.length + letters.indexWhere((index) => index.contains(element)) - int.parse(date[counter]);
+    index = (letters.asMap().containsKey(index))
+      ? index
+      : (letters.length - index).abs();
+    decryptedData += letters[index];
     counter++;
   }
 
-  return decryptedKey;
+  return decryptedData;
 }
 
 /// TODAY IN DAYS
@@ -54,9 +62,9 @@ int dayOfYear() {
   return todayInDays;
 }
 
-/// HASH SHA-1
-String hashSha1(String input) {
-  List<int> bytes = utf8.encode(input);
+/// SHA-1
+String hashSha1(String data) {
+  List<int> bytes = utf8.encode(data);
   Digest digest = sha1.convert(bytes);
   return digest.toString();
 }

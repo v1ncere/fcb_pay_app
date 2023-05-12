@@ -16,8 +16,8 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     PaymentTransactionAmountChanged event,
     Emitter<PaymentState> emit
   ) {
-    final amt = Amount.dirty(event.amount);
-    emit(state.copyWith(amount: amt));
+    final amount = Amount.dirty(event.amount);
+    emit(state.copyWith(amount: amount));
   }
 
   void _onPaymentSubmitted(

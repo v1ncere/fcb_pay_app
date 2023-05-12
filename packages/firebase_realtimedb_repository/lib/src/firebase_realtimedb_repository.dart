@@ -13,6 +13,8 @@ abstract class BaseFirebaseRealtimeDBRepository {
 
   Stream<List<TransactionHistory>> getTransactionListRealTime();
   Stream<TransactionHistory> getTransactionRealTime();
+
+  Stream<List<Institution>> getInstitutionList();
 }
 
 class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
@@ -124,6 +126,30 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     .limitToFirst(1)
     .onValue.map((event) {
       return TransactionHistory.fromSnapshot(event.snapshot);
+    });
+  }
+
+  // 
+    // realtime list =============================================================
+  @override
+  Stream<List<Institution>> getInstitutionList() {
+    return _firebaseDatabase.ref()
+    .child('payment_institutions')
+    .onValue
+    .map((event) {
+      List<Institution> institutions = [];
+      if (event.snapshot.exists) {
+        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        
+        snapshotValues.forEach((key, values) {
+          Institution homeDisplay = Institution.fromSnapshot(event.snapshot.child(key));
+          institutions.add(homeDisplay);
+        });
+      }
+      return institutions;
+    }).handleError((error) {
+      print('Error occurred: $error');
+      return [];
     });
   }
 }
