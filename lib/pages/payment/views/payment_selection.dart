@@ -14,10 +14,12 @@ class PaymentSelectionView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             _TitleText(),
-            const SizedBox(width: 10,),
+            const SizedBox(height: 10,),
             _PaymentInstitutionDropdown(),
-            const SizedBox(width: 20,),
-            _nextButton(),
+            const SizedBox(height: 20,),
+            _NextButton(),
+            const SizedBox(height: 20,),
+            _CancelButton()
           ]
         )
       ]
@@ -81,7 +83,7 @@ class _PaymentInstitutionDropdownState extends State<_PaymentInstitutionDropdown
   }
 }
 
-class _nextButton extends StatelessWidget {
+class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PaymentStepperCubit, PaymentStepperState>(
@@ -91,6 +93,22 @@ class _nextButton extends StatelessWidget {
             child: const Text('Next'),
         );
       }
+    );
+  }
+}
+
+class _CancelButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PaymentStepperCubit, PaymentStepperState>(
+      buildWhen: (previous, current) => previous != current,
+      builder: (context, state) {
+        return TextButton(
+          key: const Key('account_cancel_elevated_button'),
+          onPressed: () => context.read<PaymentStepperCubit>().stepCancelled,
+          child: const Text('CANCEL'),
+        );
+      },
     );
   }
 }
