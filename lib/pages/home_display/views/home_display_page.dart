@@ -5,6 +5,8 @@ import 'package:fcb_pay_app/pages/home_display/home_display.dart';
 
 class HomeDisplayPage extends StatelessWidget {
   const HomeDisplayPage({super.key});
+
+  static Page<void> page() => const MaterialPage<void>(child: HomeDisplayPage());
   
   @override
   Widget build(BuildContext context) {

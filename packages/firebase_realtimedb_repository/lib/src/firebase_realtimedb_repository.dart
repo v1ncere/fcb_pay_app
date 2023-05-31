@@ -87,7 +87,7 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     }
   }
 
-  // =========================================================================
+  // ============================================================ user request
   // =========================================================================
   @override
   Future<void> addUserAccount(UserRequest request) async {
@@ -97,6 +97,7 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     .set(request.toJson());
   }
 
+  // =========================================================== transaction reques
   // transaction query
   @override
   Stream<List<TransactionHistory>> getTransactionListRealTime() {

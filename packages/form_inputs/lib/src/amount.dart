@@ -17,7 +17,7 @@ class Amount extends FormzInput<String, AmountValidationError> {
   }
 }
 
-extension AmountValidationErrorExtention on AmountValidationError {
+extension AmountValidationErrorX on AmountValidationError {
   String text() {
     switch (this) {
       case AmountValidationError.required:

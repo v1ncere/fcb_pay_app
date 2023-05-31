@@ -1,4 +1,3 @@
-import 'package:fcb_pay_app/pages/payment/payment.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +22,7 @@ class BottomAppbarPage extends StatelessWidget {
           )..add(HomeDisplayLoaded())),
           BlocProvider(create: (context) => TransactionHistoryBloc(
             firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository(),
-            )..add(TransactionHistoryLoaded())),
-          BlocProvider(create: (context) => PaymentSelectionDropdownBloc(
-            firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-          )..add(PaymentInstitutionLoaded())),
+          )..add(TransactionHistoryLoaded())),
           BlocProvider(create: (context) => BottomAppbarCubit()),
         ],
         child: const HomeBottomAppbarView(),

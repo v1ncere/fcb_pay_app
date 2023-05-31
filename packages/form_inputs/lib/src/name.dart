@@ -14,7 +14,7 @@ class Name extends FormzInput<String, NameValidationError> {
   }
 }
 
-extension NameValidationErrorExtension on NameValidationError {
+extension NameValidationErrorX on NameValidationError {
   String text() {
     switch (this) {
       case NameValidationError.required:

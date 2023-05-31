@@ -17,7 +17,7 @@ class ConfirmedPassword extends FormzInput<String, ConfirmedPasswordValidationEr
   }
 }
 
-extension ConfirmedPasswordValidationErrorExtension on ConfirmedPasswordValidationError {
+extension ConfirmedPasswordValidationErrorX on ConfirmedPasswordValidationError {
   String text() {
     switch (this) {
       case ConfirmedPasswordValidationError.required:

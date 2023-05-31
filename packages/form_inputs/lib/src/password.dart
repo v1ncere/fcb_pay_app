@@ -17,7 +17,7 @@ class Password extends FormzInput<String, PasswordValidationError> {
   }
 }
 
-extension PasswordValidationErrorExtention on PasswordValidationError {
+extension PasswordValidationErrorX on PasswordValidationError {
   String text() {
     switch (this) {
       case PasswordValidationError.required:

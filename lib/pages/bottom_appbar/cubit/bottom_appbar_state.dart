@@ -1,6 +1,6 @@
 part of 'bottom_appbar_cubit.dart';
 
-enum BottomAppbarTab { home, payment, transfer, history, accounts }
+enum BottomAppbarTab { home, transfer, history, accounts }
 
 class BottomAppbarState extends Equatable {
   const BottomAppbarState({

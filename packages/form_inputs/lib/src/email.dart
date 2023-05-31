@@ -17,7 +17,7 @@ class Email extends FormzInput<String, EmailValidationError> {
   }
 }
 
-extension EmailValidationErrorExtension on EmailValidationError {
+extension EmailValidationErrorX on EmailValidationError {
   String text() {
     switch (this) {
       case EmailValidationError.required:

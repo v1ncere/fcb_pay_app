@@ -1,14 +1,15 @@
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import 'package:fcb_pay_app/pages/payment/payment.dart';
-import 'package:fcb_pay_app/pages/scanner/cubit/scanner_cubit.dart';
+import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 
 class ScannerView extends StatefulWidget {
   const ScannerView({super.key});
+  
   @override
   State<ScannerView> createState() => ScannerViewState();
 }
@@ -58,7 +59,7 @@ class ScannerViewState extends State<ScannerView> {
             ..showSnackBar(SnackBar(content: Text(state.message)));
           }
           if (state.status.isSuccess) {
-            Navigator.of(context).pushReplacement(PaymentPage.route());
+            context.flow<AppStatus>().update((state) => AppStatus.scannerTransaction);
           }
         },
         child: Stack(

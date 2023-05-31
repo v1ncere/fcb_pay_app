@@ -7,7 +7,7 @@ import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
 class AddAccountPage extends StatelessWidget {
   const AddAccountPage({super.key});
 
-  static Route<void> route() => MaterialPageRoute<void>(builder: (context) => const AddAccountPage());
+  static Page<void> page() => const MaterialPage<void>(child: AddAccountPage());
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,7 @@ class AccountNumber extends FormzInput<String, AccountNumberValidationError> {
   }
 }
 
-extension AccountNumberValidationErrorExtension on AccountNumberValidationError {
+extension AccountNumberValidationErrorX on AccountNumberValidationError {
   String text() {
     switch (this) {
       case AccountNumberValidationError.required:

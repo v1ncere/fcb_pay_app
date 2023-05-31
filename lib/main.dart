@@ -7,14 +7,14 @@ import 'package:fcb_pay_app/app/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = const AppBlocObserver();
-
   await Firebase.initializeApp();
-  await Hive.initFlutter();
-
   final firebaseAuthRepository = FirebaseAuthRepository();
   await firebaseAuthRepository.user.first;
+
+  await Hive.initFlutter();
   await Hive.openBox('scannerBox');
+
+  Bloc.observer = const AppBlocObserver();
   
   runApp(App(firebaseAuthRepository: firebaseAuthRepository));
 }

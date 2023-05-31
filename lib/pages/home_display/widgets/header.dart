@@ -1,4 +1,5 @@
-import 'package:fcb_pay_app/pages/scanner/scanner.dart';
+import 'package:fcb_pay_app/app/app.dart';
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -42,7 +43,7 @@ class Header extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.of(context).push<void>(ScannerPage.route());
+                        context.flow<AppStatus>().update((state) => AppStatus.scanner);
                        },
                     ),
                     IconButton(

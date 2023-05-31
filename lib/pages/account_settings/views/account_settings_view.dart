@@ -1,3 +1,4 @@
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,9 +35,7 @@ class AccountSettingsView extends StatelessWidget {
                   FontAwesomeIcons.rightFromBracket,
                   color: Colors.redAccent,
                 ),
-                onPressed: () { 
-                  context.read<AppBloc>().add(const AppLogoutRequested());
-                }
+                onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
               ),
             ],
           ),
@@ -55,7 +54,7 @@ class AccountSettingsView extends StatelessWidget {
                         icon: FontAwesomeIcons.piggyBank,
                         text: "ADD ACCOUNT",
                         function: () {
-                          Navigator.of(context).push<void>(AddAccountPage.route());
+                          context.flow<AppStatus>().update((state) => AppStatus.addAccount);
                         },
                       ),
                     ),

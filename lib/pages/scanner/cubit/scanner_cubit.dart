@@ -17,12 +17,10 @@ class ScannerCubit extends Cubit<ScannerState> {
     emit(state.copyWith(status: ScannerStateStatus.loading));
     
     if(data.isEmpty) {
-      emit(
-        state.copyWith(
-          status: ScannerStateStatus.failure,
-          message: 'Empty QR code data. Please ensure that the QR code contains valid information and try again.',
-        )
-      );
+      emit(state.copyWith(
+        status: ScannerStateStatus.failure,
+        message: 'Empty QR code data. Please ensure that the QR code contains valid information and try again.',
+      ));
       return;
     }
 
@@ -41,12 +39,10 @@ class ScannerCubit extends Cubit<ScannerState> {
         throw Exception('Invalid QR code. Please ensure that the QR code is not damaged and that it belongs to this service.');
       }
     } catch (e) {
-      emit(
-        state.copyWith(
-          status: ScannerStateStatus.failure,
-          message: e.toString().replaceAll('Exception: ', ''),
-        )
-      );
+      emit(state.copyWith(
+        status: ScannerStateStatus.failure,
+        message: e.toString().replaceAll('Exception: ', ''),
+      ));
     }
   }
 }

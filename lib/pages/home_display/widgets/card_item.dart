@@ -1,6 +1,10 @@
+import 'package:fcb_pay_app/pages/account_settings/inner_pages/inner_pages.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fcb_pay_app/pages/home_display/home_display.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({super.key, required this.data });
@@ -36,8 +40,19 @@ class CardItem extends StatelessWidget {
                 // Custom placeholder image for broken links
                 networkSourceMatcher(): networkImageRender(altWidget: (alt) => const FlutterLogo()),
               },
-              onLinkTap: (url, context, attributes, element) {},
-              onImageTap: (src, context, attributes, element) {},
+              onLinkTap: (url, ctx, attributes, element) async {
+                print("Opening $url...");
+                await FirebaseRealtimeDBRepository().addUserAccount(
+                  UserRequest(
+                    dataRequest: 'req',
+                    ownerId: FirebaseAuth.instance.currentUser!.uid,
+                    timeStamp: DateTime.now(),
+                  )
+                );
+              },
+              onImageTap: (src, context, attributes, element) {
+
+              },
               onImageError: (exception, stackTrace) {},
               onCssParseError: (css, messages) => null,
             ),

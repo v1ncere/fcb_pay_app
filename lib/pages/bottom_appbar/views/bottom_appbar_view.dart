@@ -5,9 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/home_display/home_display.dart';
-import 'package:fcb_pay_app/pages/payment/payment.dart';
+import 'package:fcb_pay_app/pages/payment_and_transfers/payment_and_transfers.dart';
 import 'package:fcb_pay_app/pages/transaction_history/transaction_history.dart';
-import 'package:fcb_pay_app/pages/transfers/transfers.dart';
 
 class HomeBottomAppbarView extends StatelessWidget {
   const HomeBottomAppbarView({super.key});
@@ -23,9 +22,8 @@ class HomeBottomAppbarView extends StatelessWidget {
         controller: controller,
         onPageChanged: (index) => context.read<BottomAppbarCubit>().setTab(BottomAppbarTab.values[index]),
         children: const [
-          HomeDisplayPage(), 
-          PaymentPage(), // this is pay bills
-          TransfersPage(),
+          HomeDisplayPage(),
+          PaymentAndTransfersPage(),
           TransactionHistoryPage(),
           AccountSettingsPage(),
         ],
@@ -46,13 +44,6 @@ class HomeBottomAppbarView extends StatelessWidget {
                 value: BottomAppbarTab.home,
                 controller: controller,
                 icon: const FaIcon(FontAwesomeIcons.house),
-              ),
-              BottomAppbarButton(
-                padding: const EdgeInsets.all(0.0),
-                groupValue: selectedTab,
-                value: BottomAppbarTab.payment,
-                controller: controller,
-                icon: const FaIcon(FontAwesomeIcons.receipt),
               ),
               BottomAppbarButton(
                 padding: const EdgeInsets.all(0.0),
