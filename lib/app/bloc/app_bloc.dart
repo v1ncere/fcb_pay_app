@@ -6,20 +6,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';
-  // super(firebaseAuthRepository.currentUser.isNotEmpty
-  //   ? AppState.authenticated(firebaseAuthRepository.currentUser)
-  //   : const AppState.unauthenticated()
+
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required FirebaseAuthRepository firebaseAuthRepository,
   }) : _firebaseAuthRepository = firebaseAuthRepository,
-  super(const AppState.splash()) {
+  super(firebaseAuthRepository.currentUser.isNotEmpty
+    ? AppState.authenticated(firebaseAuthRepository.currentUser)
+    : const AppState.unauthenticated()) {
+      
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
-    on<AppStatusTransitioned>(_onStatusTransition);
     
-    _streamSubscription = _firebaseAuthRepository.user.listen( // listening to user change
-      (user) => add(AppUserChanged(user))
+    _streamSubscription = _firebaseAuthRepository.user.listen(
+      (user) => add(AppUserChanged(user)),
     );
   }
   final FirebaseAuthRepository _firebaseAuthRepository;
@@ -30,10 +30,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ? AppState.authenticated(event.user)
       : const AppState.unauthenticated()
     );
-  }
-
-  void _onStatusTransition(AppStatusTransitioned event, Emitter<AppState> emit) async {
-    emit(const AppState.unauthenticated());
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {

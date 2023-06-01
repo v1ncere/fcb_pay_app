@@ -15,6 +15,4 @@ class AppUserChanged extends AppEvent {
   List<Object> get props => [user];
 }
 
-class AppStatusTransitioned extends AppEvent {}
-
 class AppLogoutRequested extends AppEvent {}

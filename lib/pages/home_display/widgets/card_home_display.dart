@@ -37,7 +37,11 @@ class CardHomeDisplay extends StatelessWidget {
                   onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index),
                 ),
                 items: state.homeDisplay.map((data) {
-                  return CardItem(data: data.displayData);
+                  return CardItem(
+                    data: data.displayData,
+                    ownerId: data.ownerId,
+                    keyId: data.keyId!,
+                  );
                 }).toList(),
               ),
               Row(
@@ -54,8 +58,8 @@ class CardHomeDisplay extends StatelessWidget {
                         : Colors.black12,
                     ),
                   );
-                })
-              )
+                }),
+              ),
             ],
           );
         }

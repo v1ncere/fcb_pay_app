@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -75,11 +76,7 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     if (key.currentContext != null) {
       final appBloc = BlocProvider.of<AppBloc>(key.currentContext!);
       final appStatus = appBloc.state.status;
-
-      if (appStatus == AppStatus.splash) {
-        appBloc.add(AppStatusTransitioned());
-      }
+      key.currentContext!.flow<AppStatus>().update((state) => appStatus);
     }
-    // _key.currentContext!.flow<AppStatus>().update((state) => appStatus);
   }
 }

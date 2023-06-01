@@ -18,11 +18,11 @@ class AppState extends Equatable {
   final AppStatus status;
   final User user;
 
-  const AppState.splash() : this._(status: AppStatus.splash);
-
   const AppState.authenticated(User user) : this._(status: AppStatus.authenticated, user: user);
   
   const AppState.unauthenticated() : this._(status: AppStatus.unauthenticated);
+
+  const AppState.splash() : this._(status: AppStatus.splash);
 
   @override
   List<Object> get props => [status, user];
