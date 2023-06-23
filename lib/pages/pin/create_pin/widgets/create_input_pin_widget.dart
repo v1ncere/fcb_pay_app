@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/global_widgets/global_widgets.dart';
 import 'package:fcb_pay_app/pages/pin/pin.dart';
+import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class CreateInputPinWidget extends StatelessWidget {
   const CreateInputPinWidget({super.key});

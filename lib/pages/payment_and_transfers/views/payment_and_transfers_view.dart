@@ -23,31 +23,33 @@ class PaymentAndTransfersView extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: SingleChildScrollView(
+            child: Column(
               children: [
                 WidgetTransfer(
                   title: "BILLS PAYMENT",
                   colors: Colors.greenAccent.withOpacity(0.3),
                   methods: () => context.flow<AppStatus>().update((next) => AppStatus.payment),
-                  text: "Transfering to your pitakard will become rich.",
+                  text: "Transfering to your pitakard will become rich."
                 ),
+                const SizedBox(height: 8),
                 PesoTransfer(
                   colors: Colors.amberAccent.withOpacity(0.3),
                   methods: () {},
-                  text: "This will create data collection creating signus",
+                  text: "This will create data collection creating signus"
                 ),
+                const SizedBox(height: 8),
                 WidgetTransfer(
                   title: "FUND TRANSFER",
                   colors: Colors.greenAccent.withOpacity(0.3),
                   methods: () {},
-                  text: "You are serious neggas transferring tru peso.",
+                  text: "You are serious neggas transferring tru peso."
                 ),
               ]
             ),
-        ),
-      ),
+          )
+        )
+      )
     );
   }
 }

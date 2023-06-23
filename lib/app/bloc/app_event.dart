@@ -15,4 +15,13 @@ class AppUserChanged extends AppEvent {
   List<Object> get props => [user];
 }
 
+class AccountsArgsPassed extends AppEvent {
+  const AccountsArgsPassed(this.args);
+
+  final String args;
+
+  @override
+  List<Object> get props => [args];
+}
+
 class AppLogoutRequested extends AppEvent {}

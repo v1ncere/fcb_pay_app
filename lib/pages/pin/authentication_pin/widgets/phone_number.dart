@@ -5,10 +5,10 @@ class PhoneNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const[
+      children: [
         Flexible(
           flex: 1,
           child: Text('Phone Number: ', style: TextStyle(color: Color(0xFF687ea1), fontSize: 16))),

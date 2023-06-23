@@ -8,7 +8,7 @@ class AccountDropdown extends FormzInput<String?, AccountDropdownValidationError
 
   @override
   AccountDropdownValidationError? validator(String? value) {
-    return value?.isEmpty == true
+    return value == null
       ? AccountDropdownValidationError.empty
       : null;
   }

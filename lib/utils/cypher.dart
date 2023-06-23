@@ -2,6 +2,20 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 
+/// TODAY IN DAYS
+int dayOfYear() {
+  final now = DateTime.now();
+  final todayInDays = now.difference(DateTime(now.year, 1, 1, 0, 0)).inDays + 1;
+  return todayInDays;
+}
+
+/// SHA-1
+String hashSha1(String data) {
+  List<int> bytes = utf8.encode(data);
+  Digest digest = sha1.convert(bytes);
+  return digest.toString();
+}
+
 final List<String> letters = [
   'a', 'S', 'w', ')', 'q', 'D', '\$', 'f', ';', 'J', 'g', 'H', 'm', 'U', 'Z', 'o', 'l', 'P', 'c', 'R', 'B', 't', '5', '?',
   'v', 'E', 'k', 'X', 'N', 'y', '0', '!', '1', '%', '2', '*', 'A', '/', '9', '@', 'I', '6', '>', '7', 'K', '{', '4', ' ',
@@ -53,18 +67,4 @@ String decryption(String data) {
   }
 
   return decryptedData;
-}
-
-/// TODAY IN DAYS
-int dayOfYear() {
-  final now = DateTime.now();
-  final todayInDays = now.difference(DateTime(now.year, 1, 1, 0, 0)).inDays + 1;
-  return todayInDays;
-}
-
-/// SHA-1
-String hashSha1(String data) {
-  List<int> bytes = utf8.encode(data);
-  Digest digest = sha1.convert(bytes);
-  return digest.toString();
 }

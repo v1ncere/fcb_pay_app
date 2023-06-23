@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/pages/home_display/home_display.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar_settings/bottom_appbar_settings.dart';
 import 'package:fcb_pay_app/pages/payment_and_transfers/payment_and_transfers.dart';
-import 'package:fcb_pay_app/pages/transaction_history/transaction_history.dart';
 
 class HomeBottomAppbarView extends StatelessWidget {
   const HomeBottomAppbarView({super.key});
@@ -24,8 +23,7 @@ class HomeBottomAppbarView extends StatelessWidget {
         children: const [
           HomeDisplayPage(),
           PaymentAndTransfersPage(),
-          TransactionHistoryPage(),
-          AccountSettingsPage(),
+          BottomAppbarSettingsPage(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -51,13 +49,6 @@ class HomeBottomAppbarView extends StatelessWidget {
                 value: BottomAppbarTab.transfer,
                 controller: controller,
                 icon: const FaIcon(FontAwesomeIcons.moneyBillTransfer),
-              ),
-              BottomAppbarButton(
-                padding: const EdgeInsets.all(0.0),
-                groupValue: selectedTab,
-                value: BottomAppbarTab.history,
-                controller: controller,
-                icon: const FaIcon(FontAwesomeIcons.clockRotateLeft),
               ),
               BottomAppbarButton(
                 padding: const EdgeInsets.all(0.0),

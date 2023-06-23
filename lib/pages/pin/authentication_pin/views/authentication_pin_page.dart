@@ -62,9 +62,9 @@ class AuthPinPage extends StatelessWidget {
                 );
               }
             },
-            child: Column(
+            child: const Column(
               mainAxisSize: MainAxisSize.max,
-              children: const [
+              children: [
                 Expanded(flex: 1, child: PhoneNumber()),
                 Expanded(flex: 2, child: AuthInputPinWidget()),
                 Expanded(flex: 3, child: AuthNumPad()),

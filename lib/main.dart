@@ -16,13 +16,5 @@ Future<void> main() async {
 
   Bloc.observer = const AppBlocObserver();
   
-  runApp(
-    RepositoryProvider.value(
-      value: firebaseAuthRepository,
-      child: BlocProvider(
-        create: (context) => AppBloc(firebaseAuthRepository: firebaseAuthRepository),
-        child: const App(),
-      ),
-    )
-  );
+  runApp(App(firebaseAuthRepository: firebaseAuthRepository));
 }

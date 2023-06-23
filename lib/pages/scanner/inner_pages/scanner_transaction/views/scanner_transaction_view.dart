@@ -197,12 +197,12 @@ class _ScannerPaymentSubmitButton extends StatelessWidget {
                   onTap: state.isValid
                     ? () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted())
                     : null,
-                  child: SizedBox(
+                  child: const SizedBox(
                     height: 45,
                     width: 75,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text('PAY',
                           style: TextStyle(
                             color: Colors.white,

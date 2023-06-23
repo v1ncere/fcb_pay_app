@@ -11,7 +11,7 @@ abstract class BaseFirebaseRealtimeDBRepository {
   Future<HomeDisplay?> getHomeDisplay();
   Future<void> addUserAccount(UserRequest request);
 
-  Stream<List<TransactionHistory>> getTransactionListRealTime();
+  Stream<List<TransactionHistory>> getTransactionListRealTime(String accountId, String searchQuery);
   Stream<TransactionHistory> getTransactionRealTime();
 
   Stream<List<Institution>> getInstitutionList();
@@ -97,14 +97,20 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     .set(request.toJson());
   }
 
-  // =========================================================== transaction reques
+  // ======================================================= transaction request
   // transaction query
   @override
-  Stream<List<TransactionHistory>> getTransactionListRealTime() {
-    return _firebaseDatabase.ref('transaction_history')
-    .child(userId())
-    .onValue
-    .map((event) {
+  Stream<List<TransactionHistory>> getTransactionListRealTime(String accountId, String searchQuery) {
+    Query query = _firebaseDatabase
+      .ref('transaction_history')
+      .child(userId())
+      .child(accountId);
+
+    if (searchQuery.isNotEmpty && searchQuery != "") {
+      query = query.orderByChild('transaction_details').startAt(searchQuery).endAt(searchQuery + '\uf8ff');
+    }
+
+    return query.onValue.map((event) {
       List<TransactionHistory> transactions = [];
       if (event.snapshot.exists) {
         Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
@@ -131,7 +137,7 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   }
 
   // 
-    // realtime list =============================================================
+    // institution realtime list =============================================================
   @override
   Stream<List<Institution>> getInstitutionList() {
     return _firebaseDatabase.ref()

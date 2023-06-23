@@ -46,10 +46,10 @@ class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
-            children: const <Widget>[
+            children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(bottom: 30.0),
                 child: Text("Where Quality Service is a Commitment.", style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic, fontFamily: 'Open Sans'))

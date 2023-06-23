@@ -8,7 +8,7 @@ class InstitutionDropdown extends FormzInput<String?, InstitutionDropdownValidat
 
   @override
   InstitutionDropdownValidationError? validator(String? value) {
-    return value?.isEmpty == true
+    return value == null
       ? InstitutionDropdownValidationError.empty
       : null;
   }

@@ -43,12 +43,12 @@ class ScannerViewState extends State<ScannerView> {
                   case TorchState.on:
                     return const Icon(FontAwesomeIcons.boltLightning, color: Colors.yellow);
                 }
-              },
+              }
             ),
             iconSize: 32.0,
-            onPressed: () => cameraController.toggleTorch(),
-          ),
-        ],
+            onPressed: () => cameraController.toggleTorch()
+          )
+        ]
       ),
       body: BlocListener<ScannerCubit, ScannerState>(
         listenWhen: (previous, current) => previous.status != current.status,
@@ -67,9 +67,7 @@ class ScannerViewState extends State<ScannerView> {
             MobileScanner(
               controller: cameraController,
               placeholderBuilder: (ctx, widget) {
-                return Container(
-                  color: Colors.black,
-                );
+                return Container(color: Colors.black);
               },
               errorBuilder: (ctx, exception, widget) {
                 return Container(
@@ -88,13 +86,13 @@ class ScannerViewState extends State<ScannerView> {
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.redAccent[700],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                              )
+                            )
+                          )
+                        ]
+                      )
+                    )
+                  )
                 );
               },
               scanWindow: rect,
@@ -103,7 +101,7 @@ class ScannerViewState extends State<ScannerView> {
                 for (final barcode in barcodes) {
                   context.read<ScannerCubit>().saveQRCode(barcode.rawValue!);
                 }
-              },
+              }
             ),
             Positioned.fill(
               child: Container(
@@ -118,11 +116,11 @@ class ScannerViewState extends State<ScannerView> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 50.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 50.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text("Scan QR Code", 
                     style: TextStyle(
                       color: Colors.white70,

@@ -17,6 +17,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
+    on<AccountsArgsPassed>(_onAccountsArgsPassed);
     
     _streamSubscription = _firebaseAuthRepository.user.listen(
       (user) => add(AppUserChanged(user)),
@@ -34,6 +35,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {
     unawaited(_firebaseAuthRepository.logOut());
+  }
+
+
+  void _onAccountsArgsPassed(AccountsArgsPassed event, Emitter<AppState> emit) {
+    emit(AppState.accounts(event.args));
   }
 
   @override

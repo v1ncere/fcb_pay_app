@@ -69,9 +69,9 @@ class CreatePin extends StatelessWidget {
                 );
               }
             },
-            child: Column(
+            child: const Column(
               mainAxisSize: MainAxisSize.max,
-              children: const [
+              children: [
                 Expanded(flex: 2, child: CreateInputPinWidget()),
                 Expanded(flex: 3, child: CreateNumPad()),
               ],
