@@ -4,13 +4,14 @@ enum AppStatus {
   splash,
   unauthenticated,
   authenticated,
-  accounts,
+  account,
   accountPayment,
+  accountFundTransfer,
+  fundTransfer,
   payment,
   scanner,
   scannerTransaction,
   addAccount,
-  accountFundTransfer,
 }
 
 class AppState extends Equatable {
@@ -29,7 +30,7 @@ class AppState extends Equatable {
 
   const AppState.splash() : this._(status: AppStatus.splash);
 
-  const AppState.accounts(String args) : this._(status: AppStatus.accounts, args: args);
+  const AppState.accounts(String args) : this._(status: AppStatus.account, args: args);
 
   @override
   List<Object> get props => [status, user, args];

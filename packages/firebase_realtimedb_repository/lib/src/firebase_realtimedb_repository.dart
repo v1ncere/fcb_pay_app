@@ -15,6 +15,8 @@ abstract class BaseFirebaseRealtimeDBRepository {
   Stream<TransactionHistory> getTransactionRealTime();
 
   Stream<List<Institution>> getInstitutionList();
+
+  Stream<List<FundTransferAccount>> getFundTransferList();
 }
 
 class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
@@ -154,6 +156,32 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
         });
       }
       return institutions;
+    }).handleError((error) {
+      print('Error occurred: $error');
+      return [];
+    });
+  }
+
+  // 
+    // institution realtime list =============================================================
+
+  @override
+  Stream<List<FundTransferAccount>> getFundTransferList() {
+    return _firebaseDatabase.ref()
+    .child('fund_transfer')
+    .child(userId())
+    .onValue
+    .map((event) {
+      List<FundTransferAccount> accountList = [];
+      if (event.snapshot.exists) {
+        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        
+        snapshotValues.forEach((key, values) {
+          FundTransferAccount account = FundTransferAccount.fromSnapshot(event.snapshot.child(key));
+          accountList.add(account);
+        });
+      }
+      return accountList;
     }).handleError((error) {
       print('Error occurred: $error');
       return [];

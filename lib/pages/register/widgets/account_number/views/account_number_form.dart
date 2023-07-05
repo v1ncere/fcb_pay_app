@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/register/register.dart';
+import 'package:fcb_pay_app/pages/register/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/number_separator_formatter.dart';
 
 class AccountNumberForm extends StatelessWidget {

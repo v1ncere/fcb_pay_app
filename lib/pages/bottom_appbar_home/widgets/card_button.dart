@@ -39,16 +39,16 @@ class CardButton extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w500,
-                        fontSize: 12.0,
-                      ),
+                        fontSize: 12.0
+                      )
                     )
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
+                  )
+                ]
+              )
+            )
+          )
+        )
+      )
     );
   }
 }

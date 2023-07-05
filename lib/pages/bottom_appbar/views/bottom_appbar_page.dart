@@ -17,11 +17,10 @@ class BottomAppbarPage extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => BottomAppbarCubit()),
-          BlocProvider(create: (context) => HomeDisplayBloc(
-            firebaseDatabaseService: FirebaseRealtimeDBRepository(),
+          BlocProvider(create: (context) => HomeDisplayBloc(firebaseDatabaseService: FirebaseRealtimeDBRepository()
           )..add(HomeDisplayLoaded()))
         ],
-        child: const HomeBottomAppbarView(),
+        child: const HomeBottomAppbarView()
       )
     );
   }

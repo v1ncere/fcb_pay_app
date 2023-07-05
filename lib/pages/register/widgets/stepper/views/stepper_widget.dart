@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fcb_pay_app/pages/register/register.dart';
+import 'package:fcb_pay_app/pages/register/widgets/widgets.dart';
 
 class StepperWidget extends StatelessWidget {
   const StepperWidget({super.key});

@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BlocProvider(
       create: (context) => LoginBloc(firebaseAuthService: FirebaseAuthRepository()),
-      child: const LoginForm(),
+      child: const LoginForm()
     );
   }
 }

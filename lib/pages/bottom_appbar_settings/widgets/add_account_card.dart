@@ -46,21 +46,18 @@ class AddAccountCard extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w500,
-                        fontSize: 8.0,
-                      ),
+                        fontSize: 8.0
+                      )
                     )
-                  ),            const SizedBox(width: 5),
-                  FaIcon(
-                    icon,
-                    color: Colors.white,
-                    size: 16,
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
+                  const SizedBox(width: 5),
+                  Icon(icon, color: Colors.white, size: 16)
+                ]
+              )
+            )
+          )
+        )
+      )
     );
   }
 }

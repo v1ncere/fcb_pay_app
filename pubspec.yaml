@@ -39,7 +39,6 @@ dependencies:
   url_launcher: ^6.1.11
   font_awesome_flutter: ^10.4.0
   firebase_auth_platform_interface: ^6.15.2
-  flutter_math_fork: ^0.7.1
   
 dev_dependencies:
   flutter_test:

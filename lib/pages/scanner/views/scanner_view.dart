@@ -6,6 +6,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
+import 'package:fcb_pay_app/pages/scanner/widgets/widgets.dart';
 
 class ScannerView extends StatefulWidget {
   const ScannerView({super.key});

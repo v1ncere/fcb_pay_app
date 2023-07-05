@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar_home/widgets/widgets.dart';
 
 class CardButtonMenu extends StatelessWidget {
   const CardButtonMenu({super.key});
@@ -20,30 +20,30 @@ class CardButtonMenu extends StatelessWidget {
                 icon: FontAwesomeIcons.receipt,
                 text: "Pay Bills",
                 colors:const Color(0xFFC5B800),
-                function: () => Navigator.of(context).pushNamed('/add_account'),
+                function: () => Navigator.of(context).pushNamed('/add_account')
               ),
               CardButton(
                 icon: FontAwesomeIcons.creditCard,
                 text: "Pitakard Transfer",
                 colors:const Color.fromARGB(255, 221, 144, 0),
-                function: () => Navigator.of(context).pushNamed('/add_account'),
+                function: () => Navigator.of(context).pushNamed('/add_account')
               ),
               CardButton(
                 icon: FontAwesomeIcons.moneyBillTransfer,
                 text: "Fund Transfer",
                 colors:const Color(0xFFC55123),
-                function: () => Navigator.of(context).pushNamed('/add_account'),
+                function: () => Navigator.of(context).pushNamed('/add_account')
               ),
               CardButton(
                 icon: FontAwesomeIcons.pesoSign,
                 text: "PESOnet Transfer",
                 colors:const Color(0xFF1D99B8),
-                function: () => Navigator.of(context).pushNamed('/add_account'),
-              ),
-            ],
-          ),
-        ],
-      ),
+                function: () => Navigator.of(context).pushNamed('/add_account')
+              )
+            ]
+          )
+        ]
+      )
     );
   }
 }

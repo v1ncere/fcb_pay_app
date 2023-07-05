@@ -2,7 +2,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/pages/payment_and_transfers/payment_and_transfers.dart';
+import 'package:fcb_pay_app/pages/payment_and_transfers/widgets/widgets.dart';
 
 class PaymentAndTransfersView extends StatelessWidget {
   const PaymentAndTransfersView({super.key});
@@ -12,17 +12,17 @@ class PaymentAndTransfersView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Text("Transfers",
             style: TextStyle(
               color: Colors.green,
               fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          automaticallyImplyLeading: false,
+              fontWeight: FontWeight.w700
+            )
+          )
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -42,11 +42,11 @@ class PaymentAndTransfersView extends StatelessWidget {
                 WidgetTransfer(
                   title: "FUND TRANSFER",
                   colors: Colors.greenAccent.withOpacity(0.3),
-                  methods: () {},
+                  methods: () => context.flow<AppStatus>().update((next) => AppStatus.fundTransfer),
                   text: "You are serious neggas transferring tru peso."
-                ),
+                )
               ]
-            ),
+            )
           )
         )
       )

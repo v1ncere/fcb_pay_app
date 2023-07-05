@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar_home/widgets/widgets.dart';
 
 class CardHomeDisplay extends StatelessWidget {
   const CardHomeDisplay({super.key});
@@ -19,9 +20,9 @@ class CardHomeDisplay extends StatelessWidget {
             child: SizedBox(
               height: 250,
               child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
+                child: CircularProgressIndicator()
+              )
+            )
           );
         }
         if (state is HomeDisplayLoadSuccess) {
@@ -29,20 +30,20 @@ class CardHomeDisplay extends StatelessWidget {
             children: [
               CarouselSlider(
                 options: CarouselOptions(
-                  enlargeCenterPage: true,
-                  viewportFraction: 0.95,
-                  height: MediaQuery.of(context).size.height * .68,
                   initialPage: 0,
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.94,
+                  height: MediaQuery.of(context).size.height * .67,
                   enableInfiniteScroll: false,
-                  onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index),
+                  onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index)
                 ),
                 items: state.homeDisplay.map((data) {
                   return CardItem(
                     data: data.displayData,
                     ownerId: data.ownerId,
-                    keyId: data.keyId!,
+                    keyId: data.keyId!
                   );
-                }).toList(),
+                }).toList()
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -55,20 +56,21 @@ class CardHomeDisplay extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: current == index
                         ? Colors.greenAccent
-                        : Colors.black12,
-                    ),
+                        : Colors.black12
+                    )
                   );
-                }),
-              ),
-            ],
+                })
+              )
+            ]
           );
         }
         if (state is HomeDisplayLoadError) {
           return Center(
-            child: Text(state.error,
+            child: Text(
+              state.error,
               style: const TextStyle(
                 color: Colors.black38,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w700
               )
             )
           );

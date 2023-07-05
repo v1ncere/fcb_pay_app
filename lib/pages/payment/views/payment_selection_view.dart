@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:fcb_pay_app/app/bloc/app_bloc.dart';
-import 'package:fcb_pay_app/pages/bottom_appbar_payment/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/payment/payment.dart';
+import 'package:fcb_pay_app/pages/payment/widgets/widgets.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class PaymentSelectionView extends StatelessWidget {
   const PaymentSelectionView({super.key});
@@ -12,20 +12,32 @@ class PaymentSelectionView extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PaymentCustomText(text: 'Account'),
-        AccountDisplayText(),
+        CustomizedText(
+          text: 'Account',
+          fontSize: 14,
+          color: Colors.green
+        ),
+        SizedBox(height: 5),
+        AccountDropdown(),
         SizedBox(height: 15),
-        PaymentCustomText(text: 'Select Institution'),
-        PaymentInstitutionDropdown(),
-        SizedBox(height: 20,),
+        CustomizedText(
+          text: 'Institution',
+          fontSize: 14,
+          color: Colors.green
+        ),
+        SizedBox(height: 5),
+        InstitutionDropdown(),
+        SizedBox(height: 5),
+        Divider(thickness: 2),
+        SizedBox(height: 5),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            StepperNextButton(),
-            SizedBox(width: 10,),
-            StepperCancelButton(status: AppStatus.accounts)
+            StepperCancelButton(status: AppStatus.authenticated),
+            SizedBox(width: 10),
+            StepperNextButton() 
           ]
-        ),
+        )
       ]
     );
   }

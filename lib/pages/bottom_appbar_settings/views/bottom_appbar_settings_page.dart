@@ -4,7 +4,6 @@ import 'package:fcb_pay_app/pages/bottom_appbar_settings/bottom_appbar_settings.
 
 class BottomAppbarSettingsPage extends StatelessWidget {
   const BottomAppbarSettingsPage({super.key});
-
   static Page<void> page() => const MaterialPage<void>(child: BottomAppbarSettingsPage());
 
   @override

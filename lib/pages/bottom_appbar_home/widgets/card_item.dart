@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 import 'package:fcb_pay_app/app/bloc/app_bloc.dart';
-import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar_home/widgets/widgets.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({
     super.key,
     required this.data,
     required this.ownerId,
-    required this.keyId,
+    required this.keyId
   });
   final String data;
   final String ownerId;
@@ -27,7 +27,7 @@ class CardItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           context.read<AppBloc>().add(AccountsArgsPassed(keyId)); // bloc events for passing args
-          context.flow<AppStatus>().update((state) => AppStatus.accounts);
+          context.flow<AppStatus>().update((state) => AppStatus.account);
         },
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -50,12 +50,12 @@ class CardItem extends StatelessWidget {
                     debugPrint(element.toString());
                   }
                   return '';
-                },
-              ),
-            ),
-            ),
-          ),
-        ),
-      );
+                }
+              )
+            )
+          )
+        )
+      )
+    );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/pages/login/login.dart';
+import 'package:fcb_pay_app/pages/login/widgets/widgets.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -37,17 +38,17 @@ class LoginForm extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SignInText(),
-                      LoginButton(),
-                    ],
+                      LoginButton()
+                    ]
                   ),
                   const SizedBox(height: 4),
-                  const SignUpButton(),
-                ],
+                  const SignUpButton()
+                ]
               )
-            ),
-          ),
-        ),
-      ),
+            )
+          )
+        )
+      )
     );
   }
 }
