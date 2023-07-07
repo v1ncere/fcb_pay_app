@@ -6,10 +6,7 @@ import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 
 class StepperCancelButton extends StatelessWidget {
-  const StepperCancelButton({
-    super.key,
-    this.status
-  });
+  const StepperCancelButton({super.key, this.status});
   final AppStatus? status;
 
   @override
@@ -17,11 +14,11 @@ class StepperCancelButton extends StatelessWidget {
     return TextButton(
       key: const Key('ft_cancel_text_button'),
       onPressed: () => status != null
-        ? context.flow<AppStatus>().update((state) => status!)
-        : context.read<FundTransferStepperCubit>().stepCancelled(),
-      child: const Text(
-        'Cancel',
-        style: TextStyle(
+      ? context.flow<AppStatus>().update((state) => status!)
+      : context.read<FundTransferStepperCubit>().stepCancelled(),
+      child: Text(
+        status != null ? 'Cancel' : 'Back',
+        style: const TextStyle(
           color: Colors.green
         )
       )

@@ -2,6 +2,7 @@ part of 'app_bloc.dart';
 
 enum AppStatus {
   splash,
+  register,
   unauthenticated,
   authenticated,
   account,

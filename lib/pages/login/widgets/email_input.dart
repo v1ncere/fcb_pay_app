@@ -14,23 +14,23 @@ class EmailInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
-          key: const Key('loginForm_emailInput_textField'),
+          key: const Key('login_email_input_textfield'),
           onChanged: (email) => context.read<LoginBloc>().add(LoginEmailChanged(email)),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.black12,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
-            ),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefixIcon: const Icon(FontAwesomeIcons.solidCircleUser),
             labelText: 'Email',
             errorText: state.email.displayError?.text(),
-          ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0)
+            )
+          )
         );
-      },
+      }
     );
   }
 }

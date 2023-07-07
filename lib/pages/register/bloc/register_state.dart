@@ -1,13 +1,14 @@
-part of 'inputs_bloc.dart';
+part of 'register_bloc.dart';
 
-class InputsState extends Equatable with FormzMixin {
-  const InputsState({
+class RegisterState extends Equatable with FormzMixin {
+  const RegisterState({
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.confirmedPassword = const ConfirmedPassword.pure(),
     this.accountNumber = const AccountNumber.pure(),
     this.mobileNumber = const MobileNumber.pure(),
     this.status = FormzSubmissionStatus.initial,
+    this.error = ""
   });
   final Email email;
   final Password password;
@@ -15,25 +16,28 @@ class InputsState extends Equatable with FormzMixin {
   final AccountNumber accountNumber;
   final MobileNumber mobileNumber;
   final FormzSubmissionStatus status;
-  
-  InputsState copyWith({
+  final String error;
+
+  RegisterState copyWith({
     Email? email,
     Password? password,
     ConfirmedPassword? confirmedPassword,
     AccountNumber? accountNumber,
     MobileNumber? mobileNumber,
     FormzSubmissionStatus? status,
+    String? error
   }) {
-    return InputsState(
+    return RegisterState(
       email: email ?? this.email,
       password: password ?? this.password,
       confirmedPassword: confirmedPassword ?? this.confirmedPassword,
       accountNumber: accountNumber ?? this.accountNumber,
       mobileNumber: mobileNumber ?? this.mobileNumber,
       status: status ?? this.status,
+      error: error ?? this.error
     );
   }
-
+  
   @override
   List<Object> get props => [
     email,
@@ -42,10 +46,11 @@ class InputsState extends Equatable with FormzMixin {
     accountNumber,
     mobileNumber,
     status,
+    error,
     isValid,
-    isPure,
+    isPure
   ];
-  
+
   @override
   List<FormzInput> get inputs => [
     email,

@@ -6,7 +6,6 @@ import 'package:fcb_pay_app/pages/login/login.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-
   static Page<void> page() => const MaterialPage<void>(child: LoginPage());
 
   @override

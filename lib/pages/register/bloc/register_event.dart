@@ -1,13 +1,13 @@
-part of 'inputs_bloc.dart';
+part of 'register_bloc.dart';
 
-abstract class InputsEvent extends Equatable {
-  const InputsEvent();
+abstract class RegisterEvent extends Equatable {
+  const RegisterEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class EmailChanged extends InputsEvent {
+class EmailChanged extends RegisterEvent {
   const EmailChanged(this.email);
   final String email;
 
@@ -15,7 +15,7 @@ class EmailChanged extends InputsEvent {
   List<Object> get props => [email];
 }
 
-class PasswordChanged extends InputsEvent {
+class PasswordChanged extends RegisterEvent {
   const PasswordChanged(this.password);
   final String password;
 
@@ -23,7 +23,7 @@ class PasswordChanged extends InputsEvent {
   List<Object> get props => [password];
 }
 
-class ConfirmedPasswordChanged extends InputsEvent {
+class ConfirmedPasswordChanged extends RegisterEvent {
   const ConfirmedPasswordChanged(this.password, this.confirmPassword);
   final String confirmPassword;
   final String password;
@@ -32,7 +32,7 @@ class ConfirmedPasswordChanged extends InputsEvent {
   List<Object> get props => [confirmPassword, password];
 }
 
-class HomeAddressChanged extends InputsEvent {
+class HomeAddressChanged extends RegisterEvent {
   const HomeAddressChanged(this.homeAddress);
   final String homeAddress;
 
@@ -40,7 +40,7 @@ class HomeAddressChanged extends InputsEvent {
   List<Object> get props => [homeAddress];
 }
 
-class AccountNumberChanged extends InputsEvent {
+class AccountNumberChanged extends RegisterEvent {
   const AccountNumberChanged(this.accountNumber);
   final String accountNumber;
 
@@ -48,7 +48,7 @@ class AccountNumberChanged extends InputsEvent {
   List<Object> get props => [accountNumber];
 }
 
-class MobileNumberChanged extends InputsEvent {
+class MobileNumberChanged extends RegisterEvent {
   const MobileNumberChanged(this.mobileNumber);
   final String mobileNumber;
 
@@ -56,4 +56,4 @@ class MobileNumberChanged extends InputsEvent {
   List<Object> get props => [mobileNumber];
 }
 
-class FormSubmitted extends InputsEvent {}
+class FormSubmitted extends RegisterEvent {}

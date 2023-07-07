@@ -29,19 +29,19 @@ class ConfirmDisplayCard extends StatelessWidget {
           child: Column(
             children: [
               const CustomizedText( // title
-                text: "Confirmation",
+                text: "Confirm Transfer",
                 fontSize: 18,
                 color: Colors.green
               ),
               const SizedBox(height: 12),
               CustomRowTextDisplay( // source display
-                title: "account",
+                title: "source",
                 content: source.isNotEmpty ? source : "select source",
                 color: source.isNotEmpty ? null : Colors.red
               ),
               const SizedBox(height: 12),
               CustomRowTextDisplay( // recipient display
-                title: "institution",
+                title: "recipient",
                 content: recipient.isNotEmpty ? recipient : "select recipient",
                 color: recipient.isNotEmpty ? null : Colors.red
               ),
@@ -55,7 +55,7 @@ class ConfirmDisplayCard extends StatelessWidget {
               const Divider(thickness: 2),
               const SizedBox(height: 12),
               CustomRowTextDisplay( // amount display
-                title: "amount",
+                title: "transfer amount",
                 content: amount.isNotEmpty ? amount : "input amount",
                 contentFontSize: amount.isNotEmpty ? 18 : null,
                 color: amount.isNotEmpty ? null : Colors.red

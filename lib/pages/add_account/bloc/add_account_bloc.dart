@@ -33,7 +33,7 @@ class AddAccountBloc extends Bloc<AddAccountEvent, AddAccountState> {
     if(state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        final String req = "add_savings_account/${state.accountNumber.value}/${state.name.value}";
+        final String req = "add_account|${state.accountNumber.value}|${state.name.value}";
         await _firebaseDatabaseService.addUserAccount(
           UserRequest(
             dataRequest: req,

@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'stepper_state.dart';
+part 'register_stepper_state.dart';
 
-class StepperCubit extends Cubit<StepperState> {
-  StepperCubit({
-    required this.stepperLength
-  }) : super(const StepperState());
-  final int stepperLength;
+class RegisterStepperCubit extends Cubit<RegisterStepperState> {
+  RegisterStepperCubit({
+    required this.stepLength
+  }) : super(const RegisterStepperState());
+  final int stepLength;
 
-  void stepTapped(int tappedIndex) {
-    emit(state.copyWith(currentStep: tappedIndex));
+  void stepTapped(int index) {
+    emit(state.copyWith(currentStep: index));
   }
 
   void stepContinued() {
-    if(state.currentStep < stepperLength - 1) {
+    if(state.currentStep < stepLength - 1) {
       emit(state.copyWith(currentStep: state.currentStep + 1));
     } else {
       emit(state.copyWith(currentStep: state.currentStep));

@@ -14,23 +14,23 @@ class PasswordInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextField(
-          key: const Key('loginForm_passwordInput_textField'),
+          key: const Key('login_password_input_textfield'),
           onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
           obscureText: true,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.black12,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
-            ),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefixIcon: const Icon(FontAwesomeIcons.unlockKeyhole),
             labelText: 'Password',
             errorText: state.password.displayError?.text(),
-          ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0)
+            )
+          )
         );
-      },
+      }
     );
   }
 }

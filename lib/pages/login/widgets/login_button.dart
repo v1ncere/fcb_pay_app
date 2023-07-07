@@ -21,20 +21,20 @@ class LoginButton extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.white38,
               onTap: state.isValid
-                ? () => context.read<LoginBloc>().add(LoggedInWithCredentials())
-                : null,
+              ? () => context.read<LoginBloc>().add(LoggedInWithCredentials())
+              : null,
               child: const SizedBox(
                 width: 56,
                 height: 56, 
                 child: Icon(
                   FontAwesomeIcons.rightToBracket,
-                  color: Colors.white,
+                  color: Colors.white
                 )
-              ),
-            ),
-          ),
+              )
+            )
+          )
         );
-      },
+      }
     );
   }
 }

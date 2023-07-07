@@ -9,11 +9,14 @@ import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 import 'package:fcb_pay_app/pages/login/login.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
+import 'package:fcb_pay_app/pages/register/register.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 import 'package:fcb_pay_app/splash/splash.dart';
 
 List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) {
   switch (state) {
+    case AppStatus.register:
+      return [LoginPage.page(), RegisterPage.page()];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
     case AppStatus.authenticated:

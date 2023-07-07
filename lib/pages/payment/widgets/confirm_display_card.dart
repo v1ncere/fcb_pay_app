@@ -31,7 +31,7 @@ class ConfirmDisplayCard extends StatelessWidget {
           child: Column(
             children: [
               const CustomizedText( // title
-                text: "Confirmation",
+                text: "Confirm Payment",
                 fontSize: 18,
                 color: Colors.green
               ),
@@ -58,7 +58,7 @@ class ConfirmDisplayCard extends StatelessWidget {
               const Divider(thickness: 2),
               const SizedBox(height: 12),
               CustomRowTextDisplay( // amount display
-                title: "amount",
+                title: "payment amount",
                 content: amount.isNotEmpty ? amount : "input amount",
                 contentFontSize: amount.isNotEmpty ? 18 : null,
                 color: amount.isNotEmpty ? null : Colors.red

@@ -10,10 +10,10 @@ class ConfirmedPassword extends FormzInput<String, ConfirmedPasswordValidationEr
   @override
   ConfirmedPasswordValidationError? validator(String? value) {
     return value?.isEmpty == true
-      ? ConfirmedPasswordValidationError.required
-      : password == value
-        ? null
-        : ConfirmedPasswordValidationError.invalid;
+    ? ConfirmedPasswordValidationError.required
+    : password == value
+      ? null
+      : ConfirmedPasswordValidationError.invalid;
   }
 }
 

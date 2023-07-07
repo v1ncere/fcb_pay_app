@@ -24,8 +24,8 @@ class SubmitButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               splashColor: Colors.white38,
               onTap: state.isValid
-                ? () => context.read<PaymentBloc>().add(PaymentSubmitted(account))
-                : null,
+              ? () => context.read<PaymentBloc>().add(PaymentSubmitted(account))
+              : null,
               child: const SizedBox(
                 height: 45,
                 child: Expanded(

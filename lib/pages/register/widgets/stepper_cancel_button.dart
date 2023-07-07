@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/pages/payment/payment.dart';
+import 'package:fcb_pay_app/pages/register/register.dart';
 
 class StepperCancelButton extends StatelessWidget {
   const StepperCancelButton({super.key, this.status});
@@ -12,16 +12,11 @@ class StepperCancelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      key: const Key('account_cancel_text_button'),
+      key: const Key('stepper_cancel_text_button'),
       onPressed: () => status != null
       ? context.flow<AppStatus>().update((state) => status!)
-      : context.read<PaymentStepperCubit>().stepCancelled(),
-      child: Text(
-        status != null ? 'Cancel' : 'Back',
-        style: const TextStyle(
-          color: Colors.green
-        )
-      )
+      : context.read<RegisterStepperCubit>().stepCancelled(),
+      child: Text(status != null ? 'CANCEL' : 'BACK')
     );
   }
 }
