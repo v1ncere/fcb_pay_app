@@ -41,7 +41,7 @@ void main() {
   const email = 'test@gmail.com';
   const password = 't0ps3cret42';
   const user = User(
-    id: _mockFirebaseUserUid,
+    uid: _mockFirebaseUserUid,
     email: _mockFirebaseUserEmail,
   );
 
@@ -102,7 +102,7 @@ void main() {
       });
 
       test('calls createUserWithEmailAndPassword', () async {
-        await authenticationRepository.signUp(email: email, password: password);
+        await authenticationRepository.signUpWithEmailAndPassword(email: email, password: password);
         verify(
           () => firebaseAuth.createUserWithEmailAndPassword(
             email: email,
@@ -113,7 +113,7 @@ void main() {
 
       test('succeeds when createUserWithEmailAndPassword succeeds', () async {
         expect(
-          authenticationRepository.signUp(email: email, password: password),
+          authenticationRepository.signUpWithEmailAndPassword(email: email, password: password),
           completes,
         );
       });
@@ -128,7 +128,7 @@ void main() {
           ),
         ).thenThrow(Exception());
         expect(
-          authenticationRepository.signUp(email: email, password: password),
+          authenticationRepository.signUpWithEmailAndPassword(email: email, password: password),
           throwsA(isA<SignUpWithEmailAndPasswordFailure>()),
         );
       });

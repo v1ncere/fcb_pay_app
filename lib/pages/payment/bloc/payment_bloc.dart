@@ -1,11 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-
 
 part 'payment_event.dart';
 part 'payment_state.dart';
@@ -13,119 +11,129 @@ part 'payment_state.dart';
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   PaymentBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _firebaseRealtimeDBRepository = firebaseRealtimeDBRepository,
+  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
   super(const PaymentState()) {
-    on<PaymentTransactionAmountChanged>(_onPaymentTransactionAmountChanged);
     on<InstitutionValueChanged>(_onInstitutionSelectionChanged);
     on<AccountValueChanged>(_onAccountSelectionChanged);
-    on<PaymentSubmitted>(_onPaymentSubmitted);
-    on<ControllerValueChanged>(_onControllerValueChanged);
-    on<ControllerValueRemoved>(_onControllerValueRemoved);
+    on<UserWidgetFetched>(_onUserWidgetFetched);
+    on<AmountTextFieldChanged>(_onPaymentTransactionAmountChanged);
+    on<AdditionalTextFieldValueChanged>(_onAdditionalTextFieldValueChanged);
     on<AdditionalFieldDisplayed>(_onAdditionalFieldDisplayed);
+    on<PaymentSubmitted>(_onPaymentSubmitted);
   }
-  final FirebaseRealtimeDBRepository _firebaseRealtimeDBRepository;
+  final FirebaseRealtimeDBRepository _realtimeDBRepository;
 
-  void _onPaymentTransactionAmountChanged(PaymentTransactionAmountChanged event, Emitter<PaymentState> emit) {
+  void _onUserWidgetFetched(UserWidgetFetched event, Emitter<PaymentState> emit) async {
+    emit(state.copyWith(status: PaymentStateStatus.loading));
+    try {
+      List<UserWidget> widgets = await _realtimeDBRepository.getUserWidgetList(event.select);
+      emit(state.copyWith(
+        widgetList: widgets,
+        status: PaymentStateStatus.success
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        message: e.toString(),
+        status: PaymentStateStatus.error
+      ));
+    }
+  }
+
+  void _onPaymentTransactionAmountChanged(AmountTextFieldChanged event, Emitter<PaymentState> emit) {
     final amount = Amount.dirty(event.amount);
     emit(state.copyWith(amount: amount));
   }
 
   void _onInstitutionSelectionChanged(InstitutionValueChanged event, Emitter<PaymentState> emit) {
-    final institutionDropdown = InstitutionDropdown.dirty(event.institution);
-    emit(state.copyWith(institutionDropdown: institutionDropdown));
+    final institution = InstitutionDropdown.dirty(event.institution);
+    emit(state.copyWith(institutionDropdown: institution));
   }
 
   void _onAccountSelectionChanged(AccountValueChanged event, Emitter<PaymentState> emit) {
-    final accountDropdown = AccountDropdown.dirty(event.account);
-    emit(state.copyWith(accountDropdown: accountDropdown));
+    final account = AccountDropdown.dirty(event.account);
+    emit(state.copyWith(accountDropdown: account));
   }
 
-  void _onControllerValueChanged(ControllerValueChanged event, Emitter<PaymentState> emit) {
-    final List<TextEditingController> controllers = List.from(state.controllers)..add(event.controller);
-    final List<TextField> textfields = List.from(state.fields)..add(event.field);
+  void _onAdditionalTextFieldValueChanged(AdditionalTextFieldValueChanged event, Emitter<PaymentState> emit) {
+    final updatedWidgetList = List<UserWidget>.from(state.widgetList);
+    final index = updatedWidgetList.indexWhere((widget) => widget.keyId == event.keyId);
     
-    emit(state.copyWith(controllers: controllers, fields: textfields, fieldList: event.fieldList));
-  }
+    if (index != -1) {
+      final updatedUserWidgets = List<UserWidget>.from(updatedWidgetList);
+      final widget = updatedUserWidgets[index].copyWith(content: event.value);
+      updatedUserWidgets[index] = widget;
 
-  void _onControllerValueRemoved(ControllerValueRemoved event, Emitter<PaymentState> emit) {
-    final List<TextEditingController> controllers = List.from(state.controllers)..clear();
-    final List<TextField> textfields = List.from(state.fields)..clear();
-    
-    emit(state.copyWith(controllers: controllers, fields: textfields));
+      emit(state.copyWith(widgetList: updatedUserWidgets));
+    }
   }
 
   void _onAdditionalFieldDisplayed(AdditionalFieldDisplayed event, Emitter<PaymentState> emit) {
-    List<String> inputList = state.controllers
-      .where((element) => element.value.text.isNotEmpty)
-      .map((element) => element.value.text)
-      .toList();
-    Map<String, String> listMerge = {};
-    String merged = "";
-    List<String> result = [];
-    if (state.fieldList.isNotEmpty) {
-      for (int i = 0; i < inputList.length; i++) {
-        listMerge[state.fieldList[i]] = inputList[i];
-      }
-      merged = listMerge.toString();
-      merged = merged.substring(1, merged.length - 1);
-      result = merged.trim().split(",");
-    }
-    String res = result
-      .where((element) => element.isNotEmpty)
-      .fold("", (accumulator, element) => accumulator += "$element\n");
-    
-    emit(state.copyWith(additional: res));
+    String result = getFormSubmissionData().entries
+      .map((entries) => '${entries.key} : ${entries.value}')
+      .join("\n");
+
+    emit(state.copyWith(additional: result));
   }
 
   Future<void> _onPaymentSubmitted(PaymentSubmitted event, Emitter<PaymentState> emit) async {
-    List<String> inputList = state.controllers
-      .where((element) => element.value.text.isNotEmpty)
-      .map((element) => element.value.text)
-      .toList();
-
-    Map<String, String> listMerge = {};
-    String merged = "";
-  
-    if (state.fieldList.isNotEmpty) {
-      for (int i = 0; i < inputList.length; i++) {
-        listMerge[state.fieldList[i]] = inputList[i];
-      }
-      merged = listMerge.toString();
-      merged = merged.substring(1, merged.length - 1);
-    }
+    String result = getFormSubmissionData().entries
+      .map((entries) => '${entries.key}:${entries.value}')
+      .join(",");
     
-    final fields = state.controllers.isEmpty ? "" : "|$merged";
-    final account = event.account.isEmpty ? state.accountDropdown.value : event.account;
+    final fields = containsTextField() ? "|$result": "";
+
+    final account = event.account.isEmpty ? state.accountDropdown.value?.replaceAll(' ', '') : event.account.replaceAll(' ', '');
 
     if (state.isValid) {
-      if ((state.controllers.isEmpty) || (state.controllers.isNotEmpty && state.controllers.length == inputList.length)) {
-        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+      if (!containsTextField() || (containsTextField() && hasUserInputInTextFields())) {
+        emit(state.copyWith(formStatus: FormzSubmissionStatus.inProgress));
         try {
-          await _firebaseRealtimeDBRepository.addUserAccount(
+          await _realtimeDBRepository.addUserAccount(
             UserRequest(
               dataRequest: "bills_payment|$account|${state.institutionDropdown.value}|${state.amount.value}$fields",
               ownerId: FirebaseAuth.instance.currentUser!.uid,
               timeStamp: DateTime.now()
             )
           );
-          emit(state.copyWith(status: FormzSubmissionStatus.success));
+          emit(state.copyWith(formStatus: FormzSubmissionStatus.success));
         } catch (e) {
           emit(state.copyWith(
-            error: e.toString(),
-            status: FormzSubmissionStatus.failure
+            message: e.toString(),
+            formStatus: FormzSubmissionStatus.failure
           ));  
         }
       } else {
         emit(state.copyWith(
-          error: "Incomplete Form: Please review the form and fill in all additional fields.",
-          status: FormzSubmissionStatus.failure
+          message: "Incomplete Form: Please review the form and fill in all additional fields.",
+          formStatus: FormzSubmissionStatus.failure
         ));
       }
     } else {
       emit(state.copyWith(
-        error: "Incomplete Form: Please review the form and fill in all required fields.",
-        status: FormzSubmissionStatus.failure
+        message: "Incomplete Form: Please review the form and fill in all required fields.",
+        formStatus: FormzSubmissionStatus.failure
       ));
     }
+  }
+
+  bool containsTextField() {
+    return state.widgetList.any((widget) => widget.widget == "textfield");
+  }
+
+  bool hasUserInputInTextFields() {
+    return state.widgetList // list of object UserWidget
+    .where((userWidget) => userWidget.widget == "textfield") // filter only the textfield
+    .every((widget) => widget.content?.isNotEmpty == true); // check all textfields if empty
+  }
+
+  Map<String, String> getFormSubmissionData() {
+    final Map<String, String> formData = {};
+
+    for (final userWidget in state.widgetList) {
+      if (userWidget.widget == 'textfield') {
+        formData[userWidget.title] = userWidget.content!;
+      }
+    }
+    return formData;
   }
 }

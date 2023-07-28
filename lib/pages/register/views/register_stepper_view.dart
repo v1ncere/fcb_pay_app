@@ -47,18 +47,10 @@ class RegisterStepperView extends StatelessWidget {
           : StepState.disabled
       ),
       Step(
-        title: const Text('Account Number'),
-        content: const RegisterAccountNumberView(),
-        isActive: currentStep >= 1,
-        state: currentStep >= 1
-          ? StepState.complete
-          : StepState.disabled
-      ),
-      Step(
         title: const Text('Mobile Number'),
         content: const RegisterMobileNumberView(),
-        isActive: currentStep >= 2,
-        state: currentStep >= 2
+        isActive: currentStep >= 1,
+        state: currentStep >= 1
           ? StepState.complete
           : StepState.disabled
       )

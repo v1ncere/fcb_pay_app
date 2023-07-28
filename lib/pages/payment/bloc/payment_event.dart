@@ -7,14 +7,6 @@ abstract class PaymentEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class PaymentTransactionAmountChanged extends PaymentEvent {
-  const PaymentTransactionAmountChanged(this.amount);
-  final String amount;
-
-  @override
-  List<Object> get props => [amount];
-}
-
 class InstitutionValueChanged extends PaymentEvent {
   const InstitutionValueChanged(this.institution);
   final String institution;
@@ -31,19 +23,37 @@ class AccountValueChanged extends PaymentEvent {
   List<Object> get props => [account];
 }
 
-/// ============================================================================
-
-class ControllerValueChanged extends PaymentEvent {
-  const ControllerValueChanged(this.controller, this.field, this.fieldList);
-  final TextEditingController controller;
-  final TextField field;
-  final List<String> fieldList;
+class UserWidgetFetched extends PaymentEvent {
+  const UserWidgetFetched(this.select);
+  final String select;
 
   @override
-  List<Object> get props => [controller, field, fieldList];
+  List<Object> get props => [select];
 }
 
-class ControllerValueRemoved extends PaymentEvent {}
+class AmountTextFieldChanged extends PaymentEvent {
+  const AmountTextFieldChanged(this.amount);
+  final String amount;
+
+  @override
+  List<Object> get props => [amount];
+}
+
+/// ============================================================================
+
+class AdditionalTextFieldValueChanged extends PaymentEvent {
+  const AdditionalTextFieldValueChanged({
+    required this.keyId,
+    required this.fieldTitle,
+    required this.value
+  });
+  final String keyId;
+  final String fieldTitle;
+  final String value;
+
+  @override
+  List<Object> get props => [keyId, fieldTitle, value];
+}
 
 class AdditionalFieldDisplayed extends PaymentEvent {}
 

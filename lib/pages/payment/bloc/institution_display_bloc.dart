@@ -10,40 +10,41 @@ part 'institution_display_state.dart';
 class InstitutionDisplayBloc extends Bloc<InstitutionDisplayEvent, InstitutionDisplayState> {
   InstitutionDisplayBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+  }) : _dbRepository = firebaseRealtimeDBRepository,
   super(const InstitutionDisplayState()) {
-    on<InstitutionDisplayLoaded>(_onPaymentInstitutionLoaded);
-    on<InstitutionDisplayUpdated>(_onPaymentInstitutionUpdated);
+    on<InstitutionDisplayLoaded>(_onInstitutionDisplayLoaded);
+    on<InstitutionDisplayUpdated>(_onInstitutionDisplayUpdated);
   }
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
-  StreamSubscription<List<Institution>>? _streamSubscription;
+  final FirebaseRealtimeDBRepository _dbRepository;
+  late final StreamSubscription<List<Institution>> _subscription;
 
-  void _onPaymentInstitutionLoaded(InstitutionDisplayLoaded event, Emitter<InstitutionDisplayState> emit) async {
+  void _onInstitutionDisplayLoaded(InstitutionDisplayLoaded event, Emitter<InstitutionDisplayState> emit) async {
     emit(state.copyWith(status: InstitutionDisplayStatus.loading));
-    
-    _streamSubscription = _realtimeDBRepository.getInstitutionList()
+
+    _subscription = _dbRepository
+    .getInstitutionList()
     .listen((event) {
       add(InstitutionDisplayUpdated(event));
     });
   }
 
-  void _onPaymentInstitutionUpdated(InstitutionDisplayUpdated event, Emitter<InstitutionDisplayState> emit) async {
+  void _onInstitutionDisplayUpdated(InstitutionDisplayUpdated event, Emitter<InstitutionDisplayState> emit) async {
     if (event.institutions.isNotEmpty) {
       emit(state.copyWith(
-        status: InstitutionDisplayStatus.success,
-        institution: event.institutions
+        institution: event.institutions,
+        status: InstitutionDisplayStatus.success
       ));
     } else {
       emit(state.copyWith(
-        status: InstitutionDisplayStatus.error,
-        error: 'Empty'
+        error: 'Empty',
+        status: InstitutionDisplayStatus.error
       ));
     }
   }
 
   @override
   Future<void> close() {
-    _streamSubscription?.cancel;
+    _subscription.cancel;
     return super.close();
   }
 }

@@ -5,7 +5,6 @@ class RegisterState extends Equatable with FormzMixin {
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.confirmedPassword = const ConfirmedPassword.pure(),
-    this.accountNumber = const AccountNumber.pure(),
     this.mobileNumber = const MobileNumber.pure(),
     this.status = FormzSubmissionStatus.initial,
     this.error = ""
@@ -13,7 +12,6 @@ class RegisterState extends Equatable with FormzMixin {
   final Email email;
   final Password password;
   final ConfirmedPassword confirmedPassword;
-  final AccountNumber accountNumber;
   final MobileNumber mobileNumber;
   final FormzSubmissionStatus status;
   final String error;
@@ -31,7 +29,6 @@ class RegisterState extends Equatable with FormzMixin {
       email: email ?? this.email,
       password: password ?? this.password,
       confirmedPassword: confirmedPassword ?? this.confirmedPassword,
-      accountNumber: accountNumber ?? this.accountNumber,
       mobileNumber: mobileNumber ?? this.mobileNumber,
       status: status ?? this.status,
       error: error ?? this.error
@@ -43,7 +40,6 @@ class RegisterState extends Equatable with FormzMixin {
     email,
     password,
     confirmedPassword,
-    accountNumber,
     mobileNumber,
     status,
     error,
@@ -56,7 +52,6 @@ class RegisterState extends Equatable with FormzMixin {
     email,
     password,
     confirmedPassword,
-    accountNumber,
     mobileNumber
   ];
 }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/pages/login/login.dart';
 import 'package:fcb_pay_app/pages/login/widgets/widgets.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,7 +22,11 @@ class LoginForm extends StatelessWidget {
               if (state.status.isFailure) {
                 ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
-                ..showSnackBar(SnackBar(content: Text(state.errorMessage ?? 'Authentication Failure')));
+                ..showSnackBar(customSnackBar(
+                  state.message ?? 'Authentication Failure',
+                  FontAwesomeIcons.triangleExclamation,
+                  Colors.red,
+                ));
               }
             },
             child: Align(

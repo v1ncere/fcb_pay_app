@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 
 class SourceDropdown extends StatelessWidget {
@@ -11,12 +11,12 @@ class SourceDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeDisplayBloc, HomeDisplayState>(
+    return BlocBuilder<AccountDisplayBloc, AccountDisplayState>(
       builder: (context, state) {
-        if (state is HomeDisplayLoadInProgress) {
+        if (state is AccountDisplayInProgress) {
           return const Center(child: CircularProgressIndicator());
         }
-        if (state is HomeDisplayLoadSuccess) {
+        if (state is AccountDisplaySuccess) {
           return BlocBuilder<FundTransferBloc, FundTransferState>(
             buildWhen: (previous, current) =>
               previous.status != current.status || 
@@ -49,7 +49,7 @@ class SourceDropdown extends StatelessWidget {
                   value: fundState.sourceDropdown.value,
                   validator: (_) => fundState.sourceDropdown.displayError?.text(),
                   onChanged: (value) => context.read<FundTransferBloc>().add(SourceAccountChanged(value!)),
-                  items: state.homeDisplay.map((item) {
+                  items: state.accounts.map((item) {
                     return DropdownMenuItem<String> (
                       value: item.keyId.toString(),
                       child: Text("${item.keyId}")
@@ -60,7 +60,7 @@ class SourceDropdown extends StatelessWidget {
             }
           );
         }
-        if (state is HomeDisplayLoadError) {
+        if (state is AccountDisplayError) {
           return Center(
             child: Text(state.error,
               style: const TextStyle(

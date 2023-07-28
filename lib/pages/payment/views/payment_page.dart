@@ -2,7 +2,7 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
 
 class PaymentPage extends StatelessWidget {
@@ -20,8 +20,8 @@ class PaymentPage extends StatelessWidget {
           BlocProvider(create: (context) => PaymentBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository())),
           BlocProvider(create: (context) => InstitutionDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
           )..add(InstitutionDisplayLoaded())),
-          BlocProvider(create: (context) => HomeDisplayBloc(firebaseDatabaseService: FirebaseRealtimeDBRepository()
-          )..add(HomeDisplayLoaded()))
+          BlocProvider(create: (context) => AccountDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
+          )..add(AccountDisplayLoaded())),
         ],
         child: const PaymentStepperView(),
       )

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/account_payment/account_payment.dart';
-import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
 
 class AccountPaymentPage extends StatelessWidget {
@@ -25,8 +25,8 @@ class AccountPaymentPage extends StatelessWidget {
               )..add(AccountValueChanged(args))),
               BlocProvider(create: (context) => InstitutionDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
               )..add(InstitutionDisplayLoaded())),
-              BlocProvider(create: (context) => HomeDisplayBloc(firebaseDatabaseService: FirebaseRealtimeDBRepository()
-              )..add(HomeDisplayLoaded()))
+              BlocProvider(create: (context) => AccountDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
+              )..add(AccountDisplayLoaded()))
             ],
             child: const AccountPaymentStepperView()
           )

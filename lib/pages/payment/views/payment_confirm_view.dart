@@ -16,7 +16,7 @@ class PaymentConfirmView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentBloc, PaymentState>(
       listener: (context, state) {
-        if(state.status.isSuccess) {
+        if(state.formStatus.isSuccess) {
           context.flow<AppStatus>().update((next) => AppStatus.authenticated);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
@@ -26,11 +26,11 @@ class PaymentConfirmView extends StatelessWidget {
             Colors.white
           ));
         }
-        if(state.status.isFailure) {
+        if(state.formStatus.isFailure) {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar(
-            state.error,
+            state.message,
             FontAwesomeIcons.triangleExclamation,
             Colors.red
           ));
@@ -48,7 +48,7 @@ class PaymentConfirmView extends StatelessWidget {
                   additional: state.additional,
                   amount: state.amount.value,
                   institution: state.institutionDropdown.value ?? "",
-                  controllers: state.controllers,
+                  isInputted: context.read<PaymentBloc>().hasUserInputInTextFields(),
                 ),
                 const SizedBox(height: 120),
                 const Column(

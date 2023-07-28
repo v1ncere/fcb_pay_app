@@ -15,7 +15,7 @@ class RegisterPage extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => RegisterBloc(firebaseAuthRepository: FirebaseAuthRepository())),
-          BlocProvider(create: (context) => RegisterStepperCubit(stepLength: 3))
+          BlocProvider(create: (context) => RegisterStepperCubit(stepLength: 2))
         ],
         child: const RegisterStepperView()
       ) 

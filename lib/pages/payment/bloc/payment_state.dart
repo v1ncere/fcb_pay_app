@@ -1,67 +1,71 @@
 part of 'payment_bloc.dart';
 
+enum PaymentStateStatus { initial, loading, success, error }
+
 class PaymentState extends Equatable with FormzMixin {
   const PaymentState({
-    this.amount = const Amount.pure(),
     this.institutionDropdown = const InstitutionDropdown.pure(),
     this.accountDropdown = const AccountDropdown.pure(),
-    this.controllers = const <TextEditingController>[],
-    this.fields = const <TextField>[],
-    this.fieldList = const <String>[],
+    this.widgetList = const <UserWidget>[],
+    this.amount = const Amount.pure(),
     this.additional = "",
-    this.status = FormzSubmissionStatus.initial,
-    this.error = ""
+    this.status = PaymentStateStatus.initial,
+    this.formStatus = FormzSubmissionStatus.initial,
+    this.message = ""
   });
 
-  final Amount amount;
   final InstitutionDropdown institutionDropdown;
   final AccountDropdown accountDropdown;
-  final List<TextEditingController> controllers;
-  final List<TextField> fields;
-  final List<String> fieldList;
+  final List<UserWidget> widgetList;
+  final Amount amount;
   final String additional;
-  final FormzSubmissionStatus status;
-  final String error;
+  final PaymentStateStatus status;
+  final FormzSubmissionStatus formStatus;
+  final String message;
 
   PaymentState copyWith({
-    Amount? amount,
     InstitutionDropdown? institutionDropdown,
     AccountDropdown? accountDropdown,
-    List<TextEditingController>? controllers,
-    List<TextField>? fields,
-    List<String>? fieldList,
+    List<UserWidget>? widgetList,
+    Amount? amount,
     String? additional,
-    FormzSubmissionStatus? status,
-    String? error,
+    PaymentStateStatus? status,
+    FormzSubmissionStatus? formStatus,
+    String? message,
   }) {
     return PaymentState(
-      amount: amount ?? this.amount,
       institutionDropdown: institutionDropdown ?? this.institutionDropdown,
       accountDropdown: accountDropdown ?? this.accountDropdown,
-      controllers: controllers ?? this.controllers,
-      fields: fields ?? this.fields,
-      fieldList: fieldList ?? this.fieldList,
+      widgetList: widgetList ?? this.widgetList,
+      amount: amount ?? this.amount,
       additional: additional ?? this.additional,
       status: status ?? this.status,
-      error: error ?? this.error,
+      formStatus: formStatus ?? this.formStatus,
+      message: message ?? this.message,
     );
   }
 
   @override
   List<Object?> get props => [
-    amount,
     institutionDropdown,
     accountDropdown,
-    controllers,
-    fields,
-    fieldList,
+    widgetList,
+    amount,
     additional,
     status,
-    error,
+    formStatus,
+    message,
     isValid,
     isPure
   ];
   
   @override
   List<FormzInput<dynamic, dynamic>> get inputs => [amount, institutionDropdown, accountDropdown];
+}
+
+extension PaymentStateStatusX on PaymentStateStatus {
+  bool get isInitial => this == PaymentStateStatus.initial;
+  bool get isLoading => this == PaymentStateStatus.loading;
+  bool get isSuccess => this == PaymentStateStatus.success;
+  bool get isError => this == PaymentStateStatus.error;
 }

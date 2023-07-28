@@ -11,29 +11,27 @@ class ScannerCubit extends Cubit<ScannerState> {
   ScannerCubit({
     required HiveRepository hiveRepository
   }): _hiveRepository = hiveRepository,
-      super(const ScannerState());
+  super(const ScannerState());
+
 
   void saveQRCode(String data) async {
     emit(state.copyWith(status: ScannerStateStatus.loading));
     
     if(data.isEmpty) {
       emit(state.copyWith(
-        status: ScannerStateStatus.failure,
         message: 'Empty QR code data. Please ensure that the QR code contains valid information and try again.',
+        status: ScannerStateStatus.failure
       ));
       return;
     }
 
     try {
-      String dataCRC = data.substring(data.length - 4, data.length);
-      String calculatedCRC = crc16CCITT(data.substring(0, data.length - 4));
+      int len = data.length;
+      String qrCrc = data.substring(len - 4, len);
+      String calcCrc = crc16CCITT(data.substring(0, len - 4));
 
-      if(dataCRC == calculatedCRC) {
-        List model = [];
-        for (var element in qrDataParser(data)) {
-          model.add(element);
-        }
-        _hiveRepository.addQRData(model);
+      if(qrCrc == calcCrc) {
+        _hiveRepository.addQRData(qrDataParser(data));
         emit(state.copyWith(status: ScannerStateStatus.success));
       } else {
         throw Exception('Invalid QR code. Please ensure that the QR code is not damaged and that it belongs to this service.');

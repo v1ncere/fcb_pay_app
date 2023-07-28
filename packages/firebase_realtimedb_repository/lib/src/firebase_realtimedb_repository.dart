@@ -6,17 +6,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 
 abstract class BaseFirebaseRealtimeDBRepository {
-  Stream<List<HomeDisplay>> getHomeDisplayListRealTime();
-  Stream<HomeDisplay> getHomeDisplayRealTime();
-  Future<HomeDisplay?> getHomeDisplay();
+  Stream<List<Accounts>> getAccountsListRealTime();
+  Stream<Accounts> getAccountRealTime();
+  Future<Accounts?> getAccounts();
   Future<void> addUserAccount(UserRequest request);
-
   Stream<List<TransactionHistory>> getTransactionListRealTime(String accountId, String searchQuery);
   Stream<TransactionHistory> getTransactionRealTime();
-
   Stream<List<Institution>> getInstitutionList();
-
   Stream<List<FundTransferAccount>> getFundTransferList();
+  Future<List<UserWidget>> getUserWidgetList(String institution);
 }
 
 class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
@@ -26,54 +24,51 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     FirebaseDatabase? firebaseDatabase
   }): _firebaseDatabase = firebaseDatabase ?? FirebaseDatabase.instance;
 
-  // USER AUTH ID: =============================================================
-  String userId() {
-    return FirebaseAuth.instance.currentUser!.uid;
-  }
-
-  // realtime list =============================================================
+  // realtime get all accounts
   @override
-  Stream<List<HomeDisplay>> getHomeDisplayListRealTime() {
+  Stream<List<Accounts>> getAccountsListRealTime() {
     return _firebaseDatabase.ref()
-    .child('home_display')
-    .orderByChild('owner_id')
-    .equalTo(userId())
+    .child('user_account')
+    .child(userId())
     .onValue
     .map((event) {
-      List<HomeDisplay> homeDisplays = [];
+      List<Accounts> accountList = [];
+
       if (event.snapshot.exists) {
         Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
         snapshotValues.forEach((key, values) {
-          HomeDisplay homeDisplay = HomeDisplay.fromSnapshot(event.snapshot.child(key));
-          homeDisplays.add(homeDisplay);
+          Accounts account = Accounts.fromSnapshot(event.snapshot.child(key));
+          accountList.add(account);
         });
       }
-      return homeDisplays;
+      
+      return accountList;
     }).handleError((error) {
       print('Error occurred: $error');
       return [];
     });
   }
 
-  // realtime specific ===============================================================
+  // realtime get account
   @override
-  Stream<HomeDisplay> getHomeDisplayRealTime() {
-    return _firebaseDatabase.ref('home_display')
+  Stream<Accounts> getAccountRealTime() {
+    return _firebaseDatabase.ref('user_account')
     .child(userId())
     .limitToFirst(1)
     .onValue.map((event) {
-      return HomeDisplay.fromSnapshot(event.snapshot);
+      return Accounts.fromSnapshot(event.snapshot);
     });
   }
 
-  // not realtime: ==========================================================
+  // not realtime:
   @override
-  Future<HomeDisplay?> getHomeDisplay() async {
-    final parentNodeRef = _firebaseDatabase.ref('home_display');
+  Future<Accounts?> getAccounts() async {
+    final parentNodeRef = _firebaseDatabase.ref('user_account');
     final valueQuery = parentNodeRef
-    .orderByChild("owner_id")
-    .equalTo(userId());
+    .child(userId());
+    // .orderByChild("owner_id")
+    // .equalTo(userId());
 
     final snap = await valueQuery.get();
 
@@ -82,15 +77,15 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
       final childNodeKey = values.keys.first;
       final snapshot = await parentNodeRef.child(childNodeKey).get();
 
-      final reply = HomeDisplay.fromSnapshot(snapshot);
+      final reply = Accounts.fromSnapshot(snapshot);
       return reply;
     } else {
       return null;
     }
   }
 
-  // ============================================================ user request
-  // =========================================================================
+  // ============================================================== user request
+  // ===========================================================================
   @override
   Future<void> addUserAccount(UserRequest request) async {
     _firebaseDatabase
@@ -113,15 +108,17 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     }
 
     return query.onValue.map((event) {
-      List<TransactionHistory> transactions = [];
+      List<TransactionHistory> transactionList = [];
       if (event.snapshot.exists) {
         Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        
         snapshotValues.forEach((key, values) {
-          TransactionHistory history = TransactionHistory.fromSnapshot(event.snapshot.child(key));
-          transactions.add(history);
+          TransactionHistory transaction = TransactionHistory.fromSnapshot(event.snapshot.child(key));
+          transactionList.add(transaction);
         });
       }
-      return transactions;
+
+      return transactionList;
     }).handleError((error) {
       print('Error occurred: $error');
       return [];
@@ -138,33 +135,33 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
     });
   }
 
-  // 
-    // institution realtime list =============================================================
+  // ===============================================realtime get all institution
   @override
   Stream<List<Institution>> getInstitutionList() {
     return _firebaseDatabase.ref()
-    .child('payment_institutions')
+    .child('billing_institution')
     .onValue
     .map((event) {
-      List<Institution> institutions = [];
+      List<Institution> institutionList = [];
+
       if (event.snapshot.exists) {
         Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
         snapshotValues.forEach((key, values) {
-          Institution homeDisplay = Institution.fromSnapshot(event.snapshot.child(key));
-          institutions.add(homeDisplay);
+          Institution institution = Institution.fromSnapshot(event.snapshot.child(key));
+          institutionList.add(institution);
         });
       }
-      return institutions;
+
+      return institutionList;
     }).handleError((error) {
       print('Error occurred: $error');
       return [];
     });
   }
 
-  // 
-    // institution realtime list =============================================================
-
+  // =================================================== fund transfers accounts
+  // realtime get all fundtransfer account
   @override
   Stream<List<FundTransferAccount>> getFundTransferList() {
     return _firebaseDatabase.ref()
@@ -186,5 +183,39 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
       print('Error occurred: $error');
       return [];
     });
+  }
+
+  // =============================================================== user_widget
+  // get user widget base on institution
+  @override
+  Future<List<UserWidget>> getUserWidgetList(String institution) {
+    return _firebaseDatabase
+    .ref()
+    .child('user_widget')
+    .child(userId())
+    .child(institution)
+    .get()
+    .then((snapshot) {
+      List<UserWidget> widgetList = [];
+
+      if (snapshot.exists) {
+        Map<dynamic, dynamic> snapshotValues = snapshot.value as Map<dynamic, dynamic>;
+        
+        snapshotValues.forEach((key, values) {
+          UserWidget account = UserWidget.fromSnapshot(snapshot.child(key));
+          widgetList.add(account);
+        });
+        
+      }
+      return widgetList;
+    }).onError((error, stackTrance) {
+      print('Error occurred: $error');
+      return [];
+    });
+  }
+
+  // USER_AUTH_ID
+  String userId() {
+    return FirebaseAuth.instance.currentUser!.uid;
   }
 }

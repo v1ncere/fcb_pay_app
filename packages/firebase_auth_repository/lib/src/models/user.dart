@@ -2,27 +2,31 @@ import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
   const User({
-    required this.id,
+    required this.uid,
     this.email,
+    this.isVerified
   });
 
+  final String? uid;
   final String? email;
-  final String id;
+  final bool? isVerified;
 
   User copyWith({
     String? id,
     String? email,
+    bool? verify
   }) {
     return User(
-      id: id ?? this.id,
+      uid: id ?? this.uid,
       email: email ?? this.email,
+      isVerified: verify ?? this.isVerified
     );
   }
 
-  static const empty = User(id: '');
+  static const empty = User(uid: "");
   bool get isEmpty => this == User.empty;
   bool get isNotEmpty => this != User.empty;
 
   @override
-  List<Object?> get props => [email, id];
+  List<Object?> get props => [email, uid, isVerified];
 }

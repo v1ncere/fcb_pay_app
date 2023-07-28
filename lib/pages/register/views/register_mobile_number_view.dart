@@ -21,7 +21,7 @@ class RegisterMobileNumberView extends StatelessWidget {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar(
-            "Registration Account Successful!",
+            "Registration account successful! We've sent a verification link to your email.",
             FontAwesomeIcons.solidCircleCheck,
             Colors.white
           ));

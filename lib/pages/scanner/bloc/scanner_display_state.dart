@@ -4,38 +4,21 @@ enum ScannerDisplayStatus { initial, loading, success, failure }
 
 class ScannerDisplayState extends Equatable {
   const ScannerDisplayState({
-    this.merchantId = '',
-    this.merchantName = '',
-    this.referenceLabel = '',
-    this.senderTransactionRef = '',
-    this.traceNumber = '',
+    this.qrData = const <QRModel>[],
     this.status = ScannerDisplayStatus.initial,
-    this.error
+    this.error = ''
   });
-
-  final String merchantId;
-  final String merchantName;
-  final String referenceLabel;
-  final String senderTransactionRef;
-  final String traceNumber;
+  final List<QRModel> qrData;
   final ScannerDisplayStatus status;
-  final String? error;
+  final String error;
 
   ScannerDisplayState copyWith({
-    String? merchantId,
-    String? merchantName,
-    String? referenceLabel,
-    String? senderTransactionRef,
-    String? traceNumber,
+    List<QRModel>? qrData,
     ScannerDisplayStatus? status,
     String? error
   }) {
     return ScannerDisplayState(
-      merchantId: merchantId ?? this.merchantId,
-      merchantName: merchantName ?? this.merchantName,
-      referenceLabel: referenceLabel ?? this.referenceLabel,
-      senderTransactionRef: senderTransactionRef ?? this.senderTransactionRef,
-      traceNumber: traceNumber ?? this.traceNumber,
+      qrData: qrData ?? this.qrData,
       status: status ?? this.status,
       error: error ?? this.error
     );
@@ -43,11 +26,8 @@ class ScannerDisplayState extends Equatable {
   
   @override
   List<Object> get props => [
-    merchantId,
-    merchantName,
-    referenceLabel,
-    senderTransactionRef,
-    traceNumber,
+    qrData,
+    error,
     status,
   ];
 }

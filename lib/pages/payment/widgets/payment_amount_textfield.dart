@@ -21,7 +21,7 @@ class PaymentAmountTextField extends StatelessWidget {
             FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')), 
             FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d*'))
           ],
-          onChanged: (amount) => context.read<PaymentBloc>().add(PaymentTransactionAmountChanged(amount)),
+          onChanged: (amount) => context.read<PaymentBloc>().add(AmountTextFieldChanged(amount)),
           style: const TextStyle(
             color: Colors.black45,
             fontWeight: FontWeight.w700

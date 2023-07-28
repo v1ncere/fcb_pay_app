@@ -14,8 +14,8 @@ class ScannerPage extends StatelessWidget {
     return RepositoryProvider(
       create: (context) =>  HiveRepository(),
       child: BlocProvider(create: (context) => ScannerCubit(hiveRepository: HiveRepository()),
-        child: const ScannerView(),
-      ),
+        child: const ScannerView()
+      )
     );
   }
 }

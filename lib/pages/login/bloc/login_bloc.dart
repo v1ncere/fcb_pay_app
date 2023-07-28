@@ -10,52 +10,47 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
     required FirebaseAuthRepository firebaseAuthService
-  }): _firebaseAuthService = firebaseAuthService,
-      super(const LoginState()) {
-        on<LoginEmailChanged>(_onLoginEmailChanged);
-        on<LoginPasswordChanged>(_onLoginPasswordChanged);
-        on<LoggedInWithCredentials>(_onLoggedInWithCredentials);
+  })  : _firebaseAuthService = firebaseAuthService,
+        super(const LoginState()) {
+
+    on<LoginEmailChanged>((event, emit) {
+      emit(state.copyWith(email: Email.dirty(event.email)));
+    });
+
+    on<LoginPasswordChanged>((event, emit) {
+      emit(state.copyWith(password: Password.dirty(event.password)));
+    });
+
+    on<LoggedInWithCredentials>((event, emit) async {
+      if (state.isValid) {
+        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+        try {
+          await _firebaseAuthService.logInWithEmailAndPassword(
+            email: state.email.value,
+            password: state.password.value
+          ).then((credential) {
+            if(credential?.user?.emailVerified != true) {
+              emit(state.copyWith(
+                message: "Please verify your email address to continue. We've sent a verification link to your email.",
+                status: FormzSubmissionStatus.failure
+              ));
+            } else {
+              emit(state.copyWith(status: FormzSubmissionStatus.success));
+            }
+          });
+        } on LogInWithEmailAndPasswordFailure catch (e) {
+          emit(state.copyWith(
+            message: e.message,
+            status: FormzSubmissionStatus.failure
+          ));
+        } catch (e) {
+          emit(state.copyWith(
+            message: e.toString(),
+            status: FormzSubmissionStatus.failure
+          ));
+        }
       }
+    });
+  }
   final FirebaseAuthRepository _firebaseAuthService;
-  
-  void _onLoginEmailChanged(
-    LoginEmailChanged event,
-    Emitter<LoginState> emit
-  ) {
-    final email = Email.dirty(event.email);
-    emit(state.copyWith(email: email));
-  }
-
-  void _onLoginPasswordChanged(
-    LoginPasswordChanged event,
-    Emitter<LoginState> emit
-  ) {
-    final password = Password.dirty(event.password);
-    emit(state.copyWith(password: password));
-  }
-
-  Future<void> _onLoggedInWithCredentials(
-    LoggedInWithCredentials event,
-    Emitter<LoginState> emit
-  ) async {
-    if (state.isValid) {
-      emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-      try {
-        await _firebaseAuthService.logInWithEmailAndPassword(
-          email: state.email.value,
-          password: state.password.value,
-        );
-        emit(state.copyWith(status: FormzSubmissionStatus.success));
-      } on LogInWithEmailAndPasswordFailure catch (e) {
-        emit(
-          state.copyWith(
-            errorMessage: e.message,
-            status: FormzSubmissionStatus.failure,
-          )
-        );
-      } catch (e) {
-        emit(state.copyWith(status: FormzSubmissionStatus.failure));
-      }
-    }
-  }
 }

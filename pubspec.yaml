@@ -39,6 +39,8 @@ dependencies:
   url_launcher: ^6.1.11
   font_awesome_flutter: ^10.4.0
   firebase_auth_platform_interface: ^6.15.2
+  hive_generator: ^2.0.0
+  auto_size_text: ^3.0.0
   
 dev_dependencies:
   flutter_test:

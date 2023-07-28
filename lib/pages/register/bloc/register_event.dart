@@ -32,21 +32,6 @@ class ConfirmedPasswordChanged extends RegisterEvent {
   List<Object> get props => [confirmPassword, password];
 }
 
-class HomeAddressChanged extends RegisterEvent {
-  const HomeAddressChanged(this.homeAddress);
-  final String homeAddress;
-
-  @override
-  List<Object> get props => [homeAddress];
-}
-
-class AccountNumberChanged extends RegisterEvent {
-  const AccountNumberChanged(this.accountNumber);
-  final String accountNumber;
-
-  @override
-  List<Object> get props => [accountNumber];
-}
 
 class MobileNumberChanged extends RegisterEvent {
   const MobileNumberChanged(this.mobileNumber);

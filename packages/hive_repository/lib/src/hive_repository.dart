@@ -1,10 +1,11 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_repository/hive_repository.dart';
 
 abstract class BaseHiveRepository {
-  void addQRData(List qrData);
+  void addQRData(List<QRModel> qrData);
+  Future<List<QRModel>> getQRData();
   void deleteQRData();
   void close();
-  Future<List> getQRData();
 }
 
 class HiveRepository extends BaseHiveRepository {
@@ -12,7 +13,7 @@ class HiveRepository extends BaseHiveRepository {
   static const String _keyName = 'QR_data';
 
   @override
-  void addQRData(List qrData) async {
+  void addQRData(List<QRModel> qrData) async {
     var box = Hive.isBoxOpen(_boxName)
       ? Hive.box(_boxName)
       : await Hive.openBox(_boxName);
@@ -20,7 +21,7 @@ class HiveRepository extends BaseHiveRepository {
   }
 
   @override
-  Future<List> getQRData() async {
+  Future<List<QRModel>> getQRData() async {
     var box = Hive.isBoxOpen(_boxName)
       ? Hive.box(_boxName)
       : await Hive.openBox(_boxName);

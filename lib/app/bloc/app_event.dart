@@ -15,9 +15,8 @@ class AppUserChanged extends AppEvent {
   List<Object> get props => [user];
 }
 
-class AccountsArgsPassed extends AppEvent {
-  const AccountsArgsPassed(this.args);
-
+class AccountArgumentPassed extends AppEvent {
+  const AccountArgumentPassed(this.args);
   final String args;
 
   @override

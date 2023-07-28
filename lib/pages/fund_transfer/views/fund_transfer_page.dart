@@ -2,7 +2,7 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/bottom_appbar_home/bottom_appbar_home.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 
 class FundTransferPage extends StatelessWidget {
@@ -15,8 +15,8 @@ class FundTransferPage extends StatelessWidget {
       create: (context) => FirebaseRealtimeDBRepository(),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => HomeDisplayBloc(firebaseDatabaseService: FirebaseRealtimeDBRepository()
-          )..add(HomeDisplayLoaded())),
+          BlocProvider(create: (context) => AccountDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
+          )..add(AccountDisplayLoaded())),
           BlocProvider(create: (context) => FundTransferAccountBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
           )..add(FundTransferAccountLoaded())),
           BlocProvider(create: (context) => FundTransferBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository())),

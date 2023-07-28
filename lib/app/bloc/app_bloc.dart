@@ -9,42 +9,41 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required FirebaseAuthRepository firebaseAuthRepository,
-  }) : _firebaseAuthRepository = firebaseAuthRepository,
-  super(firebaseAuthRepository.currentUser.isNotEmpty
-    ? AppState.authenticated(firebaseAuthRepository.currentUser)
-    : const AppState.unauthenticated()) {
-      
-    on<AppUserChanged>(_onUserChanged);
-    on<AppLogoutRequested>(_onLogoutRequested);
-    on<AccountsArgsPassed>(_onAccountsArgsPassed);
+    required FirebaseAuthRepository firebaseAuthRepository
+  })  : _firebaseAuthRepository = firebaseAuthRepository,
+        super(
+          firebaseAuthRepository.currentUser.isNotEmpty &&
+          firebaseAuthRepository.currentUser.isVerified == true
+          ? AppState.authenticated(firebaseAuthRepository.currentUser)
+          : const AppState.unauthenticated()
+        ) {
+
+    on<AppUserChanged>((event, emit) {
+      emit(
+        event.user.isNotEmpty && event.user.isVerified == true
+        ? AppState.authenticated(event.user)
+        : const AppState.unauthenticated()
+      );
+    });
+
+    on<AppLogoutRequested>((event, emit) {
+      unawaited(_firebaseAuthRepository.logOut());
+    });
     
-    _streamSubscription = _firebaseAuthRepository.user.listen(
-      (user) => add(AppUserChanged(user)),
-    );
+    on<AccountArgumentPassed>((event, emit) {
+      emit(AppState.accounts(event.args));
+    });
+
+    _streamSubscription = _firebaseAuthRepository
+    .user
+    .listen((user) => add(AppUserChanged(user)));
   }
   final FirebaseAuthRepository _firebaseAuthRepository;
-  StreamSubscription<User>? _streamSubscription;
-
-  void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
-    emit(event.user.isNotEmpty
-      ? AppState.authenticated(event.user)
-      : const AppState.unauthenticated()
-    );
-  }
-
-  void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {
-    unawaited(_firebaseAuthRepository.logOut());
-  }
-
-
-  void _onAccountsArgsPassed(AccountsArgsPassed event, Emitter<AppState> emit) {
-    emit(AppState.accounts(event.args));
-  }
+  late final StreamSubscription<User> _streamSubscription;
 
   @override
   Future<void> close() {
-    _streamSubscription?.cancel();
+    _streamSubscription.cancel();
     return super.close();
   }
 }

@@ -18,30 +18,19 @@ class ScannerDisplayBloc extends Bloc<ScannerDisplayEvent, ScannerDisplayState> 
     emit(state.copyWith(status: ScannerDisplayStatus.loading));
 
     try {
-      var dataList = await _hiveRepository.getQRData();
+      final dataList = List<QRModel>.from(await _hiveRepository.getQRData());
       if (dataList.isNotEmpty) {
-        String data = dataList.join('');
-        emit(state.copyWith(
-          merchantId: dataSelector(data, 'sub2803'),  // sub<id> or main<id>
-          merchantName: dataSelector(data, 'main59'), // sub<id> or main<id>
-          referenceLabel: dataSelector(data, 'sub6205'), // sub<id> or main<id>
-          senderTransactionRef: '09234020394', // sample
-          traceNumber: '23412342943898345', // sample
-          status: ScannerDisplayStatus.success
-        ));
+        emit(state.copyWith(qrData: dataList, status: ScannerDisplayStatus.success));
       } else {
         throw Exception('Empty');
       }
     } catch (e) {
-      emit(state.copyWith(
-        status: ScannerDisplayStatus.failure,
-        error: e.toString(),
-      ));
+      emit(state.copyWith(status: ScannerDisplayStatus.failure, error: e.toString()));
     }
   }
 }
 
-// data == (intire qr data), pattern == (qr data id's) sub<<mainId><subId>> or main<id>
+// data: (intire qr data), pattern: (qr data id's) sub<<mainId><subId>> or main<id>
 String dataSelector(String data, String pattern) {
   int index = data.indexOf(pattern) + pattern.length;
   int newIndex = index + 2;

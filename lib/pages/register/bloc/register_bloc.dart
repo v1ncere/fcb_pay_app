@@ -15,7 +15,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<ConfirmedPasswordChanged>(_onConfirmedPasswordChanged);
-    on<AccountNumberChanged>(_onAccountNumberChanged);
     on<MobileNumberChanged>(_onMobileNumberChanged);
     on<FormSubmitted>(_onFormSubmitted);
   }
@@ -36,11 +35,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     emit(state.copyWith(confirmedPassword: confirmedPassword));
   }
 
-  void _onAccountNumberChanged(AccountNumberChanged event, Emitter<RegisterState> emit) {
-    final postCode = AccountNumber.dirty(event.accountNumber);
-    emit(state.copyWith(accountNumber: postCode));
-  }
-
   void _onMobileNumberChanged(MobileNumberChanged event, Emitter<RegisterState> emit) {
     final mobileNumber = MobileNumber.dirty(event.mobileNumber);
     emit(state.copyWith(mobileNumber: mobileNumber));
@@ -50,7 +44,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     if(state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        await _firebaseAuthRepository.signUp(
+        await _firebaseAuthRepository.signUpWithEmailAndPassword(
           email: state.email.value,
           password: state.password.value
         );
@@ -62,11 +56,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             status: FormzSubmissionStatus.failure,
           )
         );
-      } catch (_) {
-        emit(state.copyWith(
-          error: _.toString(),
-          status: FormzSubmissionStatus.failure
-        ));
+      } catch (e) {
+        emit(
+          state.copyWith(
+            error: e.toString(),
+            status: FormzSubmissionStatus.failure
+          )
+        );
       }
     } else {
       emit(state.copyWith(

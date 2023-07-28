@@ -9,13 +9,13 @@ class ConfirmDisplayCard extends StatelessWidget {
     required this.account,
     required this.institution,
     required this.additional,
-    required this.controllers
+    required this.isInputted
   });
   final String amount;
   final String account;
   final String institution;
   final String additional;
-  final List<TextEditingController> controllers;
+  final bool isInputted;
 
   @override
   Widget build(BuildContext context) {
@@ -30,38 +30,39 @@ class ConfirmDisplayCard extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              const CustomizedText( // title
+              const CustomizedText(
                 text: "Confirm Payment",
                 fontSize: 18,
                 color: Colors.green
               ),
               const SizedBox(height: 12),
-              CustomRowTextDisplay( // account display
+              CustomRowTextDisplay(
                 title: "account",
-                content: account.isNotEmpty ? account : "select account",
-                color: account.isNotEmpty ? null : Colors.red
+                content: account.isNotEmpty ? account : "Please select an account from the drop-down menu.",
+                color: account.isNotEmpty ? null :const Color.fromARGB(132, 244, 67, 54)
               ),
               const SizedBox(height: 12),
-              CustomRowTextDisplay( // institution display
+              CustomRowTextDisplay(
                 title: "institution",
-                content: institution.isNotEmpty ? institution : "select institution",
-                color: institution.isNotEmpty ? null : Colors.red
+                content: institution.isNotEmpty ? institution : "Please select an institution from the drop-down menu.",
+                color: institution.isNotEmpty ? null :const Color.fromARGB(132, 244, 67, 54)
               ),
               const SizedBox(height: 12),
-              controllers.isNotEmpty  // conditional additional data display
+              additional.isNotEmpty
               ? CustomRowTextDisplay(
                   title: "additional fields",
-                  content: additional.isNotEmpty ? additional : "input additional data",
-                  color: additional.isNotEmpty ? null : Colors.red
+                  content: isInputted ? additional : "Please fill out all additional fields.",
+                  color: isInputted ? null :const Color.fromARGB(132, 244, 67, 54)
                 )
               : const SizedBox.shrink(),
               const Divider(thickness: 2),
               const SizedBox(height: 12),
-              CustomRowTextDisplay( // amount display
+              CustomRowTextDisplay(
                 title: "payment amount",
-                content: amount.isNotEmpty ? amount : "input amount",
+                content: amount.isNotEmpty ? amount : "Please fill out the amount.",
                 contentFontSize: amount.isNotEmpty ? 18 : null,
-                color: amount.isNotEmpty ? null : Colors.red
+                color: amount.isNotEmpty ? const Color.fromARGB(255, 14, 1, 0) :const Color.fromARGB(132, 244, 67, 54),
+                contentFontWeight: FontWeight.w900,
               )
             ]
           )

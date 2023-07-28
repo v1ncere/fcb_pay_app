@@ -16,86 +16,34 @@ class ScannerView extends StatefulWidget {
 }
 
 class ScannerViewState extends State<ScannerView> {
-  final cameraController = MobileScannerController(
-    detectionSpeed: DetectionSpeed.noDuplicates,
-  );
+  final _controller = MobileScannerController(detectionSpeed: DetectionSpeed.normal);
 
   @override
   Widget build(BuildContext context) {
-    double scanArea = (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400)
-      ? 250.0
-      : 360.0;
-    final screenSize = MediaQuery.of(context).size;
-    final rectLeft = (screenSize.width - scanArea) / 2;
-    final rectTop = (screenSize.height - scanArea) / 2;
-    final rect = Rect.fromLTWH(rectLeft, rectTop, scanArea, scanArea);
+    final screen = MediaQuery.of(context).size;
+    double area = screen.width < 400 || screen.height < 400 ? 250.0 : 360.0;
+    final rect = Rect.fromLTWH((screen.width - area)/ 2, (screen.height - area)/ 2, area, area);
 
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            color: Colors.white,
-            icon: ValueListenableBuilder(
-              valueListenable: cameraController.torchState,
-              builder: (context, state, child) {
-                switch (state) {
-                  case TorchState.off:
-                    return const Icon(FontAwesomeIcons.boltLightning, color: Colors.grey);
-                  case TorchState.on:
-                    return const Icon(FontAwesomeIcons.boltLightning, color: Colors.yellow);
-                }
-              }
-            ),
-            iconSize: 32.0,
-            onPressed: () => cameraController.toggleTorch()
-          )
-        ]
-      ),
+      appBar: AppBar(actions: [toggleTorch()]),
       body: BlocListener<ScannerCubit, ScannerState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
+          if (state.status.isSuccess) {
+            context.flow<AppStatus>().update((state) => AppStatus.scannerTransaction);
+          }
           if (state.status.isFailure) {
             ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text(state.message)));
           }
-          if (state.status.isSuccess) {
-            context.flow<AppStatus>().update((state) => AppStatus.scannerTransaction);
-          }
         },
         child: Stack(
           children: [
             MobileScanner(
-              controller: cameraController,
-              placeholderBuilder: (ctx, widget) {
-                return Container(color: Colors.black);
-              },
-              errorBuilder: (ctx, exception, widget) {
-                return Container(
-                  color: Colors.black,
-                  child: Center(
-                    child: SizedBox(
-                      height: scanArea - 10,
-                      width: scanArea - 10,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text("Oops! Something went wrong. Please try again.",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.redAccent[700],
-                              )
-                            )
-                          )
-                        ]
-                      )
-                    )
-                  )
-                );
-              },
+              controller: _controller,
+              placeholderBuilder: (_, __) => Container(color: Colors.black),
+              errorBuilder: (_, __, ___) => ScannerErrorText(area: area),
               scanWindow: rect,
               onDetect: (capture) {
                 final List<Barcode> barcodes = capture.barcodes;
@@ -112,35 +60,40 @@ class ScannerViewState extends State<ScannerView> {
                     borderRadius: 10,
                     borderLength: 20,
                     borderWidth: 8,
-                    cutOutSize: scanArea,
-                  ),
-                ),
-              ),
+                    cutOutSize: area
+                  )
+                )
+              )
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 50.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Scan QR Code", 
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900
-                    )
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+            const ScannerText()
+          ]
+        )
+      )
+    );
+  }
+
+  Widget toggleTorch() {
+    return  IconButton(
+      color: Colors.white,
+      iconSize: 32.0,
+      icon: ValueListenableBuilder(
+        valueListenable: _controller.torchState,
+        builder: (_, torch, __) {
+          switch (torch) {
+            case TorchState.off:
+              return const Icon(FontAwesomeIcons.boltLightning, color:Colors.grey);
+            case TorchState.on:
+              return const Icon(FontAwesomeIcons.boltLightning, color:Colors.yellow);
+          }
+        }
       ),
+      onPressed: () => _controller.toggleTorch()
     );
   }
 
   @override
   void dispose() {
-    cameraController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 }

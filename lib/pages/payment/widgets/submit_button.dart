@@ -12,9 +12,9 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PaymentBloc, PaymentState>(
-      buildWhen: (previous, current) => previous.status != current.status || current.isValid,
+      buildWhen: (previous, current) => previous.formStatus != current.formStatus || current.isValid,
       builder: (context, state) {
-        return state.status.isInProgress
+        return state.formStatus.isInProgress
         ? const CircularProgressIndicator()
         : ClipRect(
           child: Material(
