@@ -11,16 +11,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
     required FirebaseAuthRepository firebaseAuthService
   })  : _firebaseAuthService = firebaseAuthService,
-        super(const LoginState()) {
-
+  super(const LoginState()) {
     on<LoginEmailChanged>((event, emit) {
       emit(state.copyWith(email: Email.dirty(event.email)));
     });
-
     on<LoginPasswordChanged>((event, emit) {
       emit(state.copyWith(password: Password.dirty(event.password)));
     });
-
     on<LoggedInWithCredentials>((event, emit) async {
       if (state.isValid) {
         emit(state.copyWith(status: FormzSubmissionStatus.inProgress));

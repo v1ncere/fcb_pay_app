@@ -49,7 +49,7 @@ class TransactionHistoryList extends StatelessWidget {
                         height: 60,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(state.transactions[index].transactionDetails)
+                          child: Text(state.transactions[index].details)
                         )
                       )
                     );

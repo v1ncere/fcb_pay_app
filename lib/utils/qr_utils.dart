@@ -7,7 +7,6 @@ String crc16CCITT(String data) {
   Uint8List bytes = Uint8List.fromList(utf8.encode(data)); // data converted into list of 8-bit unsigned integers
   int crc = 0xFFFF; // initial value
   int polynomial = 0x1021; // 0001 0000 0010 0001 (0, 5, 12)
-
   for (var b in bytes) {
     for (int i = 0; i < 8; i++) {
       bool bit = ((b >> (7-i) & 1) == 1);
@@ -16,7 +15,6 @@ String crc16CCITT(String data) {
       if (c15 ^ bit) crc ^= polynomial;
     }
   }
-  
   return (crc &= 0xffff).toRadixString(16).toUpperCase();
 }
 
@@ -36,24 +34,24 @@ List<QRModel> qrDataParser(String qr) {
         String iLength = data.substring(i + 2, i + 4);
         String iData = data.substring(i + 4, i + 4 + int.parse(iLength));
         
+        // add data with the sub id to List<QRModel>
         list.add(QRModel(
           id: 'subs$id$iId',
           data: iData,
           title: qrDataTitleWidget('subs$id$iId', 'title'),
           widget: qrDataTitleWidget('subs$id$iId', 'widget'),
         ));
-
         i = i + 4 + (int.parse(iLength));
       }
     } else {
+      // add data with the main id to List<QRModel>
       list.add(QRModel(
         id: 'main$id',
         data: data,
-        title: qrDataTitleWidget('main$id', 'title'),
+        title: qrDataTitleWidget('main$id$data', 'title'),
         widget: qrDataTitleWidget('main$id', 'widget'),
       ));
     }
-
     x = x + 4 + (int.parse(length));
   }
   return list;
@@ -90,16 +88,28 @@ List<QRModel> qrDataParser(String qr) {
 // }
 
 String qrDataTitleWidget(String data, String req) {
-  String ids = data.trim().substring(0, 4);
-  
+  // if 'title' 'widget'
+  final ids = data.trim().substring(0, 4);
   if(ids.contains('main')) {
-    int id = int.parse(data.trim().substring(4, 6));
-
+    final id = int.parse(data.trim().substring(4, 6));
     switch(id) {
       case 00:
         return req == 'title' ? 'Version' : 'text'; // Payload Format Indicator
-      case 01:
-        return req == 'title' ? 'Static QR Code' : 'text'; // Point of Initiation Method
+      case 01: // Point of Initiation Method
+        if(req == 'title') {
+          final res = int.parse(data.trim().substring(6, 8));
+          if (res == 11) {
+            return 'Static QR Code';
+          } else if (res == 12) {
+            return 'Dynamic Qr Code';
+          } else {
+            return '';
+          }
+        } else if (req == 'widget') {
+          return req = 'text'; 
+        } else {
+          return '';
+        }
       case >= 02 && <= 51:
         return req == 'title' ? 'Merchant Account Information' : 'text';
       case 52:
@@ -138,11 +148,9 @@ String qrDataTitleWidget(String data, String req) {
         return '';
     }
   } else if (ids.contains('subs')) {
-    String idInString = data.trim().substring(4, 8);
-    int id = int.parse(idInString);
-    int subId = int.parse(idInString.substring(2, 4));
-    
-    switch (id) {
+    final idInString = data.trim().substring(4, 8);
+    final subId = int.parse(idInString.substring(2, 4));
+    switch (int.parse(idInString)) {
       case (>= 0200 && <= 5199) &&
         != 2800 && != 2801 &&
         != 2803 && != 2804 &&
@@ -173,7 +181,7 @@ String qrDataTitleWidget(String data, String req) {
       case 6204:
         return req == 'title' ? 'Loyalty Number' : 'text';
       case 6205:
-        return req == 'title' ? 'QR Code' : 'text'; // Reference Label
+        return req == 'title' ? 'Reference Label' : 'text'; // 
       case 6206:
         return req == 'title' ? 'Customer Label' : 'text';
       case 6207:
@@ -215,55 +223,84 @@ String qrDataTitleWidget(String data, String req) {
   }
 }
 
-List<String> qrProxyNotifyFlags(String data) {
-  List<String> list = [];
-  switch(data.trim().substring(0, 1)) {
-    case '0':
-      list.add('Actual Account Number');
-      break;
-    case '1':
-      list.add('Mobile Number');
-      break;
-    case '2':
-      list.add('Token ID');
-      break;
-    case '3':
-      list.add('Alias Name/Nickname in Merchant Credit Account or the Merchant ID');
-      break;
-    case '4':
-      list.add('Masked Account Detail');
-      break;
-    case '5':
-      list.add('National ID');
-      break;
-    case 'Z':
-      list.add('Others');
-      break;
-    default:
-      return list;
+// List<String> qrProxyNotifyFlags(String data) {
+//   List<String> list = [];
+//   switch(data.trim().substring(0, 1)) {
+//     case '0':
+//       list.add('Actual Account Number');
+//       break;
+//     case '1':
+//       list.add('Mobile Number');
+//       break;
+//     case '2':
+//       list.add('Token ID');
+//       break;
+//     case '3':
+//       list.add('Alias Name/Nickname in Merchant Credit Account or the Merchant ID');
+//       break;
+//     case '4':
+//       list.add('Masked Account Detail');
+//       break;
+//     case '5':
+//       list.add('National ID');
+//       break;
+//     case 'Z':
+//       list.add('Others');
+//       break;
+//     default:
+//       return list;
+//   }
+//   switch(data.trim().substring(1, 2)) {
+//     case '0':
+//       list.add('No notification needed');
+//       break;
+//     case '1':
+//       list.add('Notification required');
+//       break;
+//     default:
+//       return list;
+//   }
+//     switch(data.trim().substring(2, 3)) {
+//     case '0':
+//       list.add('Amount not editable; Amount not present in QR');
+//       break;
+//     case '1':
+//       list.add('Amount editable, any amount');
+//       break;
+//     case '2':
+//       list.add('Amount editable, amount not more than xxx limit');
+//       break;
+//     default:
+//       return list;
+//   }
+//   return list;
+// }
+
+class QRCodeFailure implements Exception {
+  const QRCodeFailure([
+    this.message = 'An unknown exception occurred.'
+  ]);
+  factory QRCodeFailure.fromCode(String code) {
+    switch (code) {
+      case 'invalid-mai':
+        return const QRCodeFailure(
+          'The P2M template ID “28” must never be used together with the P2P ID “27” in one QR code.'
+        );
+      case 'no-merchant-id':
+        return const QRCodeFailure(
+          'Merchant ID and Merchant Credit Account is empty. Authentication failed.'
+        );
+      case 'crc-not-match':
+        return const QRCodeFailure(
+          'Invalid QR code. Please ensure that the QR code is not damaged and that it belongs to this service.'
+        );
+      case 'qr-empty':
+        return const QRCodeFailure(
+          'Empty QR code data. Please ensure that the QR code contains valid information and try again.'
+        );
+      default:
+        return const QRCodeFailure();
+    }
   }
-  switch(data.trim().substring(1, 2)) {
-    case '0':
-      list.add('No notification needed');
-      break;
-    case '1':
-      list.add('Notification required');
-      break;
-    default:
-      return list;
-  }
-    switch(data.trim().substring(2, 3)) {
-    case '0':
-      list.add('Amount not editable; Amount not present in QR');
-      break;
-    case '1':
-      list.add('Amount editable, any amount');
-      break;
-    case '2':
-      list.add('Amount editable, amount not more than xxx limit');
-      break;
-    default:
-      return list;
-  }
-  return list;
+  final String message;
 }

@@ -13,28 +13,24 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ScannerTransactionBloc,ScannerTransactionState>(
-      listenWhen: (previous, current) => previous.status != current.status,
+    return BlocConsumer<ScannerTransactionBloc, ScannerTransactionState>(
+      listenWhen: (previous, current) => previous.formStatus != current.formStatus,
       listener: (context, state) {
-        if(state.status.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.authenticated);
-          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
-            "Payment sent!",
-            FontAwesomeIcons.solidCircleCheck,
-            Colors.white,
-          ));
+        if(state.formStatus.isSuccess) {
+          context.flow<AppStatus>().update((next) => AppStatus.scannerTransactionReceipt);
+          ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(customSnackBar("Payment sent!", FontAwesomeIcons.solidCircleCheck,Colors.white));
         }
-        if(state.status.isFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
-            "Something went wrong!",
-            FontAwesomeIcons.triangleExclamation,
-            Colors.red,
-          ));
+        if(state.formStatus.isFailure) {
+          ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(customSnackBar(state.message, FontAwesomeIcons.triangleExclamation,Colors.red));
         }
       },
-      buildWhen: (previous, current) => previous.status != current.status || current.isValid,
+      buildWhen: (previous, current) => previous.formStatus != current.formStatus || current.isValid,
       builder: (context, state) {
-        return state.status.isInProgress
+        return state.formStatus.isInProgress
         ? const CircularProgressIndicator()
         : Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -46,9 +42,10 @@ class SubmitButton extends StatelessWidget {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
                   splashColor: Colors.white38,
+                  // onTap: () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted()),
                   onTap: state.isValid
-                    ? () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted())
-                    : null,
+                  ? () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted())
+                  : null,
                   child: const SizedBox(
                     height: 45,
                     width: 75,
@@ -65,7 +62,7 @@ class SubmitButton extends StatelessWidget {
                         Icon(
                           FontAwesomeIcons.coins, 
                           color: Colors.white,
-                          size: 20,
+                          size: 20
                         )
                       ]
                     )

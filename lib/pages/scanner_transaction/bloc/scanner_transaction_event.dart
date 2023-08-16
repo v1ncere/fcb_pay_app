@@ -7,8 +7,17 @@ abstract class ScannerTransactionEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class ScannerTransactionDisplayLoaded extends ScannerTransactionEvent {}
+
 class ScannerAccountValueChanged extends ScannerTransactionEvent {
-  const ScannerAccountValueChanged(this.amount);
+  const ScannerAccountValueChanged(this.account);
+  final String account;
+
+  @override
+  List<Object> get props => [account];
+}
+class ScannerAmountValueChanged extends ScannerTransactionEvent {
+  const ScannerAmountValueChanged(this.amount);
   final String amount;
 
   @override

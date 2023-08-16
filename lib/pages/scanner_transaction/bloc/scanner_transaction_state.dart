@@ -2,29 +2,50 @@ part of 'scanner_transaction_bloc.dart';
 
 class ScannerTransactionState extends Equatable with FormzMixin {
   const ScannerTransactionState({
-    this.amount = const Amount.pure(),
-    this.status = FormzSubmissionStatus.initial,
-    this.error = ''
+    this.qrDataList = const <QRModel>[],
+    this.accountDropdown = const AccountDropdown.pure(),
+    this.inputAmount = const Amount.pure(),
+    this.status = Status.initial,
+    this.formStatus = FormzSubmissionStatus.initial,
+    this.message = ''
   });
-  final Amount amount;
-  final FormzSubmissionStatus status;
-  final String error;
+  final List<QRModel> qrDataList;
+  final AccountDropdown accountDropdown;
+  final Amount inputAmount;
+  final Status status;
+  final FormzSubmissionStatus formStatus;
+  final String message;
 
   ScannerTransactionState copyWith({
-    Amount? amount,
-    FormzSubmissionStatus? status,
-    String? error
-  })  {
+    List<QRModel>? qrDataList,
+    AccountDropdown? accountDropdown,
+    Amount? inputAmount,
+    Status? status,
+    FormzSubmissionStatus? formStatus,
+    String? message
+  }) {
     return ScannerTransactionState(
-      amount: amount ?? this.amount,
+      qrDataList: qrDataList ?? this.qrDataList,
+      accountDropdown: accountDropdown ?? this.accountDropdown,
+      inputAmount: inputAmount ?? this.inputAmount,
       status: status ?? this.status,
-      error: error ?? this.error
+      formStatus: formStatus ?? this.formStatus,
+      message: message ?? this.message
     );
   }
   
   @override
-  List<Object> get props => [amount, status, error, isValid, isPure];
+  List<Object> get props => [
+    qrDataList,
+    accountDropdown,
+    inputAmount,
+    status,
+    formStatus,
+    message,
+    isValid,
+    isPure
+  ];
   
   @override
-  List<FormzInput> get inputs => [amount];
+  List<FormzInput> get inputs => [accountDropdown, inputAmount];
 }

@@ -26,7 +26,7 @@ class FundTransferAccount {
   factory FundTransferAccount.fromSnapshot(DataSnapshot dataSnapshot) {
     final data = dataSnapshot.value as Map?;
     final intTimeStamp = data?["time_stamp"] as int?;
-    final timeStamp = intTimeStamp != null && intTimeStamp.abs() <= 8640000000000000
+    final timeStamp = intTimeStamp != null && intTimeStamp.abs() <= 9999999999999
       ? DateTime.fromMillisecondsSinceEpoch(intTimeStamp)
       : null;
 

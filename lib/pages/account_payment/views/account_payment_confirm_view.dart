@@ -18,7 +18,7 @@ class AccountPaymentConfirmView extends StatelessWidget {
       listenWhen: (previous, current) => previous.formStatus != current.formStatus,
       listener: (context, state) {
         if(state.formStatus.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.account);
+          context.flow<AppStatus>().update((next) => AppStatus.accountPaymentReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar(
@@ -68,7 +68,7 @@ class AccountPaymentConfirmView extends StatelessWidget {
                         const StepperCancelButton()
                       ]
                     ),
-                    const SizedBox(height: 20) // for visible bottom
+                    const SizedBox(height: 30) // for visible bottom
                   ]
                 )
               )

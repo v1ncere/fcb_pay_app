@@ -10,7 +10,7 @@ abstract class TransactionHistoryEvent extends Equatable {
 class TransactionHistoryLoaded extends TransactionHistoryEvent {
   const TransactionHistoryLoaded({
     required this.account,
-    this.searchQuery = "",
+    this.searchQuery = '',
   });
   final String account;
   final String searchQuery;

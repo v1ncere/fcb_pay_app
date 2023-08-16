@@ -1,19 +1,17 @@
 part of 'institution_display_bloc.dart';
 
-enum InstitutionDisplayStatus { initial, loading, success, error }
-
 class InstitutionDisplayState extends Equatable {
   const InstitutionDisplayState({
-    this.status = InstitutionDisplayStatus.initial,
+    this.status = Status.initial,
     this.institution = const <Institution>[],
     this.error = "",
   });
-  final InstitutionDisplayStatus status;
+  final Status status;
   final List<Institution> institution;
   final String error;
 
   InstitutionDisplayState copyWith({
-    InstitutionDisplayStatus? status,
+    Status? status,
     List<Institution>? institution,
     String? error,
   }) {
@@ -27,10 +25,3 @@ class InstitutionDisplayState extends Equatable {
   @override
   List<Object> get props => [institution, status, error];
 }
-
-extension InstitutionDisplayStatusX on InstitutionDisplayStatus {
-  bool get isInitial => this == InstitutionDisplayStatus.initial;
-  bool get isLoading =>  this == InstitutionDisplayStatus.loading;
-  bool get isSuccess => this == InstitutionDisplayStatus.success;
-  bool get isFailure => this == InstitutionDisplayStatus.error;
-} 

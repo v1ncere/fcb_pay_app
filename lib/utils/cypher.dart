@@ -23,7 +23,7 @@ final List<String> letters = [
   'F', 'h', 'L', 'i', 'x', 'Q', 'r', '&', 'G', 'M', 'b', 'O', 'u', '|', 'z', 'T', 'e', '8', 'V', 'p', 'W', 'j', 'Y',
 ];
 
-/// CUSTOM ENCRYPTION
+/// ENCRYPT
 String encryption(String data) {
   final List<String> date = ('${dayOfYear() + 2557}').split('');
   final List<String> splitData = data.split('');
@@ -32,13 +32,9 @@ String encryption(String data) {
   int counter = 0;
 
   for (var element in splitData) {
-    counter = (counter < date.length)
-      ? counter 
-      : 0;
+    counter = (counter < date.length) ? counter : 0;
     index = letters.indexWhere((index) => index.contains(element)) + int.parse(date[counter]);
-    index = (letters.asMap().containsKey(index))
-      ? index
-      : (letters.length - index).abs();
+    index = (letters.asMap().containsKey(index)) ? index  : (letters.length - index).abs();
     encryptedData += letters[index];
     counter++;
   }
@@ -55,13 +51,9 @@ String decryption(String data) {
   int counter = 0;
 
   for (var element in splitData) {
-    counter = (counter < date.length)
-      ? counter
-      : 0;
+    counter = (counter < date.length) ? counter  : 0;
     index = letters.length + letters.indexWhere((index) => index.contains(element)) - int.parse(date[counter]);
-    index = (letters.asMap().containsKey(index))
-      ? index
-      : (letters.length - index).abs();
+    index = (letters.asMap().containsKey(index)) ? index : (letters.length - index).abs();
     decryptedData += letters[index];
     counter++;
   }

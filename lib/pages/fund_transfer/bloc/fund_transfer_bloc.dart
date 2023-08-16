@@ -4,6 +4,7 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
+import 'package:hive_repository/hive_repository.dart';
 
 part 'fund_transfer_event.dart';
 part 'fund_transfer_state.dart';
@@ -11,7 +12,8 @@ part 'fund_transfer_state.dart';
 class FundTransferBloc extends Bloc<FundTransferEvent, FundTransferState> {
   FundTransferBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+    required HiveRepository hiveRepository
+  })  : _realtimeDBRepository = firebaseRealtimeDBRepository, _hiveRepository = hiveRepository,
   super(const FundTransferState()) {
     on<AmountChanged>(_onAmountChanged);
     on<SourceAccountChanged>(_onSourceAccountChanged);
@@ -20,6 +22,7 @@ class FundTransferBloc extends Bloc<FundTransferEvent, FundTransferState> {
     on<FundTransferSubmitted>(_onFundTransferSubmitted);
   }
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final HiveRepository _hiveRepository;
 
   void _onAmountChanged(AmountChanged event, Emitter<FundTransferState> emit){
     final amount = Amount.dirty(event.amount);
@@ -43,18 +46,20 @@ class FundTransferBloc extends Bloc<FundTransferEvent, FundTransferState> {
 
   Future<void> _onFundTransferSubmitted(FundTransferSubmitted event, Emitter<FundTransferState> emit) async{
     final account = event.account.isNotEmpty ? event.account : state.sourceDropdown.value;
-    final message = state.message.value != "" ? "|${state.message.value}" : "";
+    final message = state.message.value != '' ? '|${state.message.value}' : '';
 
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        await _realtimeDBRepository.addUserAccount(
+        final id = await _realtimeDBRepository.addUserRequest(
           UserRequest(
-            dataRequest: "fund_transfer|$account|${state.recipientDropdown.value}|${state.amount.value}$message",
+            dataRequest: 'fund_transfer|$account|${state.recipientDropdown.value}|${state.amount.value}$message',
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             timeStamp: DateTime.now()
           )
         );
+
+        _hiveRepository.addID(id!); // add [id] to hive (local DB) for getting receipt
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } catch (e) {
         throw Exception(e.toString);

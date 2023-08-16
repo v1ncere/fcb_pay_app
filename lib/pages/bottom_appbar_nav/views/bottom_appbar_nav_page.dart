@@ -7,7 +7,6 @@ import 'package:fcb_pay_app/pages/home/home.dart';
 
 class BottomAppbarNavPage extends StatelessWidget {
   const BottomAppbarNavPage({super.key});
-
   static Page<void> page() => const MaterialPage<void>(child: BottomAppbarNavPage());
 
   @override

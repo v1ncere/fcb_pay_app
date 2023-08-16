@@ -1,58 +1,57 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class TransactionHistory {
-  String? keyId;
-  final String accountId;
-  final DateTime timeStamp;
-  final String transactionDetails;
-  final String transactionType;
-
   TransactionHistory({
     this.keyId,
-    required this.accountId,
+    required this.accountNumber,
+    required this.accountType,
+    required this.details,
     required this.timeStamp,
-    required this.transactionDetails,
-    required this.transactionType
   });
+  String? keyId;
+  final String accountNumber;
+  final String accountType;
+  final DateTime timeStamp;
+  final String details;
 
   TransactionHistory copyWith({
     String? keyId,
-    String? accountId,
-    DateTime? timeStamp,
-    String? transactionDetails,
-    String? transactionType
+    String? accountNumber,
+    String? accountType,
+    String? details,
+    DateTime? timeStamp
   }) {
     return TransactionHistory(
       keyId: keyId ?? this.keyId,
-      accountId: accountId ?? this.accountId,
-      timeStamp: timeStamp ?? this.timeStamp,
-      transactionDetails: transactionDetails ?? this.transactionDetails,
-      transactionType: transactionType ?? this.transactionType
+      accountNumber: accountNumber ?? this.accountNumber,
+      accountType: accountType ?? this.accountType,
+      details: details ?? this.details,
+      timeStamp: timeStamp ?? this.timeStamp
     );
   }
 
   factory TransactionHistory.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
     final intTimeStamp = data?['time_stamp'] as int?;
-    final timeStamp = intTimeStamp != null && intTimeStamp.abs() <= 8640000000000000
-      ? DateTime.fromMillisecondsSinceEpoch(intTimeStamp)
-      : null;
+    final timeStamp = intTimeStamp != null && intTimeStamp.abs() <= 9999999999999
+    ? DateTime.fromMillisecondsSinceEpoch(intTimeStamp)
+    : null;
     
     return TransactionHistory(
       keyId: snapshot.key,
-      accountId: data?['account_id'] as String? ?? '',
-      transactionDetails: data?['transaction_details'] as String? ?? '',
-      transactionType: data?['transaction_type'] as String? ?? '',
+      accountNumber: data?['account_number'] as String? ?? '',
+      accountType: data?['account_type'] as String? ?? '',
+      details: data?['details'] as String? ?? '',
       timeStamp: timeStamp ?? DateTime.now(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["account_id"] = accountId;
-    data["transaction_details"] = transactionDetails;
+    data["account_number"] = accountNumber;
+    data["account_type"] = accountType;
+    data["details"] = details;
     data["time_stamp"] = timeStamp;
-    data["transaction_type"] = transactionType;
     return data;
   }
 }

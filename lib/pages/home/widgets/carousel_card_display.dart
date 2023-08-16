@@ -5,13 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/home/widgets/widgets.dart';
 
-class CardHomeDisplay extends StatelessWidget {
-  const CardHomeDisplay({super.key});
+class CarouselCardDisplay extends StatelessWidget {
+  const CarouselCardDisplay({super.key});
   
   @override
   Widget build(BuildContext context) {
-    final current = context.select((SliderCubit cubit) => cubit.state.sliderIndex);
-
     return BlocBuilder<AccountDisplayBloc, AccountDisplayState>(
       builder: (context, state) {
         if (state is AccountDisplayInProgress) {
@@ -38,28 +36,33 @@ class CardHomeDisplay extends StatelessWidget {
                   onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index)
                 ),
                 items: state.accounts.map((data) {
-                  return CardItem(
+                  return CarouselCardItem(
                     data: data.displayData,
                     ownerId: data.ownerId,
                     keyId: data.keyId!
                   );
                 }).toList()
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: map<Widget>(state.accounts.toList(), (index, _) {
-                  return Container(
-                    width: 10.0,
-                    height: 10.0,
-                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: current == index
-                        ? Colors.greenAccent
-                        : Colors.black12
-                    )
+              BlocSelector<SliderCubit, SliderState, int>(
+                selector: (state) => state.sliderIndex,
+                builder: (_, currentIndex) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: map<Widget>(state.accounts.toList(), (index, _) {
+                      return Container(
+                        width: 10.0,
+                        height: 10.0,
+                        margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: currentIndex == index
+                          ? Colors.greenAccent[400]
+                          : Colors.black12
+                        )
+                      );
+                    })
                   );
-                })
+                }
               )
             ]
           );

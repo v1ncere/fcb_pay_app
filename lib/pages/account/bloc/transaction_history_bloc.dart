@@ -10,16 +10,17 @@ part 'transaction_history_state.dart';
 class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHistoryState> {
   TransactionHistoryBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _firebaseRealtimeDBRepository = firebaseRealtimeDBRepository,
+  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
   super(TransactionHistoryLoadInProgress()) {
     on<TransactionHistoryLoaded>(_onTransactionHistoryLoaded);
     on<TransactionHistoryUpdated>(_onTransactionHistoryUpdated);
   }
-  final FirebaseRealtimeDBRepository _firebaseRealtimeDBRepository;
-  StreamSubscription<List<TransactionHistory>>? streamSubscription;
+  final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  StreamSubscription<List<TransactionHistory>>? _streamSubscription;
 
   void _onTransactionHistoryLoaded(TransactionHistoryLoaded event,  Emitter<TransactionHistoryState> emit) async {
-    streamSubscription = _firebaseRealtimeDBRepository.getTransactionListRealTime(event.account, event.searchQuery)
+    _streamSubscription?.cancel;
+    _streamSubscription = _realtimeDBRepository.getTransactionHistoryListStream(event.account, event.searchQuery)
     .listen((event) async {
       add(TransactionHistoryUpdated(event));
     });
@@ -35,7 +36,7 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
 
   @override
   Future<void> close() {
-    streamSubscription?.cancel;
+    _streamSubscription?.cancel;
     return super.close();
   }
 }

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 import 'package:fcb_pay_app/pages/payment/payment.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class InstitutionDropdown extends StatelessWidget {
   const InstitutionDropdown({super.key});
@@ -49,7 +50,7 @@ class InstitutionDropdown extends StatelessWidget {
                   validator: (_) => paymentState.institutionDropdown.displayError?.text(),
                   onChanged: (value) => context.read<PaymentBloc>().add(InstitutionValueChanged(value!)),
                   items: state.institution.map((item) {
-                    return DropdownMenuItem<String> (
+                    return DropdownMenuItem<String>(
                       value: item.name,
                       child: Text(item.name),
                       onTap: () => context.read<PaymentBloc>().add(UserWidgetFetched(item.keyId!))
@@ -60,7 +61,7 @@ class InstitutionDropdown extends StatelessWidget {
             }
           );
         }
-        if(state.status.isFailure) {
+        if(state.status.isError) {
           return Center(child: Text(state.error));
         }
         else {

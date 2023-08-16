@@ -49,12 +49,12 @@ class AccountDropdown extends StatelessWidget {
                   items: state.accounts.map((item) {
                     return DropdownMenuItem<String> (
                       value: item.keyId.toString(),
-                      child: Text("${item.keyId}"),
+                      child: Text("${item.keyId}")
                     );
-                  }).toList(),
-                ),
+                  }).toList()
+                )
               );
-            },
+            }
           );
         }
         if (state is AccountDisplayError) {

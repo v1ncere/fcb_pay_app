@@ -12,11 +12,10 @@ class AccountDisplayBloc extends Bloc<AccountDisplayEvent, AccountDisplayState> 
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
   }) : _dbRepository = firebaseRealtimeDBRepository,
   super(AccountDisplayInProgress()) {
-
     // fetching stream data from firebase
     on<AccountDisplayLoaded>((event, emit) {
-      _streamSubscription = _dbRepository
-      .getAccountsListRealTime()
+      _streamSubscription?.cancel;
+      _streamSubscription = _dbRepository.getAccountListStream()
       .listen((event) async {
         add(AccountDisplayUpdated(event));
       });
@@ -32,11 +31,11 @@ class AccountDisplayBloc extends Bloc<AccountDisplayEvent, AccountDisplayState> 
     });
   }
   final FirebaseRealtimeDBRepository _dbRepository;
-  late final StreamSubscription<List<Accounts>> _streamSubscription;
+  StreamSubscription<List<Accounts>>? _streamSubscription;
 
   @override
   Future<void> close() {
-    _streamSubscription.cancel;
+    _streamSubscription?.cancel;
     return super.close();
   }
 }

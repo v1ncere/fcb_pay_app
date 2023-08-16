@@ -34,9 +34,9 @@ class Institution {
   factory Institution.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
     final intTimestamp = data?['time_stamp'] as int?;
-    final timestamp = intTimestamp != null && intTimestamp.abs() <= 8640000000000000
-      ? DateTime.fromMillisecondsSinceEpoch(intTimestamp)
-      : null;
+    final timestamp = intTimestamp != null && intTimestamp.abs() <= 9999999999999
+    ? DateTime.fromMillisecondsSinceEpoch(intTimestamp)
+    : null;
 
     return Institution(
       keyId: snapshot.key,

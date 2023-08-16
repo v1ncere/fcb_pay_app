@@ -6,8 +6,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:fcb_pay_app/app/bloc/app_bloc.dart';
 import 'package:fcb_pay_app/pages/home/widgets/widgets.dart';
 
-class CardItem extends StatelessWidget {
-  const CardItem({
+class CarouselCardItem extends StatelessWidget {
+  const CarouselCardItem({
     super.key,
     required this.data,
     required this.ownerId,

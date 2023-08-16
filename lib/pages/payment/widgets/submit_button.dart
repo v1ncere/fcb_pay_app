@@ -6,8 +6,8 @@ import 'package:formz/formz.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({super.key, required this.account});
-  final String account;
+  const SubmitButton({super.key, this.account});
+  final String? account;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SubmitButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               splashColor: Colors.white38,
               onTap: state.isValid
-              ? () => context.read<PaymentBloc>().add(PaymentSubmitted(account))
+              ? () => context.read<PaymentBloc>().add(PaymentSubmitted(account ?? ''))
               : null,
               child: const SizedBox(
                 height: 45,

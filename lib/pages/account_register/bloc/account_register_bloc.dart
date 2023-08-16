@@ -34,7 +34,7 @@ class AccountRegisterBloc extends Bloc<AccountRegisterEvent, AccountRegisterStat
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
         final String req = "add_account|${state.accountNumber.value}|${state.name.value}";
-        await _firebaseDatabaseService.addUserAccount(
+        await _firebaseDatabaseService.addUserRequest(
           UserRequest(
             dataRequest: req,
             ownerId: FirebaseAuth.instance.currentUser!.uid,

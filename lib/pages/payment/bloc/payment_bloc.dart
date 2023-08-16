@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
+import 'package:hive_repository/hive_repository.dart';
 
 part 'payment_event.dart';
 part 'payment_state.dart';
@@ -11,7 +13,9 @@ part 'payment_state.dart';
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   PaymentBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
+    required HiveRepository hiveRepository
   }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+  _hiveRepository = hiveRepository,
   super(const PaymentState()) {
     on<InstitutionValueChanged>(_onInstitutionSelectionChanged);
     on<AccountValueChanged>(_onAccountSelectionChanged);
@@ -22,19 +26,20 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     on<PaymentSubmitted>(_onPaymentSubmitted);
   }
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final HiveRepository _hiveRepository;
 
   void _onUserWidgetFetched(UserWidgetFetched event, Emitter<PaymentState> emit) async {
-    emit(state.copyWith(status: PaymentStateStatus.loading));
+    emit(state.copyWith(status: Status.loading));
     try {
       List<UserWidget> widgets = await _realtimeDBRepository.getUserWidgetList(event.select);
       emit(state.copyWith(
         widgetList: widgets,
-        status: PaymentStateStatus.success
+        status: Status.success
       ));
     } catch (e) {
       emit(state.copyWith(
         message: e.toString(),
-        status: PaymentStateStatus.error
+        status: Status.error
       ));
     }
   }
@@ -77,30 +82,34 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 
   Future<void> _onPaymentSubmitted(PaymentSubmitted event, Emitter<PaymentState> emit) async {
     String result = getFormSubmissionData().entries
-      .map((entries) => '${entries.key}:${entries.value}')
-      .join(",");
+    .map((entries) => '${entries.key}:${entries.value}')
+    .join(',');
     
-    final fields = containsTextField() ? "|$result": "";
-
-    final account = event.account.isEmpty ? state.accountDropdown.value?.replaceAll(' ', '') : event.account.replaceAll(' ', '');
+    final fields = containsTextField() ? '|$result': '';
+    final account = event.account.isEmpty
+    ? state.accountDropdown.value?.replaceAll(' ', '')
+    : event.account.replaceAll(' ', '');
 
     if (state.isValid) {
       if (!containsTextField() || (containsTextField() && hasUserInputInTextFields())) {
-        emit(state.copyWith(formStatus: FormzSubmissionStatus.inProgress));
+        emit(state.copyWith(formStatus: FormzSubmissionStatus.inProgress)); // emit loading
+
         try {
-          await _realtimeDBRepository.addUserAccount(
+          final id = await _realtimeDBRepository.addUserRequest(
             UserRequest(
               dataRequest: "bills_payment|$account|${state.institutionDropdown.value}|${state.amount.value}$fields",
               ownerId: FirebaseAuth.instance.currentUser!.uid,
               timeStamp: DateTime.now()
             )
           );
+
+          _hiveRepository.addID(id!);
           emit(state.copyWith(formStatus: FormzSubmissionStatus.success));
         } catch (e) {
           emit(state.copyWith(
             message: e.toString(),
             formStatus: FormzSubmissionStatus.failure
-          ));  
+          ));
         }
       } else {
         emit(state.copyWith(

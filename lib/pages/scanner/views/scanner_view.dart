@@ -7,6 +7,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 import 'package:fcb_pay_app/pages/scanner/widgets/widgets.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class ScannerView extends StatefulWidget {
   const ScannerView({super.key});
@@ -32,7 +33,7 @@ class ScannerViewState extends State<ScannerView> {
           if (state.status.isSuccess) {
             context.flow<AppStatus>().update((state) => AppStatus.scannerTransaction);
           }
-          if (state.status.isFailure) {
+          if (state.status.isError) {
             ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text(state.message)));
@@ -81,9 +82,17 @@ class ScannerViewState extends State<ScannerView> {
         builder: (_, torch, __) {
           switch (torch) {
             case TorchState.off:
-              return const Icon(FontAwesomeIcons.boltLightning, color:Colors.grey);
+              return const Icon(
+                FontAwesomeIcons.bolt,
+                size: 18,
+                color:Colors.grey
+              );
             case TorchState.on:
-              return const Icon(FontAwesomeIcons.boltLightning, color:Colors.yellow);
+              return const Icon(
+                FontAwesomeIcons.bolt,
+                size: 18, 
+                color:Colors.yellow
+              );
           }
         }
       ),

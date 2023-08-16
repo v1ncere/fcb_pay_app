@@ -5,16 +5,16 @@ class FundTransferState extends Equatable with FormzMixin {
     this.amount = const Amount.pure(),
     this.sourceDropdown = const AccountDropdown.pure(),
     this.recipientDropdown = const AccountDropdown.pure(),
+    this.status = FormzSubmissionStatus.initial,
     this.message = const Message.pure(),
-    this.error = "",
-    this.status = FormzSubmissionStatus.initial
+    this.error = ''
   });
   final Amount amount;
   final AccountDropdown sourceDropdown;
   final AccountDropdown recipientDropdown;
+  final FormzSubmissionStatus status;
   final Message message;
   final String error;
-  final FormzSubmissionStatus status;
 
   FundTransferState copyWith({
     Amount? amount,

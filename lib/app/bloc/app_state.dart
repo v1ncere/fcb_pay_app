@@ -13,13 +13,20 @@ enum AppStatus {
   scanner,
   scannerTransaction,
   addAccount,
+  paymentReceipt,
+  fundTransferReceipt,
+  accountPaymentReceipt,
+  accountFundTransferReceipt,
+  scannerTransactionReceipt,
+  notifications,
+  notificationViewer,
 }
 
 class AppState extends Equatable {
   const AppState._({
     required this.status,
     this.user = User.empty,
-    this.args = "",
+    this.args = ''
   });
   final AppStatus status;
   final User user;
@@ -29,9 +36,9 @@ class AppState extends Equatable {
   
   const AppState.unauthenticated() : this._(status: AppStatus.unauthenticated);
 
-  const AppState.splash() : this._(status: AppStatus.splash);
-
   const AppState.accounts(String args) : this._(status: AppStatus.account, args: args);
+
+  const AppState.notificationViewer(String args) : this._(status: AppStatus.notificationViewer, args: args);
 
   @override
   List<Object> get props => [status, user, args];

@@ -15,7 +15,8 @@ class Header extends StatelessWidget {
       child: ClipRect(
         clipBehavior: Clip.antiAlias,
         child: Material(
-          color: const Color.fromRGBO(0, 0, 0, 80),
+          // color: const Color.fromRGBO(0, 0, 0, 80),
+          color: const Color(0xFF02AE08),
           borderRadius: BorderRadius.circular(10.0),
           child: Padding(
             padding: const EdgeInsets.all( 8.0),
@@ -29,7 +30,8 @@ class Header extends StatelessWidget {
                       'FCBPay', 
                       style:TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w700
+                        fontWeight: FontWeight.w800,
+                        fontSize: 18
                       )
                     )
                   ]
@@ -52,7 +54,7 @@ class Header extends StatelessWidget {
                         size: 25,
                         color: Colors.white
                       ),
-                      onPressed: () {}
+                      onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.notifications)
                     ),
                     IconButton(
                       splashRadius: 25,

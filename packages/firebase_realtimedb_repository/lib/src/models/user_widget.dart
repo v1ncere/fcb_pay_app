@@ -9,7 +9,7 @@ class UserWidget {
     required this.widget
   });
   final String? keyId;
-  final String? content;
+  final String? content; // content can be nullable/empty
   final String dataType;
   final String title;
   final String widget;
@@ -35,19 +35,19 @@ class UserWidget {
 
     return UserWidget(
       keyId: snapshot.key,
-      content: data?["content"] as String? ?? "",
-      dataType: data?["data_type"] as String? ?? "",
-      title: data?["title"] as String? ?? "",
-      widget: data?["widget"] as String? ?? ""
+      content: data?['content'] as String? ?? '',
+      dataType: data?['data_type'] as String? ?? '',
+      title: data?['title'] as String? ?? '',
+      widget: data?['widget'] as String? ?? ''
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["content"] = content;
-    data["data_type"] = dataType;
-    data["title"] = title;
-    data["widget"] = widget;
+    data['content'] = content;
+    data['data_type'] = dataType;
+    data['title'] = title;
+    data['widget'] = widget;
     return data;
   }
 }

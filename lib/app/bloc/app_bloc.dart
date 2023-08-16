@@ -10,14 +10,13 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required FirebaseAuthRepository firebaseAuthRepository
-  })  : _firebaseAuthRepository = firebaseAuthRepository,
-        super(
-          firebaseAuthRepository.currentUser.isNotEmpty &&
-          firebaseAuthRepository.currentUser.isVerified == true
-          ? AppState.authenticated(firebaseAuthRepository.currentUser)
-          : const AppState.unauthenticated()
-        ) {
-
+  })  : _firebaseAuthRepository = firebaseAuthRepository, 
+  super(
+    firebaseAuthRepository.currentUser.isNotEmpty &&
+    firebaseAuthRepository.currentUser.isVerified == true
+    ? AppState.authenticated(firebaseAuthRepository.currentUser)
+    : const AppState.unauthenticated()
+  ) {
     on<AppUserChanged>((event, emit) {
       emit(
         event.user.isNotEmpty && event.user.isVerified == true
@@ -34,6 +33,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(AppState.accounts(event.args));
     });
 
+
+    on<NotificationIdPassed>((event, emit) {
+      emit(AppState.notificationViewer(event.args));
+    });
+    
     _streamSubscription = _firebaseAuthRepository
     .user
     .listen((user) => add(AppUserChanged(user)));

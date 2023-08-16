@@ -19,21 +19,13 @@ class FundTransferConfirmView extends StatelessWidget {
         if(state.status.isFailure) {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(
-            state.error,
-            FontAwesomeIcons.triangleExclamation,
-            Colors.red
-          ));
+          ..showSnackBar(customSnackBar(state.error, FontAwesomeIcons.triangleExclamation,Colors.red));
         }
         if(state.status.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.authenticated);
+          context.flow<AppStatus>().update((next) => AppStatus.fundTransferReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(
-            "Fund Transfer Request Sent!",
-            FontAwesomeIcons.solidCircleCheck,
-            Colors.white
-          ));
+          ..showSnackBar(customSnackBar("Fund Transfer Successful!", FontAwesomeIcons.solidCircleCheck,Colors.white));
         }
       },
       builder: (context, state) {
@@ -59,11 +51,11 @@ class FundTransferConfirmView extends StatelessWidget {
                       color: Colors.black54
                     ),
                     SizedBox(height: 20),
-                    SubmitButton(account: ''),
+                    SubmitButton(),
                     StepperCancelButton()
                   ]
                 ),
-                const SizedBox(height: 20) // for visible bottom
+                const SizedBox(height: 30) // padding for visible bottom
               ]
             )
           )

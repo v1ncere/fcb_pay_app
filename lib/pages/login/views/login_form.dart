@@ -23,7 +23,7 @@ class LoginForm extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(customSnackBar(
-                  state.message ?? 'Authentication Failure',
+                  state.message,
                   FontAwesomeIcons.triangleExclamation,
                   Colors.red,
                 ));

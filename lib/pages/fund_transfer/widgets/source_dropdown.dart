@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 
 class SourceDropdown extends StatelessWidget {
   const SourceDropdown({super.key});
@@ -52,7 +52,7 @@ class SourceDropdown extends StatelessWidget {
                   items: state.accounts.map((item) {
                     return DropdownMenuItem<String> (
                       value: item.keyId.toString(),
-                      child: Text("${item.keyId}")
+                      child: Text('${item.keyId}')
                     );
                   }).toList()
                 )

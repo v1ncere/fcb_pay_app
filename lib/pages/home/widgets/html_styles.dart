@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 Map<String, Style> style() => {
+  "html" : Style(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: FontSize.medium
+  ),
   "table": Style(
     backgroundColor: const Color.fromARGB(0x50, 0xee, 0xee, 0xee),
   ),

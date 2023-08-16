@@ -6,8 +6,8 @@ import 'package:formz/formz.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({super.key, required this.account});
-  final String account;
+  const SubmitButton({super.key, this.account});
+  final String? account;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SubmitButton extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
               splashColor: Colors.white38,
-              onTap: () => context.read<FundTransferBloc>().add(FundTransferSubmitted(account)),
+              onTap: () => context.read<FundTransferBloc>().add(FundTransferSubmitted(account ?? '')),
               child: const SizedBox(
                 height: 45,
                 child: Expanded(
@@ -37,7 +37,7 @@ class SubmitButton extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700
-                          ),
+                          )
                         ),
                         SizedBox(width: 5),
                         Icon(

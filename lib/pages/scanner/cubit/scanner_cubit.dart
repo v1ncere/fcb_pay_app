@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/utils/qr_utils.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 part 'scanner_state.dart';
 
@@ -10,19 +10,13 @@ class ScannerCubit extends Cubit<ScannerState> {
   final HiveRepository _hiveRepository;
   ScannerCubit({
     required HiveRepository hiveRepository
-  }): _hiveRepository = hiveRepository,
-  super(const ScannerState());
-
+  }): _hiveRepository = hiveRepository, super(const ScannerState());
 
   void saveQRCode(String data) async {
-    emit(state.copyWith(status: ScannerStateStatus.loading));
+    emit(state.copyWith(status: Status.loading));
     
     if(data.isEmpty) {
-      emit(state.copyWith(
-        message: 'Empty QR code data. Please ensure that the QR code contains valid information and try again.',
-        status: ScannerStateStatus.failure
-      ));
-      return;
+      throw QRCodeFailure.fromCode('qr-empty');
     }
 
     try {
@@ -31,15 +25,46 @@ class ScannerCubit extends Cubit<ScannerState> {
       String calcCrc = crc16CCITT(data.substring(0, len - 4));
 
       if(qrCrc == calcCrc) {
-        _hiveRepository.addQRData(qrDataParser(data));
-        emit(state.copyWith(status: ScannerStateStatus.success));
+        final qrObjectList = qrDataParser(data);
+        bool id27 = false;
+        bool id28= false;
+        bool id2803= false;
+        bool id2804 = false;
+
+        for (QRModel qr in qrObjectList) {
+          if (qr.id.substring(0, 6) == 'subs27') {
+            id27 = true;
+          }
+          if (qr.id.substring(0, 6) == 'subs28') {
+            id28 = true;
+          }
+          if (qr.id.contains('subs2803')) {
+            id2803 = true;
+          }
+          if (qr.id.contains('subs2804')) {
+            id2804 = true;
+          }
+        }
+
+        if (id27 && id28) {
+          throw QRCodeFailure.fromCode('invalid-mai');
+        } 
+        if (!id2803 && !id2804) {
+          throw QRCodeFailure.fromCode('no-merchant-id');
+        }
+
+        _hiveRepository.addQRData(qrObjectList);
+        emit(state.copyWith(status: Status.success));
       } else {
-        throw Exception('Invalid QR code. Please ensure that the QR code is not damaged and that it belongs to this service.');
+        throw QRCodeFailure.fromCode('crc-not-match');
       }
-    } catch (e) {
+    } on QRCodeFailure catch(e) {
+      emit(state.copyWith(status: Status.error, message: e.message));
+    } 
+    catch (e) {
       emit(state.copyWith(
-        status: ScannerStateStatus.failure,
-        message: e.toString().replaceAll('Exception: ', ''),
+        status: Status.error,
+        message: e.toString().replaceAll('Exception: ', '')
       ));
     }
   }

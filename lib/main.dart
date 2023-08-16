@@ -15,9 +15,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(QRModelAdapter());
-  await Hive.openBox('scannerBox');
 
   Bloc.observer = const AppBlocObserver();
-  
   runApp(App(firebaseAuthRepository: firebaseAuthRepository));
 }

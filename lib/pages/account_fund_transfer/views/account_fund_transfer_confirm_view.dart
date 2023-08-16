@@ -19,27 +19,19 @@ class AccountFundTransferConfirmView extends StatelessWidget {
         if(state.status.isFailure) {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(
-            state.error,
-            FontAwesomeIcons.triangleExclamation,
-            Colors.red
-          ));
+          ..showSnackBar(customSnackBar(state.error, FontAwesomeIcons.triangleExclamation,Colors.red));
         }
         if(state.status.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.authenticated);
+          context.flow<AppStatus>().update((next) => AppStatus.accountFundTransferReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(
-            "Fund Transfer Request Sent!",
-            FontAwesomeIcons.solidCircleCheck,
-            Colors.white
-          ));
+          ..showSnackBar(customSnackBar("Fund Transfer Successful!", FontAwesomeIcons.solidCircleCheck,Colors.white));
         }
       },
       builder: (context, state) {
         return BlocSelector<AppBloc, AppState, String>(
           selector: (state) => state.args,
-          builder: (_, args) {
+          builder: (_, account) {
             return SizedBox(
               height: MediaQuery.of(context).size.height / 1.3,
               child: SingleChildScrollView(
@@ -47,7 +39,7 @@ class AccountFundTransferConfirmView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ConfirmDisplayCard(
-                      source: args,
+                      source: account,
                       recipient: state.recipientDropdown.value ?? '',
                       amount: state.amount.value,
                       message: state.message.value
@@ -62,11 +54,11 @@ class AccountFundTransferConfirmView extends StatelessWidget {
                           color: Colors.black54
                         ),
                         const SizedBox(height: 20),
-                        SubmitButton(account: args),
+                        SubmitButton(account: account),
                         const StepperCancelButton()
                       ]
                     ),
-                    const SizedBox(height: 20) // for visible bottom
+                    const SizedBox(height: 30) // bottom padding visi
                   ]
                 )
               )

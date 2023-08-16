@@ -17,7 +17,7 @@ class PaymentConfirmView extends StatelessWidget {
     return BlocConsumer<PaymentBloc, PaymentState>(
       listener: (context, state) {
         if(state.formStatus.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.authenticated);
+          context.flow<AppStatus>().update((next) => AppStatus.paymentReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar(
@@ -60,11 +60,11 @@ class PaymentConfirmView extends StatelessWidget {
                       color: Colors.black54
                     ),
                     SizedBox(height: 20),
-                    SubmitButton(account: ''),
+                    SubmitButton(),
                     StepperCancelButton()
                   ]
                 ),
-                const SizedBox(height: 20) // for visible bottom
+                const SizedBox(height: 30) // for visible bottom
               ]
             )
           )

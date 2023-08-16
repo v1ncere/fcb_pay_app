@@ -23,4 +23,12 @@ class AccountArgumentPassed extends AppEvent {
   List<Object> get props => [args];
 }
 
+class NotificationIdPassed extends AppEvent {
+  const NotificationIdPassed(this.args);
+  final String args;
+
+  @override
+  List<Object> get props => [args];
+}
+
 class AppLogoutRequested extends AppEvent {}

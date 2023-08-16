@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'qr_model.g.dart';
@@ -35,4 +37,26 @@ class QRModel {
       widget: widget ?? this.widget
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'title': title,
+      'data': data,
+      'widget': widget,
+    };
+  }
+
+  factory QRModel.fromMap(Map<String, dynamic> map) {
+    return QRModel(
+      id: map['id'] as String,
+      title: map['title'] as String,
+      data: map['data'] as String,
+      widget: map['widget'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory QRModel.fromJson(String source) => QRModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
