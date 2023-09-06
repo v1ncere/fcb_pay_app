@@ -16,39 +16,52 @@ class CardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: const Size(75, 75),
-      child: ClipRect(
-        clipBehavior: Clip.antiAlias,
+    return Container(
+      height: 75,
+      width: 75,
+      decoration: BoxDecoration(
+        color: colors,
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2), // Shadow color
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: const Offset(0, 3)
+          )
+        ]
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
         child: Material(
-          color: colors,
-          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(20.0),
             splashColor: Colors.black12,
-            onTap: () =>  function(),
+            onTap: () => function(),
             child: Padding(
-              padding: const EdgeInsets.all( 8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   FaIcon(icon, color: Colors.white),
                   Flexible(
-                    child: Text(text, 
+                    child: Text(
+                      text,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w500,
-                        fontSize: 12.0
-                      )
-                    )
-                  )
-                ]
-              )
-            )
-          )
-        )
-      )
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -33,10 +33,9 @@ class AccountFundTransferPage extends StatelessWidget {
                   firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository(),
                   hiveRepository: HiveRepository()
                 )..add(SourceAccountChanged(args))
-              ),
-              BlocProvider(create: (context) => FundTransferStepperCubit(stepLength: 3))
+              )
             ],
-            child: const AccountFundTransferStepperView()
+            child: const AccountFundTransferView()
           )
         );
       }

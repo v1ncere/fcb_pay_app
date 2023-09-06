@@ -8,6 +8,7 @@ import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/register/register.dart';
 import 'package:fcb_pay_app/pages/register/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
+import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class RegisterMobileNumberView extends StatelessWidget {
   const RegisterMobileNumberView({super.key});

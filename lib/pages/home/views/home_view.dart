@@ -8,22 +8,22 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Header()
-            ),
-            ContainerBody(
-              children: [
-                SizedBox(height: 15),
-                CarouselCardDisplay()
-              ]
-            )
-          ]
-        )
+    return const Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Header()
+          ),
+          ContainerBody(
+            children: [
+              SizedBox(height: 15),
+              CarouselCardDisplay(),
+              SizedBox(height: 50),
+              CardButtonMenu()
+            ]
+          )
+        ]
       )
     );
   }

@@ -1,8 +1,8 @@
-import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class QrDataDisplay extends StatelessWidget {
   const QrDataDisplay({super.key});

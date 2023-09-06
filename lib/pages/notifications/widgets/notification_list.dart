@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/bloc/app_bloc.dart';
+import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/notifications/notifications.dart';
 import 'package:fcb_pay_app/pages/notifications/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/utils.dart';

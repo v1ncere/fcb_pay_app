@@ -26,7 +26,15 @@ class ScannerViewState extends State<ScannerView> {
     final rect = Rect.fromLTWH((screen.width - area)/ 2, (screen.height - area)/ 2, area, area);
 
     return Scaffold(
-      appBar: AppBar(actions: [toggleTorch()]),
+      appBar: AppBar(
+        title: const Text('QR SCANNER', 
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700
+          )
+        ),
+        actions: [toggleTorch()]
+      ),
       body: BlocListener<ScannerCubit, ScannerState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {

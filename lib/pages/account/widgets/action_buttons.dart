@@ -28,14 +28,14 @@ class ActionButtons extends StatelessWidget {
               children: [
                 _CircleButton(
                   icon: FontAwesomeIcons.wallet,
-                  color: Colors.green,
+                  color: Colors.greenAccent,
                   text: 'Fund Transfer',
                   function: () => context.flow<AppStatus>().update((state) => AppStatus.accountFundTransfer)
                 ),
                 const SizedBox(width: 20),
                 _CircleButton(
                   icon: FontAwesomeIcons.receipt,
-                  color: Colors.amber,
+                  color: Colors.yellow,
                   text: 'Pay Bills',
                   function: () => context.flow<AppStatus>().update((state) => AppStatus.accountPayment)
                 )
@@ -66,7 +66,8 @@ class _CircleButton extends StatelessWidget {
       children: [
         ClipOval(
           child: Material(
-            color: const Color.fromARGB(85, 76, 175, 79),
+            elevation: 4,
+            color: const Color(0xFF25C166),
             child: InkWell(
               splashColor: Colors.white60,
               onTap: function,

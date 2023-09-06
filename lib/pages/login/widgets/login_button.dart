@@ -14,10 +14,19 @@ class LoginButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status || current.isValid,
       builder: (context, state) {
         return state.status.isInProgress
-        ? const CircularProgressIndicator()
+        ? const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+              child: SizedBox(
+                height: 30,
+                width: 30,
+                child: CircularProgressIndicator(strokeWidth: 3)
+              )
+            )
+          )
         : ClipOval(
           child: Material(
-            color:const Color(0xFF009405),
+            color:const Color(0xFF25C166),
             child: InkWell(
               splashColor: Colors.white38,
               onTap: state.isValid

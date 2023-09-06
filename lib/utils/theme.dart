@@ -11,9 +11,11 @@ class FlutterTheme {
       appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: true,
+        titleTextStyle: const TextStyle(color: Color(0xFF25C166)),
         color: Theme.of(context).scaffoldBackgroundColor,
-        iconTheme: const IconThemeData(color: Colors.green)
+        iconTheme: const IconThemeData(color: Color(0xFF25C166))
       ),
+      scaffoldBackgroundColor: const Color(0xFFFAFAFA),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
         accentColor: Colors.greenAccent,
@@ -25,26 +27,26 @@ class FlutterTheme {
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         }),
         trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         })
       ),
       radioTheme: RadioThemeData(
         fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         })
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         })
       ),
@@ -52,7 +54,7 @@ class FlutterTheme {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith<Color?>((state) {
             if (state.contains(MaterialState.disabled)) return Colors.green[200]; // Disabled button color
-            return Colors.green; // Enabled button color
+            return const Color(0xFF25C166); // Enabled button color
           }),
           foregroundColor: MaterialStateProperty.resolveWith<Color?>((state) {
             if (state.contains(MaterialState.disabled)) return Colors.white54; // Disabled text color
@@ -64,7 +66,7 @@ class FlutterTheme {
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.resolveWith<Color?>((state) {
             if (state.contains(MaterialState.disabled)) return Colors.black54; // Disabled text color
-            return Colors.green; // Enabled text color
+            return const Color(0xFF25C166); // Enabled text color
           })
         )
       )
@@ -82,32 +84,32 @@ class FlutterTheme {
       ),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.dark,
-        accentColor: const Color(0xFF30DD5B),
+        accentColor: const Color(0xFF25C166),
       ),
       snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         }),
         trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { const Color(0xFF25C166); }
           return null;
         }),
       ), 
       radioTheme: RadioThemeData(
         fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         }),
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) { return null; }
-          if (states.contains(MaterialState.selected)) { return const Color(0xFF30DD5B); }
+          if (states.contains(MaterialState.selected)) { return const Color(0xFF25C166); }
           return null;
         }),
       ),

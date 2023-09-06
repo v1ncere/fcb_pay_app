@@ -14,7 +14,7 @@ class SignUpButton extends StatelessWidget {
       child: const Text(
         'CREATE ACCOUNT',
         style: TextStyle(
-          color: Color(0xFF009405)
+          color: Color(0xFF25C166)
         )
       )
     );

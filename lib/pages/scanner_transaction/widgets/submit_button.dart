@@ -6,7 +6,7 @@ import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({super.key});

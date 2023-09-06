@@ -21,7 +21,6 @@ class AccountPaymentPage extends StatelessWidget {
           create: (context) => FirebaseRealtimeDBRepository,
           child: MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => PaymentStepperCubit(stepLength: 3)),
               BlocProvider(create: (context) => PaymentBloc(
                 hiveRepository: HiveRepository(),
                 firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
@@ -31,7 +30,7 @@ class AccountPaymentPage extends StatelessWidget {
               BlocProvider(create: (context) => AccountDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
               )..add(AccountDisplayLoaded()))
             ],
-            child: const AccountPaymentStepperView()
+            child: const AccountPaymentView()
           )
         );
       }

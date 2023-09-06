@@ -4,6 +4,7 @@ export 'src/account_dropdown.dart';
 export 'src/account_number.dart';
 export 'src/amount.dart';
 export 'src/confirmed_password.dart';
+export 'src/dynamic_textfield.dart';
 export 'src/email.dart';
 export 'src/filter_dropdown.dart';
 export 'src/institution_dropdown.dart';

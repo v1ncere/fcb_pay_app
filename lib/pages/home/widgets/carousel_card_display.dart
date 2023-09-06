@@ -13,15 +13,7 @@ class CarouselCardDisplay extends StatelessWidget {
     return BlocBuilder<AccountDisplayBloc, AccountDisplayState>(
       builder: (context, state) {
         if (state is AccountDisplayInProgress) {
-          return const Padding(
-            padding: EdgeInsets.all(15.0),
-            child: SizedBox(
-              height: 250,
-              child: Center(
-                child: CircularProgressIndicator()
-              )
-            )
-          );
+          return const CarouselShimmer();
         }
         if (state is AccountDisplaySuccess) {
           return Column(
@@ -30,17 +22,30 @@ class CarouselCardDisplay extends StatelessWidget {
                 options: CarouselOptions(
                   initialPage: 0,
                   enlargeCenterPage: true,
-                  viewportFraction: 0.94,
-                  height: MediaQuery.of(context).size.height * .67,
                   enableInfiniteScroll: false,
                   onPageChanged: (index, _) => context.read<SliderCubit>().setSliderIndex(index)
                 ),
                 items: state.accounts.map((data) {
-                  return CarouselCardItem(
-                    data: data.displayData,
-                    ownerId: data.ownerId,
-                    keyId: data.keyId!
-                  );
+                  if(data.type == 'cc') {
+                    return CarouselCCCardItem(
+                      balance: data.balance,
+                      creditLimit: data.creditLimit ?? 0.0,
+                      expiry: data.expiry ?? DateTime.now(),
+                      type: data.type,
+                      ownerId: data.ownerId,
+                      keyId: data.keyId!
+                    );
+                  }
+                  if (data.type == 'sa') {
+                    return CarouselSACardItem(
+                      balance: data.balance,
+                      type: data.type,
+                      ownerId: data.ownerId,
+                      keyId: data.keyId!
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
                 }).toList()
               ),
               BlocSelector<SliderCubit, SliderState, int>(
@@ -57,7 +62,15 @@ class CarouselCardDisplay extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: currentIndex == index
                           ? Colors.greenAccent[400]
-                          : Colors.black12
+                          : Colors.black12,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2), // Shadow color
+                              spreadRadius: 0.5,
+                              blurRadius: 1.5,
+                              offset: const Offset(0, 3)
+                            )
+                          ]
                         )
                       );
                     })

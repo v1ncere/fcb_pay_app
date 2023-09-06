@@ -10,7 +10,7 @@ class SignInText extends StatelessWidget {
       style: TextStyle(
         fontSize: 30,
         fontWeight: FontWeight.w700,
-        color: Color(0xFF009405)
+        color: Color(0xFF25C166),
       )
     );
   }

@@ -19,7 +19,7 @@ class PasswordInput extends StatelessWidget {
           obscureText: true,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.black12,
+            fillColor: const Color.fromARGB(30, 37, 193, 102),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefixIcon: const Icon(FontAwesomeIcons.unlockKeyhole),
             labelText: 'Password',

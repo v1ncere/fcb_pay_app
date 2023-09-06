@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:fcb_pay_app/utils/utils.dart';
 
 part 'notifications_event.dart';
 part 'notifications_state.dart';

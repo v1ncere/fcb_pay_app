@@ -1,3 +1,11 @@
+// today in number of days
+int dayOfYear() {
+  final now = DateTime.now();
+  final todayInDays = now.difference(DateTime(now.year, 1, 1, 0, 0)).inDays + 1;
+  return todayInDays;
+}
+
+// convert DateTime into readable format [mmm dd, yyyy] and display if the date provided is today or yesterday
 String getDynamicDateString(DateTime date) {
   DateTime now = DateTime.now();
   bool isToday = date.year == now.year // check if provided date is equals [now]
@@ -45,6 +53,7 @@ String getDynamicDateString(DateTime date) {
   }
 }
 
+// convert DateTime into readable format [mmm dd, yyyy] only
 String getDateString(DateTime date) {
   switch(date.month) {
     case 1:

@@ -26,13 +26,14 @@ class MessageTextField extends StatelessWidget {
           ),
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.black12,
+            fillColor: const Color.fromARGB(30, 37, 193, 102),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none,
             ),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             labelText: 'Enter a message',
+            labelStyle: const TextStyle(color: Colors.black26),
             errorText: state.message.displayError?.text()
           )
         );

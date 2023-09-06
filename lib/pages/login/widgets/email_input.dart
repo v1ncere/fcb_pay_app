@@ -19,7 +19,7 @@ class EmailInput extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.black12,
+            fillColor: const Color.fromARGB(30, 37, 193, 102),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefixIcon: const Icon(FontAwesomeIcons.solidCircleUser),
             labelText: 'Email',

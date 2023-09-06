@@ -45,17 +45,17 @@ class AdditionalTextFieldValueChanged extends PaymentEvent {
   const AdditionalTextFieldValueChanged({
     required this.keyId,
     required this.fieldTitle,
-    required this.value
+    required this.value,
+    required this.type
   });
   final String keyId;
   final String fieldTitle;
   final String value;
+  final String type;
 
   @override
-  List<Object> get props => [keyId, fieldTitle, value];
+  List<Object> get props => [keyId, fieldTitle, value, type];
 }
-
-class AdditionalFieldDisplayed extends PaymentEvent {}
 
 /// ============================================================================
 

@@ -1,13 +1,6 @@
 import 'dart:convert';
-
 import 'package:crypto/crypto.dart';
-
-/// TODAY IN DAYS
-int dayOfYear() {
-  final now = DateTime.now();
-  final todayInDays = now.difference(DateTime(now.year, 1, 1, 0, 0)).inDays + 1;
-  return todayInDays;
-}
+import 'utils.dart';
 
 /// SHA-1
 String hashSha1(String data) {

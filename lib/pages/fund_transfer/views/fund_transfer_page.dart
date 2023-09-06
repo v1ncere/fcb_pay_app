@@ -30,10 +30,9 @@ class FundTransferPage extends StatelessWidget {
           BlocProvider(create: (context) => FundTransferBloc(
             firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository(),
             hiveRepository: HiveRepository()
-          )),
-          BlocProvider(create: (context) => FundTransferStepperCubit(stepLength: 3))
+          ))
         ],
-        child: const FundTransferStepperView()
+        child: const FundTransferView()
       )
     );
   }

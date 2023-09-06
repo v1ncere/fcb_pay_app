@@ -45,11 +45,12 @@ class FundTransferBloc extends Bloc<FundTransferEvent, FundTransferState> {
   }
 
   Future<void> _onFundTransferSubmitted(FundTransferSubmitted event, Emitter<FundTransferState> emit) async{
-    final account = event.account.isNotEmpty ? event.account : state.sourceDropdown.value;
-    final message = state.message.value != '' ? '|${state.message.value}' : '';
-
     if (state.isValid) {
-      emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+      emit(state.copyWith(status: FormzSubmissionStatus.inProgress)); // emit loading
+
+      final account = event.account.isNotEmpty ? event.account : state.sourceDropdown.value;
+      final message = state.message.value != '' ? '|${state.message.value}' : '';
+
       try {
         final id = await _realtimeDBRepository.addUserRequest(
           UserRequest(
@@ -59,7 +60,7 @@ class FundTransferBloc extends Bloc<FundTransferEvent, FundTransferState> {
           )
         );
 
-        _hiveRepository.addID(id!); // add [id] to hive (local DB) for getting receipt
+        _hiveRepository.addID(id!); // store [id] to hive (local DB) to get receipt
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } catch (e) {
         throw Exception(e.toString);

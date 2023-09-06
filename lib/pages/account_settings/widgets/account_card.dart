@@ -23,7 +23,7 @@ class AccountCard extends StatelessWidget {
       child: ClipRect(
         clipBehavior: Clip.antiAlias,
         child: Material(
-          color: Colors.deepOrange,
+          color: Colors.teal,
           borderRadius: BorderRadius.circular(10.0),
           child: Padding(
             padding: const EdgeInsets.all( 8.0),

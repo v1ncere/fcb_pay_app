@@ -6,9 +6,8 @@ class PaymentState extends Equatable with FormzMixin {
     this.accountDropdown = const AccountDropdown.pure(),
     this.widgetList = const <UserWidget>[],
     this.amount = const Amount.pure(),
-    this.additional = '',
     this.status = Status.initial,
-    this.formStatus = FormzSubmissionStatus.initial,
+    this.formzStatus = FormzSubmissionStatus.initial,
     this.message = ''
   });
 
@@ -16,9 +15,8 @@ class PaymentState extends Equatable with FormzMixin {
   final AccountDropdown accountDropdown;
   final List<UserWidget> widgetList;
   final Amount amount;
-  final String additional;
+  final FormzSubmissionStatus formzStatus;
   final Status status;
-  final FormzSubmissionStatus formStatus;
   final String message;
 
   PaymentState copyWith({
@@ -26,9 +24,8 @@ class PaymentState extends Equatable with FormzMixin {
     AccountDropdown? accountDropdown,
     List<UserWidget>? widgetList,
     Amount? amount,
-    String? additional,
+    FormzSubmissionStatus? formzStatus,
     Status? status,
-    FormzSubmissionStatus? formStatus,
     String? message
   }) {
     return PaymentState(
@@ -36,9 +33,8 @@ class PaymentState extends Equatable with FormzMixin {
       accountDropdown: accountDropdown ?? this.accountDropdown,
       widgetList: widgetList ?? this.widgetList,
       amount: amount ?? this.amount,
-      additional: additional ?? this.additional,
       status: status ?? this.status,
-      formStatus: formStatus ?? this.formStatus,
+      formzStatus: formzStatus ?? this.formzStatus,
       message: message ?? this.message
     );
   }
@@ -49,9 +45,8 @@ class PaymentState extends Equatable with FormzMixin {
     accountDropdown,
     widgetList,
     amount,
-    additional,
     status,
-    formStatus,
+    formzStatus,
     message,
     isValid,
     isPure

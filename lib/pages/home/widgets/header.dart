@@ -9,14 +9,24 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 70.0,
       width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2), // Shadow color
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: const Offset(0, 3)
+          )
+        ]
+      ),
       child: ClipRect(
         clipBehavior: Clip.antiAlias,
         child: Material(
-          // color: const Color.fromRGBO(0, 0, 0, 80),
-          color: const Color(0xFF02AE08),
+          color: const Color(0xFF25C166),
           borderRadius: BorderRadius.circular(10.0),
           child: Padding(
             padding: const EdgeInsets.all( 8.0),
@@ -38,15 +48,6 @@ class Header extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      splashRadius: 25,
-                      icon: const FaIcon(
-                        FontAwesomeIcons.qrcode,
-                        size: 22,
-                        color: Colors.white,
-                      ),
-                      onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.scanner)
-                    ),
                     IconButton(
                       splashRadius: 25,
                       icon: const FaIcon(

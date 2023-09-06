@@ -5,7 +5,7 @@ import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/pages/login/login.dart';
 import 'package:fcb_pay_app/pages/login/widgets/widgets.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

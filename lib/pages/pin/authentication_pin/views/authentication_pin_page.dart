@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_pin_repository/hive_pin_repository.dart';
 
 import 'package:fcb_pay_app/pages/pin/pin.dart';
-import 'package:hive_pin_repository/hive_pin_repository.dart';
 
 class AuthPinPage extends StatelessWidget {
   const AuthPinPage({super.key});

@@ -5,28 +5,25 @@ class Institution {
     this.keyId,
     this.id,
     required this.name,
-    required this.additionalWidget,
     required this.timeStamp
   });
 
   final String? keyId;
   final String? id;
   final String name;
-  final String additionalWidget;
+  
   final DateTime timeStamp;
 
   Institution copyWith({
     String? keyId,
     String? id,
     String? name,
-    String? additionalWidget,
     DateTime? timeStamp
   }) {
     return Institution(
       keyId: keyId ?? this.keyId,
       id: id ?? this.id,
       name: name ?? this.name,
-      additionalWidget: additionalWidget ?? this.additionalWidget,
       timeStamp: timeStamp ?? this.timeStamp
     );
   }
@@ -42,7 +39,6 @@ class Institution {
       keyId: snapshot.key,
       id: data?['id'] as String? ?? '',
       name: data?['name'] as String? ?? '',
-      additionalWidget: data?['additional_widget'] as String? ?? '',
       timeStamp: timestamp ?? DateTime.now()
     );
   }
@@ -51,7 +47,6 @@ class Institution {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["name"] = name;
-    data["additional_widget"] = additionalWidget;
     data["time_stamp"] = timeStamp.millisecondsSinceEpoch;
     return data;
   }

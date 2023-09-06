@@ -1,2 +1,2 @@
-export 'custom_widgets/custom_wigets.dart';
+export 'custom_widgets/custom_widgets.dart';
 export 'shapes/shapes.dart';

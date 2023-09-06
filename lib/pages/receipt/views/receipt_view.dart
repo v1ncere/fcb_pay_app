@@ -1,11 +1,11 @@
-import 'package:fcb_pay_app/app/app.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/receipt/receipt.dart';
 import 'package:fcb_pay_app/pages/receipt/widgets/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ReceiptView extends StatelessWidget {
   const ReceiptView({super.key});

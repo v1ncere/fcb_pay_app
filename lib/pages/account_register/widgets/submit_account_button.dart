@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 
 import 'package:fcb_pay_app/pages/account_register/account_register.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class SubmitAccountButton extends StatelessWidget {
   const SubmitAccountButton({super.key});

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/utils/theme.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class App extends StatelessWidget {
   const App({

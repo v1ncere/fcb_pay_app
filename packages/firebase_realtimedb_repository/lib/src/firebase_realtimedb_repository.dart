@@ -38,7 +38,8 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   // ==========================================================================================
   @override // GET accounts list (stream)
   Stream<List<Accounts>> getAccountListStream() {
-    return _firebaseDatabase.ref()
+    return _firebaseDatabase
+    .ref()
     .child('user_account')
     .child(userId())
     .onValue
@@ -63,7 +64,8 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
 
   @override // GET account (stream)
   Stream<Accounts> getAccountStream() {
-    return _firebaseDatabase.ref('user_account')
+    return _firebaseDatabase
+    .ref('user_account')
     .child(userId())
     .limitToFirst(1)
     .onValue.map((event) {
@@ -97,11 +99,13 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   // ===========================================================
   @override // ADD user request
   Future<String?> addUserRequest(UserRequest request) async {
-    final ref = _firebaseDatabase.ref('user_request').push();
-    final keyId = ref.key;
-    ref.set(request.toJson());
-
-    return keyId;
+    try {
+      final ref = _firebaseDatabase.ref('user_request').push();
+      ref.set(request.toJson());
+      return ref.key;
+    } catch (err) {
+      throw Exception(err.toString());
+    }
   }
 
   // ======================================================= TRANSACTION HISTORY ============================
@@ -109,9 +113,9 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   @override // GET transaction history list (stream)
   Stream<List<TransactionHistory>> getTransactionHistoryListStream(String accountId, String searchQuery) {
     Query query = _firebaseDatabase
-      .ref('transaction_history')
-      .child(userId())
-      .child(accountId);
+    .ref('transaction_history') // parent node
+    .child(userId())  // user id
+    .child(accountId);  // account id 
 
     if (searchQuery.isNotEmpty && searchQuery != "") {
       query = query.orderByChild('transaction_details').startAt(searchQuery).endAt(searchQuery + '\uf8ff');
@@ -199,12 +203,11 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
   // =============================================================== USERS WIDGET ========
   // =====================================================================================
   @override // GET user widgets list
-  Future<List<UserWidget>> getUserWidgetList(String institution) {
+  Future<List<UserWidget>> getUserWidgetList(String instId) {
     return _firebaseDatabase
-    .ref()
-    .child('user_widget')
-    .child(userId())
-    .child(institution)
+    .ref('user_widget') // parent node
+    .child(userId())  // user id
+    .child(instId)  // institution id
     .get()
     .then((snapshot) {
       List<UserWidget> widgetList = [];
@@ -219,7 +222,7 @@ class FirebaseRealtimeDBRepository extends BaseFirebaseRealtimeDBRepository {
         
       }
       return widgetList;
-    }).onError((error, stackTrance) {
+    }).onError((error, stackTrace) {
       print('Error occurred: $error');
       return [];
     });

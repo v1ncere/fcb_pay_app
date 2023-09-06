@@ -12,7 +12,7 @@ class LogoutButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(
         FontAwesomeIcons.rightFromBracket,
-        color: Colors.redAccent
+        color: Color(0xFF00BFA5)
       ),
       onPressed: () => context.read<AppBloc>().add(AppLogoutRequested())
     );

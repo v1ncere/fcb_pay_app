@@ -10,7 +10,7 @@ enum AppStatus {
   accountFundTransfer,
   fundTransfer,
   payment,
-  scanner,
+  // scanner,
   scannerTransaction,
   addAccount,
   paymentReceipt,
