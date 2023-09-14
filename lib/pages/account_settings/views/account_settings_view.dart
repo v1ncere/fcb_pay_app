@@ -11,12 +11,9 @@ class AccountSettingsView extends StatelessWidget {
     return const Scaffold(
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TitleText(),
-              LogoutButton()
-            ]
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: HeadersCard(),
           ),
           ContainerBody(
             children: [

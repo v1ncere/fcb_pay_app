@@ -1,6 +1,6 @@
+import 'package:fcb_pay_app/pages/account/account.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fcb_pay_app/pages/account/widgets/widgets.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class AccountView extends StatelessWidget {
@@ -23,9 +23,9 @@ class AccountView extends StatelessWidget {
             SizedBox(height: 10),
             ContainerBody(
               children: [
-                ActionButtons(),
+                ActionButtonView(),
                 SizedBox(height: 20),
-                TransactionHistoryList()
+                TransactionHistoryView()
               ]
             )
           ]

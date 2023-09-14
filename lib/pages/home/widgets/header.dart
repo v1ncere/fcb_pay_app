@@ -13,7 +13,7 @@ class Header extends StatelessWidget {
       height: 70.0,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2), // Shadow color
@@ -27,21 +27,28 @@ class Header extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Material(
           color: const Color(0xFF25C166),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
           child: Padding(
             padding: const EdgeInsets.all( 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
+                Row(
                   children:[
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Text(
                       'FCBPay', 
                       style:TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
-                        fontSize: 18
+                        fontSize: 18,
+                        shadows: <Shadow>[
+                          Shadow(
+                            color: Colors.black.withOpacity(0.2), // Shadow color
+                            blurRadius: 3,
+                            offset: const Offset(0, 1.5)
+                          )
+                        ]
                       )
                     )
                   ]
@@ -50,7 +57,7 @@ class Header extends StatelessWidget {
                   children: [
                     IconButton(
                       splashRadius: 25,
-                      icon: const FaIcon(
+                      icon: const Icon(
                         FontAwesomeIcons.solidBell,
                         size: 25,
                         color: Colors.white
@@ -59,7 +66,7 @@ class Header extends StatelessWidget {
                     ),
                     IconButton(
                       splashRadius: 25,
-                      icon: const FaIcon(
+                      icon: const Icon(
                         FontAwesomeIcons.circleQuestion,
                         size: 25,
                         color: Colors.white

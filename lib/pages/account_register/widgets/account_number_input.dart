@@ -26,7 +26,7 @@ class AccountNumberInput extends StatelessWidget {
             labelText: 'Account Number',
             floatingLabelBehavior: FloatingLabelBehavior.never,
             errorText: state.accountNumber.displayError?.text(),
-            border: OutlineInputBorder(
+            border: SelectedInputBorderWithShadow(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide.none,
             )

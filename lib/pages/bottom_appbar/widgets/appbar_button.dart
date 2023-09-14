@@ -24,7 +24,7 @@ class AppbarButton extends StatelessWidget {
       onPressed: () => controller.jumpToPage(value.index),
       iconSize: groupValue != value ? 20 : 26,
       color: groupValue != value ? Colors.black26 : const Color(0xFF25C166),
-      icon: icon
+      icon: icon,
     );
   }
 }

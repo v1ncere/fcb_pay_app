@@ -24,24 +24,38 @@ class LoginButton extends StatelessWidget {
               )
             )
           )
-        : ClipOval(
-          child: Material(
-            color:const Color(0xFF25C166),
-            child: InkWell(
-              splashColor: Colors.white38,
-              onTap: state.isValid
-              ? () => context.read<LoginBloc>().add(LoggedInWithCredentials())
-              : null,
-              child: const SizedBox(
-                width: 56,
-                height: 56, 
-                child: Icon(
-                  FontAwesomeIcons.rightToBracket,
-                  color: Colors.white
+        : Container(
+          decoration:  BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3), // Shadow color
+                spreadRadius: 0.6,
+                blurRadius: 5,
+                offset: const Offset(0, 3)
+              )
+            ]
+          ),
+          child: ClipOval(
+            clipBehavior: Clip.antiAlias,
+            child: Material(
+              color:const Color(0xFF25C166),
+              child: InkWell(
+                splashColor: Colors.white38,
+                onTap: state.isValid
+                ? () => context.read<LoginBloc>().add(LoggedInWithCredentials())
+                : null,
+                child: const SizedBox(
+                  width: 56,
+                  height: 56, 
+                  child: Icon(
+                    FontAwesomeIcons.rightToBracket,
+                    color: Colors.white
+                  )
                 )
               )
             )
-          )
+          ),
         );
       }
     );

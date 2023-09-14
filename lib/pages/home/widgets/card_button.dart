@@ -53,15 +53,15 @@ class CardButton extends StatelessWidget {
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w500,
                         fontSize: 12.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
+                      )
+                    )
+                  )
+                ]
+              )
+            )
+          )
+        )
+      )
     );
   }
 }

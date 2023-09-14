@@ -71,7 +71,7 @@ class PaymentView extends StatelessWidget {
                       Divider(thickness: 2), // line divider -----------------
                       CustomText(text: "Payment Amount", color: Color(0xFF25C166)),
                       SizedBox(height: 2),
-                      PaymentAmountTextField(),
+                      AmountTextField(),
                     ]
                   ),
                   SizedBox(height: 10), 

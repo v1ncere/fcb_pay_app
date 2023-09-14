@@ -33,8 +33,8 @@ class ScannerTransactionView extends StatelessWidget {
                   ]
                 ),
                 SizedBox(height: 5),
-                ScannerAccountDropdown(),
-                SizedBox(height: 20),
+                AccountDropdown(),
+                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -42,12 +42,19 @@ class ScannerTransactionView extends StatelessWidget {
                   ]
                 ),
                 SizedBox(height: 5),
-                ScannerAmountInput(),
-                SizedBox(height: 20),
+                AmountInput(),
+                SizedBox(height: 10), 
+                Divider(thickness: 2), // line divider ---------------------
+                SizedBox(height: 5),
+                CustomText(text: "Please verify your data for accuracy and completeness before proceeding with the payment.",
+                  fontSize: 12,
+                  color: Colors.teal
+                ),
+                SizedBox(height: 15),
                 SubmitButton(),
                 SizedBox(height: 20)
               ]
-            ),
+            )
           )
         )
       )

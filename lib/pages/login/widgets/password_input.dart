@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 import 'package:fcb_pay_app/pages/login/login.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class PasswordInput extends StatelessWidget {
   const PasswordInput({super.key});
@@ -24,9 +25,9 @@ class PasswordInput extends StatelessWidget {
             prefixIcon: const Icon(FontAwesomeIcons.unlockKeyhole),
             labelText: 'Password',
             errorText: state.password.displayError?.text(),
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10.0)
+            border: SelectedInputBorderWithShadow(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none
             )
           )
         );

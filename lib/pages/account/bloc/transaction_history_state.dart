@@ -1,26 +1,37 @@
 part of 'transaction_history_bloc.dart';
 
-abstract class TransactionHistoryState extends Equatable {
-  const TransactionHistoryState();
-  
-  @override
-  List<Object> get props => [];
-}
+class TransactionHistoryState extends Equatable {
+  const TransactionHistoryState({
+    this.transactions = const <TransactionHistory>[],
+    this.searchQuery = const Search.pure(),
+    this.formStatus = FormzSubmissionStatus.initial,
+    this.status = Status.initial,
+    this.error = '',
+  });
 
-class TransactionHistoryLoadInProgress extends TransactionHistoryState {}
-
-class TransactionHistoryLoadSuccess extends TransactionHistoryState {
-  const TransactionHistoryLoadSuccess({this.transactions = const <TransactionHistory>[]});
   final List<TransactionHistory> transactions;
-
-  @override
-  List<Object> get props => [transactions];
-}
-
-class TransactionHistoryLoadError extends TransactionHistoryState {
-  const TransactionHistoryLoadError(this.error);
+  final Search searchQuery;
+  final FormzSubmissionStatus formStatus;
+  final Status status;
   final String error;
 
+  TransactionHistoryState copyWith({
+    List<TransactionHistory>? transactions,
+    Search? searchQuery,
+    FormzSubmissionStatus? formStatus,
+    Status? status,
+    String? error
+  }) {
+    return TransactionHistoryState(
+      transactions: transactions ?? this.transactions,
+      searchQuery: searchQuery ?? this.searchQuery,
+      formStatus: formStatus ?? this.formStatus,
+      status: status ?? this.status,
+      error: error ?? this.error
+    );
+  }
+  
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [transactions, searchQuery, formStatus, status, error];
 }
+

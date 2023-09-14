@@ -31,7 +31,7 @@ class CarouselCCCardItem extends StatelessWidget {
       elevation: 4,
       clipBehavior: Clip.antiAlias,
       color:const Color(0xFF25C166),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: InkWell(
         child: Container(
           decoration: BoxDecoration(

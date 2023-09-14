@@ -20,7 +20,7 @@ class CarouselPRCardItem extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       color:const Color(0xFF25C166),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: InkWell(
         onTap: () {
           context.read<AppBloc>().add(AccountArgumentPassed(keyId)); // bloc events for passing args

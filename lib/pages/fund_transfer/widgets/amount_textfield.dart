@@ -26,7 +26,7 @@ class AmountTextField extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromARGB(30, 37, 193, 102),
-            border: OutlineInputBorder(
+            border: SelectedInputBorderWithShadow(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide.none
             ),

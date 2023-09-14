@@ -17,9 +17,20 @@ class AddAccountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2), // Shadow color
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: const Offset(0, 3)
+          )
+        ]
+      ),
       child: ClipRect(
         clipBehavior: Clip.antiAlias,
         child: Material(
@@ -30,13 +41,13 @@ class AddAccountCard extends StatelessWidget {
             splashColor: Colors.black12,
             onTap: () =>  function(),
             child: Padding(
-              padding: const EdgeInsets.all( 8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const FaIcon(
                     FontAwesomeIcons.plus,
-                    color: Colors.lightGreenAccent,
+                    color: Colors.white,
                     size: 10,
                   ),
                   const SizedBox(width: 5),
@@ -45,7 +56,7 @@ class AddAccountCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w900,
                         fontSize: 8.0
                       )
                     )

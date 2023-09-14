@@ -1,3 +1,4 @@
+import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,7 +21,7 @@ class CustomDropdownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(canvasColor: Colors.green),
-      child: DropdownButtonFormField<String> (
+      child: DropdownButtonFormField<String>(  
         value: value,
         icon: const Icon(FontAwesomeIcons.caretDown, color: Colors.green),
         iconSize: 16, 
@@ -32,9 +33,9 @@ class CustomDropdownButton extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color.fromARGB(30, 37, 193, 102),
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
+          border: SelectedInputBorderWithShadow(
             borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide.none
           )
         ),
         hint: hint,

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 import 'package:fcb_pay_app/pages/account_register/account_register.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class AccountNameInput extends StatelessWidget {
   const AccountNameInput({super.key});
@@ -23,7 +24,7 @@ class AccountNameInput extends StatelessWidget {
             labelText: 'Account Name',
             floatingLabelBehavior: FloatingLabelBehavior.never,
             errorText: state.name.displayError?.text(),
-            border: OutlineInputBorder(
+            border: SelectedInputBorderWithShadow(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide.none,
             )

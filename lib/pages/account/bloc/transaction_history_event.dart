@@ -11,12 +11,14 @@ class TransactionHistoryLoaded extends TransactionHistoryEvent {
   const TransactionHistoryLoaded({
     required this.account,
     this.searchQuery = '',
+    this.filter = '',
   });
   final String account;
   final String searchQuery;
+  final String filter;
 
   @override
-  List<Object> get props => [account, searchQuery];
+  List<Object> get props => [account, searchQuery, filter];
 }
 
 class TransactionHistoryUpdated extends TransactionHistoryEvent {
@@ -25,4 +27,12 @@ class TransactionHistoryUpdated extends TransactionHistoryEvent {
 
   @override
   List<Object> get props => [transactions];
+}
+
+class SearchTextFieldChanged extends TransactionHistoryEvent {
+  const SearchTextFieldChanged(this.searchQuery);
+  final String searchQuery;
+
+  @override
+  List<Object> get props => [searchQuery];
 }

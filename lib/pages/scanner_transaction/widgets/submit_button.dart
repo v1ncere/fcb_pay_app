@@ -32,45 +32,32 @@ class SubmitButton extends StatelessWidget {
       builder: (context, state) {
         return state.formStatus.isInProgress
         ? const CircularProgressIndicator()
-        : Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ClipRect(
-              child: Material(
-                borderRadius: BorderRadius.circular(8),
-                color: const Color(0xFF009405),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(8),
-                  splashColor: Colors.white38,
-                  // onTap: () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted()),
-                  onTap: state.isValid
-                  ? () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted())
-                  : null,
-                  child: const SizedBox(
-                    height: 45,
-                    width: 75,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('PAY',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        SizedBox(width: 5),
-                        Icon(
-                          FontAwesomeIcons.coins, 
-                          color: Colors.white,
-                          size: 20
-                        )
-                      ]
-                    )
-                  )
-                )
+        : ElevatedButton(
+          onPressed: state.isValid
+          ? () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted())
+          : null,
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
+            elevation: MaterialStateProperty.all(2),
+            backgroundColor: MaterialStateProperty.all(const Color(0xFF25C166)) 
+          ),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('PAY',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(width: 5),
+              Icon(
+              FontAwesomeIcons.coins, 
+                color: Colors.white,
+                size: 20
               )
-            )
-          ]
+            ]
+          )
         );
       }
     );

@@ -19,10 +19,12 @@ class AccountPage extends StatelessWidget {
           create: (context) => FirebaseRealtimeDBRepository(),
           child: MultiBlocProvider(
             providers: [
+              BlocProvider(create: (context) => TransactionFilterBloc(
+                firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
+              )..add(TransactionFilterLoaded())),
               BlocProvider(create: (context) => TransactionHistoryBloc(
                 firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-              )..add(TransactionHistoryLoaded(account: args))),
-              BlocProvider(create: (context) => SearchInputsBloc())
+              )..add(TransactionHistoryLoaded(account: args)))
             ],
             child: const AccountView()
           )

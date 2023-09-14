@@ -37,13 +37,14 @@ class SubmitAccountButton extends StatelessWidget {
         ? const CircularProgressIndicator()
         : ElevatedButton(
           key: const Key('add_account_submit_button'),
-          style: ElevatedButton.styleFrom(elevation: 0),
+          style: ElevatedButton.styleFrom(elevation: 2),
           onPressed: state.isValid
             ? () => context.read<AccountRegisterBloc>().add(AccountFormSubmitted())
             : null,
           child: const Padding(
             padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Submit', style: TextStyle(fontWeight: FontWeight.w700),),
                 SizedBox(width: 5),

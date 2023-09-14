@@ -70,7 +70,7 @@ class FundTransferView extends StatelessWidget {
                       SizedBox(height: 2),
                       AmountTextField(),
                       SizedBox(height: 8),
-                      CustomText(text: "Message (optional):", color: Colors.black54),
+                      CustomText(text: "Message (optional):", color: Color(0xFF25C166)),
                       SizedBox(height: 2),
                       MessageTextField(),
                     ]

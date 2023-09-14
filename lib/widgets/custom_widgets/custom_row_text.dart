@@ -33,7 +33,14 @@ class CustomRowText extends StatelessWidget {
             style: TextStyle(
               color: titleColor ?? Colors.black54,
               fontSize: titleFontSize,
-              fontWeight: titleFontWeight ?? FontWeight.w600
+              fontWeight: titleFontWeight ?? FontWeight.w600,
+              shadows: <Shadow>[
+                Shadow(
+                  color: Colors.black.withOpacity(0.15), // Shadow color
+                  blurRadius: 1,
+                  offset: const Offset(0, 1)
+                )
+              ]
             )
           )
         ),
@@ -43,7 +50,14 @@ class CustomRowText extends StatelessWidget {
             style: TextStyle(
               color: contentColor,
               fontSize: contentFontSize,
-              fontWeight: contentFontWeight ?? FontWeight.w800
+              fontWeight: contentFontWeight ?? FontWeight.w800,
+              shadows: <Shadow>[
+                Shadow(
+                  color: Colors.black.withOpacity(0.15), // Shadow color
+                  blurRadius: 1,
+                  offset: const Offset(0, 1)
+                )
+              ]
             )
           )
         )

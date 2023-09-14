@@ -46,14 +46,34 @@ class BottomAppbarView extends StatelessWidget {
                     groupValue: tab,
                     value: BottomAppbarTab.home,
                     controller: controller,
-                    icon: const FaIcon(FontAwesomeIcons.house),
+                    icon: Icon(
+                      FontAwesomeIcons.house, 
+                      shadows: BottomAppbarTab.home == tab
+                      ? [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.2), // Shadow color
+                            blurRadius: 4.0
+                          )
+                        ]
+                      : null
+                    )
                   ),
                   AppbarButton(
                     padding: const EdgeInsets.all(0.0),
                     groupValue: tab,
                     value: BottomAppbarTab.accounts,
                     controller: controller,
-                    icon: const FaIcon(FontAwesomeIcons.solidIdCard)
+                    icon: Icon(
+                      FontAwesomeIcons.solidIdCard,
+                      shadows: BottomAppbarTab.accounts == tab
+                      ? [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.2), // Shadow color
+                            blurRadius: 4.0
+                          )
+                        ]
+                      : null
+                    )
                   )
                 ]
               )

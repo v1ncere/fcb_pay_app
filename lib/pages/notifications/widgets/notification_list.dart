@@ -22,7 +22,7 @@ class NotificationList extends StatelessWidget {
           );
         }
         if (state.status.isSuccess) {
-          final notifications = [...state.unreadNotifications, ...state.readNotifications];
+          final notifications = [...state.unreadNotifications, ...state.readNotifications]; // merged unread and read notifications
           return Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: ListView.builder(
@@ -31,6 +31,7 @@ class NotificationList extends StatelessWidget {
               itemBuilder: (context, index) {
                 final notif = notifications[index];
                 final isRead = notif.isRead;
+                
                 return Container(
                   color: isRead ? const Color.fromARGB(15, 0, 0, 0) : null,
                   child: ListTile(

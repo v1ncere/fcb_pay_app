@@ -19,7 +19,7 @@ class AddAccountButton extends StatelessWidget {
             height: 45,
             width: 110,
             child: AddAccountCard(
-              colors: Colors.green,
+              colors:const Color(0xFF00BFA5),
               icon: FontAwesomeIcons.piggyBank,
               text: "ADD ACCOUNT",
               function: () => context.flow<AppStatus>().update((state) => AppStatus.addAccount)

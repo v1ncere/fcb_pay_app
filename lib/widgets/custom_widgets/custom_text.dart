@@ -21,7 +21,14 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
         color: color,
         fontWeight: fontWeight ?? FontWeight.w700,
-        fontSize: fontSize
+        fontSize: fontSize,
+        shadows: <Shadow>[
+          Shadow(
+            color: Colors.black.withOpacity(0.15), // Shadow color
+            blurRadius: 1,
+            offset: const Offset(0, 1)
+          )
+        ]
       )
     );
   }

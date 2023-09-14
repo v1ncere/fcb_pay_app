@@ -1,3 +1,4 @@
+import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -27,9 +28,9 @@ class MessageTextField extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromARGB(30, 37, 193, 102),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide.none,
+            border: SelectedInputBorderWithShadow(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none
             ),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             labelText: 'Enter a message',

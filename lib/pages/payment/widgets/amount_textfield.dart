@@ -6,8 +6,8 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 
-class PaymentAmountTextField extends StatelessWidget {
-  const PaymentAmountTextField({super.key});
+class AmountTextField extends StatelessWidget {
+  const AmountTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,16 @@ class PaymentAmountTextField extends StatelessWidget {
           ),
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color.fromARGB(30, 37, 193, 102),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none
-            ),
+            fillColor: const Color.fromARGB(255, 211, 243, 224),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefixIcon: const Icon(FontAwesomeIcons.pesoSign),
             labelText: 'Amount',
             labelStyle: const TextStyle(color: Colors.black26),
-            errorText: state.amount.displayError?.text()
+            errorText: state.amount.displayError?.text(),
+            border: SelectedInputBorderWithShadow(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none
+            )
           )
         );
       }

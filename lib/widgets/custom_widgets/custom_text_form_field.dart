@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:fcb_pay_app/utils/utils.dart';
+
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
@@ -29,10 +31,10 @@ class CustomTextFormField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         filled: true,
-        fillColor: const Color.fromARGB(30, 37, 193, 102),
+        fillColor: const Color.fromARGB(255, 211, 243, 224),
         labelText: title,
         labelStyle: const TextStyle(color: Colors.black26),
-        border: OutlineInputBorder(
+        border: SelectedInputBorderWithShadow(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none
         )
