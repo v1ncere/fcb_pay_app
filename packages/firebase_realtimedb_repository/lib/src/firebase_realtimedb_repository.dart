@@ -5,25 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 
-// abstract class BaseFirebaseRealtimeDBRepository {
-//   Stream<List<Accounts>> getAccountListStream();
-//   Stream<Accounts> getAccountStream();
-//   Future<Accounts?> getAccounts();
-//   Future<void> addUserRequest(UserRequest request);
-//   Stream<List<TransactionHistory>> getTransactionHistoryListStream(String accountId);
-//   Stream<TransactionFilter> getTransactionFilterStream();
-//   Stream<TransactionHistory> getTransactionHistoryStream();
-//   Stream<List<Institution>> getInstitutionListStream();
-//   Stream<List<FundTransferAccount>> getFundTransferListStream();
-//   Future<List<UserWidget>> getUserWidgetList(String institution);
-//   Stream<Receipts> getReceiptStream(String id);
-//   Stream<List<Notifications>> getNotificationListStream();
-//   Future<void> updateNotificationRead(String id);
-//   Future<void> deleteNotificationRead(String id);
-//   Future<Notifications> getNotification(String id);
-// }
-
-class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepository {
+class FirebaseRealtimeDBRepository {
   final FirebaseDatabase _firebaseDatabase;
   
   FirebaseRealtimeDBRepository({
@@ -37,7 +19,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ======================================================== USER ACCOUNTS ===================
   // ==========================================================================================
-  // @override // GET accounts list (stream)
+  // GET accounts list (stream)
   Stream<List<Accounts>> getAccountListStream() {
     return _firebaseDatabase
     .ref()
@@ -63,7 +45,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     });
   }
 
-  // @override // GET account (stream)
+  // GET account (stream)
   Stream<Accounts> getAccountStream() {
     return _firebaseDatabase
     .ref('user_account')
@@ -74,7 +56,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     });
   }
 
-  // @override // GET account
+  // GET account
   Future<Accounts?> getAccounts() async {
     final parentNodeRef = _firebaseDatabase.ref('user_account');
     final valueQuery = parentNodeRef
@@ -98,7 +80,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ================================= USER REQUEST ============
   // ===========================================================
-  // @override // ADD user request
+  // ADD user request
   Future<String?> addUserRequest(UserRequest request) async {
     try {
       final ref = _firebaseDatabase.ref('user_request').push();
@@ -111,7 +93,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ======================================================= TRANSACTION HISTORY ============================
   // ========================================================================================================
-  // @override // GET transaction history list (stream)
+  // GET transaction history list (stream)
   Stream<List<TransactionHistory>> getTransactionHistoryListStream(String accountId) {
     Query query = _firebaseDatabase
     .ref('transaction_history') // parent node
@@ -136,7 +118,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     });
   }
 
-  // @override // GET transaction history (stream)
+  // GET transaction history (stream)
   Stream<TransactionHistory> getTransactionHistoryStream() {
     return _firebaseDatabase.ref('transaction_history')
     .child(userId())
@@ -148,7 +130,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ======================================================= TRANSACTION FILTER ============================
   // ========================================================================================================
-  // @override // GET transaction filter (stream)
+  // GET transaction filter (stream)
   Stream<TransactionFilter> getTransactionFilterStream() {
     return _firebaseDatabase
     .ref('transaction_filter')
@@ -162,7 +144,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ================================= BILLING INSTITUTIONS ===================================
   // ==========================================================================================
-  // @override // GET billing institutions list (stream)
+  // GET billing institutions list (stream)
   Stream<List<Institution>> getInstitutionListStream() {
     return _firebaseDatabase.ref()
     .child('billing_institution')
@@ -188,7 +170,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // =================================================== FUND TRANSFERS ==============================
   // =================================================================================================
-  // @override // GET fund transfers list (stream)
+  // GET fund transfers list (stream)
   Stream<List<FundTransferAccount>> getFundTransferListStream() {
     return _firebaseDatabase.ref()
     .child('fund_transfer')
@@ -213,7 +195,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // =============================================================== USERS WIDGET ========
   // =====================================================================================
-  // @override // GET user widgets list
+  // GET user widgets list
   Future<List<UserWidget>> getUserWidgetList(String instId) {
     return _firebaseDatabase
     .ref('user_widget') // parent node
@@ -241,7 +223,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ============================ RECEIPTS ============
   // ==================================================
-  // @override // GET receipt
+  // GET receipt
   Stream<Receipts> getReceiptStream(String id) {
     return _firebaseDatabase.ref('receipts')
     .child(userId())
@@ -254,7 +236,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
 
   // ========================================== NOTIFICATIONS ===================================
   // ============================================================================================
-  // @override // GET notification list (stream)
+  // GET notification list (stream)
   Stream<List<Notifications>> getNotificationListStream() {
     return _firebaseDatabase.ref()
     .child('notifications/${userId()}')
@@ -277,7 +259,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     });
   }
 
-  // @override // GET notification
+  // GET notification
   Future<Notifications> getNotification(String id) async {
     try {
       final snapshot = await _firebaseDatabase.ref()
@@ -294,7 +276,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     }
   }
 
-  // @override // UPDATE notification
+  // UPDATE notification
   Future<void> updateNotificationRead(String id) async {
     try {
       await _firebaseDatabase.ref()
@@ -305,7 +287,7 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     }
   }
 
-  // @override // DELETE notification
+  // DELETE notification
   Future<void> deleteNotificationRead(String id) async {
     try {
       await _firebaseDatabase.ref()
@@ -314,5 +296,29 @@ class FirebaseRealtimeDBRepository { // extends  BaseFirebaseRealtimeDBRepositor
     } catch (error) {
       print('Error deleting notification: $error');
     }
+  }
+
+  // ========================================== HOME BUTTONS ===================================
+  // ============================================================================================
+  // GET home_buttons list (stream)
+  Stream<List<HomeButton>> getHomeButtonsListStream() {
+    return _firebaseDatabase.ref('home_buttons')
+    .onValue
+    .map((event) {
+      List<HomeButton> homeButtonsList = [];
+
+      if (event.snapshot.exists) {
+        final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        
+        snapshotValues.forEach((key, values) {
+          HomeButton homeButton = HomeButton.fromSnapShot(event.snapshot.child(key));
+          homeButtonsList.add(homeButton);
+        });
+      }
+      
+      return homeButtonsList;
+    }).handleError((error) {
+      throw('Error occurred: $error');
+    });
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,12 +10,19 @@ class HomeDynamicPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => ButtonsBloc()),
-        BlocProvider(create: (context) => SliderCubit()) // for the slider below the carousel
-      ],
-      child: const HomeDynamicView()
+    return RepositoryProvider(
+      create: (context) => FirebaseRealtimeDBRepository(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => SliderCubit()), // for the slider below the carousel
+          BlocProvider(
+            create: (context) => ButtonsBloc(
+              firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
+            )..add(ButtonsLoaded())
+          )
+        ],
+        child: const HomeDynamicView()
+      )
     );
   }
 }

@@ -7,18 +7,18 @@ sealed class AccountsState extends Equatable {
   List<Object> get props => [];
 }
 
-final class AccountDisplayInProgress extends AccountsState {}
+final class AccountsInProgress extends AccountsState {}
 
-final class AccountDisplaySuccess extends AccountsState {
-  const AccountDisplaySuccess({this.accounts = const <Accounts>[]});
+final class AccountsSuccess extends AccountsState {
+  const AccountsSuccess({this.accounts = const <Accounts>[]});
   final List<Accounts> accounts;
 
   @override
   List<Object> get props => [accounts];
 }
 
-final class AccountDisplayError extends AccountsState {
-  const AccountDisplayError(this.error);
+final class AccountsError extends AccountsState {
+  const AccountsError(this.error);
   final String error;
 
   @override

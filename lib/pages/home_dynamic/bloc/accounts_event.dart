@@ -7,10 +7,10 @@ sealed class AccountsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class AccountDisplayLoaded extends AccountsEvent {}
+final class AccountsLoaded extends AccountsEvent {}
 
-final class AccountDisplayUpdated extends AccountsEvent {
-  const AccountDisplayUpdated(this.accounts);
+final class AccountsUpdated extends AccountsEvent {
+  const AccountsUpdated(this.accounts);
   final List<Accounts> accounts;
 
   @override
