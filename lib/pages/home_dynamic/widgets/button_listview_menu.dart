@@ -12,7 +12,7 @@ class CardButtonMenu extends StatelessWidget {
         crossAxisCount: 4,
         children: [
 
-        ],
+        ]
       )
     );
   }
