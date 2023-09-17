@@ -8,3 +8,4 @@ export 'qr_utils.dart';
 export 'selected_input_borders_with_shadow.dart';
 export 'theme.dart';
 export 'thousands_formatter.dart';
+export 'to_color.dart';
