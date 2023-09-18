@@ -4,29 +4,41 @@ class HomeButton {
   const HomeButton({
     this.keyId,
     required this.title,
+    required this.titleColor,
+    required this.timeStamp,
+    required this.bgColor,
     required this.icon,
-    required this.timeStamp
+    required this.iconColor,
   });
   final String? keyId;
   final String title;
+  final int titleColor;
   final String icon;
+  final int iconColor;
+  final int bgColor;
   final DateTime timeStamp;
 
   HomeButton copyWith({
     String? keyId,
     String? title,
+    int? titleColor,
     String? icon,
+    int? iconColor,
+    int? bgColor,
     DateTime? timeStamp
   }) {
     return HomeButton(
       keyId: keyId ?? this.keyId,
       title: title ?? this.title,
+      titleColor: titleColor ?? this.titleColor,
       icon: icon ?? this.icon,
-      timeStamp: timeStamp ?? this.timeStamp
+      iconColor: iconColor ?? this.iconColor,
+      bgColor: bgColor ?? this.bgColor,
+      timeStamp: timeStamp ?? this.timeStamp,
     );
   }
 
-  factory HomeButton.fromSnapShot(DataSnapshot dataSnapshot){
+  factory HomeButton.fromSnapShot(DataSnapshot dataSnapshot) {
     final data = dataSnapshot.value as Map?;
     final intTimeStamp = data?['time_stamp'] as int?;
     final dateStamp = intTimeStamp != null && intTimeStamp.abs() <= 9999999999999
@@ -36,7 +48,10 @@ class HomeButton {
     return HomeButton(
       keyId: dataSnapshot.key,
       title: data?['title'] as String? ?? '',
+      titleColor: data?['title_color'] as int,
       icon: data?['icon'] as String? ?? '',
+      iconColor: data?['icon_color'] as int,
+      bgColor: data?['bg_color'] as int,
       timeStamp: dateStamp ?? DateTime.now()
     );
   }

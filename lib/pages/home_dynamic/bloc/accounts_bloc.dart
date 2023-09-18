@@ -19,7 +19,7 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
   StreamSubscription<List<Accounts>>? _streamSubscription;
 
   // fetching stream data from firebase
-  _onAccountsLoaded(AccountsLoaded event, Emitter<AccountsState> emit) async {
+  _onAccountsLoaded(AccountsLoaded event, Emitter<AccountsState> emit) {
     _streamSubscription?.cancel;
     _streamSubscription = _dbRepository.getAccountListStream()
     .listen((event) async {

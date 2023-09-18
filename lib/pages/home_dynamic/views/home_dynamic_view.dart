@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fcb_pay_app/pages/home_dynamic/widgets/widgets.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class HomeDynamicView extends StatelessWidget {
@@ -12,14 +13,14 @@ class HomeDynamicView extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(15.0),
-            child: Text('HEADER') // < =====
+            child: HeaderCard(),
           ),
           ContainerBody( // custom ListView container with design
             children: [
               SizedBox(height: 15),
-              Text('CAROUSEL'), // < =====
+              CarouselSliderDisplay(), // < =====
               SizedBox(height: 50),
-              Text('CUSTOM BUTTON') // < ===== 
+              CardButtonMenu() // < ===== 
             ]
           )
         ]

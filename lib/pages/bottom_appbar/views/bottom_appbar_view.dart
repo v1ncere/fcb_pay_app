@@ -5,7 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/home/home.dart';
+// import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 
 class BottomAppbarView extends StatelessWidget {
@@ -25,7 +26,8 @@ class BottomAppbarView extends StatelessWidget {
               controller: controller,
               onPageChanged: (index) => context.read<BottomAppbarCubit>().setTab(BottomAppbarTab.values[index]),
               children: const [
-                HomePage(),
+                // HomePage(),
+                HomeDynamicPage(),
                 ScannerPage(),
                 AccountSettingsPage()
               ]

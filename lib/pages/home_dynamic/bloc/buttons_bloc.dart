@@ -20,7 +20,8 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
 
   void _onButtonsLoaded(ButtonsLoaded event, Emitter<ButtonsState> emit) {
     _streamSubscription?.cancel();
-    _streamSubscription = _realtimeDBRepository.getHomeButtonsListStream()
+    _streamSubscription = _realtimeDBRepository
+    .getHomeButtonsListStream()
     .listen((event) async {
       add(ButtonsUpdated(event));
     });
@@ -28,7 +29,7 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
 
   void _onButtonsUpdated(ButtonsUpdated event, Emitter<ButtonsState> emit) {
     if (event.homeButton.isNotEmpty) {
-      emit(ButtonsSuccess(homeButtons: event.homeButton));
+      emit(ButtonsSuccess(event.homeButton));
     } else {
       emit(const ButtonsError(error: 'Empty')); 
     }

@@ -10,9 +10,7 @@ sealed class ButtonsState extends Equatable {
 final class ButtonsLoading extends ButtonsState {}
 
 final class ButtonsSuccess extends ButtonsState {
-  const ButtonsSuccess({
-    this.homeButtons = const <HomeButton>[]
-  });
+  const ButtonsSuccess(this.homeButtons);
   final List<HomeButton> homeButtons;
 
   @override

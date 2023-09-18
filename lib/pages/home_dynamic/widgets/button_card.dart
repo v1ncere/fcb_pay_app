@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ButtonCard extends StatelessWidget {
   const ButtonCard({
     super.key,
+    
+    required this.title,
+    required this.titleColor,
     required this.icon,
-    required this.text,
-    required this.colors,
+    required this.iconColor,
+    required this.bgColor,
     required this.function,
   });
+  final String title;
+  final Color titleColor;
   final IconData icon;
-  final String text;
-  final Color colors;
+  final Color iconColor;
+  final Color bgColor;
   final Function function;
 
   @override
@@ -20,7 +24,7 @@ class ButtonCard extends StatelessWidget {
       height: 75,
       width: 75,
       decoration: BoxDecoration(
-        color: colors,
+        color: bgColor,
         borderRadius: BorderRadius.circular(20.0),
         boxShadow: [
           BoxShadow(
@@ -44,13 +48,13 @@ class ButtonCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  FaIcon(icon, color: Colors.white),
+                  Icon(icon, color: iconColor),
                   Flexible(
                     child: Text(
-                      text,
+                      title,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xFFFFFFFF),
+                      style: TextStyle(
+                        color: titleColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 12.0,
                       )
