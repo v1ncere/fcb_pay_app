@@ -12,19 +12,19 @@ class HomeButton {
   });
   final String? keyId;
   final String title;
-  final int titleColor;
+  final String titleColor;
   final String icon;
-  final int iconColor;
-  final int bgColor;
+  final String iconColor;
+  final String bgColor;
   final DateTime timeStamp;
 
   HomeButton copyWith({
     String? keyId,
     String? title,
-    int? titleColor,
+    String? titleColor,
     String? icon,
-    int? iconColor,
-    int? bgColor,
+    String? iconColor,
+    String? bgColor,
     DateTime? timeStamp
   }) {
     return HomeButton(
@@ -48,10 +48,10 @@ class HomeButton {
     return HomeButton(
       keyId: dataSnapshot.key,
       title: data?['title'] as String? ?? '',
-      titleColor: data?['title_color'] as int,
+      titleColor: data?['title_color'] as String? ?? '',
       icon: data?['icon'] as String? ?? '',
-      iconColor: data?['icon_color'] as int,
-      bgColor: data?['bg_color'] as int,
+      iconColor: data?['icon_color'] as String? ?? '',
+      bgColor: data?['bg_color'] as String? ?? '',
       timeStamp: dateStamp ?? DateTime.now()
     );
   }

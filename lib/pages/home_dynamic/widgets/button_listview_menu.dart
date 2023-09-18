@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/icon_mapper.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
 
 class CardButtonMenu extends StatelessWidget {
   const CardButtonMenu({super.key});
@@ -29,10 +28,10 @@ class CardButtonMenu extends StatelessWidget {
               final btn = state.homeButtons[index];
               return ButtonCard(
                 title: btn.title,
-                titleColor: Color(btn.titleColor),
+                titleColor: Color(int.parse(btn.titleColor.trim())),
                 icon: iconMapper(btn.icon),
-                iconColor: Color(btn.iconColor),
-                bgColor: Color(btn.titleColor),
+                iconColor: Color(int.parse(btn.iconColor.trim())),
+                bgColor: Color(int.parse(btn.bgColor.trim())),
                 function: () {
 
                 }
