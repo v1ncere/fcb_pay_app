@@ -17,6 +17,14 @@ class CarouselShimmer extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.grey[200],
             borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 2,
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 2,
+                offset: const Offset(0, 2)
+              )
+            ]
           ),
           child: Padding(
             padding: const EdgeInsets.all(15.0),

@@ -15,12 +15,12 @@ class HomeDynamicView extends StatelessWidget {
             padding: EdgeInsets.all(15.0),
             child: HeaderCard(),
           ),
-          ContainerBody( // custom ListView container with design
+          ContainerBody( // Custom ListView container with design
             children: [
               SizedBox(height: 15),
-              CarouselSliderDisplay(), // < =====
+              CarouselSliderDisplay(),
               SizedBox(height: 50),
-              CardButtonMenu() // < ===== 
+              CardButtonMenu() 
             ]
           )
         ]

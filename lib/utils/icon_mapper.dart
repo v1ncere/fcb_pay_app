@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 IconData iconMapper(String iconName) {
-  switch (iconName) {
+  switch (iconName.trim()) {
     case "zero":
       return FontAwesomeIcons.zero;
     case "one":

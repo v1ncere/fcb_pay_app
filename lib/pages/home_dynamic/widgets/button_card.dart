@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class ButtonCard extends StatelessWidget {
   const ButtonCard({
     super.key,
-    
     required this.title,
     required this.titleColor,
     required this.icon,

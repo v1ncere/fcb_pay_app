@@ -321,4 +321,35 @@ class FirebaseRealtimeDBRepository {
       throw('Error occurred: $error');
     });
   }
+
+  // ========================================== HOME BUTTONS ===================================
+  // ============================================================================================
+  // GET home_buttons list (stream)
+  Stream<List<HomeButtonWidget>> getWidgetsListStream(String originId) {
+    return _firebaseDatabase
+    .ref('home_button_widget/${originId}')
+    .onValue
+    .map((event) {
+      List<HomeButtonWidget> widgetsList = [];
+      // Check if data exists at the specified database location
+      if (event.snapshot.exists) {
+        // Extract the data as a map of key-value pairs
+        final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        // Iterate through the map and convert data to HomeButtonWidget objects
+        snapshotValues.forEach((key, values) {
+          // Create a HomeButtonWidget object from the child snapshot at the current key
+          HomeButtonWidget widget = HomeButtonWidget.fromSnapshot(event.snapshot.child(key));
+          // Add the newly created widget to the list
+          widgetsList.add(widget);
+        });
+      }
+      // Return the list of HomeButtonWidget objects as a stream
+      return widgetsList;
+    })
+    // Handle any errors that might occur during the stream
+    .handleError((error) {
+      // Throw an error message
+      throw('Error occurred: $error');
+    });
+  }
 }
