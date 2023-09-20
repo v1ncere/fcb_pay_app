@@ -101,3 +101,5 @@ class DynamicViewerView extends StatelessWidget {
     );
   }
 }
+
+// gikan sa button pasa ug title sa node 
