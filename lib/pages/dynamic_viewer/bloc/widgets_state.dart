@@ -3,25 +3,29 @@ part of 'widgets_bloc.dart';
 class WidgetsState extends Equatable {
   const WidgetsState({
     this.widgetList = const <HomeButtonWidget>[],
-    this.status = Status.initial,
+    this.widgetStatus = Status.initial,
+    this.submissionStatus = Status.initial,
     this.errorMsg
   });
   final List<HomeButtonWidget> widgetList;
-  final Status status;
+  final Status widgetStatus;
+  final Status submissionStatus;
   final String? errorMsg;
 
   WidgetsState copyWith({
     List<HomeButtonWidget>? widgetList,
-    Status? status,
+    Status? widgetStatus,
+    Status? submissionStatus,
     String? errorMsg
   }) {
     return WidgetsState(
       widgetList: widgetList ?? this.widgetList,
-      status: status ?? this.status,
+      widgetStatus: widgetStatus ?? this.widgetStatus,
+      submissionStatus: submissionStatus ?? this.submissionStatus,
       errorMsg: errorMsg ?? this.errorMsg
     );
   }
   
   @override
-  List<Object> get props => [widgetList, status];
+  List<Object> get props => [widgetList, widgetStatus, submissionStatus];
 }
