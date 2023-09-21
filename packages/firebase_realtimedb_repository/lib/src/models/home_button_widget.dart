@@ -3,24 +3,24 @@ import 'package:firebase_database/firebase_database.dart';
 class HomeButtonWidget {
   const HomeButtonWidget({
     this.keyId,
-    this.additional,
+    required this.additional,
     this.content,
-    this.dataType,
-    this.node,
-    this.owner,
+    required this.dataType,
+    required this.node,
+    required this.owner,
     required this.timeStamp,
-    this.title,
-    this.widget
+    required this.title,
+    required this.widget
   });
   final String? keyId;
-  final bool? additional;
+  final bool additional;
   final String? content;
-  final String? dataType;
-  final String? node;
-  final String? owner;
+  final String dataType;
+  final String node;
+  final String owner;
   final DateTime timeStamp;
-  final String? title;
-  final String? widget;
+  final String title;
+  final String widget;
 
   HomeButtonWidget copyWith({
     String? keyId,

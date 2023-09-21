@@ -9,6 +9,7 @@ class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
 
   static Page<void> page() => const MaterialPage<void>(child: AccountPage());
+  static final _dbRepository = FirebaseRealtimeDBRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +17,13 @@ class AccountPage extends StatelessWidget {
       selector: (state) => state.args,
       builder: (_, args) {
         return RepositoryProvider(
-          create: (context) => FirebaseRealtimeDBRepository(),
+          create: (context) => _dbRepository,
           child: MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => TransactionFilterBloc(
-                firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-              )..add(TransactionFilterLoaded())),
-              BlocProvider(create: (context) => TransactionHistoryBloc(
-                firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-              )..add(TransactionHistoryLoaded(account: args)))
+              BlocProvider(create: (context) => TransactionHistoryBloc(firebaseRealtimeDBRepository: _dbRepository)
+              ..add(TransactionHistoryLoaded(account: args))),
+              BlocProvider(create: ((context) => FilterBloc(firebaseRealtimeDBRepository: _dbRepository)
+              ..add(FilterFetched()))),
             ],
             child: const AccountView()
           )

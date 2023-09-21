@@ -1,10 +1,11 @@
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_repository/hive_repository.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/dynamic_viewer/bloc/dropdown_bloc.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
-import 'package:hive_repository/hive_repository.dart';
 
 class DynamicViewerPage extends StatelessWidget {
   const DynamicViewerPage({super.key});
@@ -20,12 +21,9 @@ class DynamicViewerPage extends StatelessWidget {
           create: (context) => _firebaseDatabase,
           child: MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => WidgetsBloc(
-                  firebaseRepository: _firebaseDatabase,
-                  hiveRepository: _hiveRepository
-                )..add(WidgetsLoaded(args))
-              )
+              BlocProvider(create: (context) => WidgetsBloc(firebaseRepository: _firebaseDatabase, hiveRepository: _hiveRepository)
+                ..add(WidgetsLoaded(args))),
+              BlocProvider(create: (context) => DropdownBloc(firebaseRealtimeDBRepository: _firebaseDatabase)),
             ],
             child: const DynamicViewerView()
           )

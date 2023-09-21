@@ -1,3 +1,4 @@
+import 'package:fcb_pay_app/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,9 +11,9 @@ class PopUpMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionFilterBloc, TransactionFilterState>(
+    return BlocBuilder<FilterBloc, FilterState>(
       builder: (context, state) {
-        if (state is TransactionFilterLoading) {
+        if (state.status.isLoading) {
           return const Padding(
             padding: EdgeInsets.only(left: 14, right: 14),
             child: SizedBox(
@@ -22,7 +23,7 @@ class PopUpMenuButton extends StatelessWidget {
             )
           );
         }
-        if (state is TransactionFilterSuccess) {
+        if (state.status.isSuccess) {
           return BlocSelector<AppBloc, AppState, String>(
             selector: (state) => state.args,
             builder: (_, acc) {
@@ -42,7 +43,7 @@ class PopUpMenuButton extends StatelessWidget {
                   context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc, filter: value));
                 },
                 itemBuilder: (BuildContext context) {
-                  final filter = state.filter.filter.trim().split(',');
+                  final filter = state.filters;
                   return filter.map((String value) {
                     return PopupMenuItem<String>(
                       value: value,
@@ -54,7 +55,7 @@ class PopUpMenuButton extends StatelessWidget {
             }
           );
         }
-        if (state is TransactionFilterError) {
+        if (state.status.isError) {
           return Center(child: Text(state.error));
         }
         else {

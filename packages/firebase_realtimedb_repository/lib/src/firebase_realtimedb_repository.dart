@@ -128,20 +128,6 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // ======================================================= TRANSACTION FILTER ============================
-  // ========================================================================================================
-  // GET transaction filter (stream)
-  Stream<TransactionFilter> getTransactionFilterStream() {
-    return _firebaseDatabase
-    .ref('transaction_filter')
-    .onValue.map((event) {
-      return TransactionFilter.fromSnapshot(event.snapshot);
-    }).handleError((error) {
-      print('Error occurred: $error');
-      return [];
-    });
-  }
-
   // ================================= BILLING INSTITUTIONS ===================================
   // ==========================================================================================
   // GET billing institutions list (stream)
@@ -350,6 +336,32 @@ class FirebaseRealtimeDBRepository {
     .handleError((error) {
       // Throw an error message
       throw('Error occurred: $error');
+    });
+  }
+
+  // ================================ DYNAMIC DROPDOWNS ===================================
+  // ======================================================================================
+  // GET dynamic dropdown list
+
+  Future<List<String>> getDynamicDropdownData(String ref) async {
+    return _firebaseDatabase
+    .ref(ref)
+    .get()
+    .then((snapshot) {
+      List<String> filters = []; 
+
+      if (snapshot.exists) {
+        final filterMap = snapshot.value as Map<dynamic, dynamic>;
+
+        filterMap.forEach((key, value) {
+          filters.add(value.toString());
+        });
+      }
+
+      return filters;
+    }).onError((error, stackTrace) {
+      print('Error occurred: $error');
+      return [];
     });
   }
 }

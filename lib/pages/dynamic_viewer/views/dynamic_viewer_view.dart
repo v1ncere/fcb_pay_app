@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:fcb_pay_app/pages/dynamic_viewer/bloc/dropdown_bloc.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
@@ -27,7 +28,7 @@ class DynamicViewerView extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                       child: CustomTextFormField(
-                        title: widget.title ?? '',
+                        title: widget.title,
                         inputFormatters: <ThousandsFormatter>[ThousandsFormatter(allowFraction: true)],
                         keyboardType: const TextInputType.numberWithOptions(decimal: true),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -41,9 +42,9 @@ class DynamicViewerView extends StatelessWidget {
                         onChanged: (value) {
                           context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
                             keyId: widget.keyId ?? "",
-                            title: widget.title ?? "",
+                            title: widget.title,
                             value: value,
-                            type: widget.dataType ?? "",
+                            type: widget.dataType,
                           ));
                         }
                       )
@@ -52,7 +53,7 @@ class DynamicViewerView extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                       child: CustomTextFormField(
-                        title: widget.title ?? "",
+                        title: widget.title,
                         validator: (value) {
                           return value?.isEmpty == true 
                           ? 'Oops! You forgot something. Please fill in this field.'
@@ -62,9 +63,9 @@ class DynamicViewerView extends StatelessWidget {
                         onChanged: (value) {
                           context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
                             keyId: widget.keyId ?? "",
-                            title: widget.title ?? "",
+                            title: widget.title,
                             value: value,
-                            type: widget.dataType ?? "",
+                            type: widget.dataType,
                           ));
                         }
                       )
@@ -73,14 +74,8 @@ class DynamicViewerView extends StatelessWidget {
                     return const SizedBox.shrink();
                   }
                 case "dropdown":
-                  return DynamicDropdown(
-                    additional: widget.additional,
-                    dataType: widget.dataType,
-                    node: widget.node,
-                    owner: widget.owner,
-                    title: widget.title,
-                    widget: widget.widget,
-                  );
+                  context.read<DropdownBloc>().add(DropdownFetched(widget.node));
+                  return DynamicDropdown(widget: widget);
                 case "text":
                   return const Text('data');
                 default:

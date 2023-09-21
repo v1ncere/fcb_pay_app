@@ -144,7 +144,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     // loop base on List<HomeButtonWidget> object
     for (final widget in state.widgetList) {
       if (widget.widget == "textfield" || widget.widget == "dropdown") {
-        formData[widget.title!] = widget.content!; // store List<HomeButtonWidget> content into map
+        formData[widget.title] = widget.content!; // store List<HomeButtonWidget> content into map
       }
     }
     return formData;
