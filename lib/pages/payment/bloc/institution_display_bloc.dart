@@ -18,7 +18,7 @@ class InstitutionDisplayBloc extends Bloc<InstitutionDisplayEvent, InstitutionDi
     on<InstitutionDisplayUpdated>(_onInstitutionDisplayUpdated);
   }
   final FirebaseRealtimeDBRepository _dbRepository;
-  StreamSubscription<List<Institution>>? _subscription;
+  StreamSubscription<List<Institutions>>? _subscription;
 
   void _onInstitutionDisplayLoaded(InstitutionDisplayLoaded event, Emitter<InstitutionDisplayState> emit) async {
     _subscription?.cancel;

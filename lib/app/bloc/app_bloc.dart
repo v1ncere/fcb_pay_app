@@ -37,6 +37,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<NotificationIdPassed>((event, emit) {
       emit(AppState.notificationViewer(event.args));
     });
+
+    on<DynamicIdPassed>((event, emit) {
+      emit(AppState.dynamicPageViewer(event.args));
+    });
     
     _streamSubscription = _firebaseAuthRepository
     .user

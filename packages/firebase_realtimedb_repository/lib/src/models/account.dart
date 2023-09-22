@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class Accounts {
-  Accounts({
+class Account {
+  Account({
     this.keyId,
     required this.balance,
     this.creditLimit,
@@ -19,7 +19,7 @@ class Accounts {
   final DateTime? expiry;
   final DateTime timeStamp;
 
-  Accounts copyWith({
+  Account copyWith({
     String? keyId,
     double? balance,
     double? creditLimit,
@@ -28,7 +28,7 @@ class Accounts {
     DateTime? expiry,
     DateTime? timeStamp
   }) {
-    return Accounts(
+    return Account(
       keyId: keyId ?? this.keyId,
       balance: balance ?? this.balance,
       creditLimit: creditLimit ?? this.creditLimit,
@@ -39,14 +39,14 @@ class Accounts {
     );
   }
 
-  factory Accounts.fromSnapshot(DataSnapshot snapshot) {
+  factory Account.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
     final dynamicBalance = data?['balance'];
     final dynamicCreditLimit = data?['credit_limit'];
     final intExpiry = data?['expiry'] as int?;
     final intTimeStamp = data?['time_stamp'] as int?;
 
-    return Accounts(
+    return Account(
       keyId: snapshot.key,
       balance: doubleConverter(dynamicBalance) ?? 0.0,
       creditLimit: doubleConverter(dynamicCreditLimit) ?? 0.0,

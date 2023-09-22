@@ -10,7 +10,8 @@ enum AppStatus {
   accountFundTransfer,
   fundTransfer,
   payment,
-  // scanner,
+  dynamicPage,
+  dynamicReceipt,
   scannerTransaction,
   addAccount,
   paymentReceipt,
@@ -39,6 +40,8 @@ class AppState extends Equatable {
   const AppState.accounts(String args) : this._(status: AppStatus.account, args: args);
 
   const AppState.notificationViewer(String args) : this._(status: AppStatus.notificationViewer, args: args);
+
+  const AppState.dynamicPageViewer(String args) : this._(status: AppStatus.dynamicPage, args: args);
 
   @override
   List<Object> get props => [status, user, args];

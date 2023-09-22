@@ -19,7 +19,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     on<NotificationsUpdateIsRead>(_onNotificationsUpdateIsRead);
   }
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
-  StreamSubscription<List<Notifications>>? _streamSubscription;
+  StreamSubscription<List<Notification>>? _streamSubscription;
 
   void _onNotificationsLoaded(NotificationsLoaded event, Emitter<NotificationsState> emit) async {
     _streamSubscription?.cancel();

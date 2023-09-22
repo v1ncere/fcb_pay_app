@@ -11,7 +11,7 @@ class InstitutionDisplayLoaded extends InstitutionDisplayEvent {}
 
 class InstitutionDisplayUpdated extends InstitutionDisplayEvent {
   const InstitutionDisplayUpdated(this.institutions);
-  final List<Institution> institutions;
+  final List<Institutions> institutions;
 
   @override
   List<Object> get props => [institutions];

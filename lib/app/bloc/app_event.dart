@@ -31,4 +31,12 @@ class NotificationIdPassed extends AppEvent {
   List<Object> get props => [args];
 }
 
+class DynamicIdPassed extends AppEvent {
+  const DynamicIdPassed(this.args);
+  final String args;
+
+  @override
+  List<Object> get props => [args];
+}
+
 class AppLogoutRequested extends AppEvent {}

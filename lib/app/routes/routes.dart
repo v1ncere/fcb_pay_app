@@ -6,6 +6,7 @@ import 'package:fcb_pay_app/pages/account_fund_transfer/account_fund_transfer.da
 import 'package:fcb_pay_app/pages/account_payment/account_payment.dart';
 import 'package:fcb_pay_app/pages/account_register/account_register.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
+import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
 import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 import 'package:fcb_pay_app/pages/login/login.dart';
 import 'package:fcb_pay_app/pages/notifications/notifications.dart';
@@ -44,8 +45,10 @@ List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) 
       return [BottomAppbarPage.page(), PaymentPage.page()];
     case AppStatus.paymentReceipt:
       return [BottomAppbarPage.page(), PaymentPage.page(), ReceiptPage.page()];
-    // case AppStatus.scanner:
-    //   return [BottomAppbarPage.page(), ScannerPage.page()];
+    case AppStatus.dynamicPage:
+      return [BottomAppbarPage.page(), DynamicViewerPage.page()];
+    case AppStatus.dynamicReceipt:
+      return [BottomAppbarPage.page(), DynamicViewerPage.page(), ReceiptPage.page()];
     case AppStatus.scannerTransaction:
       return [BottomAppbarPage.page(), ScannerTransactionPage.page()];
     case AppStatus.scannerTransactionReceipt:

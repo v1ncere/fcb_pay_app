@@ -31,7 +31,7 @@ class AccountDisplayBloc extends Bloc<AccountDisplayEvent, AccountDisplayState> 
     });
   }
   final FirebaseRealtimeDBRepository _dbRepository;
-  StreamSubscription<List<Accounts>>? _streamSubscription;
+  StreamSubscription<List<Account>>? _streamSubscription;
 
   @override
   Future<void> close() {

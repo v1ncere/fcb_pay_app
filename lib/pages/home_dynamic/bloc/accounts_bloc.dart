@@ -16,7 +16,7 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
     on<AccountsUpdated>(_onAccountsUpdated);
   }
   final FirebaseRealtimeDBRepository _dbRepository;
-  StreamSubscription<List<Accounts>>? _streamSubscription;
+  StreamSubscription<List<Account>>? _streamSubscription;
 
   // fetching stream data from firebase
   _onAccountsLoaded(AccountsLoaded event, Emitter<AccountsState> emit) {

@@ -1,6 +1,8 @@
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/icon_mapper.dart';
@@ -34,7 +36,8 @@ class CardButtonMenu extends StatelessWidget {
                 iconColor: colorStringParser(btn.iconColor), // color
                 bgColor: colorStringParser(btn.bgColor), // color
                 function: () {
-                  
+                  context.read<AppBloc>().add(DynamicIdPassed(btn.keyId!));
+                  context.flow<AppStatus>().update((next) => AppStatus.dynamicPage);
                 }
               );
             }

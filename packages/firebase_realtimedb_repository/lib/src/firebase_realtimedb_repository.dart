@@ -10,30 +10,26 @@ class FirebaseRealtimeDBRepository {
   
   FirebaseRealtimeDBRepository({
     FirebaseDatabase? firebaseDatabase
-  }): _firebaseDatabase = firebaseDatabase ?? FirebaseDatabase.instance;
+  })  : _firebaseDatabase = firebaseDatabase ?? FirebaseDatabase.instance;
 
-  // USER_AUTH_ID ================================
-  String userId() {
-    return FirebaseAuth.instance.currentUser!.uid;
-  }
+  // USER_AUTH_ID
+  String userId() => FirebaseAuth.instance.currentUser!.uid;
 
-  // ======================================================== USER ACCOUNTS ===================
-  // ==========================================================================================
+  // ===================================== USER ACCOUNTS =====================
+  // =========================================================================
   // GET accounts list (stream)
-  Stream<List<Accounts>> getAccountListStream() {
-    return _firebaseDatabase
-    .ref()
-    .child('user_account')
+  Stream<List<Account>> getAccountListStream() {
+    return _firebaseDatabase.ref('user_account')
     .child(userId())
     .onValue
     .map((event) {
-      List<Accounts> accountList = [];
+      List<Account> accountList = [];
 
       if (event.snapshot.exists) {
-        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
-        
+        final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+
         snapshotValues.forEach((key, values) {
-          Accounts account = Accounts.fromSnapshot(event.snapshot.child(key));
+          Account account = Account.fromSnapshot(event.snapshot.child(key));
           accountList.add(account);
         });
       }
@@ -46,18 +42,17 @@ class FirebaseRealtimeDBRepository {
   }
 
   // GET account (stream)
-  Stream<Accounts> getAccountStream() {
-    return _firebaseDatabase
-    .ref('user_account')
+  Stream<Account> getAccountStream() {
+    return _firebaseDatabase.ref('user_account')
     .child(userId())
     .limitToFirst(1)
     .onValue.map((event) {
-      return Accounts.fromSnapshot(event.snapshot);
+      return Account.fromSnapshot(event.snapshot);
     });
   }
 
   // GET account
-  Future<Accounts?> getAccounts() async {
+  Future<Account?> getAccounts() async {
     final parentNodeRef = _firebaseDatabase.ref('user_account');
     final valueQuery = parentNodeRef
     .child(userId());
@@ -71,14 +66,14 @@ class FirebaseRealtimeDBRepository {
       final childNodeKey = values.keys.first;
       final snapshot = await parentNodeRef.child(childNodeKey).get();
 
-      final reply = Accounts.fromSnapshot(snapshot);
+      final reply = Account.fromSnapshot(snapshot);
       return reply;
     } else {
       return null;
     }
   }
 
-  // ================================= USER REQUEST ============
+  // ===================== USER REQUEST ========================
   // ===========================================================
   // ADD user request
   Future<String?> addUserRequest(UserRequest request) async {
@@ -91,22 +86,20 @@ class FirebaseRealtimeDBRepository {
     }
   }
 
-  // ======================================================= TRANSACTION HISTORY ============================
-  // ========================================================================================================
+  // ======================================== TRANSACTION HISTORY =====================================
+  // ==================================================================================================
   // GET transaction history list (stream)
   Stream<List<TransactionHistory>> getTransactionHistoryListStream(String accountId) {
-    Query query = _firebaseDatabase
-    .ref('transaction_history') // parent node
-    .child(userId())  // user id
-    .child(accountId);  // account id
+    Query query = _firebaseDatabase.ref('transaction_history/${userId()}/${accountId}');
 
     return query.onValue.map((event) {
       List<TransactionHistory> transactionList = [];
+      
       if (event.snapshot.exists) {
-        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
-        snapshotValues.forEach((key, values) {
-          TransactionHistory transaction = TransactionHistory.fromSnapshot(event.snapshot.child(key));
+        snapshotValues.forEach((key, values) { // do the value not use?
+          TransactionHistory transaction = TransactionHistory.fromSnapshot(event.snapshot.child(key)); // this one here why do event.snapshot.child(key)
           transactionList.add(transaction);
         });
       }
@@ -131,18 +124,17 @@ class FirebaseRealtimeDBRepository {
   // ================================= BILLING INSTITUTIONS ===================================
   // ==========================================================================================
   // GET billing institutions list (stream)
-  Stream<List<Institution>> getInstitutionListStream() {
-    return _firebaseDatabase.ref()
-    .child('billing_institution')
+  Stream<List<Institutions>> getInstitutionListStream() {
+    return _firebaseDatabase.ref('billing_institution')
     .onValue
     .map((event) {
-      List<Institution> institutionList = [];
+      List<Institutions> institutionList = [];
 
       if (event.snapshot.exists) {
-        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
         snapshotValues.forEach((key, values) {
-          Institution institution = Institution.fromSnapshot(event.snapshot.child(key));
+          Institutions institution = Institutions.fromSnapshot(event.snapshot.child(key));
           institutionList.add(institution);
         });
       }
@@ -158,8 +150,7 @@ class FirebaseRealtimeDBRepository {
   // =================================================================================================
   // GET fund transfers list (stream)
   Stream<List<FundTransferAccount>> getFundTransferListStream() {
-    return _firebaseDatabase.ref()
-    .child('fund_transfer')
+    return _firebaseDatabase.ref('fund_transfer')
     .child(userId())
     .onValue
     .map((event) {
@@ -182,23 +173,19 @@ class FirebaseRealtimeDBRepository {
   // =============================================================== USERS WIDGET ========
   // =====================================================================================
   // GET user widgets list
-  Future<List<UserWidget>> getUserWidgetList(String instId) {
+  Future<List<AdditionalWidget>> getUserWidgetList(String instId) {
     return _firebaseDatabase
-    .ref('user_widget') // parent node
-    .child(userId())  // user id
-    .child(instId)  // institution id
+    .ref('additional_widget/${userId()}/${instId}')
     .get()
     .then((snapshot) {
-      List<UserWidget> widgetList = [];
+      List<AdditionalWidget> widgetList = [];
 
       if (snapshot.exists) {
-        Map<dynamic, dynamic> snapshotValues = snapshot.value as Map<dynamic, dynamic>;
-        
+        final snapshotValues = snapshot.value as Map<dynamic, dynamic>;
         snapshotValues.forEach((key, values) {
-          UserWidget account = UserWidget.fromSnapshot(snapshot.child(key));
+          AdditionalWidget account = AdditionalWidget.fromSnapshot(snapshot.child(key));
           widgetList.add(account);
         });
-        
       }
       return widgetList;
     }).onError((error, stackTrace) {
@@ -210,31 +197,28 @@ class FirebaseRealtimeDBRepository {
   // ============================ RECEIPTS ============
   // ==================================================
   // GET receipt
-  Stream<Receipts> getReceiptStream(String id) {
-    return _firebaseDatabase.ref('receipts')
-    .child(userId())
-    .child(id)
+  Stream<Receipt> getReceiptStream(String id) {
+    return _firebaseDatabase.ref('receipt/${userId()}/${id}')
     .onValue
     .map((event) {
-      return Receipts.fromSnapshot(event.snapshot);
+      return Receipt.fromSnapshot(event.snapshot);
     });
   }
 
-  // ========================================== NOTIFICATIONS ===================================
+  // ====================================== NOTIFICATION ========================================
   // ============================================================================================
   // GET notification list (stream)
-  Stream<List<Notifications>> getNotificationListStream() {
-    return _firebaseDatabase.ref()
-    .child('notifications/${userId()}')
+  Stream<List<Notification>> getNotificationListStream() {
+    return _firebaseDatabase.ref('notification/${userId()}')
     .onValue
     .map((event) {
-      List<Notifications> notificationList = [];
+      List<Notification> notificationList = [];
 
       if (event.snapshot.exists) {
-        Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
+        final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
         snapshotValues.forEach((key, values) {
-          Notifications notification = Notifications.fromSnapshot(event.snapshot.child(key));
+          Notification notification = Notification.fromSnapshot(event.snapshot.child(key));
           notificationList.add(notification);
         });
       }
@@ -246,14 +230,14 @@ class FirebaseRealtimeDBRepository {
   }
 
   // GET notification
-  Future<Notifications> getNotification(String id) async {
+  Future<Notification> getNotification(String id) async {
     try {
-      final snapshot = await _firebaseDatabase.ref()
-      .child('notifications/${userId()}/${id}')
+      final snapshot = await _firebaseDatabase
+      .ref('notification/${userId()}/${id}')
       .get();
 
       if (snapshot.exists) {
-        return Notifications.fromSnapshot(snapshot);
+        return Notification.fromSnapshot(snapshot);
       } else {
         throw Exception('Notification with ID $id not found');
       }
@@ -265,8 +249,8 @@ class FirebaseRealtimeDBRepository {
   // UPDATE notification
   Future<void> updateNotificationRead(String id) async {
     try {
-      await _firebaseDatabase.ref()
-      .child('notifications/${userId()}/${id}')
+      await _firebaseDatabase
+      .ref('notification/${userId()}/${id}')
       .update({'is_read': true});
     } catch (error) {
       throw('Error marking notification as read: $error');
@@ -276,8 +260,8 @@ class FirebaseRealtimeDBRepository {
   // DELETE notification
   Future<void> deleteNotificationRead(String id) async {
     try {
-      await _firebaseDatabase.ref()
-      .child('notifications/${userId()}/${id}')
+      await _firebaseDatabase
+      .ref('notification/${userId()}/${id}')
       .remove();
     } catch (error) {
       print('Error deleting notification: $error');
@@ -286,9 +270,9 @@ class FirebaseRealtimeDBRepository {
 
   // ========================================== HOME BUTTONS ===================================
   // ============================================================================================
-  // GET home_buttons list (stream)
+  // GET home_button list (stream)
   Stream<List<HomeButton>> getHomeButtonsListStream() {
-    return _firebaseDatabase.ref('home_buttons')
+    return _firebaseDatabase.ref('home_button')
     .onValue
     .map((event) {
       List<HomeButton> homeButtonsList = [];
@@ -308,15 +292,15 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // ========================================== HOME BUTTONS ===================================
+  // ========================================== PAGE WIDGETS ====================================
   // ============================================================================================
-  // GET home_buttons list (stream)
-  Stream<List<HomeButtonWidget>> getWidgetsListStream(String originId) {
+  // GET page_widget list (stream)
+  Stream<List<PageWidget>> getWidgetsListStream(String originId) {
     return _firebaseDatabase
-    .ref('home_button_widget/${originId}')
+    .ref('page_widget/${originId}')
     .onValue
     .map((event) {
-      List<HomeButtonWidget> widgetsList = [];
+      List<PageWidget> widgetsList = [];
       // Check if data exists at the specified database location
       if (event.snapshot.exists) {
         // Extract the data as a map of key-value pairs
@@ -324,7 +308,7 @@ class FirebaseRealtimeDBRepository {
         // Iterate through the map and convert data to HomeButtonWidget objects
         snapshotValues.forEach((key, values) {
           // Create a HomeButtonWidget object from the child snapshot at the current key
-          HomeButtonWidget widget = HomeButtonWidget.fromSnapshot(event.snapshot.child(key));
+          PageWidget widget = PageWidget.fromSnapshot(event.snapshot.child(key));
           // Add the newly created widget to the list
           widgetsList.add(widget);
         });
@@ -343,19 +327,22 @@ class FirebaseRealtimeDBRepository {
   // ======================================================================================
   // GET dynamic dropdown list
 
-  Future<List<String>> getDynamicDropdownData(String ref) async {
-    return _firebaseDatabase
-    .ref(ref)
+  Future<List<String>> getDynamicDropdownData(String reference) async {
+    return _firebaseDatabase.ref(reference)
     .get()
     .then((snapshot) {
       List<String> filters = []; 
 
       if (snapshot.exists) {
-        final filterMap = snapshot.value as Map<dynamic, dynamic>;
+        // cast snapshot as List<dynamic> base on firebase node List format
+        final filterList = snapshot.value as List<dynamic>;
 
-        filterMap.forEach((key, value) {
-          filters.add(value.toString());
-        });
+        for (var value in filterList) {
+          //  filter out any null values and include all non-null values
+          if (value != null) {
+            filters.add(value);
+          }
+        }
       }
 
       return filters;

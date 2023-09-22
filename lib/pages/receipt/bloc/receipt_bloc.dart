@@ -20,7 +20,7 @@ class ReceiptBloc extends Bloc<ReceiptEvent, ReceiptState> {
   }
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
   final HiveRepository _hiveRepository;
-  StreamSubscription<Receipts>? _streamSubscription;
+  StreamSubscription<Receipt>? _streamSubscription;
   
   void _onReceiptDisplayLoaded(ReceiptDisplayLoaded event, Emitter<ReceiptState> emit) async {
     final id = await _hiveRepository.getID();

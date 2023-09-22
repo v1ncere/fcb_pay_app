@@ -10,8 +10,8 @@ abstract class AccountDisplayState extends Equatable {
 class AccountDisplayInProgress extends AccountDisplayState {}
 
 class AccountDisplaySuccess extends AccountDisplayState {
-  const AccountDisplaySuccess({this.accounts = const <Accounts>[]});
-  final List<Accounts> accounts;
+  const AccountDisplaySuccess({this.accounts = const <Account>[]});
+  final List<Account> accounts;
 
   @override
   List<Object> get props => [accounts];

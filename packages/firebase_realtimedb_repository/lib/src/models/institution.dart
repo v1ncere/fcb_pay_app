@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class Institution {
-  const Institution({
+class Institutions {
+  const Institutions({
     this.keyId,
     this.id,
     required this.name,
@@ -11,16 +11,15 @@ class Institution {
   final String? keyId;
   final String? id;
   final String name;
-  
   final DateTime timeStamp;
 
-  Institution copyWith({
+  Institutions copyWith({
     String? keyId,
     String? id,
     String? name,
     DateTime? timeStamp
   }) {
-    return Institution(
+    return Institutions(
       keyId: keyId ?? this.keyId,
       id: id ?? this.id,
       name: name ?? this.name,
@@ -28,14 +27,14 @@ class Institution {
     );
   }
 
-  factory Institution.fromSnapshot(DataSnapshot snapshot) {
+  factory Institutions.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
     final intTimestamp = data?['time_stamp'] as int?;
     final timestamp = intTimestamp != null && intTimestamp.abs() <= 9999999999999
     ? DateTime.fromMillisecondsSinceEpoch(intTimestamp)
     : null;
 
-    return Institution(
+    return Institutions(
       keyId: snapshot.key,
       id: data?['id'] as String? ?? '',
       name: data?['name'] as String? ?? '',

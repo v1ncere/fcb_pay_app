@@ -12,7 +12,7 @@ class DynamicDropdown extends StatelessWidget {
     super.key,
     required this.widget
   });
-  final HomeButtonWidget widget;
+  final PageWidget widget;
 
   @override
   Widget build(BuildContext context) {

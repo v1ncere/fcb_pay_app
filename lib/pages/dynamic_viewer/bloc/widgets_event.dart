@@ -17,7 +17,7 @@ final class WidgetsLoaded extends WidgetsEvent {
 
 final class WidgetsUpdated extends WidgetsEvent {
   const WidgetsUpdated(this.widgetList);
-  final List<HomeButtonWidget> widgetList;
+  final List<PageWidget> widgetList;
 
   @override
   List<Object> get props => [widgetList];

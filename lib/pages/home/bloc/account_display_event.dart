@@ -11,7 +11,7 @@ class AccountDisplayLoaded extends AccountDisplayEvent {}
 
 class AccountDisplayUpdated extends AccountDisplayEvent {
   const AccountDisplayUpdated(this.accounts);
-  final List<Accounts> accounts;
+  final List<Account> accounts;
 
   @override
   List<Object> get props => [accounts];

@@ -11,7 +11,7 @@ final class AccountsLoaded extends AccountsEvent {}
 
 final class AccountsUpdated extends AccountsEvent {
   const AccountsUpdated(this.accounts);
-  final List<Accounts> accounts;
+  final List<Account> accounts;
 
   @override
   List<Object> get props => [accounts];

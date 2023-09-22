@@ -11,7 +11,7 @@ class ReceiptDisplayLoading extends ReceiptState {}
 
 class ReceiptDisplaySuccess extends ReceiptState {
   const ReceiptDisplaySuccess({required this.receipts});
-  final Receipts receipts;
+  final Receipt receipts;
 
   @override
   List<Object> get props => [receipts];

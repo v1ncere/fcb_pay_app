@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class HomeButtonWidget {
-  const HomeButtonWidget({
+class PageWidget {
+  const PageWidget({
     this.keyId,
     required this.additional,
     this.content,
@@ -22,7 +22,7 @@ class HomeButtonWidget {
   final String title;
   final String widget;
 
-  HomeButtonWidget copyWith({
+  PageWidget copyWith({
     String? keyId,
     bool? additional,
     String? content,
@@ -33,7 +33,7 @@ class HomeButtonWidget {
     String? title,
     String? widget
   }) {
-    return HomeButtonWidget(
+    return PageWidget(
       keyId: keyId ?? this.keyId,
       additional: additional ?? this.additional,
       content: content ?? this.content,
@@ -46,14 +46,14 @@ class HomeButtonWidget {
     );
   }
 
-  factory HomeButtonWidget.fromSnapshot(DataSnapshot dataSnapshot) {
+  factory PageWidget.fromSnapshot(DataSnapshot dataSnapshot) {
     final data = dataSnapshot.value as Map?;  // convert dataSnapshot object into Map<dynamic, dynamic>? 
     final intTimeStamp = data?['time_stamp'] as int?;
     final dateStamp = intTimeStamp != null && intTimeStamp.abs() <= 9999999999999
     ? DateTime.fromMillisecondsSinceEpoch(intTimeStamp)
     : null;
 
-    return HomeButtonWidget(
+    return PageWidget(
       keyId: dataSnapshot.key,
       additional: data?['additional'] as bool? ?? false,
       content: data?['content'] as String? ?? '',

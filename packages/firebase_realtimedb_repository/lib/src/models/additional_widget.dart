@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class UserWidget {
-  UserWidget({
+class AdditionalWidget {
+  AdditionalWidget({
     this.keyId,
     this.content,
     required this.dataType,
@@ -16,7 +16,7 @@ class UserWidget {
   final String title;
   final String widget;
 
-  UserWidget copyWith({
+  AdditionalWidget copyWith({
     String? keyId,
     String? content,
     String? dataType,
@@ -24,7 +24,7 @@ class UserWidget {
     String? title,
     String? widget
   }) {
-    return UserWidget(
+    return AdditionalWidget(
       keyId: keyId ?? this.keyId,
       content: content ?? this.content,
       dataType: dataType ?? this.dataType,
@@ -34,10 +34,10 @@ class UserWidget {
     );
   }
 
-  factory UserWidget.fromSnapshot(DataSnapshot snapshot) {
+  factory AdditionalWidget.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
 
-    return UserWidget(
+    return AdditionalWidget(
       keyId: snapshot.key,
       content: data?['content'] as String? ?? '',
       dataType: data?['data_type'] as String? ?? '',
@@ -45,15 +45,5 @@ class UserWidget {
       title: data?['title'] as String? ?? '',
       widget: data?['widget'] as String? ?? ''
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['content'] = content;
-    data['data_type'] = dataType;
-    data['owner_id'] = ownerId;
-    data['title'] = title;
-    data['widget'] = widget;
-    return data;
   }
 }

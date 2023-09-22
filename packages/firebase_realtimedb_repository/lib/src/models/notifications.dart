@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class Notifications {
-  const Notifications({
+class Notification {
+  const Notification({
     this.keyId,
     required this.content,
     required this.isRead,
@@ -14,14 +14,14 @@ class Notifications {
   final String senderName;
   final DateTime timeStamp;
 
-  Notifications copyWith({
+  Notification copyWith({
     String? keyId,
     String? content,
     bool? isRead,
     String? senderName,
     DateTime? timeStamp,
   }) {
-    return Notifications(
+    return Notification(
       keyId: keyId ?? this.keyId,
       content: content ?? this.content,
       isRead: isRead ?? this.isRead,
@@ -30,7 +30,7 @@ class Notifications {
     );
   }
 
-  factory Notifications.fromSnapshot(DataSnapshot snapshot) {
+  factory Notification.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
 
     final intTimestamp = data?['time_stamp'] as int?;
@@ -38,7 +38,7 @@ class Notifications {
     ? DateTime.fromMillisecondsSinceEpoch(intTimestamp)
     : null;
     
-    return Notifications(
+    return Notification(
       keyId: snapshot.key, // already has value in it
       content: data?['content'] as String? ?? '',
       isRead: data?['is_read'] as bool? ?? false,

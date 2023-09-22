@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class Receipts {
-  const Receipts({
+class Receipt {
+  const Receipt({
     this.keyId,
     required this.amount,
     required this.confirm,
@@ -18,7 +18,7 @@ class Receipts {
   final String title;
   final DateTime timeStamp;
 
-  Receipts copyWith({
+  Receipt copyWith({
     String? keyId,
     double? amount,
     bool? confirm,
@@ -27,7 +27,7 @@ class Receipts {
     String? title,
     DateTime? timeStamp
   }) {
-    return Receipts(
+    return Receipt(
       keyId: keyId ?? this.keyId,
       amount: amount ?? this.amount,
       confirm: confirm ?? this.confirm,
@@ -38,7 +38,7 @@ class Receipts {
     );
   }
 
-  factory Receipts.fromSnapshot(DataSnapshot snapshot) {
+  factory Receipt.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
 
     final intTimestamp = data?['time_stamp'] as int?;
@@ -51,7 +51,7 @@ class Receipts {
     ? dynamicAmount.toDouble()
     : dynamicAmount as double?;
 
-    return Receipts(
+    return Receipt(
       keyId: snapshot.key, // has already value in it, be careful!
       amount: doubleAmount ?? 0.0,
       confirm: data?['confirm'] as bool? ?? false,

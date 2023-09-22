@@ -26,7 +26,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
   }
   final FirebaseRealtimeDBRepository _firebaseRepository;
   final HiveRepository _hiveRepository;
-  StreamSubscription<List<HomeButtonWidget>>? _subscription;
+  StreamSubscription<List<PageWidget>>? _subscription;
 
   void _onWidgetsLoaded(WidgetsLoaded event, Emitter<WidgetsState> emit) {
     _subscription?.cancel();
@@ -57,7 +57,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     // Check if a widget with a matching keyId was found.
     if (index != -1) {
       // Create a copy of the current widgetList to update.
-      final updatedUserWidget = List<HomeButtonWidget>.from(state.widgetList);
+      final updatedUserWidget = List<PageWidget>.from(state.widgetList);
       // Update the widget at the found index with the new content value.
       updatedUserWidget[index] = updatedUserWidget[index].copyWith(content: event.value); 
 

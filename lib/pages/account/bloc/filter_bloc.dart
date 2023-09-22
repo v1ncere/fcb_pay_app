@@ -1,7 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:fcb_pay_app/utils/utils.dart';
 
 part 'filter_event.dart';
 part 'filter_state.dart';
@@ -14,7 +15,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     on<FilterFetched>((event, emit) async {
       try {
         List<String> filterList = [];
-        filterList = await _dbRepository.getDynamicDropdownData("filters");
+        filterList = await _dbRepository.getDynamicDropdownData('filter');
         emit(state.copyWith(
           status: Status.success,
           filters: filterList

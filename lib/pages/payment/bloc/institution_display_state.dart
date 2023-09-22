@@ -3,16 +3,16 @@ part of 'institution_display_bloc.dart';
 class InstitutionDisplayState extends Equatable {
   const InstitutionDisplayState({
     this.status = Status.initial,
-    this.institution = const <Institution>[],
+    this.institution = const <Institutions>[],
     this.error = "",
   });
   final Status status;
-  final List<Institution> institution;
+  final List<Institutions> institution;
   final String error;
 
   InstitutionDisplayState copyWith({
     Status? status,
-    List<Institution>? institution,
+    List<Institutions>? institution,
     String? error,
   }) {
     return InstitutionDisplayState(
