@@ -9,8 +9,8 @@ part 'accounts_state.dart';
 
 class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
   AccountsBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _dbRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _dbRepository = firebaseRepository,
   super(AccountsInProgress()) {
     on<AccountsLoaded>(_onAccountsLoaded);
     on<AccountsUpdated>(_onAccountsUpdated);

@@ -11,8 +11,8 @@ part 'institution_display_state.dart';
 
 class InstitutionDisplayBloc extends Bloc<InstitutionDisplayEvent, InstitutionDisplayState> {
   InstitutionDisplayBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _dbRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _dbRepository = firebaseRepository,
   super(const InstitutionDisplayState(status: Status.loading)) {
     on<InstitutionDisplayLoaded>(_onInstitutionDisplayLoaded);
     on<InstitutionDisplayUpdated>(_onInstitutionDisplayUpdated);

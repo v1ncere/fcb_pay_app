@@ -11,8 +11,8 @@ part 'fund_transfer_accounts_state.dart';
 
 class FundTransferAccountBloc extends Bloc<FundTransferAccountEvent, FundTransferAccountState> {
   FundTransferAccountBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository
+  }) : _realtimeDBRepository = firebaseRepository,
   super(const FundTransferAccountState(status: Status.loading)) {
     on<FundTransferAccountLoaded>(_onFundTransferAccountLoaded);
     on<FundTransferAccountUpdated>(_onFundTransferAccountUpdated);

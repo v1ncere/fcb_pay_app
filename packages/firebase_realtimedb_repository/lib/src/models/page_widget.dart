@@ -8,6 +8,7 @@ class PageWidget {
     required this.dataType,
     required this.node,
     required this.owner,
+    required this.position,
     required this.timeStamp,
     required this.title,
     required this.widget
@@ -15,6 +16,7 @@ class PageWidget {
   final String? keyId;
   final bool additional;
   final String? content;
+  final int position;
   final String dataType;
   final String node;
   final String owner;
@@ -26,6 +28,7 @@ class PageWidget {
     String? keyId,
     bool? additional,
     String? content,
+    int? position,
     String? dataType,
     String? node,
     String? owner,
@@ -37,6 +40,7 @@ class PageWidget {
       keyId: keyId ?? this.keyId,
       additional: additional ?? this.additional,
       content: content ?? this.content,
+      position: position ?? this.position,
       dataType: dataType ?? this.dataType,
       node: node ?? this.node,
       owner: owner ?? this.owner,
@@ -57,6 +61,7 @@ class PageWidget {
       keyId: dataSnapshot.key,
       additional: data?['additional'] as bool? ?? false,
       content: data?['content'] as String? ?? '',
+      position: data?['position'] as int? ?? 0,
       dataType: data?['data_type'] as String? ?? '',
       node: data?['node'] as String? ?? '',
       owner: data?['owner'] as String? ?? '',

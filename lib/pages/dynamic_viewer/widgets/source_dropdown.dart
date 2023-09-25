@@ -1,40 +1,56 @@
-import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
-import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class SourceDropdown extends StatelessWidget {
-  const SourceDropdown({super.key});
+  const SourceDropdown({
+    super.key,
+    required this.widget
+  });
+  final PageWidget widget;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountDisplayBloc, AccountDisplayState>(
+    return BlocBuilder<AccountsBloc, AccountsState>(
       builder: (context, state) {
-        if (state is AccountDisplayInProgress) {
+        if (state is AccountsInProgress) {
           return const Center(child: ShimmerRectLoading());
         }
-        if (state is AccountDisplaySuccess) {
+        if (state is AccountsSuccess) {
           return BlocBuilder<WidgetsBloc, WidgetsState>(
             builder: (widgetsContext, widgetsState) {
-              return CustomDropdownButton(
-                value: widgetsState.source,
-                hint: const Text("Select source account"),
-                validator: (_) => null,
-                onChanged: (value) => context.read<FundTransferBloc>().add(SourceAccountChanged(value!)),
-                items: state.accounts.map((item) {
-                  return DropdownMenuItem<String> (
-                    value: item.keyId.toString(),
-                    child: Text('${item.keyId}')
-                  );
-                }).toList(),
+              return Padding(
+                padding: const EdgeInsets.only(top: 5.0 , bottom: 5.0),
+                child: CustomDropdownButton(
+                  value: null,
+                  hint: Text(widget.title),
+                  validator: (_) => null,
+                  onChanged: (value) {
+                    context.read<WidgetsBloc>().add(
+                      DynamicWidgetsValueChanged(
+                        keyId: widget.keyId!,
+                        title: widget.title,
+                        value: value!,
+                        type: widget.dataType,
+                      )
+                    );
+                  },
+                  items: state.accounts.map((item) {
+                    return DropdownMenuItem<String> (
+                      value: item.keyId.toString(),
+                      child: Text('${item.keyId}')
+                    );
+                  }).toList(),
+                ),
               );
             }
           );
         }
-        if (state is AccountDisplayError) {
+        if (state is AccountsError) {
           return Center(
             child: Text(state.error,
               style: const TextStyle(

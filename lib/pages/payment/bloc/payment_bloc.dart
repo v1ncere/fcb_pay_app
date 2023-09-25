@@ -13,9 +13,9 @@ part 'payment_state.dart';
 
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   PaymentBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
     required HiveRepository hiveRepository
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+  }) : _realtimeDBRepository = firebaseRepository,
   _hiveRepository = hiveRepository,
   super(const PaymentState()) {
     on<InstitutionValueChanged>(_onInstitutionSelectionChanged);

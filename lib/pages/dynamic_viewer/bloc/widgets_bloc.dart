@@ -38,16 +38,18 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
   }
 
   void _onWidgetsUpdated(WidgetsUpdated event, Emitter<WidgetsState> emit) async {
-    if (event.widgetList.isEmpty) {
-      emit(state.copyWith(
-        widgetStatus: Status.error,
-        errorMsg: 'Empty'
-      ));
+    if (event.widgetList.isNotEmpty) {
+      List<PageWidget> widgetList = event.widgetList;
+
+      final buttonWidget = widgetList.firstWhere((widget) => widget.widget == 'button'); // get the button widget
+      final otherWidget = widgetList.where((widget) => widget.widget != 'button').toList(); // get the non button widgets
+
+      otherWidget.sort((a, b) => a.position.compareTo(b.position)); // sort widgets base on the [position] field
+      final sortedWidgets = [...otherWidget, buttonWidget]; // combine otherWidget and buttonWidget, ensuring buttonWidget is at the end of the list.
+
+      emit(state.copyWith(widgetStatus: Status.success, widgetList: sortedWidgets));
     } else {
-      emit(state.copyWith(
-        widgetStatus: Status.success,
-        widgetList: event.widgetList
-      ));
+      emit(state.copyWith(widgetStatus: Status.error, errorMsg: 'Empty'));
     }
   }
 
@@ -81,7 +83,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
       try {
         final id = await _firebaseRepository.addUserRequest(
           UserRequest(
-            dataRequest: "button_title|$result",
+            dataRequest: 'button_title|$result',
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             timeStamp: DateTime.now()
           )
@@ -144,7 +146,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     // loop base on List<HomeButtonWidget> object
     for (final widget in state.widgetList) {
       if (widget.widget == "textfield" || widget.widget == "dropdown") {
-        formData[widget.title] = widget.content!; // store List<HomeButtonWidget> content into map
+        formData[widget.title] = widget.content!; // store List<PageWidget> content into map
       }
     }
     return formData;

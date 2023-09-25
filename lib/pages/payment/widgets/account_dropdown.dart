@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
@@ -11,12 +11,12 @@ class AccountDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountDisplayBloc, AccountDisplayState>(
+    return BlocBuilder<AccountsBloc, AccountsState>(
       builder: (context, state) {
-        if(state is AccountDisplayInProgress) {
+        if(state is AccountsInProgress) {
           return const Center(child: ShimmerRectLoading());
         }
-        if (state is AccountDisplaySuccess) {
+        if (state is AccountsSuccess) {
           return BlocBuilder<PaymentBloc, PaymentState>(
             buildWhen: (previous, current) => previous.formzStatus != current.formzStatus || current.isValid,
             builder: (paymentContext, paymentState) {
@@ -35,7 +35,7 @@ class AccountDropdown extends StatelessWidget {
             }
           );
         }
-        if (state is AccountDisplayError) {
+        if (state is AccountsError) {
           return Center(
             child: Text(state.error,
               style: const TextStyle(

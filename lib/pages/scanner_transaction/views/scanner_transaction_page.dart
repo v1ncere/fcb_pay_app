@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
 
 class ScannerTransactionPage extends StatelessWidget {
@@ -19,14 +19,10 @@ class ScannerTransactionPage extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => AccountDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository())
-            ..add(AccountDisplayLoaded())
-          ),
-          BlocProvider(
-            create: (context) => ScannerTransactionBloc(hiveRepository: HiveRepository(), firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository())
-            ..add(ScannerTransactionDisplayLoaded())
-          )
+          BlocProvider(create: (context) => AccountsBloc(firebaseRepository: FirebaseRealtimeDBRepository())
+          ..add(AccountsLoaded())),
+          BlocProvider(create: (context) => ScannerTransactionBloc(hiveRepository: HiveRepository(), firebaseRepository: FirebaseRealtimeDBRepository())
+          ..add(ScannerTransactionDisplayLoaded()))
         ],
         child: const ScannerTransactionView()
       )

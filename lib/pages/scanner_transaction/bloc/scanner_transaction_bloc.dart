@@ -13,10 +13,10 @@ part 'scanner_transaction_state.dart';
 
 class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransactionState> {
   ScannerTransactionBloc({
-    required HiveRepository hiveRepository, 
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository
-  }) : _hiveRepository = hiveRepository,
-  _realtimeDBRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+    required HiveRepository hiveRepository
+  }) : _realtimeDBRepository = firebaseRepository,
+  _hiveRepository = hiveRepository,
   super(const ScannerTransactionState()) {
     on<ScannerTransactionDisplayLoaded>(_onScannerTransactionDisplayLoaded);
     on<ScannerAccountValueChanged>(_onScannerAccountValueChanged);

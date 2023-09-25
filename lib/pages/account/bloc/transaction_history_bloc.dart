@@ -13,8 +13,8 @@ part 'transaction_history_state.dart';
 
 class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHistoryState> {
   TransactionHistoryBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _realtimeDBRepository = firebaseRepository,
   super(const TransactionHistoryState()) {
     on<TransactionHistoryLoaded>(_onTransactionHistoryLoaded);
     on<TransactionHistoryUpdated>(_onTransactionHistoryUpdated);
@@ -56,7 +56,7 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
   void _onTransactionHistoryUpdated(TransactionHistoryUpdated event, Emitter<TransactionHistoryState> emit) async {
     emit(state.copyWith(status: Status.loading));
 
-    if (event.transactions.isEmpty) {
+    if (event.transactions.isNotEmpty) {
       emit(state.copyWith(status: Status.error, error: "empty"));
     } else {
       emit(state.copyWith(status: Status.success, transactions: event.transactions));

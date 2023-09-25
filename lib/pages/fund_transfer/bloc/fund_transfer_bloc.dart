@@ -11,9 +11,9 @@ part 'fund_transfer_state.dart';
 
 class FundTransferBloc extends Bloc<FundTransferEvent, FundTransferState> {
   FundTransferBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
     required HiveRepository hiveRepository
-  })  : _realtimeDBRepository = firebaseRealtimeDBRepository, _hiveRepository = hiveRepository,
+  })  : _realtimeDBRepository = firebaseRepository, _hiveRepository = hiveRepository,
   super(const FundTransferState()) {
     on<AmountChanged>(_onAmountChanged);
     on<SourceAccountChanged>(_onSourceAccountChanged);

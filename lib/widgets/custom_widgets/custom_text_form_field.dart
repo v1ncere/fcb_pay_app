@@ -33,7 +33,7 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         fillColor: const Color.fromARGB(255, 211, 243, 224),
         labelText: title,
-        labelStyle: const TextStyle(color: Colors.black26),
+        labelStyle: const TextStyle(color: Colors.black54),
         border: SelectedInputBorderWithShadow(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none

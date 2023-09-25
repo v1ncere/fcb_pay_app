@@ -9,8 +9,8 @@ part 'dropdown_state.dart';
 
 class DropdownBloc extends Bloc<DropdownEvent, DropdownState> {
   DropdownBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _dbRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _dbRepository = firebaseRepository,
   super(const DropdownState(status: Status.loading)) {
     on<DropdownFetched>(_onDropdownFetched);
   }
@@ -18,21 +18,10 @@ class DropdownBloc extends Bloc<DropdownEvent, DropdownState> {
 
   void _onDropdownFetched(DropdownFetched event, Emitter<DropdownState> emit) async {
     try {
-      List<String> dropdownList = [];
-      dropdownList = await _dbRepository.getDynamicDropdownData(event.reference);
-      emit(
-        state.copyWith(
-          status: Status.success,
-          dropdowns: dropdownList
-        )
-      );
+      final dropdownList = await _dbRepository.getDynamicDropdownData(event.reference);
+      emit(state.copyWith(status: Status.success, dropdowns: dropdownList));
     } catch (err) {
-      emit(
-        state.copyWith(
-          status: Status.error,
-          error: err.toString()
-        )
-      );
+      emit(state.copyWith(status: Status.error, error: err.toString()));
     }
   }
 }

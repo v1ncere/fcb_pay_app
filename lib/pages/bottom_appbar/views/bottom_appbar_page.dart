@@ -1,10 +1,9 @@
-import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 
 class BottomAppbarPage extends StatelessWidget {
   const BottomAppbarPage({super.key});
@@ -17,16 +16,8 @@ class BottomAppbarPage extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => BottomAppbarCubit()),
-          BlocProvider(
-            create: (context) => AccountDisplayBloc(
-              firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-            )..add(AccountDisplayLoaded())
-          ),
-          BlocProvider(
-            create: (context) => AccountsBloc(
-              firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-            )..add(AccountsLoaded())
-          )
+          BlocProvider(create: (context) => AccountsBloc(firebaseRepository: FirebaseRealtimeDBRepository())
+          ..add(AccountsLoaded()))
         ],
         child: const BottomAppbarView()
       )

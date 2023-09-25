@@ -10,6 +10,8 @@ import 'package:fcb_pay_app/pages/fund_transfer/fund_transfer.dart';
 class AccountFundTransferPage extends StatelessWidget {
   const AccountFundTransferPage({super.key});
   static Page<void> page() => const MaterialPage<void>(child: AccountFundTransferPage());
+  static final _firebaseRepository = FirebaseRealtimeDBRepository();
+  static final _hiveRepository = HiveRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -18,22 +20,17 @@ class AccountFundTransferPage extends StatelessWidget {
       builder: (context, args) {
         return MultiRepositoryProvider(
           providers: [
-            RepositoryProvider(create: (context) => FirebaseRealtimeDBRepository()),
-            RepositoryProvider(create: (context) => HiveRepository())
+            RepositoryProvider(create: (context) => _firebaseRepository),
+            RepositoryProvider(create: (context) => _hiveRepository)
           ],
           child: MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => FundTransferAccountBloc(
-                  firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-                )..add(FundTransferAccountLoaded())
-              ),
-              BlocProvider(
-                create: (context) => FundTransferBloc(
-                  firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository(),
-                  hiveRepository: HiveRepository()
-                )..add(SourceAccountChanged(args))
-              )
+              BlocProvider(create: (context) => FundTransferAccountBloc(firebaseRepository: _firebaseRepository)
+              ..add(FundTransferAccountLoaded())),
+              BlocProvider(create: (context) => FundTransferBloc(
+                firebaseRepository: _firebaseRepository,
+                hiveRepository: _hiveRepository
+              )..add(SourceAccountChanged(args)))
             ],
             child: const AccountFundTransferView()
           )

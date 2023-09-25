@@ -9,8 +9,8 @@ part 'filter_state.dart';
 
 class FilterBloc extends Bloc<FilterEvent, FilterState> {
   FilterBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _dbRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _dbRepository = firebaseRepository,
   super(const FilterState(status: Status.loading)) {
     on<FilterFetched>((event, emit) async {
       try {

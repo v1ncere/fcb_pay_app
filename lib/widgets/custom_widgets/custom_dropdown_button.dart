@@ -1,6 +1,7 @@
-import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:fcb_pay_app/utils/utils.dart';
 
 class CustomDropdownButton extends StatelessWidget {
   const CustomDropdownButton({

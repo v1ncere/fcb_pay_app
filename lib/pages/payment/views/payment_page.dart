@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/payment/payment.dart';
 
 class PaymentPage extends StatelessWidget {
@@ -21,16 +21,16 @@ class PaymentPage extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => PaymentBloc(
-            firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository(),
+            firebaseRepository: FirebaseRealtimeDBRepository(),
             hiveRepository: HiveRepository()
           )),
           BlocProvider(
-            create: (context) => InstitutionDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository())
+            create: (context) => InstitutionDisplayBloc(firebaseRepository: FirebaseRealtimeDBRepository())
             ..add(InstitutionDisplayLoaded())
           ),
           BlocProvider(
-            create: (context) => AccountDisplayBloc(firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository())
-            ..add(AccountDisplayLoaded())
+            create: (context) => AccountsBloc(firebaseRepository: FirebaseRealtimeDBRepository())
+            ..add(AccountsLoaded())
           )
         ],
         child: const PaymentView()

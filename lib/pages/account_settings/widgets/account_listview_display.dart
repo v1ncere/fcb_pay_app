@@ -1,23 +1,23 @@
+import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:fcb_pay_app/pages/account_settings/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/home/home.dart';
 
 class AccountListViewDisplay extends StatelessWidget {
   const AccountListViewDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountDisplayBloc, AccountDisplayState> (
+    return BlocBuilder<AccountsBloc, AccountsState> (
       builder: (context, state) {
-        if(state is AccountDisplayInProgress) {
+        if(state is AccountsInProgress) {
           return const Padding(
             padding: EdgeInsets.all(15.0),
             child: Center(child: CircularProgressIndicator()));
         }
-        if (state is AccountDisplaySuccess) {
+        if (state is AccountsSuccess) {
           return ListView.separated(
             separatorBuilder: (context, index) => const Divider(height: 10.0,),
             shrinkWrap: true,
@@ -33,7 +33,7 @@ class AccountListViewDisplay extends StatelessWidget {
             }
           );
         }
-        if (state is AccountDisplayError) {
+        if (state is AccountsError) {
           return Center(
             child: Text(state.error,
               style: const TextStyle(

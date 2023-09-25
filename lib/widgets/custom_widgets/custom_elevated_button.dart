@@ -29,7 +29,13 @@ class CustomElevatedButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(title, style: TextStyle(color: titleColor, fontWeight: FontWeight.w700)),
+          Text(
+            title, 
+            style: TextStyle(
+              color: titleColor,
+              fontWeight: FontWeight.w700
+            )
+          ),
           const SizedBox(width: 5),
           Icon(icon, color: iconColor, size: 20)
         ]

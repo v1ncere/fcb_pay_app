@@ -14,37 +14,38 @@ class DynamicMultiTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      key: const Key('fund_message_input'),
-      keyboardType: TextInputType.multiline,
-      textInputAction: TextInputAction.newline,
-      maxLength: 100,
-      minLines: 2,
-      maxLines: 3,
-      onChanged: (value) {
-        context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
-          keyId: widget.keyId!,
-          title: widget.title,
-          value: value,
-          type: widget.dataType,
-        ));
-      },
-      style: const TextStyle(
-        color: Colors.black45,
-        fontWeight: FontWeight.w700
-      ),
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: const Color.fromARGB(30, 37, 193, 102),
-        border: SelectedInputBorderWithShadow(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide.none
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+      child: TextField(
+        keyboardType: TextInputType.multiline,
+        textInputAction: TextInputAction.newline,
+        maxLength: 100,
+        minLines: 2,
+        maxLines: 3,
+        onChanged: (value) {
+          context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
+            keyId: widget.keyId!,
+            title: widget.title,
+            value: value,
+            type: widget.dataType,
+          ));
+        },
+        style: const TextStyle(
+          color: Colors.black45,
+          fontWeight: FontWeight.w700
         ),
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        labelText: 'Enter a message',
-        labelStyle: const TextStyle(color: Colors.black26),
-        // errorText: state.message.displayError?.text()
-      )
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: const Color.fromARGB(30, 37, 193, 102),
+          border: SelectedInputBorderWithShadow(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide.none
+          ),
+          labelText: 'Enter a message',
+          labelStyle: const TextStyle(color: Colors.black26),
+          // errorText: state.message.displayError?.text()
+        )
+      ),
     );
   }
 }
