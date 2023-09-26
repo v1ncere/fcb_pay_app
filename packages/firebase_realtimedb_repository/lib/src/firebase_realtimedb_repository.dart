@@ -173,21 +173,20 @@ class FirebaseRealtimeDBRepository {
   // =============================================================== USERS WIDGET ========
   // =====================================================================================
   // GET user widgets list
-  Future<List<AdditionalWidget>> getUserWidgetList(String instId) {
-    return _firebaseDatabase
-    .ref('additional_widget/${userId()}/${instId}')
+  Future<List<ExtraWidget>> getExtraWidgetList(String instId) {
+    return _firebaseDatabase.ref('extra_widget/${instId}')
     .get()
     .then((snapshot) {
-      List<AdditionalWidget> widgetList = [];
+      List<ExtraWidget> extraWidgetList = [];
 
       if (snapshot.exists) {
         final snapshotValues = snapshot.value as Map<dynamic, dynamic>;
         snapshotValues.forEach((key, values) {
-          AdditionalWidget account = AdditionalWidget.fromSnapshot(snapshot.child(key));
-          widgetList.add(account);
+          ExtraWidget extra = ExtraWidget.fromSnapshot(snapshot.child(key));
+          extraWidgetList.add(extra);
         });
       }
-      return widgetList;
+      return extraWidgetList;
     }).onError((error, stackTrace) {
       print('Error occurred: $error');
       return [];

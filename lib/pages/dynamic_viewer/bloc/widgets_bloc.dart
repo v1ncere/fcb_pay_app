@@ -15,17 +15,17 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
   WidgetsBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
     required HiveRepository hiveRepository
-  }) : _firebaseRepository = firebaseRepository,
-  _hiveRepository = hiveRepository,
+  }) : _firebaseRepository = firebaseRepository, _hiveRepository = hiveRepository,
   super(const WidgetsState(widgetStatus: Status.loading)) {
     on<WidgetsLoaded>(_onWidgetsLoaded);
     on<WidgetsUpdated>(_onWidgetsUpdated);
+    on<ExtraWidgetFetched>(_onExtraWidgetFetched);
     on<DynamicWidgetsValueChanged>(_onDynamicWidgetsValueChanged);
-    on<AdditionalTextFieldValueChanged>(_onAdditionalTextFieldValueChanged);
+    on<ExtraWidgetsValueChanged>(_onExtraWidgetValueChanged);
     on<ButtonSubmitted>(_onButtonSubmitted);
   }
-  final FirebaseRealtimeDBRepository _firebaseRepository;
   final HiveRepository _hiveRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
   StreamSubscription<List<PageWidget>>? _subscription;
 
   void _onWidgetsLoaded(WidgetsLoaded event, Emitter<WidgetsState> emit) {
@@ -53,6 +53,25 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     }
   }
 
+  void _onExtraWidgetFetched(ExtraWidgetFetched event, Emitter<WidgetsState> emit) async {
+    emit(state.copyWith(extraWidgetStatus: Status.loading));
+    try {
+      final extraWidgetList = await _firebaseRepository.getExtraWidgetList(event.id);
+      List<ExtraWidget> sortedExtraWidgets = extraWidgetList;
+      sortedExtraWidgets.sort((a, b) => a.position.compareTo(b.position));
+      
+      emit(state.copyWith(
+        extraWidgetList: sortedExtraWidgets,
+        extraWidgetStatus: Status.success
+      ));
+    } catch (err) {
+      emit(state.copyWith(
+        errorMsg: err.toString(),
+        extraWidgetStatus: Status.error
+      ));
+    }
+  }
+
   void _onDynamicWidgetsValueChanged(DynamicWidgetsValueChanged event, Emitter<WidgetsState> emit) {
     // Find the index of the widget with a matching keyId in the widgetList.
     final index = state.widgetList.indexWhere((widget) => widget.keyId == event.keyId);
@@ -68,22 +87,36 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     }
   }
 
-  void _onAdditionalTextFieldValueChanged(AdditionalTextFieldValueChanged event, Emitter<WidgetsState> emit) {
+  void _onExtraWidgetValueChanged(ExtraWidgetsValueChanged event, Emitter<WidgetsState> emit) {
+    final index = state.extraWidgetList.indexWhere((widget) => widget.keyId == event.keyId);
+    
+    if (index != -1) {
+      final updatedExtraWidget = List<ExtraWidget>.from(state.extraWidgetList);
+      updatedExtraWidget[index] = updatedExtraWidget[index].copyWith(content: event.value); 
 
+      emit(state.copyWith(extraWidgetList: updatedExtraWidget));
+    }
   }
 
   void _onButtonSubmitted(ButtonSubmitted event, Emitter<WidgetsState> emit) async {
-    if (allDynamicTextFieldsValid()) {
-      emit(state.copyWith(submissionStatus: Status.loading)); // emit loading
+    if (_allDynamicWidgetsValid() && _allExtraWidgetsValid()) {
+      emit(state.copyWith(submissionStatus: Status.loading));
 
-      String result = getFormSubmissionData().entries // all entries from the map
-      .map((entries) => '${entries.key}:${entries.value.replaceAll(',', '')}') // return formatted entries into <key>:<value>
-      .join(','); // join all entries into a string by comma (,)
+      String dynamicWidget = _dynamicWidgetSubmissionData().entries.map((entries) { // all entries from the map
+        return "${entries.key}:${entries.value.replaceAll(',', '')}"; // return formatted entries into <key>:<value>
+      }).join(","); // join all entries into a string by comma (",")
+
+      String extraWidget = _extraWidgetSubmissionData().entries.map((entries) {
+        return "${entries.key}:${entries.value.replaceAll(',', '')}";
+      }).join(",");
+
+      final dynamicWidgetsResult = _containsDynamicWidget()? '|$dynamicWidget' : "";
+      final extraWidgetsResult = _containsExtraWidget() ? '|$extraWidget' : "";
 
       try {
         final id = await _firebaseRepository.addUserRequest(
           UserRequest(
-            dataRequest: 'button_title|$result',
+            dataRequest: 'button_title$dynamicWidgetsResult$extraWidgetsResult',
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             timeStamp: DateTime.now()
           )
@@ -105,7 +138,19 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     }
   }
 
-  bool allDynamicTextFieldsValid() {
+  bool _containsDynamicWidget() {
+    return state.widgetList.any((widget) {
+      return widget.widget == "textfield" || widget.widget == "dropdown";
+    });
+  }
+
+  bool _containsExtraWidget() {
+    return state.extraWidgetList.any((widget) {
+      return widget.widget == "textfield" || widget.widget == "dropdown";
+    });
+  }
+
+  bool _allDynamicWidgetsValid() {
     // regular expression for validating an [int] or [double with 2 decimal points]
     final regex = RegExp(r'^[-\\+]?\s*((\d{1,3}(,\d{3})*)|\d+)(\.\d{2})?$');
 
@@ -138,8 +183,40 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     return stringTextFieldsValid && doubleTextFieldsValid && stringDropdownValid && intDropdownValid;
   }
 
+  bool _allExtraWidgetsValid() {
+    final regex = RegExp(r'^[-\\+]?\s*((\d{1,3}(,\d{3})*)|\d+)(\.\d{2})?$');
+
+    final stringTextFields = state.extraWidgetList.where((widget) {
+      return widget.widget == 'textfield' && widget.dataType == 'string';
+    });
+    final doubleTextFields = state.extraWidgetList.where((widget) {
+      return widget.widget == 'textfield' && widget.dataType == 'int';
+    });
+    final stringDropdown = state.extraWidgetList.where((widget) {
+      return widget.widget == 'dropdown' && widget.dataType == 'string';
+    });
+    final intDropdown = state.extraWidgetList.where((widget) {
+      return widget.widget == 'dropdown' && widget.dataType == 'int';
+    });
+    
+    final stringTextFieldsValid = stringTextFields.isEmpty || stringTextFields.every((widget) {
+      return widget.content?.isNotEmpty == true;
+    });
+    final doubleTextFieldsValid = doubleTextFields.isEmpty || doubleTextFields.every((widget) {
+      return widget.content?.isNotEmpty == true && regex.hasMatch(widget.content!);
+    });
+    final stringDropdownValid = stringDropdown.isEmpty || stringDropdown.every((dropdown) {
+      return dropdown.content?.isNotEmpty == true;
+    });
+    final intDropdownValid = intDropdown.isEmpty || stringDropdown.every((dropdown) {
+      return dropdown.content?.isNotEmpty == true;
+    });
+
+    return stringTextFieldsValid && doubleTextFieldsValid && stringDropdownValid && intDropdownValid;
+  }
+
   // formatting Widget [content] into Map
-  Map<String, String> getFormSubmissionData() {
+  Map<String, String> _dynamicWidgetSubmissionData() {
     // declare map variable
     final Map<String, String> formData = {};
 
@@ -150,6 +227,19 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
       }
     }
     return formData;
+  }
+
+  Map<String, String> _extraWidgetSubmissionData() {
+    // declare map variable
+    final Map<String, String> extraWidgetList = {};
+
+    // loop base on List<HomeButtonWidget> object
+    for (final extra in state.extraWidgetList) {
+      if (extra.widget == "textfield" || extra.widget == "dropdown") {
+        extraWidgetList[extra.title] = extra.content!; // store List<ExtraWidget> content into map
+      }
+    }
+    return extraWidgetList;
   }
 
   @override

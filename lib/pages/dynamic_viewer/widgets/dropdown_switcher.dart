@@ -20,7 +20,12 @@ class DropdownSwitcher extends StatelessWidget {
       return SourceDropdown(widget: widget);
     } else {
       context.read<DropdownBloc>().add(DropdownFetched(ref));
-      return DynamicDropdown(widget: widget);
+      return Column(
+        children: [
+          DynamicDropdown(widget: widget),
+          const ExtraWidgets() // additional widgets
+        ]
+      );
     }
   }
 }

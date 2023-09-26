@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 
-class DynamicMultiTextfield extends StatelessWidget {
-  const DynamicMultiTextfield({
+class MultiTextfield extends StatelessWidget {
+  const MultiTextfield({
     super.key,
     required this.widget
   });
@@ -37,15 +37,14 @@ class DynamicMultiTextfield extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color.fromARGB(30, 37, 193, 102),
+          labelText: widget.title,
+          labelStyle: const TextStyle(color: Colors.black54),
           border: SelectedInputBorderWithShadow(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide.none
-          ),
-          labelText: 'Enter a message',
-          labelStyle: const TextStyle(color: Colors.black26),
-          // errorText: state.message.displayError?.text()
+          )
         )
-      ),
+      )
     );
   }
 }

@@ -34,11 +34,16 @@ class DynamicDropdown extends StatelessWidget {
                   value: value!
                 ));
               },
-              validator: (value) => null,
+              validator: (value) {
+                return value == null
+                ? 'Please select an option.'
+                : null;
+              },
               items: state.dropdowns.map((item) {
                 return DropdownMenuItem<String> (
                   value: item.toString(),
-                  child: Text(item)
+                  child: Text(item.replaceAll('_', ' ')),
+                  onTap: () => context.read<WidgetsBloc>().add(ExtraWidgetFetched(item.toString())),
                 );
               }).toList()
             )

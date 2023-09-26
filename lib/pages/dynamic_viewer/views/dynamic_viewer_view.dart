@@ -36,7 +36,7 @@ class DynamicViewerView extends StatelessWidget {
                         case 'text':
                           return DynamicText(widget: widget);
                         case 'multitextfield':
-                          return DynamicMultiTextfield(widget: widget);
+                          return MultiTextfield(widget: widget);
                         case 'button':
                           return SubmitButton(widget: widget);
                         default:

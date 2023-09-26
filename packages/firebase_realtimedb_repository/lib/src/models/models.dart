@@ -1,5 +1,5 @@
 export 'account.dart';
-export 'additional_widget.dart';
+export 'extra_widget.dart';
 export 'fund_transfer_accounts.dart';
 export 'home_button.dart';
 export 'institution.dart';

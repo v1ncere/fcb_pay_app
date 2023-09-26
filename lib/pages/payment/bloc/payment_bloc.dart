@@ -31,7 +31,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   void _onUserWidgetFetched(UserWidgetFetched event, Emitter<PaymentState> emit) async {
     emit(state.copyWith(status: Status.loading));
     try {
-      List<AdditionalWidget> widgets = await _realtimeDBRepository.getUserWidgetList(event.select);
+      List<ExtraWidget> widgets = await _realtimeDBRepository.getExtraWidgetList(event.select);
       emit(state.copyWith(
         widgetList: widgets,
         status: Status.success
@@ -63,7 +63,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     final index = state.widgetList.indexWhere((widget) => widget.keyId == event.keyId); // finding the [index] base on [keyId]
 
     if (index != -1) {
-      final updatedUserWidget = List<AdditionalWidget>.from(state.widgetList); // copy of List<UserWidget> object to avoid direct modification of the original
+      final updatedUserWidget = List<ExtraWidget>.from(state.widgetList); // copy of List<UserWidget> object to avoid direct modification of the original
       updatedUserWidget[index] = updatedUserWidget[index].copyWith(content: event.value); // update UserWidget with new content
 
       emit(state.copyWith(widgetList: updatedUserWidget)); // emit updated widgetList

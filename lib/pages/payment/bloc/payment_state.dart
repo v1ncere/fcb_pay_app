@@ -4,7 +4,7 @@ class PaymentState extends Equatable with FormzMixin {
   const PaymentState({
     this.institutionDropdown = const InstitutionDropdown.pure(),
     this.accountDropdown = const AccountDropdown.pure(),
-    this.widgetList = const <AdditionalWidget>[],
+    this.widgetList = const <ExtraWidget>[],
     this.amount = const Amount.pure(),
     this.status = Status.initial,
     this.formzStatus = FormzSubmissionStatus.initial,
@@ -13,7 +13,7 @@ class PaymentState extends Equatable with FormzMixin {
 
   final InstitutionDropdown institutionDropdown;
   final AccountDropdown accountDropdown;
-  final List<AdditionalWidget> widgetList;
+  final List<ExtraWidget> widgetList;
   final Amount amount;
   final FormzSubmissionStatus formzStatus;
   final Status status;
@@ -22,7 +22,7 @@ class PaymentState extends Equatable with FormzMixin {
   PaymentState copyWith({
     InstitutionDropdown? institutionDropdown,
     AccountDropdown? accountDropdown,
-    List<AdditionalWidget>? widgetList,
+    List<ExtraWidget>? widgetList,
     Amount? amount,
     FormzSubmissionStatus? formzStatus,
     Status? status,

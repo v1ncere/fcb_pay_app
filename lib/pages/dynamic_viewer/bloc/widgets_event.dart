@@ -23,6 +23,14 @@ final class WidgetsUpdated extends WidgetsEvent {
   List<Object> get props => [widgetList];
 }
 
+final class ExtraWidgetFetched extends WidgetsEvent {
+  const ExtraWidgetFetched(this.id);
+  final String id;
+
+  @override
+  List<Object> get props => [id];
+}
+
 final class DynamicWidgetsValueChanged extends WidgetsEvent {
   const DynamicWidgetsValueChanged({
     required this.keyId,
@@ -39,8 +47,8 @@ final class DynamicWidgetsValueChanged extends WidgetsEvent {
   List<Object> get props => [keyId, title, value, type];
 }
 
-final class AdditionalTextFieldValueChanged extends WidgetsEvent {
-  const AdditionalTextFieldValueChanged({
+final class ExtraWidgetsValueChanged extends WidgetsEvent {
+  const ExtraWidgetsValueChanged({
     required this.keyId,
     required this.title,
     required this.value,
