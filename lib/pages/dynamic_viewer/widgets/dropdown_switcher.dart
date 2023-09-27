@@ -23,7 +23,9 @@ class DropdownSwitcher extends StatelessWidget {
       return Column(
         children: [
           DynamicDropdown(widget: widget),
-          const ExtraWidgets() // additional widgets
+          widget.additional == true 
+          ? const ExtraWidgets() // additional widgets
+          : const SizedBox.shrink()
         ]
       );
     }

@@ -10,10 +10,9 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required FirebaseAuthRepository firebaseAuthRepository
-  })  : _firebaseAuthRepository = firebaseAuthRepository, 
+  }) : _firebaseAuthRepository = firebaseAuthRepository, 
   super(
-    firebaseAuthRepository.currentUser.isNotEmpty &&
-    firebaseAuthRepository.currentUser.isVerified == true
+    firebaseAuthRepository.currentUser.isNotEmpty && firebaseAuthRepository.currentUser.isVerified == true
     ? AppState.authenticated(firebaseAuthRepository.currentUser)
     : const AppState.unauthenticated()
   ) {
@@ -38,13 +37,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(AppState.notificationViewer(event.args));
     });
 
-    on<DynamicIdPassed>((event, emit) {
-      emit(AppState.dynamicPageViewer(event.args));
+    on<DynamicButtonDataPassed>((event, emit) {
+      emit(AppState.dynamicPageViewer(event.buttonModel));
     });
-    
-    _streamSubscription = _firebaseAuthRepository
-    .user
-    .listen((user) => add(AppUserChanged(user)));
+
+    _streamSubscription = _firebaseAuthRepository.user.listen((user) => add(AppUserChanged(user)));
   }
   final FirebaseAuthRepository _firebaseAuthRepository;
   late final StreamSubscription<User> _streamSubscription;

@@ -18,13 +18,16 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
   final FirebaseRealtimeDBRepository _dbRepository;
   StreamSubscription<List<Account>>? _streamSubscription;
 
-  // fetching stream data from firebase
+  // fetching streamed data from firebase
   _onAccountsLoaded(AccountsLoaded event, Emitter<AccountsState> emit) {
     _streamSubscription?.cancel;
     _streamSubscription = _dbRepository.getAccountListStream()
-    .listen((event) async {
-      add(AccountsUpdated(event));
-    });
+    .listen((data) async {
+        add(AccountsUpdated(data));
+      }, onError: (error) {
+        emit(AccountsError(error.toString()));
+      }
+    );
   }
 
   // update accounts display when new data is added

@@ -15,9 +15,9 @@ class DynamicViewerPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<AppBloc, AppState, String>(
-      selector: (state) => state.args,
-      builder: (context, args) {
+    return BlocSelector<AppBloc, AppState, ButtonModel>(
+      selector: (state) => state.buttonModel,
+      builder: (context, buttonModel) {
         return MultiRepositoryProvider(
           providers: [
             RepositoryProvider(create: (context) => _firebaseRepository),
@@ -27,11 +27,11 @@ class DynamicViewerPage extends StatelessWidget {
             providers: [
               BlocProvider(create: (context) => DropdownBloc(firebaseRepository: _firebaseRepository)),
               BlocProvider(create: (context) => WidgetsBloc(firebaseRepository: _firebaseRepository, hiveRepository: _hiveRepository)
-              ..add(WidgetsLoaded(args))),
+              ..add(WidgetsLoaded(buttonModel.id!))),
               BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
               ..add(AccountsLoaded()))
             ],
-            child: const DynamicViewerView()
+            child: DynamicViewerView(buttonModel: buttonModel)
           )
         );
       }

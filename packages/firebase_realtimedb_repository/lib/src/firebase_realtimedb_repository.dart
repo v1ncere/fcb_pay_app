@@ -19,8 +19,7 @@ class FirebaseRealtimeDBRepository {
   // =========================================================================
   // GET accounts list (stream)
   Stream<List<Account>> getAccountListStream() {
-    return _firebaseDatabase.ref('user_account')
-    .child(userId())
+    return _firebaseDatabase.ref('user_account/${userId()}')
     .onValue
     .map((event) {
       List<Account> accountList = [];
@@ -99,7 +98,7 @@ class FirebaseRealtimeDBRepository {
         final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
         snapshotValues.forEach((key, values) { // do the value not use?
-          TransactionHistory transaction = TransactionHistory.fromSnapshot(event.snapshot.child(key)); // this one here why do event.snapshot.child(key)
+          TransactionHistory transaction = TransactionHistory.fromSnapshot(event.snapshot.child(key));
           transactionList.add(transaction);
         });
       }

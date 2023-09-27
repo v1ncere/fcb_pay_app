@@ -15,7 +15,7 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
   TransactionHistoryBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
   }) : _realtimeDBRepository = firebaseRepository,
-  super(const TransactionHistoryState()) {
+  super(const TransactionHistoryState(status: Status.loading)) {
     on<TransactionHistoryLoaded>(_onTransactionHistoryLoaded);
     on<TransactionHistoryUpdated>(_onTransactionHistoryUpdated);
     on<SearchTextFieldChanged>(_onSearchTextFieldChanged);
@@ -54,12 +54,10 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
   }
 
   void _onTransactionHistoryUpdated(TransactionHistoryUpdated event, Emitter<TransactionHistoryState> emit) async {
-    emit(state.copyWith(status: Status.loading));
-
     if (event.transactions.isNotEmpty) {
-      emit(state.copyWith(status: Status.error, error: "empty"));
-    } else {
       emit(state.copyWith(status: Status.success, transactions: event.transactions));
+    } else {
+      emit(state.copyWith(status: Status.error, error: "empty"));
     }
   }
 

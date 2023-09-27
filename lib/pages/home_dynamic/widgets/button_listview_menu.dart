@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/widgets/widgets.dart';
-import 'package:fcb_pay_app/utils/icon_mapper.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 
 class CardButtonMenu extends StatelessWidget {
@@ -16,7 +15,7 @@ class CardButtonMenu extends StatelessWidget {
     return BlocBuilder<ButtonsBloc, ButtonsState>(
       builder: (context, state) {
         if (state is ButtonsLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const ButtonShimmer();
         }
         if (state is ButtonsSuccess) {
           return GridView.builder(
@@ -36,7 +35,14 @@ class CardButtonMenu extends StatelessWidget {
                 iconColor: colorStringParser(btn.iconColor), // color
                 bgColor: colorStringParser(btn.bgColor), // color
                 function: () {
-                  context.read<AppBloc>().add(DynamicIdPassed(btn.keyId!));
+                  context.read<AppBloc>().add(DynamicButtonDataPassed(
+                    ButtonModel(
+                      id: btn.keyId,
+                      title: btn.title,
+                      icon: btn.icon,
+                      iconColor: btn.iconColor
+                    )
+                  ));
                   context.flow<AppStatus>().update((next) => AppStatus.dynamicPage);
                 }
               );

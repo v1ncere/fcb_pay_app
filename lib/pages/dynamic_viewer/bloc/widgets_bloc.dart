@@ -114,9 +114,10 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
       final extraWidgetsResult = _containsExtraWidget() ? '|$extraWidget' : "";
 
       try {
+        final reqTitle = event.title.trim().replaceAll(' ', '_').toLowerCase();
         final id = await _firebaseRepository.addUserRequest(
           UserRequest(
-            dataRequest: 'button_title$dynamicWidgetsResult$extraWidgetsResult',
+            dataRequest: '$reqTitle$dynamicWidgetsResult$extraWidgetsResult',
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             timeStamp: DateTime.now()
           )
@@ -222,7 +223,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
 
     // loop base on List<HomeButtonWidget> object
     for (final widget in state.widgetList) {
-      if (widget.widget == "textfield" || widget.widget == "dropdown") {
+      if (widget.widget == "textfield" || widget.widget == "dropdown" || widget.widget == "multitextfield") {
         formData[widget.title] = widget.content!; // store List<PageWidget> content into map
       }
     }
@@ -235,7 +236,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
 
     // loop base on List<HomeButtonWidget> object
     for (final extra in state.extraWidgetList) {
-      if (extra.widget == "textfield" || extra.widget == "dropdown") {
+      if (extra.widget == "textfield" || extra.widget == "dropdown" || extra.widget == "multitextfield") {
         extraWidgetList[extra.title] = extra.content!; // store List<ExtraWidget> content into map
       }
     }

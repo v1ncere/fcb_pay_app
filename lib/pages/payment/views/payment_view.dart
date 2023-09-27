@@ -17,7 +17,8 @@ class PaymentView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Payment',
+          title: const Text(
+            'Payment',
             style: TextStyle(
               color: Colors.green,
               fontWeight: FontWeight.w700

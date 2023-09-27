@@ -2,6 +2,7 @@ export 'color_string_parser.dart';
 export 'cypher.dart';
 export 'date_utils.dart';
 export 'enums.dart';
+export 'icon_mapper.dart';
 export 'material_color_selector.dart';
 export 'number_separator_formatter.dart';
 export 'phone_number_formatter.dart';

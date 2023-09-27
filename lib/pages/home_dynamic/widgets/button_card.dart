@@ -5,14 +5,14 @@ class ButtonCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.titleColor,
-    required this.icon,
+    this.icon,
     required this.iconColor,
     required this.bgColor,
     required this.function,
   });
   final String title;
   final Color titleColor;
-  final IconData icon;
+  final IconData? icon;
   final Color iconColor;
   final Color bgColor;
   final Function function;

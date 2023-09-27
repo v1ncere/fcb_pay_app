@@ -18,7 +18,10 @@ class DynamicDropdown extends StatelessWidget {
     return BlocBuilder<DropdownBloc, DropdownState>(
       builder: (context, state) {
         if (state.status.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Padding(
+            padding: EdgeInsets.only(top: 5.0 , bottom: 5.0),
+            child: ShimmerRectLoading()
+          );
         }
         if (state.status.isSuccess) {
           return Padding(

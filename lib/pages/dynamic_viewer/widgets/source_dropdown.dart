@@ -18,7 +18,10 @@ class SourceDropdown extends StatelessWidget {
     return BlocBuilder<AccountsBloc, AccountsState>(
       builder: (context, state) {
         if (state is AccountsInProgress) {
-          return const Center(child: ShimmerRectLoading());
+          return const Padding(
+            padding: EdgeInsets.only(top: 5.0 , bottom: 5.0),
+            child: ShimmerRectLoading()
+          );
         }
         if (state is AccountsSuccess) {
           return BlocBuilder<WidgetsBloc, WidgetsState>(

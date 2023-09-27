@@ -12,7 +12,7 @@ class CarouselShimmer extends StatelessWidget {
     return CarouselSlider(
       items: [
         Card(
-          elevation: 4,
+          elevation: 2,
           clipBehavior: Clip.antiAlias,
           color: Colors.grey[200],
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -89,7 +89,7 @@ class CarouselShimmer extends StatelessWidget {
           )
         ),
         Card(
-          elevation: 4,
+          elevation: 2,
           clipBehavior: Clip.antiAlias,
           color: Colors.grey[200],
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

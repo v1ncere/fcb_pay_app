@@ -63,4 +63,10 @@ final class ExtraWidgetsValueChanged extends WidgetsEvent {
   List<Object> get props => [keyId, title, value, type];
 }
 
-final class ButtonSubmitted extends WidgetsEvent {}
+final class ButtonSubmitted extends WidgetsEvent {
+  const ButtonSubmitted(this.title);
+  final String title;
+
+  @override
+  List<Object> get props => [title];
+}
