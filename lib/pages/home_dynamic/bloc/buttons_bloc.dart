@@ -29,7 +29,10 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
 
   void _onButtonsUpdated(ButtonsUpdated event, Emitter<ButtonsState> emit) {
     if (event.homeButton.isNotEmpty) {
-      emit(ButtonsSuccess(event.homeButton));
+      final buttonList = event.homeButton;
+      buttonList.sort((a, b) => a.position.compareTo(b.position));
+
+      emit(ButtonsSuccess(buttonList));
     } else {
       emit(const ButtonsError(error: 'Empty')); 
     }

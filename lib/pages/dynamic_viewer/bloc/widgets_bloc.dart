@@ -23,6 +23,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     on<DynamicWidgetsValueChanged>(_onDynamicWidgetsValueChanged);
     on<ExtraWidgetsValueChanged>(_onExtraWidgetValueChanged);
     on<ButtonSubmitted>(_onButtonSubmitted);
+    on<SubmissionStatusRefresher>(_onSubmissionStatusRefresher);
   }
   final HiveRepository _hiveRepository;
   final FirebaseRealtimeDBRepository _firebaseRepository;
@@ -98,6 +99,10 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     }
   }
 
+  void _onSubmissionStatusRefresher(SubmissionStatusRefresher event, Emitter<WidgetsState> emit) {
+    emit(state.copyWith(submissionStatus: Status.initial));
+  }
+
   void _onButtonSubmitted(ButtonSubmitted event, Emitter<WidgetsState> emit) async {
     if (_allDynamicWidgetsValid() && _allExtraWidgetsValid()) {
       emit(state.copyWith(submissionStatus: Status.loading));
@@ -124,16 +129,13 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
         );
 
         _hiveRepository.addID(id!);
-        emit(state.copyWith(submissionStatus: Status.success));
+        emit(state.copyWith(submissionStatus: Status.success, errorMsg: null));
       } catch (e) {
-        emit(state.copyWith(
-          errorMsg: e.toString(),
-          submissionStatus: Status.error
-        ));
+        emit(state.copyWith(errorMsg: e.toString(), submissionStatus: Status.error));
       }
     } else {
       emit(state.copyWith(
-        errorMsg: "Incomplete Form: Please review the form and fill in all additional fields.",
+        errorMsg: "Incomplete Form: Please review the form and make sure all required fields are filled in correctly.",
         submissionStatus: Status.error
       ));
     }

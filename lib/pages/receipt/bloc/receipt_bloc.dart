@@ -11,21 +11,21 @@ part 'receipt_state.dart';
 class ReceiptBloc extends Bloc<ReceiptEvent, ReceiptState> {
   ReceiptBloc({
     required HiveRepository hiveRepository,
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  })  : _hiveRepository = hiveRepository,
-  _realtimeDBRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _hiveRepository = hiveRepository,
+  _firebaseRepository = firebaseRepository,
   super(ReceiptDisplayLoading()) {
     on<ReceiptDisplayLoaded>(_onReceiptDisplayLoaded);
     on<ReceiptDisplayUpdated>(_onReceiptDisplayUpdated);
   }
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
   final HiveRepository _hiveRepository;
   StreamSubscription<Receipt>? _streamSubscription;
   
   void _onReceiptDisplayLoaded(ReceiptDisplayLoaded event, Emitter<ReceiptState> emit) async {
     final id = await _hiveRepository.getID();
     _streamSubscription?.cancel();
-    _streamSubscription = _realtimeDBRepository.getReceiptStream(id)
+    _streamSubscription = _firebaseRepository.getReceiptStream(id)
     .listen((receipts) async {
       add(ReceiptDisplayUpdated(receipts));
     });

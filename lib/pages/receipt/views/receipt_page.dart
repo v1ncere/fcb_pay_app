@@ -17,10 +17,8 @@ class ReceiptPage extends StatelessWidget {
         RepositoryProvider(create: (context) => FirebaseRealtimeDBRepository())
       ],
       child: BlocProvider(
-        create: (context) => ReceiptBloc(
-          hiveRepository: HiveRepository(),
-          firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-        )..add(ReceiptDisplayLoaded()),
+        create: (context) => ReceiptBloc(hiveRepository: HiveRepository(), firebaseRepository: FirebaseRealtimeDBRepository())
+        ..add(ReceiptDisplayLoaded()),
         child: const ReceiptView()
       )
     );

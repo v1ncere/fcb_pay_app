@@ -16,10 +16,10 @@ class DynamicViewerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<WidgetsBloc, WidgetsState>(
-      // listenWhen: (previous, current) => previous.runtimeType != current.runtimeType,
+      listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
         if(state.submissionStatus.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.paymentReceipt);
+          context.flow<AppStatus>().update((next) => AppStatus.dynamicReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar("Payment sent!", FontAwesomeIcons.solidCircleCheck, Colors.white));
@@ -43,31 +43,29 @@ class DynamicViewerView extends StatelessWidget {
           body:  BlocBuilder<WidgetsBloc, WidgetsState>(
             builder: (context, state) {
               if (state.widgetStatus.isLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return Center(child: CircularProgressIndicator(strokeWidth: 5, color: colorStringParser(buttonModel.iconColor!)));
               }
               if (state.widgetStatus.isSuccess) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: SingleChildScrollView(
-                    child: CustomCardContainer(
-                      color: const Color(0xFFFFFFFF),
-                      children: state.widgetList.map((widget) {
-                        switch(widget.widget) {
-                          case 'dropdown':
-                            return DropdownSwitcher(widget: widget);
-                          case 'textfield':
-                            return DynamicTextfield(widget: widget);
-                          case 'text':
-                            return DynamicText(widget: widget);
-                          case 'multitextfield':
-                            return MultiTextfield(widget: widget);
-                          case 'button':
-                            return SubmitButton(widget: widget, buttonModel: buttonModel);
-                          default:
-                            return const SizedBox.shrink();
-                        }
-                      }).toList()
-                    )
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                  child: CustomCardContainer(
+                    color: const Color(0xFFFFFFFF),
+                    children: state.widgetList.map((widget) {
+                      switch(widget.widget) {
+                        case 'dropdown':
+                          return DropdownSwitcher(widget: widget);
+                        case 'textfield':
+                          return DynamicTextfield(widget: widget);
+                        case 'text':
+                          return DynamicText(widget: widget);
+                        case 'multitextfield':
+                          return MultiTextfield(widget: widget);
+                        case 'button':
+                          return SubmitButton(widget: widget, buttonModel: buttonModel);
+                        default:
+                          return const SizedBox.shrink();
+                      }
+                    }).toList()
                   )
                 );
               }

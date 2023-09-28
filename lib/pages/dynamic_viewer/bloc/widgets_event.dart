@@ -70,3 +70,5 @@ final class ButtonSubmitted extends WidgetsEvent {
   @override
   List<Object> get props => [title];
 }
+
+final class SubmissionStatusRefresher extends WidgetsEvent {}
