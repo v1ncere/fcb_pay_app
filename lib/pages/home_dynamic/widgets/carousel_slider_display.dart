@@ -36,7 +36,7 @@ class CarouselSliderDisplay extends StatelessWidget {
                       keyId: data.keyId!
                     );
                   }
-                  if (data.type == 'sa') {
+                  if (data.type == 'sa' || data.type == 'wallet') {
                     return CarouselSACard(
                       balance: data.balance,
                       type: data.type,
@@ -67,8 +67,8 @@ class CarouselSliderDisplay extends StatelessWidget {
                             BoxShadow(
                               color: Colors.black.withOpacity(0.2), // Shadow color
                               spreadRadius: 0.5,
-                              blurRadius: 1.5,
-                              offset: const Offset(0, 3)
+                              blurRadius: 1.0,
+                              offset: const Offset(0, 1.5)
                             )
                           ]
                         )

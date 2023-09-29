@@ -9,8 +9,8 @@ part 'buttons_state.dart';
 
 class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
   ButtonsBloc({
-    required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+    required FirebaseRealtimeDBRepository firebaseRepository,
+  }) : _realtimeDBRepository = firebaseRepository,
   super(ButtonsLoading()) {
     on<ButtonsLoaded>(_onButtonsLoaded);
     on<ButtonsUpdated>(_onButtonsUpdated);

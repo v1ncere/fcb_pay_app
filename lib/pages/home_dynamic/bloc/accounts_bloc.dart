@@ -35,7 +35,12 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
     if (event.accounts.isEmpty) {
       emit(const AccountsError('Empty'));
     } else {
-      emit(AccountsSuccess(accounts: event.accounts));
+      List<Account> accountList = event.accounts;
+      final walletAccount = accountList.firstWhere((acc) => acc.type.trim().toLowerCase() == 'wallet');
+      final otherAccount = accountList.where((acc) => acc.type.trim().toLowerCase() != 'wallet').toList();
+      
+      final sortedAccounts = [ walletAccount, ...otherAccount ];
+      emit(AccountsSuccess(accounts: sortedAccounts));
     }
   }
 

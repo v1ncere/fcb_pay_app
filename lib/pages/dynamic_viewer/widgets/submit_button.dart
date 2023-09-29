@@ -32,7 +32,7 @@ class SubmitButton extends StatelessWidget {
           title: widget.title,
           titleColor: Colors.white,
           icon: iconMapper(buttonModel.icon ?? ''),
-          iconColor: colorStringParser(buttonModel.iconColor ?? '#FFFFFF'),
+          iconColor: Colors.white,
           onPressed: () {
             context.read<WidgetsBloc>().add(SubmissionStatusRefresher());
             context.read<WidgetsBloc>().add(ButtonSubmitted(buttonModel.title!));

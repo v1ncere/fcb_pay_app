@@ -12,17 +12,10 @@ class HomeDynamicPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => FirebaseRealtimeDBRepository(),
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => SliderCubit()), // for the slider below the carousel
-          BlocProvider(
-            create: (context) => ButtonsBloc(
-              firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-            )..add(ButtonsLoaded())
-          )
-        ],
+      child: BlocProvider(
+        create: (context) => SliderCubit(),
         child: const HomeDynamicView()
-      )
+      ) // for the slider below the carousel
     );
   }
 }

@@ -9,15 +9,19 @@ class BottomAppbarPage extends StatelessWidget {
   const BottomAppbarPage({super.key});
   static Page<void> page() => const MaterialPage<void>(child: BottomAppbarPage());
 
+  static final _firebaseRepository = FirebaseRealtimeDBRepository();
+
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => FirebaseRealtimeDBRepository(),
+      create: (context) => _firebaseRepository,
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => BottomAppbarCubit()),
-          BlocProvider(create: (context) => AccountsBloc(firebaseRepository: FirebaseRealtimeDBRepository())
-          ..add(AccountsLoaded()))
+          BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
+          ..add(AccountsLoaded())),
+          BlocProvider(create: (context) => ButtonsBloc(firebaseRepository: _firebaseRepository)
+          ..add(ButtonsLoaded()))
         ],
         child: const BottomAppbarView()
       )

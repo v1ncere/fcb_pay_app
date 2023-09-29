@@ -20,7 +20,7 @@ class HomeDynamicView extends StatelessWidget {
               SizedBox(height: 15),
               CarouselSliderDisplay(),
               SizedBox(height: 50),
-              CardButtonMenu() 
+              CardButtonMenu()
             ]
           )
         ]

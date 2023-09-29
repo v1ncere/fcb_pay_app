@@ -23,7 +23,7 @@ class CarouselSACard extends StatelessWidget {
   Widget build(BuildContext context) {
     final f = NumberFormat("#,##0.00", "en_US");
     return Card(
-      elevation: 4,
+      elevation: 2.0,
       clipBehavior: Clip.antiAlias,
       color:const Color(0xFF25C166),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
