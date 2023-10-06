@@ -32,20 +32,20 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
 
   // update accounts display when new data is added
   _onAccountsUpdated(AccountsUpdated event, Emitter<AccountsState> emit) async {
-    if (event.accounts.isEmpty) {
-      emit(const AccountsError('Empty'));
-    } else {
+     if (event.accounts.isNotEmpty) {
       List<Account> accountList = event.accounts;
       final walletAccount = accountList.firstWhere((acc) => acc.type.trim().toLowerCase() == 'wallet');
       final otherAccount = accountList.where((acc) => acc.type.trim().toLowerCase() != 'wallet').toList();
       
       final sortedAccounts = [ walletAccount, ...otherAccount ];
       emit(AccountsSuccess(accounts: sortedAccounts));
+    } else {
+      emit(const AccountsError('Empty'));
     }
   }
 
   @override
-  Future<void> close() {
+  Future<void> close() async {
     _streamSubscription?.cancel;
     return super.close();
   }

@@ -8,25 +8,22 @@ part 'filter_event.dart';
 part 'filter_state.dart';
 
 class FilterBloc extends Bloc<FilterEvent, FilterState> {
+  final FirebaseRealtimeDBRepository _dbRepository;
+
   FilterBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
   }) : _dbRepository = firebaseRepository,
-  super(const FilterState(status: Status.loading)) {
-    on<FilterFetched>((event, emit) async {
-      try {
-        List<String> filterList = [];
-        filterList = await _dbRepository.getDynamicDropdownData('filter');
-        emit(state.copyWith(
-          status: Status.success,
-          filters: filterList
-        ));
-      } catch (err) {
-        emit(state.copyWith(
-          status: Status.error,
-          error: err.toString()
-        ));
-      }
-    });
+  super(const FilterState(filterStatus: Status.loading)) {
+    on<FilterFetched>(_onFilteredFetched);
   }
-  final FirebaseRealtimeDBRepository _dbRepository;
+
+  void _onFilteredFetched(FilterFetched event, Emitter<FilterState> emit) async {
+    try {
+      List<String> filterList = [];
+      filterList = await _dbRepository.getDynamicListStringData('filter');
+      emit(state.copyWith(filterStatus: Status.success, filters: filterList));
+    } catch (e) {
+      emit(state.copyWith(filterStatus: Status.error, message: e.toString()));
+    }
+  }
 }

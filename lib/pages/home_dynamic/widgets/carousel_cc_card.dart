@@ -1,9 +1,6 @@
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
@@ -15,7 +12,8 @@ class CarouselCCCard extends StatelessWidget {
     required this.ownerId,
     required this.balance,
     required this.creditLimit,
-    required this.expiry
+    required this.expiry,
+    required this.onTap
   });
   final String keyId;
   final String type;
@@ -23,6 +21,7 @@ class CarouselCCCard extends StatelessWidget {
   final double balance;
   final double creditLimit;
   final DateTime expiry;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +32,7 @@ class CarouselCCCard extends StatelessWidget {
       color:const Color(0xFF25C166),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: InkWell(
+        onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -96,11 +96,7 @@ class CarouselCCCard extends StatelessWidget {
               ]
             )
           )
-        ),
-        onTap: () {
-          context.read<AppBloc>().add(AccountArgumentPassed(keyId)); // bloc events for passing args
-          context.flow<AppStatus>().update((state) => AppStatus.account);
-        }
+        )
       )
     );
   }

@@ -10,7 +10,7 @@ class SearchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final acc = context.select((AppBloc bloc) => bloc.state.args);
+    final acc = context.select((AppBloc bloc) => bloc.state.accountModel);
     return BlocBuilder<TransactionHistoryBloc, TransactionHistoryState>(
       builder: (context, state) {
         return IconButton(
@@ -26,11 +26,13 @@ class SearchButton extends StatelessWidget {
             ]
           ),
           onPressed: () {
-            context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc, searchQuery: state.searchQuery.value));
+            context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(
+              account: acc.account,
+              searchQuery: state.searchQuery.value
+            ));
           }
         );
       }
     );
   }
 }
-

@@ -18,9 +18,9 @@ final class AccountsSuccess extends AccountsState {
 }
 
 final class AccountsError extends AccountsState {
-  const AccountsError(this.error);
-  final String error;
+  const AccountsError(this.message);
+  final String message;
 
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [message];
 }

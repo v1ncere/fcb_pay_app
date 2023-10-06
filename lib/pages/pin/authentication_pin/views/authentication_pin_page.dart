@@ -31,7 +31,7 @@ class AuthPinPage extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           lazy: false,
-          create: (_) => AuthPinBloc(baseHivePinService: HivePinRepository()),
+          create: (_) => AuthPinBloc(hivePinRepository: HivePinRepository()),
           child: BlocListener<AuthPinBloc, AuthPinState>(
             listener: (context, state) {
               if (state.pinStatus == AuthPinStatus.equals) {

@@ -19,8 +19,8 @@ class ReceiptView extends StatelessWidget {
           title: const Text('Receipt', style: TextStyle(color: Colors.green)),
           leading: IconButton(
             icon: const Icon(FontAwesomeIcons.arrowLeft),
-            onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.authenticated),
-          ),
+            onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.authenticated)
+          )
         ),
         body: BlocBuilder<ReceiptBloc, ReceiptState>(
           builder: (context, state) {
@@ -38,7 +38,12 @@ class ReceiptView extends StatelessWidget {
               );
             }
             if (state is ReceiptDisplayError) {
-              return Center(child: Text(state.error, style: const TextStyle(color: Colors.black38)));
+              return Center(
+                child: Text(
+                  state.error,
+                  style: const TextStyle(color: Colors.black38)
+                )
+              );
             }
             else {
               return const SizedBox.shrink();

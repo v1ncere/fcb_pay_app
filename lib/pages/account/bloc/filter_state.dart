@@ -3,25 +3,25 @@ part of 'filter_bloc.dart';
 class FilterState extends Equatable {
   const FilterState({
     this.filters = const [],
-    this.status = Status.initial,
-    this.error = ''
+    this.filterStatus = Status.initial,
+    this.message = ''
   });
   final List<String> filters;
-  final Status status;
-  final String error;
+  final Status filterStatus;
+  final String message;
 
   FilterState copyWith({
     List<String>? filters,
-    Status? status,
-    String? error
+    Status? filterStatus,
+    String? message
   }) {
     return FilterState(
       filters: filters ?? this.filters,
-      status: status ?? this.status,
-      error: error ?? this.error
+      filterStatus: filterStatus ?? this.filterStatus,
+      message: message ?? this.message
     );
   }
 
   @override
-  List<Object> get props => [filters, status, error];
+  List<Object> get props => [filters, filterStatus, message];
 }

@@ -35,9 +35,9 @@ class CardButtonMenu extends StatelessWidget {
                 iconColor: colorStringParser(btn.iconColor), // color
                 bgColor: colorStringParser(btn.bgColor), // color
                 function: () {
-                  context.read<AppBloc>().add(DynamicButtonDataPassed(
+                  context.read<AppBloc>().add(AppDynamicButtonModelPassed(
                     ButtonModel(
-                      id: btn.keyId,
+                      id: btn.keyId!,
                       title: btn.title,
                       icon: btn.icon,
                       iconColor: btn.iconColor
@@ -51,7 +51,7 @@ class CardButtonMenu extends StatelessWidget {
         } 
         if (state is ButtonsError) {
           return Center(
-            child: Text(state.error),
+            child: Text(state.message),
           );
         }
         else {

@@ -13,17 +13,19 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<AppBloc, AppState, String>(
-      selector: (state) => state.args,
-      builder: (_, args) {
+    return BlocSelector<AppBloc, AppState, AccountModel>(
+      selector: (state) => state.accountModel,
+      builder: (_, model) {
         return RepositoryProvider(
           create: (context) => _firebaseRepository,
           child: MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => TransactionHistoryBloc(firebaseRepository: _firebaseRepository)
-              ..add(TransactionHistoryLoaded(account: args))),
+              ..add(TransactionHistoryLoaded(account: model.account))),
               BlocProvider(create: ((context) => FilterBloc(firebaseRepository: _firebaseRepository)
               ..add(FilterFetched()))),
+              BlocProvider(create: ((context) => AccountButtonBloc(firebaseRepository: _firebaseRepository)
+              ..add(WidgetsFetched(model.type))))
             ],
             child: const AccountView()
           )

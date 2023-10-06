@@ -18,9 +18,9 @@ final class ButtonsSuccess extends ButtonsState {
 }
 
 final class ButtonsError extends ButtonsState {
-  const ButtonsError({required this.error});
-  final String error;
+  const ButtonsError({required this.message});
+  final String message;
 
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [message];
 }

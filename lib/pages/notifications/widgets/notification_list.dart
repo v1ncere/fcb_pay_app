@@ -72,7 +72,7 @@ class NotificationList extends StatelessWidget {
                     selectedColor: Colors.green,
                     onTap: () {
                       context.read<NotificationsBloc>().add(NotificationsUpdateIsRead(notif.keyId ?? ''));
-                      context.read<AppBloc>().add(NotificationIdPassed(notif.keyId ?? ''));
+                      context.read<AppBloc>().add(AppNotificationArgsPassed(notif.keyId ?? ''));
                       context.flow<AppStatus>().update((state) => AppStatus.notificationViewer);
                     }
                   )

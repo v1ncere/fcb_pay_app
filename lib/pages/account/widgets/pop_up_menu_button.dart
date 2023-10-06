@@ -1,10 +1,10 @@
-import 'package:fcb_pay_app/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/account/account.dart';
+import 'package:fcb_pay_app/utils/enums.dart';
 
 class PopUpMenuButton extends StatelessWidget {
   const PopUpMenuButton({super.key});
@@ -13,7 +13,7 @@ class PopUpMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FilterBloc, FilterState>(
       builder: (context, state) {
-        if (state.status.isLoading) {
+        if (state.filterStatus.isLoading) {
           return const Padding(
             padding: EdgeInsets.only(left: 14, right: 14),
             child: SizedBox(
@@ -23,9 +23,9 @@ class PopUpMenuButton extends StatelessWidget {
             )
           );
         }
-        if (state.status.isSuccess) {
-          return BlocSelector<AppBloc, AppState, String>(
-            selector: (state) => state.args,
+        if (state.filterStatus.isSuccess) {
+          return BlocSelector<AppBloc, AppState, AccountModel>(
+            selector: (state) => state.accountModel,
             builder: (_, acc) {
               return PopupMenuButton(
                 icon: Icon(
@@ -40,11 +40,10 @@ class PopUpMenuButton extends StatelessWidget {
                   ]
                 ),
                 onSelected: (value) {
-                  context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc, filter: value));
+                  context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc.account, filter: value));
                 },
                 itemBuilder: (BuildContext context) {
-                  final filter = state.filters;
-                  return filter.map((String value) {
+                  return state.filters.map((String value) {
                     return PopupMenuItem<String>(
                       value: value,
                       child: Text(value)
@@ -55,8 +54,8 @@ class PopUpMenuButton extends StatelessWidget {
             }
           );
         }
-        if (state.status.isError) {
-          return Center(child: Text(state.error));
+        if (state.filterStatus.isError) {
+          return Center(child: Text(state.message));
         }
         else {
           return const SizedBox.shrink();

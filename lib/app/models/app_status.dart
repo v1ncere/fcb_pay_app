@@ -1,0 +1,16 @@
+enum AppStatus {
+  splash,
+  register,
+  unauthenticated,
+  authenticated,
+  account,
+  accountDynamicPage,
+  accountDynamicPageReciept,
+  dynamicPage,
+  dynamicReceipt,
+  scannerTransaction,
+  addAccount,
+  scannerTransactionReceipt,
+  notifications,
+  notificationViewer,
+}

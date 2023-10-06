@@ -1,9 +1,6 @@
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class CarouselSACard extends StatelessWidget {
@@ -12,12 +9,14 @@ class CarouselSACard extends StatelessWidget {
     required this.keyId,
     required this.balance,
     required this.type,
-    required this.ownerId
+    required this.ownerId,
+    required this.onTap
   });
   final String keyId;
   final double balance;
   final String type;
   final String ownerId;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +27,7 @@ class CarouselSACard extends StatelessWidget {
       color:const Color(0xFF25C166),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: InkWell(
+        onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -68,11 +68,7 @@ class CarouselSACard extends StatelessWidget {
               ]
             )
           )
-        ),
-        onTap: () {
-          context.read<AppBloc>().add(AccountArgumentPassed(keyId)); // bloc events for passing args
-          context.flow<AppStatus>().update((state) => AppStatus.account);
-        }
+        )
       )
     );
   }

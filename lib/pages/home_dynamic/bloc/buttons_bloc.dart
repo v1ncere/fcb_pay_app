@@ -18,28 +18,31 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
   StreamSubscription<List<HomeButton>>? _streamSubscription;
 
-  void _onButtonsLoaded(ButtonsLoaded event, Emitter<ButtonsState> emit) {
+  void _onButtonsLoaded(ButtonsLoaded event, Emitter<ButtonsState> emit) async {
     _streamSubscription?.cancel();
-    _streamSubscription = _realtimeDBRepository
-    .getHomeButtonsListStream()
-    .listen((event) async {
-      add(ButtonsUpdated(event));
-    });
+    _streamSubscription = _realtimeDBRepository.getHomeButtonsListStream()
+    .listen(
+      (event) async {
+        add(ButtonsUpdated(event));
+      }, onError: (error) {
+        emit(ButtonsError(message: error.toString()));
+      }
+    );
   }
 
-  void _onButtonsUpdated(ButtonsUpdated event, Emitter<ButtonsState> emit) {
+  void _onButtonsUpdated(ButtonsUpdated event, Emitter<ButtonsState> emit) async {
     if (event.homeButton.isNotEmpty) {
       final buttonList = event.homeButton;
       buttonList.sort((a, b) => a.position.compareTo(b.position));
 
       emit(ButtonsSuccess(buttonList));
     } else {
-      emit(const ButtonsError(error: 'Empty')); 
+      emit(const ButtonsError(message: 'Empty'));
     }
   }
 
   @override
-  Future<void> close() {
+  Future<void> close() async {
     _streamSubscription?.cancel;
     return super.close();
   }

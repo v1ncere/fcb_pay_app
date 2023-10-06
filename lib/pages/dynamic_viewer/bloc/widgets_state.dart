@@ -7,14 +7,14 @@ class WidgetsState extends Equatable {
     this.widgetStatus = Status.initial,
     this.extraWidgetStatus = Status.initial,
     this.submissionStatus = Status.initial,
-    this.errorMsg
+    this.message
   });
   final List<PageWidget> widgetList;
   final List<ExtraWidget> extraWidgetList;
   final Status widgetStatus;
   final Status extraWidgetStatus;
   final Status submissionStatus;
-  final String? errorMsg;
+  final String? message;
 
   WidgetsState copyWith({
     List<PageWidget>? widgetList,
@@ -22,7 +22,7 @@ class WidgetsState extends Equatable {
     Status? widgetStatus,
     Status? extraWidgetStatus,
     Status? submissionStatus,
-    String? errorMsg
+    String? message
   }) {
     return WidgetsState(
       widgetList: widgetList ?? this.widgetList,
@@ -30,7 +30,7 @@ class WidgetsState extends Equatable {
       extraWidgetList: extraWidgetList ?? this.extraWidgetList,
       extraWidgetStatus: extraWidgetStatus ?? this.extraWidgetStatus,
       submissionStatus: submissionStatus ?? this.submissionStatus,
-      errorMsg: errorMsg ?? this.errorMsg
+      message: message ?? this.message
     );
   }
   

@@ -16,8 +16,11 @@ class CircleButtonWithLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
+          height: 60,
+          width: 60,
           decoration:  BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
@@ -32,34 +35,31 @@ class CircleButtonWithLabel extends StatelessWidget {
           child: ClipOval(
             clipBehavior: Clip.antiAlias,
             child: Material(
-              elevation: 4,
               color: const Color(0xFF25C166),
               child: InkWell(
                 splashColor: Colors.white60,
                 onTap: function,
-                child: SizedBox(
-                  width: 56,
-                  height: 56, 
-                  child: Icon(icon, color: color)
-                )
+                child: Icon(icon, color: color)
               )
             )
-          ),
+          )
         ),
         const SizedBox(height: 2),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.green,
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            shadows: <Shadow>[
-              Shadow(
-                color: Colors.black.withOpacity(0.15), // Shadow color
-                blurRadius: 1,
-                offset: const Offset(0, 1)
-              ),
-            ],
+        FittedBox(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.green,
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              shadows: <Shadow>[
+                Shadow(
+                  color: Colors.black.withOpacity(0.15), // Shadow color
+                  blurRadius: 1,
+                  offset: const Offset(0, 1)
+                )
+              ]
+            )
           )
         )
       ]

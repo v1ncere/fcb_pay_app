@@ -33,7 +33,7 @@ class AccountListViewDisplay extends StatelessWidget {
         }
         if (state is AccountsError) {
           return Center(
-            child: Text(state.error,
+            child: Text(state.message,
               style: const TextStyle(
                 color: Colors.black38,
                 fontWeight: FontWeight.w900,

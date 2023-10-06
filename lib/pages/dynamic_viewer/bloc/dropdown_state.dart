@@ -4,24 +4,24 @@ class DropdownState extends Equatable {
   const DropdownState({
     this.dropdowns = const [],
     this.status = Status.initial,
-    this.error = ''
+    this.message = ''
   });
   final List<String> dropdowns;
   final Status status;
-  final String error;
+  final String message;
 
   DropdownState copyWith({
     List<String>? dropdowns,
     Status? status,
-    String? error
+    String? message
   }) {
     return DropdownState(
       dropdowns: dropdowns ?? this.dropdowns,
       status: status ?? this.status,
-      error: error ?? this.error
+      message: message ?? this.message
     );
   }
 
   @override
-  List<Object> get props => [dropdowns, status, error];
+  List<Object> get props => [dropdowns, status, message];
 }

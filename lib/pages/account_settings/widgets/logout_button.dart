@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});
@@ -13,9 +12,9 @@ class LogoutButton extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'logout',
+            'Logout',
             style: TextStyle(
-              color: Colors.yellow,
+              color: Colors.yellowAccent,
               fontWeight: FontWeight.w700,
               shadows: <Shadow>[
                 Shadow(
@@ -25,12 +24,6 @@ class LogoutButton extends StatelessWidget {
                 )
               ]
             )
-          ),
-          const SizedBox(width: 5),
-          const Icon(
-            FontAwesomeIcons.rightFromBracket,
-            size: 16,
-            color: Colors.yellow
           )
         ]
       ),

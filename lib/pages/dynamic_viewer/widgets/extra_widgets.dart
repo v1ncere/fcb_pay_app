@@ -105,7 +105,7 @@ class ExtraWidgets extends StatelessWidget {
         } 
         if (state.extraWidgetStatus.isError) {
           return Text(
-            state.errorMsg!,
+            state.message!,
             style: const TextStyle(
               color: Colors.black54,
               fontWeight: FontWeight.w700

@@ -54,7 +54,7 @@ class DynamicDropdown extends StatelessWidget {
         }
         if (state.status.isError) {
           return Center(
-            child: Text(state.error)
+            child: Text(state.message)
           );
         }
         else {

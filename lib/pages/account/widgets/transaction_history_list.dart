@@ -47,7 +47,7 @@ class TransactionHistoryList extends StatelessWidget {
         if (state.status.isError) {
           return Center(
             child: Text(
-              state.error,
+              state.message,
               style: const TextStyle(
                 color: Colors.black38,
                 fontWeight: FontWeight.w700

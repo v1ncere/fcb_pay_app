@@ -31,8 +31,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
 
   void _onWidgetsLoaded(WidgetsLoaded event, Emitter<WidgetsState> emit) {
     _subscription?.cancel();
-    _subscription = _firebaseRepository
-    .getWidgetsListStream(event.id)
+    _subscription = _firebaseRepository.getWidgetsListStream(event.id)
     .listen((widgetList) async {
       add(WidgetsUpdated(widgetList));
     });
@@ -41,16 +40,13 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
   void _onWidgetsUpdated(WidgetsUpdated event, Emitter<WidgetsState> emit) async {
     if (event.widgetList.isNotEmpty) {
       List<PageWidget> widgetList = event.widgetList;
-
       final buttonWidget = widgetList.firstWhere((widget) => widget.widget == 'button'); // get the button widget
       final otherWidget = widgetList.where((widget) => widget.widget != 'button').toList(); // get the non button widgets
-
       otherWidget.sort((a, b) => a.position.compareTo(b.position)); // sort widgets base on the [position] field
       final sortedWidgets = [...otherWidget, buttonWidget]; // combine otherWidget and buttonWidget, ensuring buttonWidget is at the end of the list.
-
       emit(state.copyWith(widgetStatus: Status.success, widgetList: sortedWidgets));
     } else {
-      emit(state.copyWith(widgetStatus: Status.error, errorMsg: 'Empty'));
+      emit(state.copyWith(widgetStatus: Status.error, message: 'Empty'));
     }
   }
 
@@ -61,15 +57,9 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
       List<ExtraWidget> sortedExtraWidgets = extraWidgetList;
       sortedExtraWidgets.sort((a, b) => a.position.compareTo(b.position));
       
-      emit(state.copyWith(
-        extraWidgetList: sortedExtraWidgets,
-        extraWidgetStatus: Status.success
-      ));
+      emit(state.copyWith(extraWidgetList: sortedExtraWidgets, extraWidgetStatus: Status.success));
     } catch (err) {
-      emit(state.copyWith(
-        errorMsg: err.toString(),
-        extraWidgetStatus: Status.error
-      ));
+      emit(state.copyWith(message: err.toString(), extraWidgetStatus: Status.error));
     }
   }
 
@@ -82,7 +72,6 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
       final updatedUserWidget = List<PageWidget>.from(state.widgetList);
       // Update the widget at the found index with the new content value.
       updatedUserWidget[index] = updatedUserWidget[index].copyWith(content: event.value); 
-
       // Emit a new state with the updated widgetList.
       emit(state.copyWith(widgetList: updatedUserWidget));
     }
@@ -107,18 +96,18 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
     if (_allDynamicWidgetsValid() && _allExtraWidgetsValid()) {
       emit(state.copyWith(submissionStatus: Status.loading));
 
-      String dynamicWidget = _dynamicWidgetSubmissionData().entries.map((entries) { // all entries from the map
-        return "${entries.key}:${entries.value.replaceAll(',', '')}"; // return formatted entries into <key>:<value>
-      }).join(","); // join all entries into a string by comma (",")
-
-      String extraWidget = _extraWidgetSubmissionData().entries.map((entries) {
-        return "${entries.key}:${entries.value.replaceAll(',', '')}";
-      }).join(",");
-
-      final dynamicWidgetsResult = _containsDynamicWidget()? '|$dynamicWidget' : "";
-      final extraWidgetsResult = _containsExtraWidget() ? '|$extraWidget' : "";
-
       try {
+        String dynamicWidget = _dynamicWidgetSubmissionData().entries.map((entries) { // all entries from the map
+          return "${entries.key}:${entries.value.replaceAll(',', '')}"; // return formatted entries into <key>:<value>
+        }).join(","); // join all entries into a string by comma (",")
+
+        String extraWidget = _extraWidgetSubmissionData().entries.map((entries) {
+          return "${entries.key}:${entries.value.replaceAll(',', '')}";
+        }).join(",");
+
+        final dynamicWidgetsResult = _containsDynamicWidget()? '|$dynamicWidget' : "";
+        final extraWidgetsResult = _containsExtraWidget() ? '|$extraWidget' : "";
+
         final reqTitle = event.title.trim().replaceAll(' ', '_').toLowerCase();
         final id = await _firebaseRepository.addUserRequest(
           UserRequest(
@@ -129,13 +118,13 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
         );
 
         _hiveRepository.addID(id!);
-        emit(state.copyWith(submissionStatus: Status.success, errorMsg: null));
+        emit(state.copyWith(submissionStatus: Status.success));
       } catch (e) {
-        emit(state.copyWith(errorMsg: e.toString(), submissionStatus: Status.error));
+        emit(state.copyWith(submissionStatus: Status.error, message: e.toString()));
       }
     } else {
       emit(state.copyWith(
-        errorMsg: "Incomplete Form: Please review the form and make sure all required fields are filled in correctly.",
+        message: "Incomplete Form: Please review the form and make sure all required fields are filled in correctly.",
         submissionStatus: Status.error
       ));
     }

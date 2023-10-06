@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
 import 'package:fcb_pay_app/pages/home_dynamic/widgets/widgets.dart';
 
@@ -27,13 +29,22 @@ class CarouselSliderDisplay extends StatelessWidget {
                 ),
                 items: state.accounts.map((data) {
                   if(data.type == 'cc') {
-                    return CarouselCCCard( 
+                    return CarouselCCCard(
                       balance: data.balance,
                       creditLimit: data.creditLimit ?? 0.0,
                       expiry: data.expiry ?? DateTime.now(),
                       type: data.type,
                       ownerId: data.ownerId,
-                      keyId: data.keyId!
+                      keyId: data.keyId!,
+                      onTap: () {
+                        context.read<AppBloc>().add(AppAccountsModelPassed(
+                          AccountModel(
+                            account: data.keyId!,
+                            type: data.type
+                          )
+                        ));
+                        context.flow<AppStatus>().update((state) => AppStatus.account);
+                      }
                     );
                   }
                   if (data.type == 'sa' || data.type == 'wallet') {
@@ -41,7 +52,16 @@ class CarouselSliderDisplay extends StatelessWidget {
                       balance: data.balance,
                       type: data.type,
                       ownerId: data.ownerId,
-                      keyId: data.keyId!
+                      keyId: data.keyId!,
+                      onTap: () {
+                        context.read<AppBloc>().add(AppAccountsModelPassed(
+                          AccountModel(
+                            account: data.keyId!,
+                            type: data.type
+                          )
+                        ));
+                        context.flow<AppStatus>().update((state) => AppStatus.account);
+                      }
                     );
                   } else {
                     return const SizedBox.shrink();
@@ -83,7 +103,7 @@ class CarouselSliderDisplay extends StatelessWidget {
         if (state is AccountsError) {
           return Center(
             child: Text(
-              state.error,
+              state.message,
               style: const TextStyle(
                 color: Colors.black38,
                 fontWeight: FontWeight.w700

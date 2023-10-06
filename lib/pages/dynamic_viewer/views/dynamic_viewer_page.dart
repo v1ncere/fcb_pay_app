@@ -27,7 +27,7 @@ class DynamicViewerPage extends StatelessWidget {
             providers: [
               BlocProvider(create: (context) => DropdownBloc(firebaseRepository: _firebaseRepository)),
               BlocProvider(create: (context) => WidgetsBloc(firebaseRepository: _firebaseRepository, hiveRepository: _hiveRepository)
-              ..add(WidgetsLoaded(buttonModel.id!))),
+              ..add(WidgetsLoaded(buttonModel.id))),
               BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
               ..add(AccountsLoaded()))
             ],

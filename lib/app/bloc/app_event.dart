@@ -15,24 +15,32 @@ class AppUserChanged extends AppEvent {
   List<Object> get props => [user];
 }
 
-class AccountArgumentPassed extends AppEvent {
-  const AccountArgumentPassed(this.args);
+class AppAccountsModelPassed extends AppEvent {
+  const AppAccountsModelPassed(this.accountModel);
+  final AccountModel accountModel;
+
+  @override
+  List<Object> get props => [accountModel];
+}
+
+class AppNotificationArgsPassed extends AppEvent {
+  const AppNotificationArgsPassed(this.args);
   final String args;
 
   @override
   List<Object> get props => [args];
 }
 
-class NotificationIdPassed extends AppEvent {
-  const NotificationIdPassed(this.args);
-  final String args;
+class AppDynamicButtonModelPassed extends AppEvent {
+  const AppDynamicButtonModelPassed(this.buttonModel);
+  final ButtonModel buttonModel;
 
   @override
-  List<Object> get props => [args];
+  List<Object> get props => [buttonModel];
 }
 
-class DynamicButtonDataPassed extends AppEvent {
-  const DynamicButtonDataPassed(this.buttonModel);
+class AppAccountDynamicButtonModelPassed extends AppEvent {
+  const AppAccountDynamicButtonModelPassed(this.buttonModel);
   final ButtonModel buttonModel;
 
   @override

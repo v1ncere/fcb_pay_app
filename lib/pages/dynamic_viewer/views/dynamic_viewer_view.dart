@@ -1,13 +1,13 @@
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DynamicViewerView extends StatelessWidget {
   const DynamicViewerView({super.key, required this.buttonModel});
@@ -22,19 +22,19 @@ class DynamicViewerView extends StatelessWidget {
           context.flow<AppStatus>().update((next) => AppStatus.dynamicReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar("Payment sent!", FontAwesomeIcons.solidCircleCheck, Colors.white));
+          ..showSnackBar(customSnackBar("Transaction Successful!", FontAwesomeIcons.solidCircleCheck, Colors.white));
         }
         if(state.submissionStatus.isError) {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(state.errorMsg!, FontAwesomeIcons.triangleExclamation, Colors.red));
+          ..showSnackBar(customSnackBar(state.message!, FontAwesomeIcons.triangleExclamation, Colors.red));
         }
       },
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              buttonModel.title ?? '',
+              buttonModel.title,
               style: const TextStyle(
                 fontWeight: FontWeight.w700
               )
@@ -43,7 +43,7 @@ class DynamicViewerView extends StatelessWidget {
           body:  BlocBuilder<WidgetsBloc, WidgetsState>(
             builder: (context, state) {
               if (state.widgetStatus.isLoading) {
-                return Center(child: CircularProgressIndicator(strokeWidth: 5, color: colorStringParser(buttonModel.iconColor!)));
+                return Center(child: CircularProgressIndicator(strokeWidth: 5, color: colorStringParser(buttonModel.iconColor)));
               }
               if (state.widgetStatus.isSuccess) {
                 return SingleChildScrollView(
@@ -70,7 +70,7 @@ class DynamicViewerView extends StatelessWidget {
                 );
               }
               if (state.widgetStatus.isError) {
-                return Center(child: Text('${state.errorMsg}'));
+                return Center(child: Text('${state.message}'));
               }
               else {
                 return const SizedBox.shrink();

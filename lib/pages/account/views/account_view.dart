@@ -1,6 +1,6 @@
-import 'package:fcb_pay_app/pages/account/account.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fcb_pay_app/pages/account/account.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class AccountView extends StatelessWidget {
