@@ -7,7 +7,7 @@ sealed class AccountsState extends Equatable {
   List<Object> get props => [];
 }
 
-final class AccountsInProgress extends AccountsState {}
+final class AccountsLoading extends AccountsState {}
 
 final class AccountsSuccess extends AccountsState {
   const AccountsSuccess({this.accounts = const <Account>[]});

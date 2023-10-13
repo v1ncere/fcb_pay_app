@@ -3,14 +3,18 @@ part of 'scanner_transaction_bloc.dart';
 class ScannerTransactionState extends Equatable with FormzMixin {
   const ScannerTransactionState({
     this.qrDataList = const <QRModel>[],
+    this.notifyFlag = '',
     this.accountDropdown = const AccountDropdown.pure(),
+    this.account = Account.empty,
     this.inputAmount = const Amount.pure(),
     this.status = Status.initial,
     this.formStatus = FormzSubmissionStatus.initial,
     this.message = ''
   });
   final List<QRModel> qrDataList;
+  final String notifyFlag;
   final AccountDropdown accountDropdown;
+  final Account account;
   final Amount inputAmount;
   final Status status;
   final FormzSubmissionStatus formStatus;
@@ -18,7 +22,9 @@ class ScannerTransactionState extends Equatable with FormzMixin {
 
   ScannerTransactionState copyWith({
     List<QRModel>? qrDataList,
+    String? notifyFlag,
     AccountDropdown? accountDropdown,
+    Account? account,
     Amount? inputAmount,
     Status? status,
     FormzSubmissionStatus? formStatus,
@@ -26,7 +32,9 @@ class ScannerTransactionState extends Equatable with FormzMixin {
   }) {
     return ScannerTransactionState(
       qrDataList: qrDataList ?? this.qrDataList,
+      notifyFlag: notifyFlag ?? this.notifyFlag,
       accountDropdown: accountDropdown ?? this.accountDropdown,
+      account: account ?? this.account,
       inputAmount: inputAmount ?? this.inputAmount,
       status: status ?? this.status,
       formStatus: formStatus ?? this.formStatus,
@@ -37,7 +45,9 @@ class ScannerTransactionState extends Equatable with FormzMixin {
   @override
   List<Object> get props => [
     qrDataList,
+    notifyFlag,
     accountDropdown,
+    account,
     inputAmount,
     status,
     formStatus,

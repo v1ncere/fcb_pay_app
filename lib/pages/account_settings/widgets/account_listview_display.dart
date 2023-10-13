@@ -12,7 +12,7 @@ class AccountListViewDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountsBloc, AccountsState> (
       builder: (context, state) {
-        if(state is AccountsInProgress) {
+        if(state is AccountsLoading) {
           return const ListViewShimmer();
         }
         if (state is AccountsSuccess) {

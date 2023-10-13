@@ -14,7 +14,7 @@ class CarouselSliderDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountsBloc, AccountsState>(
       builder: (context, state) {
-        if (state is AccountsInProgress) {
+        if (state is AccountsLoading) {
           return const CarouselShimmer();
         }
         if (state is AccountsSuccess) {
@@ -101,15 +101,7 @@ class CarouselSliderDisplay extends StatelessWidget {
           );
         }
         if (state is AccountsError) {
-          return Center(
-            child: Text(
-              state.message,
-              style: const TextStyle(
-                color: Colors.black38,
-                fontWeight: FontWeight.w700
-              )
-            )
-          );
+          return CarouselCardError(text: state.message);
         }
         else {
           return const SizedBox.shrink();

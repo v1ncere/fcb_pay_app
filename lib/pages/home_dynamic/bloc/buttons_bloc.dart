@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,20 +15,27 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
   super(ButtonsLoading()) {
     on<ButtonsLoaded>(_onButtonsLoaded);
     on<ButtonsUpdated>(_onButtonsUpdated);
+    on<ButtonsRefreshed>(_onButtonsRefreshed);
   }
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
   StreamSubscription<List<HomeButton>>? _streamSubscription;
 
   void _onButtonsLoaded(ButtonsLoaded event, Emitter<ButtonsState> emit) async {
-    _streamSubscription?.cancel();
-    _streamSubscription = _realtimeDBRepository.getHomeButtonsListStream()
-    .listen(
-      (event) async {
-        add(ButtonsUpdated(event));
-      }, onError: (error) {
-        emit(ButtonsError(message: error.toString()));
-      }
-    );
+    final internetStatus = await internetChecker();
+
+    if (internetStatus) {
+      _streamSubscription?.cancel();
+      _streamSubscription = _realtimeDBRepository.getHomeButtonsListStream()
+      .listen(
+        (event) async {
+          add(ButtonsUpdated(event));
+        }, onError: (error) {
+          emit(ButtonsError(message: error.toString()));
+        }
+      );
+    } else {
+      emit(const ButtonsError(message: 'disconnected...'));
+    }
   }
 
   void _onButtonsUpdated(ButtonsUpdated event, Emitter<ButtonsState> emit) async {
@@ -39,6 +47,11 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
     } else {
       emit(const ButtonsError(message: 'Empty'));
     }
+  }
+
+  void _onButtonsRefreshed(ButtonsRefreshed event, Emitter<ButtonsState> emit) {
+    emit(ButtonsLoading());
+    add(ButtonsLoaded());
   }
 
   @override

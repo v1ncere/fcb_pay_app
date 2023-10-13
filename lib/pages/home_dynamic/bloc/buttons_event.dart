@@ -16,3 +16,5 @@ final class ButtonsUpdated extends ButtonsEvent {
   @override
   List<Object> get props => [homeButton];
 }
+
+final class ButtonsRefreshed extends ButtonsEvent {}

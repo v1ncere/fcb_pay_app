@@ -1,23 +1,23 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Account {
-  Account({
+  const Account({
     this.keyId,
     required this.balance,
     this.creditLimit,
     required this.type,
     required this.ownerId,
     this.expiry,
-    required this.timeStamp
+    this.timeStamp
   });
 
-  String? keyId;
+  final String? keyId;
   final double balance;
   final double? creditLimit;
   final String type;
   final String ownerId;
   final DateTime? expiry;
-  final DateTime timeStamp;
+  final DateTime? timeStamp;
 
   Account copyWith({
     String? keyId,
@@ -38,6 +38,10 @@ class Account {
       timeStamp: timeStamp ?? this.timeStamp
     );
   }
+
+  static const empty = Account(balance: 0.0, type: '', ownerId: '');
+  bool get isEmpty => this == Account.empty;
+  bool get isNotEmpty => this != Account.empty;
 
   factory Account.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;

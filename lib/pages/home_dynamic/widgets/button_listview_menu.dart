@@ -48,10 +48,16 @@ class CardButtonMenu extends StatelessWidget {
               );
             }
           );
-        } 
+        }
         if (state is ButtonsError) {
           return Center(
-            child: Text(state.message),
+            child: Text(
+              state.message,
+              style: const TextStyle(
+                color: Colors.black38,
+                fontWeight: FontWeight.w700
+              )
+            )
           );
         }
         else {

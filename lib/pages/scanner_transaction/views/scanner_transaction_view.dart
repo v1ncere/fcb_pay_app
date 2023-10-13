@@ -35,6 +35,8 @@ class ScannerTransactionView extends StatelessWidget {
                 SizedBox(height: 5),
                 AccountDropdown(),
                 SizedBox(height: 10),
+                AccountCardInfo(),
+                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

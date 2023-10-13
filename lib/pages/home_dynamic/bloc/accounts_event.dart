@@ -16,3 +16,5 @@ final class AccountsUpdated extends AccountsEvent {
   @override
   List<Object> get props => [accounts];
 }
+
+final class AccountsRefreshed extends AccountsEvent {}

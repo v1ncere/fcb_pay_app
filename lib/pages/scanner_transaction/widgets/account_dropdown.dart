@@ -13,7 +13,7 @@ class AccountDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountsBloc, AccountsState>(
       builder: (context, state) {
-        if (state is AccountsInProgress) {
+        if (state is AccountsLoading) {
           return const Center(child: ShimmerRectLoading());
         }
         if (state is AccountsSuccess) {
@@ -28,7 +28,8 @@ class AccountDropdown extends StatelessWidget {
                 items: state.accounts.map((item) {
                   return DropdownMenuItem<String> (
                     value: item.keyId.toString(),
-                    child: Text('${item.keyId}')
+                    child: Text('${item.keyId}'),
+                    onTap: () => context.read<ScannerTransactionBloc>().add(ScannerAccountModelChanged(item)),
                   );
                 }).toList()
               );
