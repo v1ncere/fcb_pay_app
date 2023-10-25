@@ -10,6 +10,10 @@ abstract class BaseHiveRepository {
   Future<String> getID();
   void deleteID();
   
+  void addRawQR(String id);
+  Future<String> getRawQR();
+  void deleteRawQR();
+
   void close();
 }
 
@@ -24,6 +28,7 @@ class HiveRepository extends BaseHiveRepository {
     var _box = Hive.isBoxOpen(_boxName)
     ? Hive.box(_boxName)
     : await Hive.openBox(_boxName);
+    
     _box.put(_keyName, qrData);
   }
 
@@ -32,6 +37,7 @@ class HiveRepository extends BaseHiveRepository {
     var _box = Hive.isBoxOpen(_boxName)
     ? Hive.box(_boxName)
     : await Hive.openBox(_boxName);
+    
     return _box.get(_keyName);
   }
 
@@ -40,6 +46,7 @@ class HiveRepository extends BaseHiveRepository {
     var _box = Hive.isBoxOpen(_boxName)
     ? Hive.box(_boxName)
     : await Hive.openBox(_boxName);
+    
     _box.delete(_keyName);
   }
 
@@ -53,6 +60,7 @@ class HiveRepository extends BaseHiveRepository {
     var _box = Hive.isBoxOpen(_idBox)
     ? Hive.box(_idBox)
     : await Hive.openBox(_idBox);
+    
     _box.put(_idKey, id);
   }
 
@@ -69,7 +77,40 @@ class HiveRepository extends BaseHiveRepository {
     var _box = Hive.isBoxOpen(_idBox)
     ? Hive.box(_idBox)
     : await Hive.openBox(_idBox);
+    
     _box.delete(_idKey);
+  }
+
+  // ====================================
+  static const String _qrRawBox = 'QR_RAW_BOX';
+  static const String _qrRawKey = 'QR_RAW_KEY';
+  // ====================================
+
+  @override
+  void addRawQR(String rawQRData) async {
+    var _box = Hive.isBoxOpen(_qrRawBox)
+    ? Hive.box(_qrRawBox)
+    : await Hive.openBox(_qrRawBox);
+    
+    _box.put(_qrRawKey, rawQRData);
+  }
+
+  @override
+  Future<String> getRawQR() async {
+    var _box = Hive.isBoxOpen(_qrRawBox)
+    ? Hive.box(_qrRawBox)
+    : await Hive.openBox(_qrRawBox);
+    
+    return _box.get(_qrRawKey);
+  }
+
+  @override
+  void deleteRawQR() async {
+    var _box = Hive.isBoxOpen(_qrRawBox)
+    ? Hive.box(_qrRawBox)
+    : await Hive.openBox(_qrRawBox);
+    
+    _box.delete(_qrRawKey);
   }
 
   @override
@@ -80,6 +121,10 @@ class HiveRepository extends BaseHiveRepository {
     }
     if (Hive.isBoxOpen(_idBox)) {
       var _box = Hive.box(_idBox);
+      return await _box.close();
+    }
+    if (Hive.isBoxOpen(_qrRawBox)) {
+      var _box = Hive.box(_qrRawBox);
       return await _box.close();
     }
   }

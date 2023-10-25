@@ -10,13 +10,13 @@ import 'package:fcb_pay_app/pages/receipt/widgets/widgets.dart';
 class ReceiptView extends StatelessWidget {
   const ReceiptView({super.key});
 
+  static final GlobalKey _key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Receipt', style: TextStyle(color: Colors.green)),
           leading: IconButton(
             icon: const Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.authenticated)
@@ -28,13 +28,14 @@ class ReceiptView extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is ReceiptDisplaySuccess) {
-              return CustomCard(
-                amount: state.receipts.amount,
-                confirm: state.receipts.confirm,
-                description: state.receipts.description,
-                reference: state.receipts.reference,
-                title: state.receipts.title, 
-                timeStamp: state.receipts.timeStamp,
+              return Column(
+                children: [
+                  RepaintBoundary(
+                    key: _key,
+                    child: CustomCard(receipts: state.receipts)
+                  ),
+                  ScreenshotButton(globalKey: _key)
+                ]
               );
             }
             if (state is ReceiptDisplayError) {

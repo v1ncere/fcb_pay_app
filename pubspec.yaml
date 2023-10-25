@@ -38,10 +38,11 @@ dependencies:
   flow_builder: ^0.0.9
   url_launcher: ^6.1.14
   font_awesome_flutter: ^10.5.0
-  firebase_auth_platform_interface: ^6.19.1
+  firebase_auth_platform_interface: ^7.0.1
   hive_generator: ^2.0.1
   bloc_concurrency: ^0.2.2
   dio: ^5.3.3
+  image_gallery_saver: ^2.0.3
   
 dev_dependencies:
   flutter_test:
@@ -54,7 +55,7 @@ dev_dependencies:
   test: ^1.16.0
   bloc_test: ^9.1.4
 
-flutter_icons:
+flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/fcb-logo.png"

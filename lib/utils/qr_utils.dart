@@ -74,7 +74,7 @@ List<QRModel> qrDataParser(String qr) {
 String qrDataTitleWidget(String data, String req) {
   final ids = data.trim().substring(0, 4);
   
-  if(ids.contains('main')) {
+  if(ids.contains('main')) { // id: main<##> e.g. 'main52'
     final id = int.parse(data.trim().substring(4, 6));
     
     switch(id) {
@@ -124,7 +124,7 @@ String qrDataTitleWidget(String data, String req) {
       default:
         return '';
     }
-  } else if (ids.contains('subs')) {
+  } else if (ids.contains('subs')) { // id: subs<##><##> e.g. 'subs2801'
     final idInString = data.trim().substring(4, 8);
     final subId = int.parse(idInString.substring(2, 4));
     
@@ -140,9 +140,9 @@ String qrDataTitleWidget(String data, String req) {
       case 2800:
         return (req == 'title') ? 'Payment System Unique ID' : 'text';
       case 2801:
-        return (req == 'title') ? 'Acquirer ID' : 'text';
+        return (req == 'title') ? 'Acquirer ID' : 'text'; // FCB 
       case 2803:
-        return (req == 'title') ? 'Merchant ID' : 'text';
+        return (req == 'title') ? 'Merchant ID' : 'text'; // INSTITUTIONS
       case 2804:
         return (req == 'title') ? 'Merchant Credit Account' : 'text';
       case 2805:
@@ -154,15 +154,15 @@ String qrDataTitleWidget(String data, String req) {
       case 6203:
         return (req == 'title') ? 'Store Label' : 'text';
       case 6204:
-        return (req == 'title') ? 'Loyalty Number' : 'text';
+        return (req == 'title') ? 'Loyalty Number' : 'text'; // if loyalty card is applicable
       case 6205:
         return (req == 'title') ? 'Reference Label' : 'text';
       case 6206:
-        return (req == 'title') ? 'Customer Label' : 'text';
+        return (req == 'title') ? 'Customer Label' : 'text'; // identify what kind of consumer is the user
       case 6207:
         return (req == 'title') ? 'Terminal Label' : 'text';
       case 6208:
-        return (req == 'title') ? 'Purpose of Transaction' : 'text';
+        return (req == 'title') ? 'Purpose of Transaction' : 'text'; // 
       case 6209:
         return (req == 'title') ? 'Additional Consumer Data Request' : 'text';
       case >= 6210 && <= 6249:
@@ -188,7 +188,7 @@ String qrDataTitleWidget(String data, String req) {
       case 8800:
         return (req == 'title') ? 'Payment System Unique ID' : 'text';
       case 8801:
-        return (req == 'title') ? 'Aquirer-Required Information' : 'text';
+        return (req == 'title') ? 'Aquirer-Required Information' : 'text'; // FCB REQUIRED INFO
       default:
         return '';
     }

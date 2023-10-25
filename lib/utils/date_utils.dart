@@ -84,3 +84,38 @@ String getDateString(DateTime date) {
       return '';
   }
 }
+
+String getDateStringfromMillis(int millis) {
+  final date = millis <= 9999999999999
+  ? DateTime.fromMillisecondsSinceEpoch(millis)
+  : DateTime.now();
+  
+  switch(date.month) {
+    case 1:
+      return "Jan ${date.day}, ${date.year}";
+    case 2:
+      return "Feb ${date.day}, ${date.year}";
+    case 3:
+      return "Mar ${date.day}, ${date.year}";
+    case 4:
+      return "Apr ${date.day}, ${date.year}";
+    case 5:
+      return "May ${date.day}, ${date.year}";
+    case 6:
+      return "Jun ${date.day}, ${date.year}";
+    case 7:
+      return "Jul ${date.day}, ${date.year}";
+    case 8:
+      return "Aug ${date.day}, ${date.year}";
+    case 9:
+      return "Sep ${date.day}, ${date.year}";
+    case 10:
+      return "Oct ${date.day}, ${date.year}";
+    case 11:
+      return "Nov ${date.day}, ${date.year}";
+    case 12:
+      return "Dec ${date.day}, ${date.year}";
+    default:
+      return '';
+  }
+}

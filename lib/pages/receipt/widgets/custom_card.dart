@@ -1,44 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import 'package:fcb_pay_app/utils/utils.dart';
+import 'package:fcb_pay_app/widgets/widgets.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
     super.key,
-    required this.amount,
-    required this.confirm,
-    required this.description,
-    required this.reference,
-    required this.timeStamp,
-    required this.title
+    required this.receipts,
   });
-  final double amount;
-  final bool confirm;
-  final String description;
-  final int reference;
-  final String title;
-  final DateTime timeStamp;
+  final Map<dynamic, dynamic> receipts;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
+      padding: const EdgeInsets.only(top: 30.0, bottom: 15, left: 15, right: 15),
       child: Stack(
         children: [
           Card(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Container(
               width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  Text('${timeStamp.day}/${timeStamp.month}/${timeStamp.year}'),
-                  const SizedBox(height: 10),
-                  Text(title, style: const TextStyle(color: Colors.black)),
-                  const SizedBox(height: 10),
-                  Text(amount.toString(), style: const TextStyle(color: Colors.black)),
-                  const SizedBox(height: 10),
-                  Text(description, style: const TextStyle(color: Colors.black)),
-                  const SizedBox(height: 10),
-                  Text(reference.toString(), style: const TextStyle(color: Colors.black)),
-                ]
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40.0, bottom: 15, left: 15, right: 15),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  itemCount: receipts.length,
+                  itemBuilder: (context, index) {
+                    var key = receipts.keys.elementAt(index);
+                    if (key.toString() == 'time_stamp') {
+                      return CustomRowText(
+                        title: key.toString().replaceAll("_", " "),
+                        titleColor: Colors.black45,
+                        content: getDateStringfromMillis(int.parse(receipts[key].toString())),
+                        contentColor: Colors.green,
+                      );
+                    }
+                    if (key.toString() == 'amount') {
+                      return CustomRowText(
+                        title: key.toString(),
+                        titleColor: Colors.black45,
+                        content: formatCurrency(double.parse(receipts[key].toString()), 'fil_PH'),
+                        contentColor: Colors.green,
+                      );
+                    }
+                    else {
+                      return CustomRowText(
+                        title: key.toString().replaceAll("_", " "),
+                        titleColor: Colors.black45,
+                        content: receipts[key].toString(),
+                        contentColor: Colors.green,
+                      );
+                    }
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: 15);
+                  }
+                )
               )
             )
           ),
@@ -47,8 +68,13 @@ class CustomCard extends StatelessWidget {
             child: Align(
               alignment: FractionalOffset(0.5, 0.0),
               child: CircleAvatar(
-                radius: 25.0,
-                child: Text("A"),
+                radius: 35.0,
+                backgroundColor: Colors.teal,
+                child: CustomText(
+                  text: "RECEIPT",
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                )
               )
             )
           )
@@ -56,4 +82,8 @@ class CustomCard extends StatelessWidget {
       )
     );
   }
+}
+
+String formatCurrency(double amount, String locale) {
+  return NumberFormat.simpleCurrency(locale: locale).format(amount);
 }

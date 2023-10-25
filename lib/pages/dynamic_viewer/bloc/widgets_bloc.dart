@@ -112,6 +112,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
         final id = await _firebaseRepository.addUserRequest(
           UserRequest(
             dataRequest: '$reqTitle$dynamicWidgetsResult$extraWidgetsResult',
+            extraData: '',
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             timeStamp: DateTime.now()
           )

@@ -24,6 +24,7 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
     on<ScannerAmountValueChanged>(_onScannerAmountValueChanged);
     on<ScannerExtraWidgetValueChanged>(_onScannerExtraWidgetValueChanged);
     on<ScannerTransactionSubmitted>(_onScannerTransactionSubmitted);
+    on<ScannerTipValueChanged>(_onScannerTipValueChanged);
   }
   final HiveRepository _hiveRepository;
   final FirebaseRealtimeDBRepository _realtimeDBRepository;
@@ -36,12 +37,41 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
       
       if (dataList.isNotEmpty) {
         emit(state.copyWith(status: Status.success, qrDataList: dataList));
-
         // ====================================================================== 
-        final index = dataList.indexWhere((element) => element.id == 'subs2805');
-        if (index != -1) {
+        final index2805 = dataList.indexWhere((e) => e.id == 'subs2805'); // Proxy-Notify Flags
+        if (index2805 != -1) {
           final updatedDataList = List<QRModel>.from(dataList);
-          emit(state.copyWith(notifyFlag: updatedDataList[index].data));
+          emit(state.copyWith(notifyFlag: updatedDataList[index2805].data));
+        }
+
+        final index54 = dataList.indexWhere((e) => e.id == 'main54'); // transaction amount
+        if (index54 != -1) {
+          final updatedDataList = List<QRModel>.from(dataList);
+          add(ScannerAmountValueChanged(updatedDataList[index54].data));
+        }
+
+        final index55 = dataList.indexWhere((e) => e.id == 'main55'); // tip
+        if (index55 != -1) {
+          final newList = List<QRModel>.from(dataList);
+          switch(newList[index55].data) {
+            case '01':
+              emit(state.copyWith(tip: ''));
+              break;
+            case '02':
+              final index56 = dataList.indexWhere((e) => e.id == 'main56');
+              if(index56 != -1) {
+                final newList = List<QRModel>.from(dataList);
+                emit(state.copyWith(tip: newList[index56].data));
+              }
+              break;
+            case '03':
+              final index57 = dataList.indexWhere((e) => e.id == 'main57');
+              if(index57 != -1) {
+                final newList = List<QRModel>.from(dataList);
+                emit(state.copyWith(tip: newList[index57].data));
+              }
+              break;
+          }
         }
         // ======================================================================
       } else {
@@ -50,6 +80,11 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
     } catch (e) {
       emit(state.copyWith(status: Status.error, message: e.toString()));
     }
+  }
+
+  void _onScannerTipValueChanged(ScannerTipValueChanged event, Emitter<ScannerTransactionState> emit) {
+    final tip = event.tip;
+    emit(state.copyWith(tip: tip));
   }
 
   void _onScannerAccountValueChanged(ScannerAccountValueChanged event, Emitter<ScannerTransactionState> emit) {
@@ -68,13 +103,18 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
   }
 
   void _onScannerExtraWidgetValueChanged(ScannerExtraWidgetValueChanged event, Emitter<ScannerTransactionState> emit) {
-    final index = state.qrDataList.indexWhere((element) => element.id == event.id); // returns -1 if [element] is not found.
+    final index = state.qrDataList.indexWhere((e) => e.id == event.id); // returns -1 if [element] is not found.
 
-    if (index != -1) {
-      final updatedQrDataList = List<QRModel>.from(state.qrDataList);
-      updatedQrDataList[index] = updatedQrDataList[index].copyWith(data: event.data);
-      
-      emit(state.copyWith(qrDataList: updatedQrDataList));
+    if (index != -1) { // index found
+      final newList = List<QRModel>.from(state.qrDataList);
+      newList[index] = newList[index].copyWith(data: event.data); // update list data base on new [event.data]
+      emit(state.copyWith(qrDataList: newList));
+    } else { // index not found
+      if(event.id == 'subs6209A' || event.id == 'subs6209M' || event.id == 'subs6209E') {
+        final newList = List<QRModel>.from(state.qrDataList);
+        newList.add(QRModel(id: event.id, title: event.title, data: event.data, widget: event.widget));
+        emit(state.copyWith(qrDataList: newList));
+      }
     }
   }
 
@@ -82,21 +122,25 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
     if (state.isValid) {
       emit(state.copyWith(formStatus: FormzSubmissionStatus.inProgress));
       
-      if (_allExtraFieldsValid()) {
+      if (_allExtraFieldsValid()) { // check if all extra fields are valid
         try {
           String result = _getFormSubmissionData().entries
           .map((e) => '${e.key}:${e.value}')
           .join(',');
 
+          // additional fields
           String additional = _extraFieldSubmissionData().entries
           .map((e) => '${e.key}:${e.value}')
           .join(',');
-
+          
+          final rawQR = await _hiveRepository.getRawQR(); // raw qr data (unparsed qr data)
           final extra = _containsExtraFields() ? '|$additional' : '';
+          final tipCon = state.qrDataList.indexWhere((e) => e.id == 'main55') != -1 ? '|${state.tip}' : '';
           
           final id = await _realtimeDBRepository.addUserRequest(
             UserRequest(
-              dataRequest: "qr_transactions|${state.accountDropdown.value}|${state.inputAmount.value}|$result$extra",
+              dataRequest: "qr_transaction|${state.accountDropdown.value}|${state.inputAmount.value}$tipCon|$result$extra",
+              extraData: rawQR,
               ownerId: FirebaseAuth.instance.currentUser!.uid,
               timeStamp: DateTime.now()
             )
@@ -121,19 +165,17 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
     }
   }
 
-  bool _containsExtraFields() {
-    return state.qrDataList.any((element) {
-      return element.widget == 'textfield';
-    });
+  bool _containsExtraFields() { // check if textfields exist
+    return state.qrDataList.any((e) => e.widget == 'textfield');
   }
 
   bool _allExtraFieldsValid() {
     final extraFields = state.qrDataList
-    .where((element) => element.widget == 'textfield');
+    .where((e) => e.widget == 'textfield');
     //
     final extraFieldsValid = extraFields.isEmpty || extraFields
-    .every((element) => element.data.isNotEmpty == true);
-
+    .every((e) => e.data.isNotEmpty == true);
+    //
     return extraFieldsValid;
   }
 
@@ -150,9 +192,19 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
 
   Map<String, String> _getFormSubmissionData() {
     final Map<String, String> formData = {};
+    final pos1 = int.parse(state.notifyFlag.substring(0, 1));
 
     for (final qr in state.qrDataList) {
-      if (qr.id == 'subs2803' || qr.id == 'main59' || qr.id == 'subs6205') {
+      if (qr.id == 'main59') {
+        formData[qr.title] = qr.data;
+      }
+      if (qr.id == 'subs2803' && pos1 == 3) {
+        formData[qr.title] = qr.data;
+      }
+      if (qr.id == 'subs2804') {
+        formData[qr.title] = qr.data;
+      }
+      if (qr.id == 'subs6205') {
         formData[qr.title] = qr.data;
       }
     }

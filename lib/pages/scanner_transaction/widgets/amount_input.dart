@@ -14,31 +14,60 @@ class AmountInput extends StatelessWidget {
     return BlocBuilder<ScannerTransactionBloc, ScannerTransactionState>(
       buildWhen: (previous, current) => previous.inputAmount != current.inputAmount,
       builder: (context, state) {
-        return TextField(
-          key: const Key('scanner_transaction_amount_input'),
-          keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          inputFormatters: <ThousandsFormatter>[ThousandsFormatter(allowFraction: true)],
-          style: const TextStyle(
-            color: Colors.black54,
-            fontWeight: FontWeight.w700
-          ),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: const Color.fromARGB(30, 37, 193, 102),
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            prefixIcon: const Icon(FontAwesomeIcons.pesoSign),
-            labelText: 'Amount',
-            labelStyle: const TextStyle(color: Colors.black26),
-            errorText: state.inputAmount.displayError?.text(),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
+        final index = state.qrDataList.indexWhere((e) => e.id == 'main54'); // find id [main54]
+        if (index != -1) { // if not found result is -1
+          return TextField(
+            key: const Key('scanner_transaction_amount_input'),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: <ThousandsFormatter>[ThousandsFormatter(allowFraction: true)],
+            style: const TextStyle(
+              color: Colors.black54,
+              fontWeight: FontWeight.w700
+            ),
+
+            controller: TextEditingController(text: state.inputAmount.value),
+            enabled: false,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color.fromARGB(30, 37, 193, 102),
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              prefixIcon: const Icon(FontAwesomeIcons.pesoSign),
+              labelText: 'Amount',
+              labelStyle: const TextStyle(color: Colors.black26),
+              errorText: state.inputAmount.displayError?.text(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              )
             )
-          ),
-          onChanged: (value) {
-            context.read<ScannerTransactionBloc>().add(ScannerAmountValueChanged(value));
-          }
-        );
+          );
+        } else {
+          return TextField(
+            key: const Key('scanner_transaction_amount_input'),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: <ThousandsFormatter>[ThousandsFormatter(allowFraction: true)],
+            style: const TextStyle(
+              color: Colors.black54,
+              fontWeight: FontWeight.w700
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color.fromARGB(30, 37, 193, 102),
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              prefixIcon: const Icon(FontAwesomeIcons.pesoSign),
+              labelText: 'Amount',
+              labelStyle: const TextStyle(color: Colors.black26),
+              errorText: state.inputAmount.displayError?.text(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              )
+            ),
+            onChanged: (value) {
+              context.read<ScannerTransactionBloc>().add(ScannerAmountValueChanged(value));
+            }
+          );
+        }
       }
     );
   }

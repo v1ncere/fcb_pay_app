@@ -7,9 +7,13 @@ import 'package:hive_repository/hive_repository.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final firebaseAuthRepository = FirebaseAuthRepository();
   await firebaseAuthRepository.user.first;
 

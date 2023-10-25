@@ -25,7 +25,8 @@ class ScannerCubit extends Cubit<ScannerState> {
         final qrObjectList = qrDataParser(data); // parse qr data into List<QRModel>
         
         if (_validateQRObjects(qrObjectList)) {
-          _hiveRepository.addQRData(qrObjectList);
+          _hiveRepository.addQRData(qrObjectList); // add the parsed qr data
+          _hiveRepository.addRawQR(data); // add raw qr data
           emit(state.copyWith(status: Status.success));
         }
       } else {
@@ -42,6 +43,7 @@ class ScannerCubit extends Cubit<ScannerState> {
     }
   }
 
+  // validate CRC
   bool _validateQRCodeCRC(String data) {
     int len = data.length; // qr length
     String qrCrcCCITT = data.substring(len - 4); // last 4 characters, location of the CRC
@@ -50,6 +52,7 @@ class ScannerCubit extends Cubit<ScannerState> {
     return qrCrcCCITT == calcCrcCCITT;
   }
 
+  // validate qr objects
   bool _validateQRObjects(List<QRModel> qrObjectList) {
     bool id27 = false;
     bool id28 = false;

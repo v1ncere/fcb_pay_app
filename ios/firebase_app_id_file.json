@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:565618829612:ios:525f32e5dcbc9325502489",
-  "FIREBASE_PROJECT_ID": "fcb-pay-app",
-  "GCM_SENDER_ID": "565618829612"
+  "GOOGLE_APP_ID": "1:1032216805729:ios:59826b8f756f326c214520",
+  "FIREBASE_PROJECT_ID": "fcbpay-website-7c029",
+  "GCM_SENDER_ID": "1032216805729"
 }

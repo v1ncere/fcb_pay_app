@@ -203,6 +203,26 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
+  // GET receipt
+  Stream<Map<String, dynamic>> getDynamicReceiptStream(String id) {
+    return _firebaseDatabase.ref('receipt/${userId()}/${id}')
+    .onValue
+    .map((event) {
+      Map<String, dynamic> mapper = {};
+
+      if (event.snapshot.exists) {
+      final snapshotValue = event.snapshot.value as Map<dynamic, dynamic>;
+      
+      snapshotValue.forEach((key, values) {
+        Map<String, dynamic> newMap = {key: values};
+        mapper.addEntries(newMap.entries);
+      });
+    }
+
+      return mapper;
+    });
+  }
+
   // ====================================== NOTIFICATION ===================================
   // =======================================================================================
   // GET notification list (stream)

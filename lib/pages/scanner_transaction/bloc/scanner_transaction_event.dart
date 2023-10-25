@@ -17,6 +17,14 @@ final class ScannerAccountValueChanged extends ScannerTransactionEvent {
   List<Object> get props => [account];
 }
 
+final class ScannerTipValueChanged extends ScannerTransactionEvent {
+  const ScannerTipValueChanged(this.tip);
+  final String tip;
+
+  @override
+  List<Object> get props => [tip];
+}
+
 final class ScannerAccountModelChanged extends ScannerTransactionEvent {
   const ScannerAccountModelChanged(this.account);
   final Account account;

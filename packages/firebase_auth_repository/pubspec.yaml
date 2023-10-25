@@ -13,8 +13,8 @@ dependencies:
     path: ../cache
 
   equatable: ^2.0.5
-  firebase_auth: ^4.6.2
-  firebase_core: ^2.13.1
+  firebase_auth: ^4.11.1
+  firebase_core: ^2.19.0
   google_sign_in: ^6.1.4
   meta: ^1.9.1
 

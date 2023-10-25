@@ -42,6 +42,7 @@ class AccountAddBloc extends Bloc<AccountAddEvent, AccountAddState> {
         await _firebaseDatabaseService.addUserRequest(
           UserRequest(
             dataRequest: req,
+            extraData: '',
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             timeStamp: DateTime.now(),
           )

@@ -20,19 +20,20 @@ class ReceiptBloc extends Bloc<ReceiptEvent, ReceiptState> {
   }
   final FirebaseRealtimeDBRepository _firebaseRepository;
   final HiveRepository _hiveRepository;
-  StreamSubscription<Receipt>? _streamSubscription;
-  
+  // StreamSubscription<Receipt>? _streamSubscription;
+  StreamSubscription<Map<String, dynamic>>? _streamSubscription;
+
   void _onReceiptDisplayLoaded(ReceiptDisplayLoaded event, Emitter<ReceiptState> emit) async {
     final id = await _hiveRepository.getID();
     _streamSubscription?.cancel();
-    _streamSubscription = _firebaseRepository.getReceiptStream(id)
+    _streamSubscription = _firebaseRepository.getDynamicReceiptStream(id)
     .listen((receipts) async {
       add(ReceiptDisplayUpdated(receipts));
     });
   }
 
   void _onReceiptDisplayUpdated(ReceiptDisplayUpdated event, Emitter<ReceiptState> emit) async {
-    if (event.receipts.title.isNotEmpty) {
+    if (event.receipts.isNotEmpty) {
       emit(ReceiptDisplaySuccess(receipts: event.receipts));
     } else {
       emit(ReceiptDisplayLoading());

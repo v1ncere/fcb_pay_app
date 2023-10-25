@@ -7,7 +7,8 @@ class FlutterTheme {
 
   ThemeData get light {
     return ThemeData(
-      textTheme: GoogleFonts.openSansTextTheme(),
+      // textTheme: GoogleFonts.nunitoTextTheme(),
+      textTheme: GoogleFonts.montserratTextTheme(),
       appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: true,
