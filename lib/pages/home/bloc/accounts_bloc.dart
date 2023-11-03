@@ -12,13 +12,13 @@ part 'accounts_state.dart';
 class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
   AccountsBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
-  }) : _dbRepository = firebaseRepository,
+  }) : _firebaseRepository = firebaseRepository,
   super(AccountsLoading()) {
     on<AccountsLoaded>(_onAccountsLoaded);
     on<AccountsUpdated>(_onAccountsUpdated);
     on<AccountsRefreshed>(_onAccountsRefreshed);
   }
-  final FirebaseRealtimeDBRepository _dbRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
   StreamSubscription<List<Account>>? _streamSubscription;
 
   // fetching streamed data from firebase
@@ -27,7 +27,7 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
 
     if(internetStatus) {
       _streamSubscription?.cancel;
-      _streamSubscription = _dbRepository.getAccountListStream()
+      _streamSubscription = _firebaseRepository.getAccountListStream()
       .listen(
         (data) async {
           add(AccountsUpdated(data));

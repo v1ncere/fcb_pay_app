@@ -2,11 +2,11 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 
-class HomeDynamicPage extends StatelessWidget {
-  const HomeDynamicPage({super.key});
-  static Page<void> page() => const MaterialPage<void>(child: HomeDynamicPage());
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+  static Page<void> page() => const MaterialPage<void>(child: HomePage());
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class HomeDynamicPage extends StatelessWidget {
       create: (context) => FirebaseRealtimeDBRepository(),
       child: BlocProvider(
         create: (context) => SliderCubit(),
-        child: const HomeDynamicView()
+        child: const HomeView()
       ) // for the slider below the carousel
     );
   }

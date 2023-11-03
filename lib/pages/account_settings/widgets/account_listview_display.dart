@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:fcb_pay_app/pages/account_settings/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 
 class AccountListViewDisplay extends StatelessWidget {
   const AccountListViewDisplay({super.key});
@@ -24,9 +24,8 @@ class AccountListViewDisplay extends StatelessWidget {
             itemBuilder: (context, index) {
               return AccountCard(
                 colors: Colors.white,
-                function: () {},
                 icon: FontAwesomeIcons.coins,
-                text: state.accounts[index].keyId!
+                account: state.accounts[index].keyId!
               );
             }
           );

@@ -15,7 +15,7 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
   ScannerTransactionBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
     required HiveRepository hiveRepository
-  })  : _realtimeDBRepository = firebaseRepository,
+  })  : _firebaseRepository = firebaseRepository,
   _hiveRepository = hiveRepository,
   super(const ScannerTransactionState()) {
     on<ScannerTransactionDisplayLoaded>(_onScannerTransactionDisplayLoaded);
@@ -27,7 +27,7 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
     on<ScannerTipValueChanged>(_onScannerTipValueChanged);
   }
   final HiveRepository _hiveRepository;
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
 
   void _onScannerTransactionDisplayLoaded(ScannerTransactionDisplayLoaded event, Emitter<ScannerTransactionState> emit) async {
     emit(state.copyWith(status: Status.loading));
@@ -137,7 +137,7 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
           final extra = _containsExtraFields() ? '|$additional' : '';
           final tipCon = state.qrDataList.indexWhere((e) => e.id == 'main55') != -1 ? '|${state.tip}' : '';
           
-          final id = await _realtimeDBRepository.addUserRequest(
+          final id = await _firebaseRepository.addUserRequest(
             UserRequest(
               dataRequest: "qr_transaction|${state.accountDropdown.value}|${state.inputAmount.value}$tipCon|$result$extra",
               extraData: rawQR,

@@ -43,6 +43,7 @@ dependencies:
   bloc_concurrency: ^0.2.2
   dio: ^5.3.3
   image_gallery_saver: ^2.0.3
+  rive: ^0.12.1
   
 dev_dependencies:
   flutter_test:
@@ -66,3 +67,5 @@ flutter:
     - assets/fcb-logo.png
     - assets/bg.png
     - assets/login.svg
+    - assets/error.riv
+    - assets/success.riv

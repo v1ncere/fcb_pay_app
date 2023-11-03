@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
-import 'package:fcb_pay_app/pages/home_dynamic/widgets/widgets.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home/widgets/widgets.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
-class HomeDynamicView extends StatelessWidget {
-  const HomeDynamicView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

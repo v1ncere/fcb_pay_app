@@ -20,7 +20,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   void _onFilteredFetched(FilterFetched event, Emitter<FilterState> emit) async {
     try {
       List<String> filterList = [];
-      filterList = await _dbRepository.getDynamicListStringData('filter');
+      filterList = await _dbRepository.getDynamicListStringData('transaction_history_search_filter');
       emit(state.copyWith(filterStatus: Status.success, filters: filterList));
     } catch (e) {
       emit(state.copyWith(filterStatus: Status.error, message: e.toString()));

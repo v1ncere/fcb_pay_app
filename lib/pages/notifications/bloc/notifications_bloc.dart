@@ -12,18 +12,18 @@ part 'notifications_state.dart';
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   NotificationsBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  }) : _realtimeDBRepository = firebaseRealtimeDBRepository,
+  }) : _firebaseRepository = firebaseRealtimeDBRepository,
   super(const NotificationsState(status: Status.loading)) {
     on<NotificationsLoaded>(_onNotificationsLoaded);
     on<NotificationsUpdated>(_onNotificationsUpdated);
     on<NotificationsUpdateIsRead>(_onNotificationsUpdateIsRead);
   }
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
   StreamSubscription<List<Notification>>? _streamSubscription;
 
   void _onNotificationsLoaded(NotificationsLoaded event, Emitter<NotificationsState> emit) async {
     _streamSubscription?.cancel();
-    _streamSubscription = _realtimeDBRepository.getNotificationListStream()
+    _streamSubscription = _firebaseRepository.getNotificationListStream()
     .listen((notifications) {
       add(NotificationsUpdated(notifications: notifications));
     });
@@ -34,27 +34,19 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     final read = event.notifications.where((notification) => notification.isRead).toList();
 
     if (event.notifications.isEmpty) {
-      emit(state.copyWith(
-        message: 'Empty',
-        status: Status.error
-      ));
+      emit(state.copyWith(status: Status.error, message: 'Empty'));
     } else {
-      emit(state.copyWith(
-        unreadNotifications: unread,
-        readNotifications: read,
-        status: Status.success
-      ));
+      emit(state.copyWith(status: Status.success, unreadNotifications: unread, readNotifications: read));
     }
   }
 
   void _onNotificationsUpdateIsRead(NotificationsUpdateIsRead event, Emitter<NotificationsState> emit) async {
     try {
-      await _realtimeDBRepository.updateNotificationRead(event.id);
+      await _firebaseRepository.updateNotificationRead(event.id);
     } catch (e) {
       emit(state.copyWith(message: e.toString()));
     }
   }
-
 
   @override
   Future<void> close() {

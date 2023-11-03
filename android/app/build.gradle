@@ -1,9 +1,11 @@
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
     id "dev.flutter.flutter-gradle-plugin"
-    id "com.google.gms.google-services"
+    id "kotlin-android"
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -26,7 +28,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.fcb_pay_app"
     compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+    ndkVersion "26.1.10909125"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

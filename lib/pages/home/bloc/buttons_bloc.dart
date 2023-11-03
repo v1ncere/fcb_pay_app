@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:fcb_pay_app/utils/utils.dart';
 
 part 'buttons_event.dart';
 part 'buttons_state.dart';
@@ -11,13 +12,13 @@ part 'buttons_state.dart';
 class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
   ButtonsBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
-  }) : _realtimeDBRepository = firebaseRepository,
+  }) : _firebaseRepository = firebaseRepository,
   super(ButtonsLoading()) {
     on<ButtonsLoaded>(_onButtonsLoaded);
     on<ButtonsUpdated>(_onButtonsUpdated);
     on<ButtonsRefreshed>(_onButtonsRefreshed);
   }
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
   StreamSubscription<List<HomeButton>>? _streamSubscription;
 
   void _onButtonsLoaded(ButtonsLoaded event, Emitter<ButtonsState> emit) async {
@@ -25,7 +26,7 @@ class ButtonsBloc extends Bloc<ButtonsEvent, ButtonsState> {
 
     if (internetStatus) {
       _streamSubscription?.cancel();
-      _streamSubscription = _realtimeDBRepository.getHomeButtonsListStream()
+      _streamSubscription = _firebaseRepository.getHomeButtonsListStream()
       .listen(
         (event) async {
           add(ButtonsUpdated(event));

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/home_dynamic/home_dynamic.dart';
+import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 

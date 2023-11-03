@@ -17,14 +17,6 @@ class ReceiptDisplaySuccess extends ReceiptState {
   List<Object> get props => [receipts];
 }
 
-// class ReceiptDisplaySuccess extends ReceiptState {
-//   const ReceiptDisplaySuccess({required this.receipts});
-//   final Receipt receipts;
-
-//   @override
-//   List<Object> get props => [receipts];
-// }
-
 class ReceiptDisplayError extends ReceiptState {
   const ReceiptDisplayError({required this.error});
   final String error;

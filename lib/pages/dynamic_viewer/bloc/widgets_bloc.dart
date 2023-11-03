@@ -40,10 +40,12 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
   void _onWidgetsUpdated(WidgetsUpdated event, Emitter<WidgetsState> emit) async {
     if (event.widgetList.isNotEmpty) {
       List<PageWidget> widgetList = event.widgetList;
+      
       final buttonWidget = widgetList.firstWhere((widget) => widget.widget == 'button'); // get the button widget
       final otherWidget = widgetList.where((widget) => widget.widget != 'button').toList(); // get the non button widgets
       otherWidget.sort((a, b) => a.position.compareTo(b.position)); // sort widgets base on the [position] field
       final sortedWidgets = [...otherWidget, buttonWidget]; // combine otherWidget and buttonWidget, ensuring buttonWidget is at the end of the list.
+      
       emit(state.copyWith(widgetStatus: Status.success, widgetList: sortedWidgets));
     } else {
       emit(state.copyWith(widgetStatus: Status.error, message: 'Empty'));
@@ -53,7 +55,7 @@ class WidgetsBloc extends Bloc<WidgetsEvent, WidgetsState> {
   void _onExtraWidgetFetched(ExtraWidgetFetched event, Emitter<WidgetsState> emit) async {
     emit(state.copyWith(extraWidgetStatus: Status.loading));
     try {
-      final extraWidgetList = await _firebaseRepository.getExtraWidgetList(event.id);
+      final extraWidgetList = await _firebaseRepository.getInstitutionExtraWidgetList(event.id);
       List<ExtraWidget> sortedExtraWidgets = extraWidgetList;
       sortedExtraWidgets.sort((a, b) => a.position.compareTo(b.position));
       

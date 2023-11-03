@@ -22,7 +22,7 @@ class GridViewButtons extends StatelessWidget {
             builder: (context, constraints) {
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: constraints.maxWidth > 400 ? 4 : 3,
+                  crossAxisCount: constraints.maxWidth > 400 ? 4 : 3, // larger width screen the more the button display
                 ),
                 shrinkWrap: true,
                 itemCount: state.buttonList.length,

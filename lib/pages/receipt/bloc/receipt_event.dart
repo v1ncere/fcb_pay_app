@@ -16,11 +16,3 @@ class ReceiptDisplayUpdated extends ReceiptEvent {
   @override
   List<Object> get props => [receipts];
 }
-
-// class ReceiptDisplayUpdated extends ReceiptEvent {
-//   const ReceiptDisplayUpdated(this.receipts);
-//   final Receipt receipts;
-
-//   @override
-//   List<Object> get props => [receipts];
-// }

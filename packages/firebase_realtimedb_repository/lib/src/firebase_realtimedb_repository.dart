@@ -120,60 +120,11 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // // ================================= BILLING INSTITUTIONS ===============================
-  // // ======================================================================================
-  // // GET billing institutions list (stream)
-  // Stream<List<Institutions>> getInstitutionListStream() {
-  //   return _firebaseDatabase.ref('billing_institution')
-  //   .onValue
-  //   .map((event) {
-  //     List<Institutions> institutionList = [];
-
-  //     if (event.snapshot.exists) {
-  //       final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
-        
-  //       snapshotValues.forEach((key, values) {
-  //         Institutions institution = Institutions.fromSnapshot(event.snapshot.child(key));
-  //         institutionList.add(institution);
-  //       });
-  //     }
-
-  //     return institutionList;
-  //   }).handleError((error) {
-  //     print('Error occurred: $error');
-  //     return [];
-  //   });
-  // }
-
-  // // =================================================== FUND TRANSFERS =============================
-  // // ================================================================================================
-  // // GET fund transfers list (stream)
-  // Stream<List<FundTransferAccount>> getFundTransferListStream() {
-  //   return _firebaseDatabase.ref('fund_transfer')
-  //   .child(userId())
-  //   .onValue
-  //   .map((event) {
-  //     List<FundTransferAccount> accountList = [];
-  //     if (event.snapshot.exists) {
-  //       Map<dynamic, dynamic> snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
-        
-  //       snapshotValues.forEach((key, values) {
-  //         FundTransferAccount account = FundTransferAccount.fromSnapshot(event.snapshot.child(key));
-  //         accountList.add(account);
-  //       });
-  //     }
-  //     return accountList;
-  //   }).handleError((error) {
-  //     print('Error occurred: $error');
-  //     return [];
-  //   });
-  // }
-
   // ============================= USERS WIDGET =============================
   // ========================================================================
   // GET user widgets list
-  Future<List<ExtraWidget>> getExtraWidgetList(String instId) {
-    return _firebaseDatabase.ref('extra_widget/${instId}')
+  Future<List<ExtraWidget>> getInstitutionExtraWidgetList(String instId) {
+    return _firebaseDatabase.ref('institution_extra_widget/${instId}')
     .get()
     .then((snapshot) {
       List<ExtraWidget> extraWidgetList = [];
@@ -326,12 +277,12 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // ========================================== PAGE WIDGETS ======================
+  // =============================== DYNAMIC VIEWER WIDGETS =======================
   // ==============================================================================
   // GET page_widget list (stream)
   Stream<List<PageWidget>> getWidgetsListStream(String originId) {
     return _firebaseDatabase
-    .ref('page_widget/${originId}')
+    .ref('dynamic_viewer_widget/${originId}')
     .onValue
     .map((event) {
       List<PageWidget> widgetsList = [];

@@ -10,19 +10,18 @@ part 'transaction_history_event.dart';
 part 'transaction_history_state.dart';
 
 class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHistoryState> {
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
-  
   TransactionHistoryBloc({
     required FirebaseRealtimeDBRepository firebaseRepository,
-  }) : _realtimeDBRepository = firebaseRepository,
+  }) : _firebaseRepository = firebaseRepository,
   super(const TransactionHistoryState(status: Status.loading)) {
     on<TransactionHistoryLoaded>(_onTransactionHistoryLoaded);
     on<SearchTextFieldChanged>(_onSearchTextFieldChanged);
   }
+  final FirebaseRealtimeDBRepository _firebaseRepository;
 
   void _onTransactionHistoryLoaded(TransactionHistoryLoaded event,  Emitter<TransactionHistoryState> emit) async {
     await emit.forEach(
-      _realtimeDBRepository.getTransactionHistoryListStream(event.account),
+      _firebaseRepository.getTransactionHistoryListStream(event.account), // stream data from firebase
       onData: (data) {
         List<TransactionHistory> filteredTransactions = data;
         final query = event.searchQuery.trim().toLowerCase(); // case insensitive

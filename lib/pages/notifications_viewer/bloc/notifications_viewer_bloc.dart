@@ -8,26 +8,26 @@ part 'notifications_viewer_state.dart';
 class NotificationsViewerBloc extends Bloc<NotificationsViewerEvent, NotificationsViewerState> {
   NotificationsViewerBloc({
     required FirebaseRealtimeDBRepository firebaseRealtimeDBRepository,
-  })  : _realtimeDBRepository = firebaseRealtimeDBRepository,
+  })  : _firebaseRepository = firebaseRealtimeDBRepository,
   super(NotificationsViewerLoading()) {
     on<NotificationViewerLoaded>(_onNotificationViewerLoaded);
     on<NotificationDelete>(_onNotificationDelete);
   }
-  final FirebaseRealtimeDBRepository _realtimeDBRepository;
+  final FirebaseRealtimeDBRepository _firebaseRepository;
 
   void _onNotificationViewerLoaded(NotificationViewerLoaded event, Emitter<NotificationsViewerState> emit) async {
     try {
-      final notification = await _realtimeDBRepository.getNotification(event.id);
+      final notification = await _firebaseRepository.getNotification(event.id);
       emit(NotificationsViewerSuccess(notification: notification));
-    } catch (err) {
-      emit(NotificationsViewerError(message: err.toString()));
+    } catch (e) {
+      emit(NotificationsViewerError(message: e.toString()));
     }
   }
   void _onNotificationDelete(NotificationDelete event, Emitter<NotificationsViewerState> emit) async {
     try {
-      await _realtimeDBRepository.deleteNotificationRead(event.id);
-    } catch (err) {
-      throw(Exception(err));
+      await _firebaseRepository.deleteNotificationRead(event.id);
+    } catch (e) {
+      throw(Exception(e));
     }
   }
 
