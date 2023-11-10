@@ -43,7 +43,7 @@ class CardButtonMenu extends StatelessWidget {
                       iconColor: btn.iconColor
                     )
                   ));
-                  context.flow<AppStatus>().update((next) => AppStatus.dynamicPage);
+                  context.flow<AppStatus>().update((next) => AppStatus.dynamicViewer);
                 }
               );
             }

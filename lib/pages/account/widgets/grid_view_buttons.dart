@@ -43,7 +43,7 @@ class GridViewButtons extends StatelessWidget {
                           )
                         )
                       );
-                      context.flow<AppStatus>().update((next) => AppStatus.accountDynamicPage);
+                      context.flow<AppStatus>().update((next) => AppStatus.accountDynamicViewer);
                     }
                   );
                 }

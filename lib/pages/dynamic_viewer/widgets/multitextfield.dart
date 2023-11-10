@@ -16,20 +16,11 @@ class MultiTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-      child: TextField(
+      child: TextFormField(
         keyboardType: TextInputType.multiline,
-        textInputAction: TextInputAction.newline,
-        maxLength: 100,
         minLines: 2,
-        maxLines: 3,
-        onChanged: (value) {
-          context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
-            keyId: widget.keyId!,
-            title: widget.title,
-            value: value,
-            type: widget.dataType,
-          ));
-        },
+        maxLines: 5,
+        maxLength: 100,
         style: const TextStyle(
           color: Colors.black45,
           fontWeight: FontWeight.w700
@@ -43,7 +34,15 @@ class MultiTextfield extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide.none
           )
-        )
+        ),
+        onChanged: (value) {
+          context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
+            keyId: widget.keyId!,
+            title: widget.title,
+            value: value,
+            type: widget.dataType,
+          ));
+        }
       )
     );
   }

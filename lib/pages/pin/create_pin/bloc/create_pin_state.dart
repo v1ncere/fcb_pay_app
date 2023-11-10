@@ -4,9 +4,9 @@ enum PinStatus { enterFirst, enterSecond, equals, unequals }
 
 class CreatePinState extends Equatable {
   const CreatePinState({
-    this.firstPin = "",
-    this.secondPin = "",
-    required this.pinStatus
+    required this.pinStatus,
+    this.firstPin = '',
+    this.secondPin = ''
   });
   final PinStatus pinStatus;
   final String firstPin;

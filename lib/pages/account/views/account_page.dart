@@ -7,7 +7,6 @@ import 'package:fcb_pay_app/pages/account/account.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
-
   static Page<void> page() => const MaterialPage<void>(child: AccountPage());
   static final _firebaseRepository = FirebaseRealtimeDBRepository();
 

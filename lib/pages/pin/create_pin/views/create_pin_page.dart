@@ -4,19 +4,20 @@ import 'package:hive_pin_repository/hive_pin_repository.dart';
 
 import 'package:fcb_pay_app/pages/pin/pin.dart';
 
-class AuthPinPage extends StatelessWidget {
-  const AuthPinPage({super.key});
-  static Page<void> page() => const MaterialPage<void>(child: AuthPinPage());
+class CreatePinPage extends StatelessWidget {
+  const CreatePinPage({super.key});
+  static Page<void> page() => const MaterialPage<void>(child: CreatePinPage());
 
-  static final _hivePinRepository = HivePinRepository();
+  static final HivePinRepository _hivePinRepository = HivePinRepository();
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => _hivePinRepository,
       child: BlocProvider(
-        create: (context) => AuthPinBloc(hivePinRepository: _hivePinRepository),
-        child: const AuthPinView(),
+        lazy: true,
+        create: (context) => CreatePinBloc(hivePinRepository: _hivePinRepository),
+        child: const CreatePinView()
       )
     );
   }

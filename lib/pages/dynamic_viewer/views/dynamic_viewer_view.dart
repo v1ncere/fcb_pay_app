@@ -12,6 +12,7 @@ import 'package:fcb_pay_app/widgets/widgets.dart';
 class DynamicViewerView extends StatelessWidget {
   const DynamicViewerView({super.key, required this.buttonModel});
   final ButtonModel buttonModel;
+  static final FocusNode focusNode = FocusNode(); // this is for open dropdown buttons
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DynamicViewerView extends StatelessWidget {
       listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
         if(state.submissionStatus.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.dynamicReceipt);
+          context.flow<AppStatus>().update((next) => AppStatus.dynamicViewerReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar("Transaction Successful!", FontAwesomeIcons.solidCircleCheck, Colors.white));
@@ -43,30 +44,50 @@ class DynamicViewerView extends StatelessWidget {
           body:  BlocBuilder<WidgetsBloc, WidgetsState>(
             builder: (context, state) {
               if (state.widgetStatus.isLoading) {
-                return Center(child: CircularProgressIndicator(strokeWidth: 5, color: colorStringParser(buttonModel.iconColor)));
+                return Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 5,
+                    color: colorStringParser(buttonModel.iconColor)
+                  )
+                );
               }
               if (state.widgetStatus.isSuccess) {
-                return SingleChildScrollView(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-                  child: CustomCardContainer(
-                    color: const Color(0xFFFFFFFF),
-                    children: state.widgetList.map((widget) {
-                      switch(widget.widget) {
-                        case 'dropdown':
-                          return DropdownSwitcher(widget: widget);
-                        case 'textfield':
-                          return DynamicTextfield(widget: widget);
-                        case 'text':
-                          return DynamicText(widget: widget);
-                        case 'multitextfield':
-                          return MultiTextfield(widget: widget);
-                        case 'button':
-                          return SubmitButton(widget: widget, buttonModel: buttonModel);
-                        default:
-                          return const SizedBox.shrink();
+                return InactivityDetector(
+                  onInactive: () {
+                    FocusScope.of(context).requestFocus(focusNode); // close the dropdown
+                    
+                    Future.microtask(() {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context); // pop the dropdown
+                        
+                        if(Navigator.canPop(context)) {
+                          Navigator.of(context).pop(true); // pop the current page
+                        }
                       }
-                    }).toList()
-                  )
+                    });
+                  },
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                    child: CustomCardContainer(
+                      color: const Color(0xFFFFFFFF),
+                      children: state.widgetList.map((widget) {
+                        switch(widget.widget) {
+                          case 'dropdown':
+                            return DropdownSwitcher(focusNode: focusNode, widget: widget);
+                          case 'textfield':
+                            return DynamicTextfield(widget: widget);
+                          case 'text':
+                            return DynamicText(widget: widget);
+                          case 'multitextfield':
+                            return MultiTextfield(widget: widget);
+                          case 'button':
+                            return SubmitButton(widget: widget, buttonModel: buttonModel);
+                          default:
+                            return const SizedBox.shrink();
+                        }
+                      }).toList()
+                    )
+                  ),
                 );
               }
               if (state.widgetStatus.isError) {

@@ -19,7 +19,6 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
 
   void _onAddPin(AuthPinAdded event, Emitter<AuthPinState> emit) async {
     String pin = "${state.pin}${event.pinNum}";
-
     if(pin.length < 6) {
       emit(state.copyWith(pin: pin, pinStatus: AuthPinStatus.enterPin));
     } else if (await _hivePinRepository.pinEquals(pin)) {
@@ -27,10 +26,7 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
     } else {
       emit(state.copyWith(pin: pin, pinStatus: AuthPinStatus.unequals));
       
-      await Future.delayed(
-        const Duration(milliseconds: 2000),
-        () => emit(state.copyWith(pinStatus: AuthPinStatus.enterPin))
-      );
+      await Future.delayed(const Duration(seconds: 1), () => add(AuthPinNulled()));
     }
   }
 
@@ -45,6 +41,6 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
   }
 
   void _onNullPin(AuthPinNulled event, Emitter<AuthPinState> emit) {
-    emit(state.copyWith(pinStatus: AuthPinStatus.enterPin));
+    emit(state.copyWith(pin: '', pinStatus: AuthPinStatus.enterPin));
   }
 }

@@ -9,9 +9,11 @@ import 'package:fcb_pay_app/widgets/widgets.dart';
 class SourceDropdown extends StatelessWidget {
   const SourceDropdown({
     super.key,
-    required this.widget
+    required this.widget,
+    required this.focusNode,
   });
   final PageWidget widget;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class SourceDropdown extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(top: 5.0 , bottom: 5.0),
                 child: CustomDropdownButton(
+                  focusNode: focusNode,
                   value: null,
                   hint: Text(widget.title),
                   validator: (_) => null,

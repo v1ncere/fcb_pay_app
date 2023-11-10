@@ -10,10 +10,9 @@ class AuthNumPad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(64, 0, 64, 64),
+      padding: const EdgeInsets.fromLTRB(50, 0, 50, 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
@@ -25,14 +24,14 @@ class AuthNumPad extends StatelessWidget {
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(1))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "2",
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(2))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "3",
@@ -42,7 +41,7 @@ class AuthNumPad extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
           Flexible(
             child: Row(
               children: [
@@ -52,14 +51,14 @@ class AuthNumPad extends StatelessWidget {
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(4))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "5",
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(5))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "6", onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(6)) 
@@ -68,7 +67,7 @@ class AuthNumPad extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
           Flexible(
             child: Row(
               children: [
@@ -78,14 +77,14 @@ class AuthNumPad extends StatelessWidget {
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(7))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "8",
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(8))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "9",
@@ -95,32 +94,32 @@ class AuthNumPad extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
           Flexible(
             child: Row(
               children: [
                 const Expanded(
                   child: SizedBox(),
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "0",
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(0))
                   )
                 ),
-                const SizedBox(width: 40),
+                const SizedBox(width: 30),
                 Expanded(
                   child: IconButton(
                     icon: const Icon(Icons.backspace),
                     onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(AuthPinErased())
                   )
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+                )
+              ]
+            )
+          )
+        ]
+      )
     );
   }
 }

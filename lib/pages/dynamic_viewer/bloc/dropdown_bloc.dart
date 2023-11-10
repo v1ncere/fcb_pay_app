@@ -14,6 +14,7 @@ class DropdownBloc extends Bloc<DropdownEvent, DropdownState> {
   super(const DropdownState(status: Status.loading)) {
     on<DropdownFetched>(_onDropdownFetched);
   }
+  final FirebaseRealtimeDBRepository _firebaseRepository;
 
   void _onDropdownFetched(DropdownFetched event, Emitter<DropdownState> emit) async {
     try {
@@ -23,6 +24,4 @@ class DropdownBloc extends Bloc<DropdownEvent, DropdownState> {
       emit(state.copyWith(status: Status.error, message: err.toString()));
     }
   }
-
-  final FirebaseRealtimeDBRepository _firebaseRepository;
 }

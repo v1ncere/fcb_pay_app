@@ -29,7 +29,9 @@ class DynamicViewerPage extends StatelessWidget {
               BlocProvider(create: (context) => WidgetsBloc(firebaseRepository: _firebaseRepository, hiveRepository: _hiveRepository)
               ..add(WidgetsLoaded(buttonModel.id))),
               BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
-              ..add(AccountsLoaded()))
+              ..add(AccountsLoaded())),
+              // BlocProvider(create: (context) => InactivityCubit()) // start timer if user has an activity
+              BlocProvider(create: (context) => InactivityCubit()..resetTimer("\n\nMOUNTED\n\n")) // start timer after the page mounted
             ],
             child: DynamicViewerView(buttonModel: buttonModel)
           )

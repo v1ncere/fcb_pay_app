@@ -10,19 +10,22 @@ class CustomDropdownButton extends StatelessWidget {
     required this.hint,
     required this.validator,
     required this.onChanged,
-    required this.items
+    required this.items,
+    this.focusNode
   });
   final String? value;
   final Widget? hint;
   final String? Function(String?)? validator;
   final void Function(String?)? onChanged;
   final List<DropdownMenuItem<String>>? items;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(canvasColor: Colors.green),
-      child: DropdownButtonFormField<String>(  
+      child: DropdownButtonFormField<String>(
+        focusNode: focusNode,
         value: value,
         icon: const Icon(FontAwesomeIcons.caretDown, color: Colors.green),
         iconSize: 16, 

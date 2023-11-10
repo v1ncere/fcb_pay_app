@@ -18,15 +18,17 @@ class AuthInputPinWidget extends StatelessWidget {
           children: [
             const Flexible(
               flex: 1,
-              child: Text(enterYourPIN, style: TextStyle(color: Color(0xFF687ea1), fontSize: 18)),
+              child: Text(
+                enterYourPIN,
+                style: TextStyle(color: Color(0xFF687ea1), fontSize: 18)),
             ),
             Flexible(
               flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(6, (index) => PinSphere(input: index < state.getCountsOfPIN())),
-              ),
-            ),
+              )
+            )
           ]
         );
       },

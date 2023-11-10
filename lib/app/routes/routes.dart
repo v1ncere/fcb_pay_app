@@ -1,3 +1,5 @@
+import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
+import 'package:fcb_pay_app/pages/pin/pin.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
@@ -21,19 +23,28 @@ List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) 
       return [LoginPage.page(), RegisterPage.page()];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
+    // case AppStatus.authenticated: -====================????
+    //   return [BottomAppbarPage.page()]; ===================>>>
     case AppStatus.authenticated:
-      return [BottomAppbarPage.page()];
+      return [AuthPinPage.page()];
+    // local authentication
+    case AppStatus.localAuthentication:
+      return [LocalAuthenticationPage.page()];
+    case AppStatus.pin:
+      return [AuthPinPage.page()];
+    case AppStatus.createPin:
+      return [AuthPinPage.page(), CreatePinPage.page()];
     // account page
     case AppStatus.account:
       return [BottomAppbarPage.page(), AccountPage.page()];
-    case AppStatus.accountDynamicPage:
+    case AppStatus.accountDynamicViewer:
       return [BottomAppbarPage.page(), AccountPage.page(), DynamicViewerPage.page()];
-    case AppStatus.accountDynamicPageReciept:
+    case AppStatus.accountDynamicViewerReciept:
       return [BottomAppbarPage.page(), AccountPage.page(), DynamicViewerPage.page(), ReceiptPage.page()];
     // dynamic viewer
-    case AppStatus.dynamicPage:
+    case AppStatus.dynamicViewer:
       return [BottomAppbarPage.page(), DynamicViewerPage.page()];
-    case AppStatus.dynamicReceipt:
+    case AppStatus.dynamicViewerReceipt:
       return [BottomAppbarPage.page(), DynamicViewerPage.page(), ReceiptPage.page()];
     // scanner transaction
     case AppStatus.scannerTransaction:

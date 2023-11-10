@@ -19,18 +19,22 @@ class CreateInputPinWidget extends StatelessWidget {
           children: [
             Flexible(
               flex: 2,
-              child: Text(state.pinStatus == PinStatus.enterFirst ? createPIN : reEnterYourPIN, style: const TextStyle(color: Color(0xFF687ea1), fontSize: 18)),
+              child: Text(
+                state.pinStatus == PinStatus.enterFirst ? createPIN : reEnterYourPIN,
+                style: const TextStyle(color: Color(0xFF687ea1),
+                fontSize: 18
+              ))
             ),
             Flexible(
               flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(6, (index) => PinSphere(input: index < state.getCountOfPin())),
-              ),
-            ),
+                children: List.generate(6, (index) => PinSphere(input: index < state.getCountOfPin()))
+              )
+            )
           ]
         );
-      },
+      }
     );
   }
 }

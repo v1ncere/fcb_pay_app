@@ -5,14 +5,10 @@ import 'package:flutter/material.dart';
 
 class SelectedInputBorderWithShadow extends OutlineInputBorder {
   const SelectedInputBorderWithShadow({
-    BorderSide borderSide = const BorderSide(),
-    borderRadius = const BorderRadius.all(Radius.circular(4.0)),
-    gapPadding = 4.0,
-  }) : super(
-    borderSide: borderSide,
-    borderRadius: borderRadius,
-    gapPadding: gapPadding,
-  );
+    super.borderSide,
+    super.borderRadius = const BorderRadius.all(Radius.circular(4.0)),
+    super.gapPadding = 4.0,
+  }) : super();
 
   static bool _cornersAreCircular(BorderRadius borderRadius) {
     return borderRadius.topLeft.x == borderRadius.topLeft.y &&

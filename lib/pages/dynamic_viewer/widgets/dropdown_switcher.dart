@@ -10,19 +10,21 @@ class DropdownSwitcher extends StatelessWidget {
   const DropdownSwitcher({
     super.key,
     required this.widget,
+    required this.focusNode
   });
   final PageWidget widget;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     final ref = widget.node.replaceAll('{id}', FirebaseAuth.instance.currentUser!.uid);
     if(widget.node.contains('user_account')) {
-      return SourceDropdown(widget: widget);
+      return SourceDropdown(focusNode: focusNode, widget: widget);
     } else {
       context.read<DropdownBloc>().add(DropdownFetched(ref));
       return Column(
         children: [
-          DynamicDropdown(widget: widget),
+          DynamicDropdown(focusNode: focusNode, widget: widget), // dropdown button
           widget.additional == true 
           ? const ExtraWidgets() // additional widgets
           : const SizedBox.shrink()

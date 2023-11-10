@@ -7,14 +7,14 @@ abstract class CreatePinEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CreatePinAddEvent extends CreatePinEvent {
-  const CreatePinAddEvent(this.pinNum);
+class CreatePinAdded extends CreatePinEvent {
+  const CreatePinAdded(this.pinNum);
   final int pinNum;
 
   @override
   List<Object> get props => [pinNum];
 }
 
-class CreatePinEraseEvent extends CreatePinEvent {}
+class CreatePinErased extends CreatePinEvent {}
 
-class CreateNullPinEvent extends CreatePinEvent {}
+class CreatePinNulled extends CreatePinEvent {}
