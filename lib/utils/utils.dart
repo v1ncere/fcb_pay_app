@@ -1,4 +1,5 @@
 export 'animation_dialog.dart';
+export 'app_strings.dart';
 export 'color_string_parser.dart';
 export 'cypher.dart';
 export 'date_utils.dart';

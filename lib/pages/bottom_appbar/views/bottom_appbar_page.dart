@@ -1,3 +1,4 @@
+import 'package:fcb_pay_app/app/app.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,8 @@ class BottomAppbarPage extends StatelessWidget {
           BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
           ..add(AccountsLoaded())),
           BlocProvider(create: (context) => ButtonsBloc(firebaseRepository: _firebaseRepository)
-          ..add(ButtonsLoaded()))
+          ..add(ButtonsLoaded())),
+          BlocProvider(create: (context) => InactivityCubit()..resetTimer("\n\nMOUNTED\n\n")) // start timer after the page mounted
         ],
         child: const BottomAppbarView()
       )

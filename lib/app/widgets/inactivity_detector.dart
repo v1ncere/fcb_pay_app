@@ -8,7 +8,7 @@ class InactivityDetector extends StatelessWidget {
   const InactivityDetector({
     super.key,
     required this.child,
-    required this.onInactive,
+    required this.onInactive
   });
   final Widget child;
   final Function onInactive;
@@ -16,13 +16,13 @@ class InactivityDetector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Listener(
-      onPointerDown: (_) => context.read<InactivityCubit>().resetTimer("TAPPED\n\n"),
-      onPointerMove: (_) => context.read<InactivityCubit>().resetTimer("POINTER MOVED\n\n"),
+      onPointerDown: (_) => context.read<InactivityCubit>().resetTimer("TAPPED"),
+      onPointerMove: (_) => context.read<InactivityCubit>().resetTimer("POINTER MOVED"),
       child: RawKeyboardListener(
         focusNode: FocusNode(),
         onKey: (RawKeyEvent event) {
           if (event is RawKeyDownEvent) {
-            context.read<InactivityCubit>().resetTimer("KEY PRESSED\n\n");
+            context.read<InactivityCubit>().resetTimer("KEY PRESSED");
           }
         },
         child: BlocListener<InactivityCubit, bool>(

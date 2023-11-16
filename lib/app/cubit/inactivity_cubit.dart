@@ -32,11 +32,11 @@ class InactivityCubit extends Cubit<bool> {
   // resume time
   void resumeTimer() {
     isTimerPaused = false;
-    resetTimer("RESURE\n\n");
+    resetTimer("RESUME\n\n");
   }
 
   @override
-  Future<void> close() {
+  Future<void> close() async {
     _inactivityTimer?.cancel();
     return super.close();
   }

@@ -3,7 +3,6 @@ enum AppStatus {
   register,
   unauthenticated,
   authenticated,
-  localAuthentication,
   pin,
   createPin,
   account,

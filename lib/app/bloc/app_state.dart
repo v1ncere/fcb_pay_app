@@ -14,7 +14,8 @@ class AppState extends Equatable {
   final ButtonModel buttonModel;
   final AccountModel accountModel;
   // caching user
-  const AppState.authenticated(User user) : this._(status: AppStatus.authenticated, user: user);
+  const AppState.localPin(User user) : this._(status: AppStatus.pin, user: user);
+  // const AppState.authenticated(User user) : this._(status: AppStatus.authenticated, user: user);
   // user signout
   const AppState.unauthenticated() : this._(status: AppStatus.unauthenticated);
   // passing argument to account page
@@ -27,5 +28,5 @@ class AppState extends Equatable {
   const AppState.accountDynamicPageViewer(ButtonModel buttonModel) : this._(status: AppStatus.accountDynamicViewer, buttonModel: buttonModel);
 
   @override
-  List<Object> get props => [status, user, args, buttonModel, accountModel];
+  List<Object?> get props => [status, user, args, buttonModel, accountModel];
 }

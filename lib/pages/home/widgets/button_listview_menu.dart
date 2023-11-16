@@ -43,6 +43,7 @@ class CardButtonMenu extends StatelessWidget {
                       iconColor: btn.iconColor
                     )
                   ));
+                  context.read<InactivityCubit>().pauseTimer();
                   context.flow<AppStatus>().update((next) => AppStatus.dynamicViewer);
                 }
               );

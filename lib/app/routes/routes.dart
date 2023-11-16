@@ -1,5 +1,3 @@
-import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
-import 'package:fcb_pay_app/pages/pin/pin.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
@@ -7,6 +5,7 @@ import 'package:fcb_pay_app/pages/account/account.dart';
 import 'package:fcb_pay_app/pages/account_add/account_add.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
+import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
 import 'package:fcb_pay_app/pages/login/login.dart';
 import 'package:fcb_pay_app/pages/notifications/notifications.dart';
 import 'package:fcb_pay_app/pages/notifications_viewer/notifications_viewer.dart';
@@ -17,23 +16,21 @@ import 'package:fcb_pay_app/splash/splash.dart';
 
 List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) {
   switch (state) {
+    // splash
     case AppStatus.splash:
       return [Splash.page()];
     case AppStatus.register:
       return [LoginPage.page(), RegisterPage.page()];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
-    // case AppStatus.authenticated: -====================????
-    //   return [BottomAppbarPage.page()]; ===================>>>
-    case AppStatus.authenticated:
-      return [AuthPinPage.page()];
     // local authentication
-    case AppStatus.localAuthentication:
-      return [LocalAuthenticationPage.page()];
     case AppStatus.pin:
       return [AuthPinPage.page()];
     case AppStatus.createPin:
       return [AuthPinPage.page(), CreatePinPage.page()];
+    // home
+    case AppStatus.authenticated:
+      return [BottomAppbarPage.page()];
     // account page
     case AppStatus.account:
       return [BottomAppbarPage.page(), AccountPage.page()];

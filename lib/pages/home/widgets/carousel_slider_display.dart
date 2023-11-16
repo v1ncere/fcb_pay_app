@@ -43,6 +43,7 @@ class CarouselSliderDisplay extends StatelessWidget {
                             type: data.type
                           )
                         ));
+                        context.read<InactivityCubit>().pauseTimer();
                         context.flow<AppStatus>().update((state) => AppStatus.account);
                       }
                     );
@@ -60,6 +61,7 @@ class CarouselSliderDisplay extends StatelessWidget {
                             type: data.type
                           )
                         ));
+                        context.read<InactivityCubit>().pauseTimer();
                         context.flow<AppStatus>().update((state) => AppStatus.account);
                       }
                     );

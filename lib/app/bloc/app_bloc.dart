@@ -12,15 +12,17 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required FirebaseAuthRepository firebaseAuthRepository
-  }) : _firebaseAuthRepository = firebaseAuthRepository, 
-  super(firebaseAuthRepository.currentUser.isNotEmpty && firebaseAuthRepository.currentUser.isVerified == true
-  ? AppState.authenticated(firebaseAuthRepository.currentUser)
-  : const AppState.unauthenticated()
+  })  : _firebaseAuthRepository = firebaseAuthRepository, 
+  super(
+    firebaseAuthRepository.currentUser.isNotEmpty && firebaseAuthRepository.currentUser.isVerified == true
+    ? AppState.localPin(firebaseAuthRepository.currentUser)
+    : const AppState.unauthenticated()
   ) {
+    
     on<AppUserChanged>((event, emit) {
       emit(
         event.user.isNotEmpty && event.user.isVerified == true
-        ? AppState.authenticated(event.user)
+        ? AppState.localPin(event.user)
         : const AppState.unauthenticated()
       );
     });
