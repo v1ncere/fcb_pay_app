@@ -9,7 +9,7 @@ import 'package:fcb_pay_app/pages/home/home.dart';
 class BottomAppbarPage extends StatelessWidget {
   const BottomAppbarPage({super.key});
   static Page<void> page() => const MaterialPage<void>(child: BottomAppbarPage());
-
+  // static Route<void> route() => MaterialPageRoute(builder: (_) => const BottomAppbarPage());
   static final _firebaseRepository = FirebaseRealtimeDBRepository();
 
   @override

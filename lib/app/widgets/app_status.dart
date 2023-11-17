@@ -1,5 +1,4 @@
 enum AppStatus {
-  splash,
   register,
   unauthenticated,
   authenticated,

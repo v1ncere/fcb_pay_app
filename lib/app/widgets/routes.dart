@@ -12,13 +12,9 @@ import 'package:fcb_pay_app/pages/notifications_viewer/notifications_viewer.dart
 import 'package:fcb_pay_app/pages/receipt/receipt.dart';
 import 'package:fcb_pay_app/pages/register/register.dart';
 import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
-import 'package:fcb_pay_app/splash/splash.dart';
 
 List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) {
   switch (state) {
-    // splash
-    case AppStatus.splash:
-      return [Splash.page()];
     case AppStatus.register:
       return [LoginPage.page(), RegisterPage.page()];
     case AppStatus.unauthenticated:
@@ -28,7 +24,8 @@ List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) 
       return [AuthPinPage.page()];
     case AppStatus.createPin:
       return [AuthPinPage.page(), CreatePinPage.page()];
-    // home
+    
+    // home ======================================================================= >>>>>>>>>>>>>>>>>>>>>>>
     case AppStatus.authenticated:
       return [BottomAppbarPage.page()];
     // account page

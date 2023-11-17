@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_repository/hive_repository.dart';
 
 import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/splash/splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,5 +16,5 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(QRModelAdapter());
   Bloc.observer = const AppBlocObserver();
-  runApp(App(firebaseAuthRepository: firebaseAuthRepository));
+  runApp(const MaterialApp(home: Splash()));
 }

@@ -7,18 +7,16 @@ import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 
 class App extends StatelessWidget {
-  const App({
-    super.key,
-    required FirebaseAuthRepository firebaseAuthRepository
-  }) : _firebaseAuthRepository = firebaseAuthRepository;
-  final FirebaseAuthRepository _firebaseAuthRepository;
+  const App({super.key});
+  static Route<AppStatus> route() => MaterialPageRoute(builder: (_) => const App());
+  static final _firebaseAuth = FirebaseAuthRepository();
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
-      value: _firebaseAuthRepository,
+      value: _firebaseAuth,
       child: BlocProvider(
-        create: (context) => AppBloc(firebaseAuthRepository: _firebaseAuthRepository),
+        create: (context) => AppBloc(firebaseAuthRepository: _firebaseAuth),
         child: const AppView()
       )
     );
