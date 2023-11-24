@@ -4,9 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
-class AuthNumPad extends StatelessWidget {
-  const AuthNumPad({super.key, required this.isBiometricEnable});
-  final bool? isBiometricEnable;
+class NumPad extends StatelessWidget {
+  const NumPad({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +21,21 @@ class AuthNumPad extends StatelessWidget {
                 Expanded(
                   child: ButtonNumPad(
                     num: "1",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(1))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(1))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "2",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(2))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(2))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "3",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(3))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(3))
                   )
                 ),
               ],
@@ -49,20 +48,21 @@ class AuthNumPad extends StatelessWidget {
                 Expanded(
                   child: ButtonNumPad(
                     num: "4",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(4))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(4))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "5",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(5))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(5))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "6", onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(6)) 
+                    num: "6",
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(6))
                   )
                 ),
               ],
@@ -75,21 +75,21 @@ class AuthNumPad extends StatelessWidget {
                 Expanded(
                   child: ButtonNumPad(
                     num: "7",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(7))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(7))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "8",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(8))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(8))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "9",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(9))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(9))
                   )
                 ),
               ],
@@ -99,35 +99,20 @@ class AuthNumPad extends StatelessWidget {
           Flexible(
             child: Row(
               children: [
-                Expanded(
-                  child: isBiometricEnable == true 
-                  ? TextButton(
-                      onPressed: () {
-                        BlocProvider.of<BiometricCubit>(context).refreshState();
-                        BlocProvider.of<BiometricCubit>(context).authenticationBiometricsRequested();
-                      },
-                      child: const Text('Use PIN')
-                    )
-                  : TextButton(
-                      onPressed: () {
-                        BlocProvider.of<AuthPinBloc>(context).add(AuthPinDelete());
-                      },
-                      child: const Text('Delete PIN')
-                    )
-                  // : const SizedBox.shrink()
-                ),
+                const Expanded(
+                  child: SizedBox()),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
                     num: "0",
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(const AuthPinAdded(0))
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(const UpdatePinAdded(0))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: IconButton(
                     icon: const Icon(Icons.backspace),
-                    onPressed: () => BlocProvider.of<AuthPinBloc>(context).add(AuthPinErased())
+                    onPressed: () => BlocProvider.of<UpdatePinBloc>(context).add(UpdatePinErased())
                   )
                 )
               ]

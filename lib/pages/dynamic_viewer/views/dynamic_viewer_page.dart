@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
 import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 
 class DynamicViewerPage extends StatelessWidget {
   const DynamicViewerPage({super.key});
@@ -15,7 +16,7 @@ class DynamicViewerPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<AppBloc, AppState, ButtonModel>(
+    return BlocSelector<RouterBloc, RouterState, ButtonModel>(
       selector: (state) => state.buttonModel,
       builder: (context, buttonModel) {
         return MultiRepositoryProvider(
@@ -30,8 +31,7 @@ class DynamicViewerPage extends StatelessWidget {
               ..add(WidgetsLoaded(buttonModel.id))),
               BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
               ..add(AccountsLoaded())),
-              // BlocProvider(create: (context) => InactivityCubit()) // start timer if user has an activity
-              BlocProvider(create: (context) => InactivityCubit()..resetTimer("\n\nMOUNTED\n\n")) // start timer after the page mounted
+              BlocProvider(create: (context) => InactivityCubit()..resumeTimer()) // [resume timer] after you pause from previous page
             ],
             child: DynamicViewerView(buttonModel: buttonModel)
           )

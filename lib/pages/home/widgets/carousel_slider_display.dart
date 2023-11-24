@@ -3,9 +3,10 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/home/home.dart';
 import 'package:fcb_pay_app/pages/home/widgets/widgets.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 
 class CarouselSliderDisplay extends StatelessWidget {
   const CarouselSliderDisplay({super.key});
@@ -37,14 +38,15 @@ class CarouselSliderDisplay extends StatelessWidget {
                       ownerId: data.ownerId,
                       keyId: data.keyId!,
                       onTap: () {
-                        context.read<AppBloc>().add(AppAccountsModelPassed(
+                        context.read<RouterBloc>().add(RouterAccountsModelPassed(
                           AccountModel(
                             account: data.keyId!,
                             type: data.type
                           )
                         ));
+                        // pause the timer because it'll continue even after you navigate to other page
                         context.read<InactivityCubit>().pauseTimer();
-                        context.flow<AppStatus>().update((state) => AppStatus.account);
+                        context.flow<HomePageStatus>().update((state) => HomePageStatus.account);
                       }
                     );
                   }
@@ -55,14 +57,15 @@ class CarouselSliderDisplay extends StatelessWidget {
                       ownerId: data.ownerId,
                       keyId: data.keyId!,
                       onTap: () {
-                        context.read<AppBloc>().add(AppAccountsModelPassed(
+                        context.read<RouterBloc>().add(RouterAccountsModelPassed(
                           AccountModel(
                             account: data.keyId!,
                             type: data.type
                           )
                         ));
+                        // pause the timer because it'll continue even after you navigate to other page
                         context.read<InactivityCubit>().pauseTimer();
-                        context.flow<AppStatus>().update((state) => AppStatus.account);
+                        context.flow<HomePageStatus>().update((state) => HomePageStatus.account);
                       }
                     );
                   } else {

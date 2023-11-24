@@ -31,9 +31,9 @@ class HivePinRepository {
     ? Hive.box(_boxName)
     : await Hive.openBox(_boxName);
     
-    return box.get(_keyName) != null;
+    return box.get(_keyName)?.isNotEmpty == true;
   }
-
+  
   Future<void> deletePin() async {
     Box<String> box = Hive.isBoxOpen(_boxName)
     ? Hive.box(_boxName)

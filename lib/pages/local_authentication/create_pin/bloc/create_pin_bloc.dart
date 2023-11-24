@@ -11,7 +11,7 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
   CreatePinBloc({
     required HivePinRepository hivePinRepository
   })  : _hivePinRepository = hivePinRepository,
-  super(const CreatePinState(pinStatus: PinStatus.enterFirst)) {
+  super(const CreatePinState(status: PinStatus.enterNew)) {
     on<CreatePinAdded>(_onCreatePinAdded);
     on<CreatePinErased>(_onCreatePinErased);
     on<CreatePinNulled>(_onCreatePinNulled);
@@ -21,36 +21,37 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
   void _onCreatePinAdded(CreatePinAdded event, Emitter<CreatePinState> emit) async {
     try {
       // Check if the length of the first PIN is less than 6 characters
-      if (state.firstPin.length < 6) {
+      if (state.newPin.length < 6) {
         // Concatenate the entered PIN digit to the current firstPin
-        final firstPin = "${state.firstPin}${event.pinNum}";
+        final newPin = "${state.newPin}${event.pin}";
         // Check if the length of the combined firstPin is less than 6
-        if (firstPin.length < 6) {
+        if (newPin.length < 6) {
           // Update the state with the new firstPin and set the pinStatus to "enterFirst"
-          emit(state.copyWith(firstPin: firstPin, pinStatus: PinStatus.enterFirst));
+          emit(state.copyWith(status: PinStatus.enterNew, newPin: newPin));
         } else {
           // Update the state with the new firstPin and set the pinStatus to "enterSecond"
-          emit(state.copyWith(firstPin: firstPin, pinStatus: PinStatus.enterSecond));
+          emit(state.copyWith(status: PinStatus.enterConfirm, newPin: newPin));
         }
       } else {
         // Concatenate the entered PIN digit to the current secondPin
-        final secondPin = "${state.secondPin}${event.pinNum}";
+        final confirmPin = "${state.confirmedPin}${event.pin}";
         // Check if the length of the combined secondPin is less than 6
-        if (secondPin.length < 6) {
+        if (confirmPin.length < 6) {
           // Update the state with the new secondPin and set the pinStatus to "enterSecond"
-          emit(state.copyWith(secondPin: secondPin, pinStatus: PinStatus.enterSecond));
-        } else if (secondPin == state.firstPin) {
+          emit(state.copyWith(status: PinStatus.enterConfirm, confirmedPin: confirmPin));
+        } else if (confirmPin == state.newPin) {
           // If secondPin matches firstPin, add the PIN to the repository, set pinStatus to "equals"
-          _hivePinRepository.addPin(secondPin);
-          emit(state.copyWith(secondPin: secondPin, pinStatus: PinStatus.equals));
+          _hivePinRepository.addPin(confirmPin);
+          emit(state.copyWith(status: PinStatus.equals, confirmedPin: confirmPin));
           // Delay for 1 second and then add CreatePinNulled event
           await Future.delayed(Duration.zero, () => add(CreatePinNulled()));
         } else {
           // If secondPin does not match firstPin, set pinStatus to "unequals"
-          emit(state.copyWith(secondPin: secondPin, pinStatus: PinStatus.unequals));
+          emit(state.copyWith(status: PinStatus.unequals, confirmedPin: confirmPin));
           // Delay for 1 second and then clear the secondPin and set pinStatus to "enterSecond"
-          await Future.delayed(Duration.zero,
-            () => emit(state.copyWith(secondPin: '', pinStatus: PinStatus.enterSecond))
+          await Future.delayed(
+            Duration.zero,
+            () => emit(state.copyWith(status: PinStatus.enterConfirm, confirmedPin: ''))
           );
         }
       }
@@ -61,28 +62,28 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
 
   void _onCreatePinErased(CreatePinErased event, Emitter<CreatePinState> emit) {
     // Check if the firstPin is empty
-    if (state.firstPin.isEmpty) {
+    if (state.newPin.isEmpty) {
       // Update the state with the pinStatus set to "enterFirst"
-      emit(state.copyWith(pinStatus: PinStatus.enterFirst));
-    } else if (state.firstPin.length < 6) {
+      emit(state.copyWith(status: PinStatus.enterNew));
+    } else if (state.newPin.length < 6) {
       // Remove the last character from firstPin
-      final firstPin = state.firstPin.substring(0, state.firstPin.length - 1);
+      final newPin = state.newPin.substring(0, state.newPin.length - 1);
       // Update the state with the new firstPin and the pinStatus set to "enterFirst"
-      emit(state.copyWith(firstPin: firstPin, pinStatus: PinStatus.enterFirst));
-    } else if (state.secondPin.isEmpty) {
+      emit(state.copyWith(newPin: newPin, status: PinStatus.enterNew));
+    } else if (state.confirmedPin.isEmpty) {
       // Add the CreatePinNulled event
       add(CreatePinNulled());
     } else {
       // Remove the last character from secondPin
-      final secondPin = state.secondPin.substring(0, state.secondPin.length - 1);
+      final confirmPin = state.confirmedPin.substring(0, state.confirmedPin.length - 1);
       // Update the state with the new secondPin and the pinStatus set to "enterSecond"
-      emit(state.copyWith(secondPin: secondPin, pinStatus: PinStatus.enterSecond));
+      emit(state.copyWith(confirmedPin: confirmPin, status: PinStatus.enterConfirm));
     }
   }
 
   void _onCreatePinNulled(CreatePinNulled event, Emitter<CreatePinState> emit) {
     // Reset the firstPin, secondPin, and set the pinStatus to "enterFirst" in the state
-    emit(state.copyWith(firstPin: '', secondPin: '', pinStatus: PinStatus.enterFirst));
+    emit(state.copyWith(newPin: '', confirmedPin: '', status: PinStatus.enterNew));
   }
 
   @override

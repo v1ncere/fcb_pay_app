@@ -3,31 +3,29 @@ part of 'auth_pin_bloc.dart';
 class AuthPinState extends Equatable {
   const AuthPinState({
     this.pin = '',
-    this.pinStatus = AuthPinStatus.enterPin,
-    this.pinChecker
+    this.status = AuthPinStatus.enterPin,
+    this.isPinExist = false,
   });
   final String pin;
-  final AuthPinStatus pinStatus;
-  final bool? pinChecker;
-
+  final AuthPinStatus status;
+  final bool isPinExist;
+  
   AuthPinState copyWith({
     String? pin,
-    AuthPinStatus? pinStatus,
-    bool? pinChecker
+    AuthPinStatus? status,
+    bool? isPinExist
   }) {
     return AuthPinState(
       pin: pin ?? this.pin,
-      pinStatus: pinStatus ?? this.pinStatus,
-      pinChecker: pinChecker ?? this.pinChecker 
+      status: status ?? this.status,
+      isPinExist: isPinExist ?? this.isPinExist 
     );
   }
 
-  int getCountsOfPIN() {
-    return pin.length;
-  }
+  int getCountsOfPIN() => pin.length;
   
   @override
-  List<Object?> get props => [pinStatus, pin, pinChecker];
+  List<Object> get props => [pin, status, isPinExist];
 }
 
 enum AuthPinStatus { enterPin, equals , unequals }

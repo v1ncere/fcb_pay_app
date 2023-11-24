@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
+import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
-class AuthInputPinWidget extends StatelessWidget {
-  const AuthInputPinWidget({super.key});
-  static const String enterYourPIN = "Please enter your PIN";
+class InputPin extends StatelessWidget {
+  const InputPin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,13 @@ class AuthInputPinWidget extends StatelessWidget {
             const Flexible(
               flex: 1,
               child: Text(
-                enterYourPIN,
-                style: TextStyle(color: Color(0xFF687ea1), fontSize: 18)),
+                AppString.enterYourPIN,
+                style: TextStyle(
+                  color: Color(0xFF687ea1),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                )
+              )
             ),
             Flexible(
               flex: 1,
@@ -31,7 +36,7 @@ class AuthInputPinWidget extends StatelessWidget {
             )
           ]
         );
-      },
+      }
     );
   }
 }

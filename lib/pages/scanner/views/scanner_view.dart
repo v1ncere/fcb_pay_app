@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 import 'package:fcb_pay_app/pages/scanner/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
@@ -39,7 +39,7 @@ class ScannerViewState extends State<ScannerView> {
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
           if (state.status.isSuccess) {
-            context.flow<AppStatus>().update((state) => AppStatus.scannerTransaction);
+            context.flow<HomePageStatus>().update((state) => HomePageStatus.scannerTransaction);
           }
           if (state.status.isError) {
             ScaffoldMessenger.of(context)

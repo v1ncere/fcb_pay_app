@@ -1,4 +1,3 @@
-import 'package:fcb_pay_app/app/app.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
 import 'package:fcb_pay_app/pages/bottom_appbar/widgets/widgets.dart';
 import 'package:fcb_pay_app/pages/home/home.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/pages/scanner/scanner.dart';
 
 class BottomAppbarView extends StatelessWidget {
@@ -19,9 +19,10 @@ class BottomAppbarView extends StatelessWidget {
       selector: (state) => state.tab,
       builder: (context, tab) {
         final controller = PageController(initialPage: tab.index);
+        context.read<InactivityCubit>().resumeTimer();
         return InactivityDetector(
           onInactive: () {
-            context.flow<AppStatus>().update((_) => AppStatus.pin);
+            context.flow<HomePageStatus>().complete((_) => HomePageStatus.appBar);
           },
           child: Scaffold(
             extendBody: true,
@@ -93,7 +94,7 @@ class BottomAppbarView extends StatelessWidget {
                 splashColor: Colors.tealAccent,
                 backgroundColor: const Color(0xFF25C166),
                 child: Icon(
-                  FontAwesomeIcons.qrcode, 
+                  FontAwesomeIcons.qrcode,
                   color: Colors.white,
                   size: tab != BottomAppbarTab.scanner ? 22 : 26,
                 ),

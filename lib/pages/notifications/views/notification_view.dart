@@ -1,3 +1,6 @@
+import 'package:fcb_pay_app/pages/bottom_appbar/widgets/widgets.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fcb_pay_app/pages/notifications/widgets/widgets.dart';
@@ -19,15 +22,20 @@ class NotificationView extends StatelessWidget {
             )
           )
         ),
-        body: const Column(
-          children: [
-            SizedBox(height: 10),
-            ContainerBody(
-              children: [
-                NotificationList()
-              ]
-            )
-          ]
+        body: InactivityDetector(
+          onInactive: () {
+            context.flow<HomePageStatus>().complete();
+          },
+          child: const Column(
+            children: [
+              SizedBox(height: 10),
+              ContainerBody(
+                children: [
+                  NotificationList()
+                ]
+              )
+            ]
+          ),
         )
       )
     );

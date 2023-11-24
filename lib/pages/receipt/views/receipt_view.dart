@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/pages/receipt/receipt.dart';
 import 'package:fcb_pay_app/pages/receipt/widgets/widgets.dart';
 
@@ -19,7 +19,7 @@ class ReceiptView extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(FontAwesomeIcons.arrowLeft),
-            onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.authenticated)
+            onPressed: () => context.flow<HomePageStatus>().update((state) => HomePageStatus.appBar)
           )
         ),
         body: BlocBuilder<ReceiptBloc, ReceiptState>(

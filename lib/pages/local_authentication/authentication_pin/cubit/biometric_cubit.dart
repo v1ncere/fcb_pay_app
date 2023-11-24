@@ -78,6 +78,6 @@ class BiometricCubit extends Cubit<BiometricState> {
   @override
   Future<void> close() async {
     _hivePinRepository.closeBioBox();
-    super.close();
+    return super.close();
   }
 }

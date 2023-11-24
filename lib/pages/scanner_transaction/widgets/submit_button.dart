@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
@@ -17,7 +17,7 @@ class SubmitButton extends StatelessWidget {
       listenWhen: (previous, current) => previous.formStatus != current.formStatus,
       listener: (context, state) {
         if(state.formStatus.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.scannerTransactionReceipt);
+          context.flow<HomePageStatus>().update((next) => HomePageStatus.scannerTransactionReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar("Payment sent!", FontAwesomeIcons.solidCircleCheck,Colors.white));

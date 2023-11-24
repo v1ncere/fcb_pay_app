@@ -1,37 +1,40 @@
 part of 'create_pin_bloc.dart';
 
-enum PinStatus { enterFirst, enterSecond, equals, unequals }
-
 class CreatePinState extends Equatable {
   const CreatePinState({
-    required this.pinStatus,
-    this.firstPin = '',
-    this.secondPin = ''
+    required this.status,
+    this.newPin = '',
+    this.confirmedPin = ''
   });
-  final PinStatus pinStatus;
-  final String firstPin;
-  final String secondPin;
+  final PinStatus status;
+  final String newPin;
+  final String confirmedPin;
 
   CreatePinState copyWith({
-    PinStatus? pinStatus,
-    String? firstPin,
-    String? secondPin
+    PinStatus? status,
+    String? newPin,
+    String? confirmedPin
   }) {
     return CreatePinState(
-      pinStatus: pinStatus ?? this.pinStatus,
-      firstPin: firstPin ?? this.firstPin,
-      secondPin: secondPin ?? this.secondPin
+      status: status ?? this.status,
+      newPin: newPin ?? this.newPin,
+      confirmedPin: confirmedPin ?? this.confirmedPin
     );
   }
 
-  int getCountOfPin() {
-    if (firstPin.length < 6) {
-      return firstPin.length;
-    } else {
-      return secondPin.length;
-    }
-  }
+  int getPinLength() => (newPin.length < 6) 
+  ? newPin.length 
+  : confirmedPin.length;
   
   @override
-  List<Object?> get props => [pinStatus, firstPin, secondPin];
+  List<Object?> get props => [status, newPin, confirmedPin];
+}
+
+enum PinStatus { enterNew, enterConfirm, equals, unequals }
+
+extension PinStatusX on PinStatus {
+  bool get isEnterNew => this == PinStatus.enterNew;
+  bool get isEnterConfirm => this == PinStatus.enterConfirm;
+  bool get isEquals => this == PinStatus.equals;
+  bool get isUnequals => this == PinStatus.unequals;
 }

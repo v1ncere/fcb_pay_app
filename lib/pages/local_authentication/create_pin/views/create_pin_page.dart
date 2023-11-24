@@ -8,14 +8,17 @@ class CreatePinPage extends StatelessWidget {
   const CreatePinPage({super.key});
   static Page<void> page() => const MaterialPage<void>(child: CreatePinPage());
 
-  static final HivePinRepository _hivePinRepository = HivePinRepository();
+  static final _hivePinRepository = HivePinRepository();
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => _hivePinRepository,
-      child: BlocProvider(
-        create: (context) => CreatePinBloc(hivePinRepository: _hivePinRepository),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => CreatePinBloc(hivePinRepository: _hivePinRepository)),
+          BlocProvider(create: (context) => AuthPinBloc(hivePinRepository: _hivePinRepository))
+        ],
         child: const CreatePinView()
       )
     );

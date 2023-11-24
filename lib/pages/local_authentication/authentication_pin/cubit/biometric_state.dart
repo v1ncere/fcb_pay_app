@@ -13,7 +13,7 @@ class BiometricState extends Equatable {
   BiometricState copyWith({
     BiometricStatus? status,
     String? message,
-    bool? biometricsEnabled,
+    bool? biometricsEnabled
   }) {
     return BiometricState(
       status: status ?? this.status,

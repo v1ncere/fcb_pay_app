@@ -2,9 +2,9 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/pages/account/bloc/account_button_bloc.dart';
+import 'package:fcb_pay_app/pages/account/account.dart';
 import 'package:fcb_pay_app/pages/account/widgets/widgets.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 
 class GridViewButtons extends StatelessWidget {
@@ -33,8 +33,8 @@ class GridViewButtons extends StatelessWidget {
                     color: colorStringParser(btn.iconColor),
                     text: btn.title,
                     function: () {
-                      context.read<AppBloc>().add(
-                        AppAccountDynamicButtonModelPassed(
+                      context.read<RouterBloc>().add(
+                        RouterAccountDynamicButtonModelPassed(
                           ButtonModel(
                             id: btn.keyId!,
                             title: btn.title,
@@ -43,7 +43,7 @@ class GridViewButtons extends StatelessWidget {
                           )
                         )
                       );
-                      context.flow<AppStatus>().update((next) => AppStatus.accountDynamicViewer);
+                      context.flow<HomePageStatus>().update((next) => HomePageStatus.accountDynamicViewer);
                     }
                   );
                 }

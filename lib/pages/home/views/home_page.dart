@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
       child: BlocProvider(
         create: (context) => SliderCubit(),
         child: const HomeView()
-      ) // for the slider below the carousel
+      )
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/pages/notifications/notifications.dart';
 import 'package:fcb_pay_app/pages/notifications/widgets/widgets.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
@@ -72,8 +72,8 @@ class NotificationList extends StatelessWidget {
                     selectedColor: Colors.green,
                     onTap: () {
                       context.read<NotificationsBloc>().add(NotificationsUpdateIsRead(notif.keyId ?? ''));
-                      context.read<AppBloc>().add(AppNotificationArgsPassed(notif.keyId ?? ''));
-                      context.flow<AppStatus>().update((state) => AppStatus.notificationViewer);
+                      context.read<RouterBloc>().add(RouterNotificationArgsPassed(notif.keyId ?? ''));
+                      context.flow<HomePageStatus>().update((state) => HomePageStatus.notificationViewer);
                     }
                   )
                 );

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar/widgets/widgets.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
 import 'package:fcb_pay_app/pages/dynamic_viewer/widgets/widgets.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/utils/utils.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
@@ -20,7 +21,7 @@ class DynamicViewerView extends StatelessWidget {
       listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
         if(state.submissionStatus.isSuccess) {
-          context.flow<AppStatus>().update((next) => AppStatus.dynamicViewerReceipt);
+          context.flow<HomePageStatus>().update((next) => HomePageStatus.dynamicViewerReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar("Transaction Successful!", FontAwesomeIcons.solidCircleCheck, Colors.white));
@@ -55,16 +56,16 @@ class DynamicViewerView extends StatelessWidget {
                 return InactivityDetector(
                   onInactive: () {
                     FocusScope.of(context).requestFocus(focusNode); // close the dropdown
-                    
-                    Future.microtask(() {
-                      if (Navigator.canPop(context)) {
-                        Navigator.pop(context); // pop the dropdown
+                    context.flow<HomePageStatus>().complete();
+                    // Future.microtask(() {
+                    //   if (Navigator.canPop(context)) {
+                    //     Navigator.pop(context); // pop the dropdown
                         
-                        if(Navigator.canPop(context)) {
-                          Navigator.of(context).pop(true); // pop the current page
-                        }
-                      }
-                    });
+                    //     if(Navigator.canPop(context)) {
+                    //       Navigator.of(context).pop(true); // pop the current page
+                    //     }
+                    //   }
+                    // });
                   },
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),

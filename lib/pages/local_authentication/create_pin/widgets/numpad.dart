@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
 import 'package:fcb_pay_app/widgets/widgets.dart';
 
-class CreateNumPad extends StatelessWidget {
-  const CreateNumPad({super.key});
+class NumPad extends StatelessWidget {
+  const NumPad({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,9 @@ class CreateNumPad extends StatelessWidget {
                     num: "3",
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(3))
                   )
-                ),
-              ],
-            ),
+                )
+              ]
+            )
           ),
           const SizedBox(height: 25),
           Flexible(
@@ -64,9 +64,9 @@ class CreateNumPad extends StatelessWidget {
                     num: "6",
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(6))
                   )
-                ),
-              ],
-            ),
+                )
+              ]
+            )
           ),
           const SizedBox(height: 25),
           Flexible(
@@ -91,9 +91,9 @@ class CreateNumPad extends StatelessWidget {
                     num: "9",
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(9))
                   )
-                ),
-              ],
-            ),
+                )
+              ]
+            )
           ),
           const SizedBox(height: 25),
           Flexible(

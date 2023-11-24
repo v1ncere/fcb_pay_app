@@ -1,8 +1,10 @@
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -62,7 +64,11 @@ class HeaderCard extends StatelessWidget {
                         size: 25,
                         color: Colors.white
                       ),
-                      onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.notifications)
+                      onPressed: () {
+                        // pause the timer because it'll continue even after you navigate to other page
+                        context.read<InactivityCubit>().pauseTimer();
+                        context.flow<HomePageStatus>().update((state) => HomePageStatus.notifications);
+                      }
                     ),
                     IconButton(
                       splashRadius: 25,

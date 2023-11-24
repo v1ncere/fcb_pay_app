@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
 import 'package:fcb_pay_app/pages/account/account.dart';
+import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
 import 'package:fcb_pay_app/utils/enums.dart';
 
 class PopUpMenuButton extends StatelessWidget {
@@ -24,7 +24,7 @@ class PopUpMenuButton extends StatelessWidget {
           );
         }
         if (state.filterStatus.isSuccess) {
-          return BlocSelector<AppBloc, AppState, AccountModel>(
+          return BlocSelector<RouterBloc, RouterState, AccountModel>(
             selector: (state) => state.accountModel,
             builder: (_, acc) {
               return PopupMenuButton(
