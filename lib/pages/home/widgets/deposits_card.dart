@@ -20,62 +20,84 @@ Card depositsCard({
     color: ColorString.eucalyptus,
     clipBehavior: Clip.antiAlias,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-    child: Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'DEPOSITS',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      color: ColorString.white
-                    )
-                  ),
-                  settingsPopUp(
-                    accountList: accountList,
-                    category: account.category,
-                    onSelected: (value) => context.read<AccountsHomeBloc>().add(DepositDisplayChanged(value))
-                  )
-                ]
-              ),
-              const Divider(color: Colors.white30)
-            ]
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(10),
-            onTap: () {
-              // Timer pause for inactivity cubit
-              context.read<InactivityCubit>().pauseTimer();
-              context.read<RouterBloc>().add(RouterAccountsPassed(account));
-              context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account);
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: const AssetImage(AssetString.splashLogo),
+          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
+          fit: BoxFit.cover
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomCenter,
+          colors: [
+            ColorString.zombie,
+            ColorString.mountainMeadow,
+          ],
+          stops: const [
+            0.5,
+            1.0
+          ]
+        )
+      ),
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildAccountNumber(value: account.accountKeyID!, type: account.type),
-                    Icon(FontAwesomeIcons.chevronRight, size: 18, color: ColorString.white)
+                    Text(
+                      'DEPOSITS',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: ColorString.white
+                      )
+                    ),
+                    settingsPopUp(
+                      accountList: accountList,
+                      category: account.category,
+                      onSelected: (value) => context.read<AccountsHomeBloc>().add(DepositDisplayChanged(value))
+                    )
                   ]
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    buildDetailsBlock(label: 'AVAILABLE BALANCE', value: Currency.fmt.format(account.balance))
-                  ]
-                )
+                const Divider(color: Colors.white30)
               ]
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                // Timer pause for inactivity cubit
+                context.read<InactivityCubit>().pauseTimer();
+                context.read<RouterBloc>().add(RouterAccountsPassed(account));
+                context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account);
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      buildAccountNumber(value: account.accountKeyID!, type: account.type),
+                      Icon(FontAwesomeIcons.chevronRight, size: 18, color: ColorString.white)
+                    ]
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      buildDetailsBlock(label: 'AVAILABLE BALANCE', value: Currency.fmt.format(account.balance))
+                    ]
+                  )
+                ]
+              )
             )
-          )
-        ]
-      )
+          ]
+        )
+      ),
     )
   );
 }

@@ -18,57 +18,78 @@ Card walletCard({
     color: ColorString.eucalyptus,
     clipBehavior: Clip.antiAlias,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-    child: Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'WALLET',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: ColorString.white
-                    )
-                  ),
-                ],
-              ),
-              const Divider(color: Colors.white30)
-            ]
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(10),
-            onTap: () {
-              context.read<RouterBloc>().add(RouterAccountsPassed(account));
-              // pause the timer because it'll continue even after you navigate to other page
-              context.read<InactivityCubit>().pauseTimer();
-              context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account);
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: const AssetImage(AssetString.splashLogo),
+          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
+          fit: BoxFit.cover
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomCenter,
+          colors: [
+            ColorString.mountainMeadow,
+            ColorString.zombie,
+          ],
+          stops: const [
+            0.5,
+            1.0
+          ]
+        )
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    buildAccountNumber(value: account.accountKeyID!, type: account.type),
-                    Icon(FontAwesomeIcons.chevronRight, size: 18, color: ColorString.white)
-                  ]
+                    Text(
+                      'WALLET',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: ColorString.white
+                      )
+                    ),
+                  ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    buildDetailsBlock(label: 'AVAILABLE BALANCE', value: Currency.fmt.format(account.balance))
-                  ]
-                )
+                const Divider(color: Colors.white30)
               ]
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                context.read<RouterBloc>().add(RouterAccountsPassed(account));
+                // pause the timer because it'll continue even after you navigate to other page
+                context.read<InactivityCubit>().pauseTimer();
+                context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account);
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      buildAccountNumber(value: account.accountKeyID!, type: account.type),
+                      Icon(FontAwesomeIcons.chevronRight, size: 18, color: ColorString.white)
+                    ]
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      buildDetailsBlock(label: 'AVAILABLE BALANCE', value: Currency.fmt.format(account.balance))
+                    ]
+                  )
+                ]
+              )
             )
-          )
-        ]
-      )
+          ]
+        )
+      ),
     )
   );
 }

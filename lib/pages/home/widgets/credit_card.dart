@@ -23,100 +23,122 @@ Card creditCard({
     color: ColorString.eucalyptus,
     clipBehavior: Clip.antiAlias,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-    child: Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'CREDIT',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      color: ColorString.white
-                    )
-                  ),
-                  settingsPopUp(
-                    accountList: accountList,
-                    category: account.category,
-                    onSelected: (value) {
-                      context.read<AccountsHomeBloc>().add(CreditDisplayChanged(value));
-                    }
-                  )
-                ]
-              ),
-              const Divider(color: Colors.white30)
-            ]
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(10),
-            onTap: () {
-              context.read<InactivityCubit>().pauseTimer(); // pause timer of inactivity cubit
-              context.read<RouterBloc>().add(RouterAccountsPassed(account));
-              context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account); // navigate to other page
-            },
-            child: Column(
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: const AssetImage(AssetString.splashLogo),
+          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
+          fit: BoxFit.cover
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomCenter,
+          colors: [
+            ColorString.mountainMeadow,
+            ColorString.zombie,
+          ],
+          stops: const [
+            0.5,
+            1.0
+          ]
+        )
+      ),
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildAccountNumber(value: account.accountKeyID!, type: account.type),
-                    Icon(FontAwesomeIcons.chevronRight, size: 18, color: ColorString.white)
-                  ]
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        buildDetailsBlock(label: 'OUTSTANDING BALANCE', value: Currency.fmt.format(bal)),
-                        const SizedBox(height: 10),
-                        buildDetailsBlock(label: 'AVAILABLE CREDIT', value: Currency.fmt.format(_availableCredit(limit, bal))),
-                        const SizedBox(height: 10),
-                        buildDetailsBlock(label: 'CREDIT LIMIT', value: Currency.fmt.format(limit))
-                      ]
-                    ),
-                    Flexible(
-                      child: CircularPercentIndicator(
-                        radius: 50.0,
-                        lineWidth: 8.0,
-                        animation: true,
-                        arcType: ArcType.full,
-                        arcBackgroundColor: Colors.black12,
-                        percent: _percentDecimal(limit, bal),
-                        center: Text(
-                          '${_percentString(limit, bal)}%\nUSED',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w900,
-                            color: ColorString.white,
-                            shadows: <Shadow>[
-                              Shadow(
-                                color: Colors.black.withOpacity(0.15),
-                                blurRadius: 1,
-                                offset: const Offset(0, 1)
-                              )
-                            ]
-                          )
-                        ),
-                        circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: _progressColor(double.parse(_percentString(limit, bal)))
+                    Text(
+                      'CREDIT',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: ColorString.white
                       )
+                    ),
+                    settingsPopUp(
+                      accountList: accountList,
+                      category: account.category,
+                      onSelected: (value) {
+                        context.read<AccountsHomeBloc>().add(CreditDisplayChanged(value));
+                      }
                     )
                   ]
-                )
+                ),
+                const Divider(color: Colors.white30)
               ]
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                context.read<InactivityCubit>().pauseTimer(); // pause timer of inactivity cubit
+                context.read<RouterBloc>().add(RouterAccountsPassed(account));
+                context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account); // navigate to other page
+              },
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      buildAccountNumber(value: account.accountKeyID!, type: account.type),
+                      Icon(FontAwesomeIcons.chevronRight, size: 18, color: ColorString.white)
+                    ]
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          buildDetailsBlock(label: 'OUTSTANDING BALANCE', value: Currency.fmt.format(bal)),
+                          const SizedBox(height: 10),
+                          buildDetailsBlock(label: 'AVAILABLE CREDIT', value: Currency.fmt.format(_availableCredit(limit, bal))),
+                          const SizedBox(height: 10),
+                          buildDetailsBlock(label: 'CREDIT LIMIT', value: Currency.fmt.format(limit))
+                        ]
+                      ),
+                      Flexible(
+                        child: CircularPercentIndicator(
+                          radius: 50.0,
+                          lineWidth: 8.0,
+                          animation: true,
+                          arcType: ArcType.full,
+                          arcBackgroundColor: Colors.black12,
+                          percent: _percentDecimal(limit, bal),
+                          center: Text(
+                            '${_percentString(limit, bal)}%\nUSED',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w900,
+                              color: ColorString.white,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: Colors.black.withOpacity(0.15),
+                                  blurRadius: 1,
+                                  offset: const Offset(0, 1)
+                                )
+                              ]
+                            )
+                          ),
+                          circularStrokeCap: CircularStrokeCap.round,
+                          progressColor: _progressColor(double.parse(_percentString(limit, bal)))
+                        )
+                      )
+                    ]
+                  )
+                ]
+              )
             )
-          )
-        ]
-      )
+          ]
+        )
+      ),
     )
   );
 }

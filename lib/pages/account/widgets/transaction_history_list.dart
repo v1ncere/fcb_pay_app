@@ -89,7 +89,7 @@ class TransactionHistoryList extends StatelessWidget {
   Dialog showHistoryDialog(BuildContext context, TransactionHistory history) {
     return Dialog(
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
