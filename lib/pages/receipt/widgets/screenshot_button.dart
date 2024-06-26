@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/receipt/cubit/save_receipt_cubit.dart';
-import 'package:fcb_pay_app/utils/enums.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../receipt.dart';
 
 class ScreenshotButton extends StatelessWidget {
   const ScreenshotButton({super.key, required this.globalKey});
@@ -18,24 +18,32 @@ class ScreenshotButton extends StatelessWidget {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar(
-            "Receipt saved successfully",
-            FontAwesomeIcons.solidCircleCheck,
-            Colors.white
+            text: 'Receipt saved successfully',
+            icon: FontAwesomeIcons.solidCircleCheck,
+            backgroundColor: ColorString.eucalyptus,
+            foregroundColor: ColorString.mystic
           ));
         }
         if (state.status.isError) {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(customSnackBar(
-            state.message,
-            FontAwesomeIcons.triangleExclamation,
-            Colors.red
+            text: state.message,
+            icon: FontAwesomeIcons.triangleExclamation,
+            backgroundColor: ColorString.guardsmanRed,
+            foregroundColor: ColorString.mystic
           ));
         }
       },
-      child: ElevatedButton(
-        onPressed: () => context.read<SaveReceiptCubit>().takeScreenshot(globalKey),
-        child: const Text("Save Receipt")
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
+          ),
+          onPressed: () => context.read<SaveReceiptCubit>().takeScreenshot(globalKey),
+          child: const Text('SAVE RECEIPT', style: TextStyle(fontWeight: FontWeight.bold))
+        )
       )
     );
   }

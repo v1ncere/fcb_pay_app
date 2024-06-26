@@ -2,16 +2,16 @@ part of 'account_button_bloc.dart';
 
 class AccountButtonState extends Equatable {
   const AccountButtonState({
-    this.buttonList = const <HomeButton>[],
+    this.buttonList = const <Button>[],
     this.status = Status.initial,
     this.message = ''
   });
-  final List<HomeButton> buttonList;
+  final List<Button> buttonList;
   final Status status;
   final String message;
 
   AccountButtonState copyWith({
-    List<HomeButton>? buttonList,
+    List<Button>? buttonList,
     Status? status,
     String? message
   }) {

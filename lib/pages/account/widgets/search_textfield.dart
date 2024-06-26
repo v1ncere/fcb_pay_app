@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/account/account.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-
+import '../../../utils/utils.dart';
+import '../account.dart';
 import 'search_button.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -17,6 +16,10 @@ class SearchTextField extends StatelessWidget {
           key: const Key('search_text_field'),
           decoration: InputDecoration(
             labelText: 'Search',
+            labelStyle: const TextStyle(
+              color: Colors.black26,
+              fontWeight: FontWeight.bold
+            ),
             filled: true,
             contentPadding: const EdgeInsets.only(left: 20.0, top: 15, right: 20, bottom: 15),
             fillColor: const Color.fromARGB(30, 37, 193, 102),

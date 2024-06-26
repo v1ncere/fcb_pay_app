@@ -25,14 +25,14 @@ class FundTransferAccount {
 
   factory FundTransferAccount.fromSnapshot(DataSnapshot dataSnapshot) {
     final data = dataSnapshot.value as Map?;
-    final intTimeStamp = data?["time_stamp"] as int?;
+    final intTimeStamp = data?['time_stamp'] as int?;
     final timeStamp = intTimeStamp != null && intTimeStamp.abs() <= 9999999999999
       ? DateTime.fromMillisecondsSinceEpoch(intTimeStamp)
       : null;
 
     return FundTransferAccount(
       keyId: dataSnapshot.key,
-      account: data?["account"] as String? ?? "",
+      account: data?['account'] as String? ?? '',
       timeStamp: timeStamp ?? DateTime.now()
     );
   }

@@ -5,6 +5,8 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
+import '../../../utils/utils.dart';
+
 part 'receipt_event.dart';
 part 'receipt_state.dart';
 
@@ -14,7 +16,7 @@ class ReceiptBloc extends Bloc<ReceiptEvent, ReceiptState> {
     required FirebaseRealtimeDBRepository firebaseRepository,
   }) : _hiveRepository = hiveRepository,
   _firebaseRepository = firebaseRepository,
-  super(ReceiptDisplayLoading()) {
+  super(const ReceiptState(status: Status.loading)) {
     on<ReceiptDisplayLoaded>(_onReceiptDisplayLoaded);
     on<ReceiptDisplayUpdated>(_onReceiptDisplayUpdated);
   }
@@ -23,19 +25,19 @@ class ReceiptBloc extends Bloc<ReceiptEvent, ReceiptState> {
   StreamSubscription<Map<String, dynamic>>? _streamSubscription;
 
   void _onReceiptDisplayLoaded(ReceiptDisplayLoaded event, Emitter<ReceiptState> emit) async {
-    final id = await _hiveRepository.getID();
     _streamSubscription?.cancel();
+    final id = await _hiveRepository.getId();
     _streamSubscription = _firebaseRepository.getDynamicReceiptStream(id)
-    .listen((receipts) async {
-      add(ReceiptDisplayUpdated(receipts));
+    .listen((map) async {
+      add(ReceiptDisplayUpdated(map));
     });
   }
 
   void _onReceiptDisplayUpdated(ReceiptDisplayUpdated event, Emitter<ReceiptState> emit) async {
-    if (event.receipts.isNotEmpty) {
-      emit(ReceiptDisplaySuccess(receipts: event.receipts));
+    if (event.receiptMap.isNotEmpty) {
+      emit(state.copyWith(status: Status.success, receiptMap: event.receiptMap));
     } else {
-      emit(ReceiptDisplayLoading());
+      emit(state.copyWith(status: Status.loading));
     }
   }
 

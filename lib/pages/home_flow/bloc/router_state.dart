@@ -1,45 +1,52 @@
 part of 'router_bloc.dart';
 
 class RouterState extends Equatable {
-  const RouterState._({
-    required this.status,
+  const RouterState({
+    this.status = HomeRouterStatus.appBar,
     this.args = '',
-    this.accountModel = AccountModel.empty,
-    this.buttonModel = ButtonModel.empty,
+    this.account = Account.empty,
+    this.button = Button.empty
   });
-  final HomePageStatus status;
+  final HomeRouterStatus status;
   final String args;
-  final AccountModel  accountModel;
-  final ButtonModel buttonModel;
-  
-  const RouterState.initial() : this._(status: HomePageStatus.appBar);
-  // passing argument to account page
-  const RouterState.accountsDynamic(AccountModel accountModel) 
-  : this._(status: HomePageStatus.account, accountModel: accountModel);
-  // passing argument to notification viewer
-  const RouterState.notificationViewer(String args) 
-  : this._(status: HomePageStatus.notificationViewer, args: args);
-  // passing argument to dynamic viewer
-  const RouterState.dynamicPageViewer(ButtonModel buttonModel) 
-  : this._(status: HomePageStatus.dynamicViewer, buttonModel: buttonModel);
-  // passing argument to account dynamic viewer
-  const RouterState.accountDynamicPageViewer(ButtonModel buttonModel) 
-  : this._(status: HomePageStatus.accountDynamicViewer, buttonModel: buttonModel);
+  final Account account;
+  final Button button;
+
+  RouterState copyWith({
+    HomeRouterStatus? status,
+    String? args,
+    Account? account,
+    Button? button
+  }) {
+    return RouterState(
+      status: status ?? this.status,
+      args: args ?? this.args,
+      account: account ?? this.account,
+      button: button ?? this.button
+    );
+  }
 
   @override
-  List<Object> get props => [status, args, accountModel, buttonModel];
+  List<Object> get props => [status, args, account, button];
 }
 
-enum HomePageStatus {
+enum HomeRouterStatus {
   appBar,
   account,
-  accountDynamicViewer,
-  accountDynamicViewerReciept,
-  dynamicViewer,
-  dynamicViewerReceipt,
+  accountsViewer,
+  accountsViewerReciept,
+  paymentsView,
+  otp,
+  paymentsReceipt,
+  transfersView,
+  transfersReceipt,
   scannerTransaction,
   addAccount,
   scannerTransactionReceipt,
   notifications,
   notificationViewer,
+  receipt,
+  settings,
+  updatePassword,
+  reauthenticate
 }

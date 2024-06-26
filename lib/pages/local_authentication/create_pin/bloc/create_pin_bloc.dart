@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,10 +21,11 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
 
   void _onCreatePinAdded(CreatePinAdded event, Emitter<CreatePinState> emit) async {
     try {
+      final uid = FirebaseAuth.instance.currentUser?.uid ?? '';
       // Check if the length of the first PIN is less than 6 characters
       if (state.newPin.length < 6) {
         // Concatenate the entered PIN digit to the current firstPin
-        final newPin = "${state.newPin}${event.pin}";
+        final newPin = '${state.newPin}${event.pin}';
         // Check if the length of the combined firstPin is less than 6
         if (newPin.length < 6) {
           // Update the state with the new firstPin and set the pinStatus to "enterFirst"
@@ -34,14 +36,14 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
         }
       } else {
         // Concatenate the entered PIN digit to the current secondPin
-        final confirmPin = "${state.confirmedPin}${event.pin}";
+        final confirmPin = '${state.confirmedPin}${event.pin}';
         // Check if the length of the combined secondPin is less than 6
         if (confirmPin.length < 6) {
           // Update the state with the new secondPin and set the pinStatus to "enterSecond"
           emit(state.copyWith(status: PinStatus.enterConfirm, confirmedPin: confirmPin));
         } else if (confirmPin == state.newPin) {
           // If secondPin matches firstPin, add the PIN to the repository, set pinStatus to "equals"
-          _hivePinRepository.addPin(confirmPin);
+          _hivePinRepository.addPinAuth(uid: uid, pin: confirmPin);
           emit(state.copyWith(status: PinStatus.equals, confirmedPin: confirmPin));
           // Delay for 1 second and then add CreatePinNulled event
           await Future.delayed(Duration.zero, () => add(CreatePinNulled()));
@@ -87,8 +89,8 @@ class CreatePinBloc extends Bloc<CreatePinEvent, CreatePinState> {
   }
 
   @override
-  Future<void> close() {
-    _hivePinRepository.closePinBox();
+  Future<void> close() async {
+    _hivePinRepository.closePinAuthBox();
     return super.close();
   }
 }

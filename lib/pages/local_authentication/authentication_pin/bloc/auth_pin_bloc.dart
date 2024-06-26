@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hive_pin_repository/hive_pin_repository.dart';
@@ -14,17 +15,17 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
     on<AuthPinAdded>(_onAuthPinAdded);
     on<AuthPinErased>(_onAuthPinErased);
     on<AuthPinNulled>(_onAuthPinNulled);
-    on<AuthPinChecked>(_onAuthPinChecked);
-    on<AuthPinDelete>(_onAuthPinDelete);
   }
   final HivePinRepository _hivePinRepository;
 
   void _onAuthPinAdded(AuthPinAdded event, Emitter<AuthPinState> emit) async {
-    String pin = "${state.pin}${event.pinNum}";
+    final uid = FirebaseAuth.instance.currentUser?.uid ?? '';
+    String pin = '${state.pin}${event.pinNum}';
     if(pin.length < 6) {
       emit(state.copyWith(status: AuthPinStatus.enterPin, pin: pin));
-    } else if (await _hivePinRepository.pinEquals(pin)) {
+    } else if (await _hivePinRepository.pinAuthEquals(uid: uid, pin: pin)) {
       emit(state.copyWith(status: AuthPinStatus.equals, pin: pin));
+      await Future.delayed(Duration.zero, () => add(AuthPinNulled()));
     } else {
       emit(state.copyWith(status: AuthPinStatus.unequals, pin: pin));
       await Future.delayed(Duration.zero, () => add(AuthPinNulled()));
@@ -44,19 +45,9 @@ class AuthPinBloc extends Bloc<AuthPinEvent, AuthPinState> {
     emit(state.copyWith(status: AuthPinStatus.enterPin, pin: ''));
   }
 
-  Future<void> _onAuthPinChecked(AuthPinChecked event, Emitter<AuthPinState> emit) async {
-    bool isExist = await _hivePinRepository.pinExists();
-    emit(state.copyWith(isPinExist: isExist));
-  }
-
-  void _onAuthPinDelete(AuthPinDelete event, Emitter<AuthPinState> emit) async {
-    await _hivePinRepository.deletePin();
-    add(AuthPinChecked());
-  }
-
   @override
-  Future<void> close() {
-    _hivePinRepository.closePinBox();
+  Future<void> close() async {
+    _hivePinRepository.closePinAuthBox();
     return super.close();
   }
 }

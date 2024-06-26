@@ -20,9 +20,9 @@ class CustomCardContainer extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisSize: MainAxisSize.min, // This will make the column take minimum space required by its children.
-          crossAxisAlignment: CrossAxisAlignment.start,
+           crossAxisAlignment: CrossAxisAlignment.start,
           children: children
-        ),
+        )
       )
     );
   }

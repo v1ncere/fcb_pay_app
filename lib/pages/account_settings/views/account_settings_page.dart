@@ -2,7 +2,7 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
+import '../account_settings.dart';
 
 class AccountSettingsPage extends StatelessWidget {
   const AccountSettingsPage({super.key});

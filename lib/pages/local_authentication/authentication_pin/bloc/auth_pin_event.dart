@@ -19,7 +19,3 @@ final class AuthPinErased extends AuthPinEvent {}
 
 final class AuthPinNulled extends AuthPinEvent {}
 
-final class AuthPinChecked extends AuthPinEvent {}
-
-final class AuthPinDelete extends AuthPinEvent {}
-

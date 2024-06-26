@@ -1,4 +1,2 @@
-export 'bloc/accounts_bloc.dart';
-export 'bloc/buttons_bloc.dart';
-export 'cubit/slider_cubit.dart';
+export 'bloc/accounts_home_bloc.dart';
 export 'views/views.dart';

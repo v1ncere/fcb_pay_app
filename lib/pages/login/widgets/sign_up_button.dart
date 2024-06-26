@@ -1,7 +1,7 @@
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import '../../../app/app.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({super.key});
@@ -9,12 +9,18 @@ class SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      key: const Key('login_sign_up_text_button'),
-      onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.register),
-      child: const Text(
+      onPressed: () => context.flow<AppStatus>().update((state) => AppStatus.signupVerify),
+      child: Text(
         'CREATE ACCOUNT',
         style: TextStyle(
-          color: Color(0xFF25C166)
+          color: const Color(0xFF25C166),
+          shadows: [
+            Shadow(
+              blurRadius: 2,
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0.2, 1.0)
+            )
+          ]
         )
       )
     );

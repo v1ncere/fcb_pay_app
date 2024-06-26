@@ -10,10 +10,11 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required FirebaseAuthRepository firebaseAuthRepository
-  })  : _firebaseAuthRepository = firebaseAuthRepository, 
+  }) : _firebaseAuthRepository = firebaseAuthRepository,
   super(
     firebaseAuthRepository.currentUser.isNotEmpty && firebaseAuthRepository.currentUser.isVerified == true
-    ? AppState.authenticated(firebaseAuthRepository.currentUser) : const AppState.unauthenticated()
+    ? AppState.authenticated(firebaseAuthRepository.currentUser) 
+    : const AppState.unauthenticated()
   ) {
     _streamSubscription = _firebaseAuthRepository.user.listen((user) => add(AppUserChanged(user)));
 
@@ -23,6 +24,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ? AppState.authenticated(event.user)
         : const AppState.unauthenticated()
       );
+    });
+
+    on<PhoneNumberPassed>((event, emit) {
+      emit(AppState.otpVerification(event.phoneNumber));
     });
     
     on<AppLogoutRequested>((event, emit) {

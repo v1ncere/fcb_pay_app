@@ -1,11 +1,11 @@
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/pages/local_authentication/create_pin/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../../app/app.dart';
+import '../../../../utils/utils.dart';
+import '../../local_authentication.dart';
+import '../widgets/widgets.dart';
 
 class CreatePinView extends StatelessWidget {
   const CreatePinView({super.key});
@@ -14,44 +14,82 @@ class CreatePinView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppString.setupPin, style: TextStyle(color: Colors.black)),
-        leading: BackButton(
-          onPressed: () => context.flow<AppStatus>().update((status) => AppStatus.authenticated)
-        )
+        title: const Text(
+          TextString.setupPin, 
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF687ea1)
+          )
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              FontAwesomeIcons.x, 
+              size: 18,
+              color: Color(0xFF687ea1)
+            ),
+            onPressed: () async => Navigator.of(context).pop(),
+          )
+        ],
+        automaticallyImplyLeading: false
       ),
       body: BlocListener<CreatePinBloc, CreatePinState>(
         listener: (context, state) {
+          // pincode create successful
           if (state.status.isEquals) {
-            context.read<AuthPinBloc>().add(AuthPinChecked());
             showDialog(
               context: context,
               barrierDismissible: false,
               useRootNavigator: false,
-              builder: (context) => AlertDialog(
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                title: const Center(child: Text(AppString.confirmPinSuccess, textAlign: TextAlign.center)),
-                actionsAlignment: MainAxisAlignment.center,
-                actions: [
-                  TextButton(
-                    onPressed: () => context.flow<AppStatus>().update((_) => AppStatus.authenticated),
-                    child: const Text("OK")
-                  )
-                ]
+              builder: (context) => BlocProvider.value(
+                value: BlocProvider.of<AppBloc>(context),
+                child: AlertDialog(
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  backgroundColor: ColorString.emerald,
+                  title: Center(
+                    child: Text(
+                      TextString.confirmPinSuccess,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: ColorString.white)
+                    )
+                  ),
+                  actionsAlignment: MainAxisAlignment.center,
+                  actions: [
+                    TextButton(
+                      onPressed: () async => await Navigator.of(context).push(App.route()),
+                      child: Text(
+                        'OK',
+                        style: TextStyle(color: ColorString.white)
+                      )
+                    )
+                  ]
+                )
               )
             );
           }
+          // pincode unequals
           if (state.status.isUnequals) {
             showDialog(
               context: context,
               barrierDismissible: true,
               builder: (context) => AlertDialog(
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                title: const Center(child: Text(AppString.confirmPinFailure, textAlign: TextAlign.center)),
+                backgroundColor: ColorString.guardsmanRed,
+                title: Center(
+                  child: Text(
+                    TextString.confirmPinFailure,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: ColorString.white)
+                  )
+                ),
                 actionsAlignment: MainAxisAlignment.center,
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text("OK")
+                    child: Text(
+                      'OK',
+                      style: TextStyle(color: ColorString.white)
+                    )
                   )
                 ]
               )

@@ -43,11 +43,13 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
+		<key>UIStatusBarHidden</key>
+		<false/>
+		<key>NSCameraUsageDescription</key>
+		<string>This app needs camera access to scan QR codes</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string>This app need access to your gallery to save screenshots</string>
 		<key>NSFaceIDUsageDescription</key>
 		<string>Why is my app authenticating using face id?</string>
-		<key>UIStatusBarHidden</key>
-		<false/>
 	</dict>
 </plist>

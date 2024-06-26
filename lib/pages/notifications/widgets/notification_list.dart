@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/pages/notifications/notifications.dart';
-import 'package:fcb_pay_app/pages/notifications/widgets/widgets.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
+import '../../home_flow/home_flow.dart';
+import '../notifications.dart';
+import 'widgets.dart';
 
 class NotificationList extends StatelessWidget {
   const NotificationList({super.key});
@@ -73,7 +73,7 @@ class NotificationList extends StatelessWidget {
                     onTap: () {
                       context.read<NotificationsBloc>().add(NotificationsUpdateIsRead(notif.keyId ?? ''));
                       context.read<RouterBloc>().add(RouterNotificationArgsPassed(notif.keyId ?? ''));
-                      context.flow<HomePageStatus>().update((state) => HomePageStatus.notificationViewer);
+                      context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.notificationViewer);
                     }
                   )
                 );
@@ -82,14 +82,17 @@ class NotificationList extends StatelessWidget {
           );
         }
         if (state.status.isError) {
-          return Center(
-            child: Text(
-              state.message,
-              style: const TextStyle(
-                color: Colors.black38,
-                fontWeight: FontWeight.w700
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: Center(
+              child: Text(
+                state.message,
+                style: const TextStyle(
+                  color: Colors.black38,
+                  fontWeight: FontWeight.w700
+                )
               )
-            )
+            ),
           );
         }
         else {

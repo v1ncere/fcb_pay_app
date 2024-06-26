@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
 
 part 'account_settings_event.dart';
 part 'account_settings_state.dart';

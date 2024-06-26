@@ -1,5 +1,6 @@
-import 'package:fcb_pay_app/pages/account_settings/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets.dart';
 
 class AccountCard extends StatelessWidget {
   const AccountCard({

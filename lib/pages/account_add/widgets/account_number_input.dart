@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/account_add/account_add.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../account_add.dart';
+import '../../../utils/utils.dart';
 
 class AccountNumberInput extends StatelessWidget {
-  AccountNumberInput({super.key});
-  final NumberSeparatorFormatter _numberSeparatorFormatter = NumberSeparatorFormatter();
+  const AccountNumberInput({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AccountAddBloc, AccountAddState>(
-      buildWhen: (previous, current) => previous.accountNumber != current.accountNumber,
       builder: (context, state) {
-        return TextField(
-          key: const Key('add_account_number_textfield'),
-          inputFormatters: [_numberSeparatorFormatter],
-          keyboardType: TextInputType.number,
-          maxLength: 19,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey[200],
-            prefixIcon: const Icon(FontAwesomeIcons.hashtag),
-            labelText: 'Account Number',
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            errorText: state.accountNumber.displayError?.text(),
-            border: SelectedInputBorderWithShadow(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Your Account Number',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              inputFormatters: [
+                NumberSeparatorFormatter(),
+                LengthLimitingTextInputFormatter(19)
+              ],
+              keyboardType: TextInputType.number,
+              maxLength: 19,
+              decoration: InputDecoration(
+                filled: true,
+                labelText: 'Account Number',
+                errorText: state.accountNumber.displayError?.text(),  
+              ),
+              style: const TextStyle(height: 1.5),
+              onChanged: (value) => context.read<AccountAddBloc>().add(AccountNumberChanged(value))
             )
-          ),
-          onChanged: (value) => context.read<AccountAddBloc>().add(AccountNumberChanged(value))
+          ]
         );
       }
     );

@@ -2,10 +2,10 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/account/account.dart';
-import 'package:fcb_pay_app/pages/account/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
+import '../../home_flow/home_flow.dart';
+import '../account.dart';
+import 'widgets.dart';
 
 class GridViewButtons extends StatelessWidget {
   const GridViewButtons({super.key});
@@ -21,29 +21,19 @@ class GridViewButtons extends StatelessWidget {
           return LayoutBuilder(
             builder: (context, constraints) {
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: constraints.maxWidth > 400 ? 4 : 3, // larger width screen the more the button display
-                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: constraints.maxWidth > 400 ? 4 : 3), // larger width screen the more the button display
                 shrinkWrap: true,
                 itemCount: state.buttonList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final btn = state.buttonList[index];
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final button = state.buttonList[index];
                   return CircleButtonWithLabel(
-                    icon: iconMapper(btn.icon),
-                    color: colorStringParser(btn.iconColor),
-                    text: btn.title,
-                    function: () {
-                      context.read<RouterBloc>().add(
-                        RouterAccountDynamicButtonModelPassed(
-                          ButtonModel(
-                            id: btn.keyId!,
-                            title: btn.title,
-                            icon: btn.icon,
-                            iconColor: btn.iconColor
-                          )
-                        )
-                      );
-                      context.flow<HomePageStatus>().update((next) => HomePageStatus.accountDynamicViewer);
+                    icon: iconMapper(button.icon),
+                    color: colorStringParser(button.iconColor),
+                    text: button.title,
+                    onTap: () {
+                      context.read<RouterBloc>().add(RouterAccountsButtonPassed(button));
+                      context.flow<HomeRouterStatus>().update((next) => HomeRouterStatus.accountsViewer);
                     }
                   );
                 }

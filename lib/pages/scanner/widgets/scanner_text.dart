@@ -6,13 +6,13 @@ class ScannerText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(top: 50.0),
+      padding: EdgeInsets.only(top: 100.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Scan QR Code",
+          Text('Scan QR Code',
             style: TextStyle(
-              color: Colors.white70,
+              color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.w900
             )

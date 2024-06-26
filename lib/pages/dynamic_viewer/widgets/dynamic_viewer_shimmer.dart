@@ -1,5 +1,6 @@
-import 'package:fcb_pay_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/widgets.dart';
 
 class DynamicViewerShimmer extends StatelessWidget {
   const DynamicViewerShimmer({super.key});

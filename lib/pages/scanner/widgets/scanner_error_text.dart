@@ -17,7 +17,7 @@ class ScannerErrorText extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text("Oops! Something went wrong. Please try again.",
+                child: Text('Oops! Something went wrong. Please try again.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,

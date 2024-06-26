@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../../utils/utils.dart';
+import '../../../../widgets/widgets.dart';
+import '../../local_authentication.dart';
 
 class InputPin extends StatelessWidget {
   const InputPin({super.key});
@@ -11,10 +11,6 @@ class InputPin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UpdatePinBloc, UpdatePinState>(
-      buildWhen: (previous, current) => 
-        previous.currentPin != current.currentPin ||
-        previous.newPin != current.newPin ||
-        previous.confirmedPin != current.confirmedPin,
       builder: (context, state) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,10 +41,10 @@ class InputPin extends StatelessWidget {
 
 String getInputTitle(UpdatePinStatus status) {
   if(status.isEnterCurrent) {
-    return AppString.currentPin;
+    return TextString.currentPin;
   } else if (status.isEnterNew || status.isCurrentEquals) {
-    return AppString.updatePin;
+    return TextString.updatePin;
   } else {
-    return AppString.confirmPin;
+    return TextString.confirmPin;
   }
 }

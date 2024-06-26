@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_pin_repository/hive_pin_repository.dart';
 import 'package:local_auth/local_auth.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../../utils/utils.dart';
 
 part 'biometric_state.dart';
 
@@ -13,17 +13,18 @@ class BiometricCubit extends Cubit<BiometricState> {
   BiometricCubit({
     required LocalAuthentication localAuth,
     required HivePinRepository hivePinRepository,
-  }) : _localAuth = localAuth, _hivePinRepository = hivePinRepository,
+  })  : _localAuth = localAuth, _hivePinRepository = hivePinRepository,
   super(const BiometricState());
+
   final LocalAuthentication _localAuth;
   final HivePinRepository _hivePinRepository;
 
   Future<void> isBiometricUserEnabled() async {
     try {
-      final isEnable = await _hivePinRepository.isBiometricsUserEnable();
-      emit(state.copyWith(biometricsEnabled: isEnable));
+      final fingerprint = await _hivePinRepository.getBiometricStatus();
+      emit(state.copyWith(biometricsEnabled: fingerprint));
       
-      if (isEnable) {
+      if (fingerprint) {
         authenticationBiometricsRequested();
       }
     } catch (e) {
@@ -35,8 +36,8 @@ class BiometricCubit extends Cubit<BiometricState> {
     if (await _localAuth.isDeviceSupported()) {
       if (await _localAuth.canCheckBiometrics) {
         try {
-          final bool isAuthenticated = await _localAuth.authenticate(
-            localizedReason: AppString.localizedReason,
+          bool isAuthenticated = await _localAuth.authenticate(
+            localizedReason: TextString.localizedReason,
             options: const AuthenticationOptions(
               biometricOnly: true,
               stickyAuth: true,
@@ -45,9 +46,10 @@ class BiometricCubit extends Cubit<BiometricState> {
             )
           );
           if (isAuthenticated) {
-            emit(state.copyWith(status: BiometricStatus.authenticated, message: AppString.authSuccess));
+            emit(state.copyWith(status: BiometricStatus.authenticated, message: TextString.authSuccess));
+            await Future.delayed(Duration.zero, () => refreshState());
           } else {
-            emit(state.copyWith(status: BiometricStatus.unauthenticated, message: AppString.authFailure));
+            emit(state.copyWith(status: BiometricStatus.unauthenticated, message: TextString.authFailure));
           }
         } on PlatformException catch (e) {
           emit(state.copyWith(status: BiometricStatus.unauthenticated, message: 'Error: ${e.message}'));
@@ -55,29 +57,26 @@ class BiometricCubit extends Cubit<BiometricState> {
           emit(state.copyWith(status: BiometricStatus.unauthenticated, message: e.toString()));
         }
       } else {
-        emit(state.copyWith(status: BiometricStatus.disabled, message: AppString.biometricDisabled));
+        emit(state.copyWith(status: BiometricStatus.disabled, message: TextString.biometricDisabled));
       }
     } else {
-      emit(state.copyWith(status: BiometricStatus.unsupported, message: AppString.biometricUnsupported));
+      emit(state.copyWith(status: BiometricStatus.unsupported, message: TextString.biometricUnsupported));
+    }
+  }
+
+  Future<void> authenticationBiometricChecker() async {
+    if (await _localAuth.isDeviceSupported()) {
+      if (await _localAuth.canCheckBiometrics) {
+        emit(state.copyWith(status: BiometricStatus.enabled, message: TextString.biometricEnabled));
+      } else {
+        emit(state.copyWith(status: BiometricStatus.disabled, message: TextString.biometricDisabled));
+      }
+    } else {
+      emit(state.copyWith(status: BiometricStatus.unsupported, message: TextString.biometricUnsupported));
     }
   }
 
   void refreshState() {
     emit(state.copyWith(status: BiometricStatus.initial, message: ''));
-  }
-
-  void toggleBiometrics(bool isEnabled) {
-    try {
-      _hivePinRepository.addBiometrics(isEnabled);
-      emit(state.copyWith(biometricsEnabled: isEnabled));
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  @override
-  Future<void> close() async {
-    _hivePinRepository.closeBioBox();
-    return super.close();
   }
 }

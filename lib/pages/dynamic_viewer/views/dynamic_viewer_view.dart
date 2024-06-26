@@ -1,54 +1,63 @@
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/bottom_appbar/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
-import 'package:fcb_pay_app/pages/dynamic_viewer/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../../bottom_navbar/bottom_navbar.dart';
+import '../../home_flow/home_flow.dart';
+import '../dynamic_viewer.dart';
+import '../widgets/widgets.dart';
 
 class DynamicViewerView extends StatelessWidget {
-  const DynamicViewerView({super.key, required this.buttonModel});
-  final ButtonModel buttonModel;
+  const DynamicViewerView({super.key, required this.button});
+  final Button button;
   static final FocusNode focusNode = FocusNode(); // this is for open dropdown buttons
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<WidgetsBloc, WidgetsState>(
-      listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
         if(state.submissionStatus.isSuccess) {
-          context.flow<HomePageStatus>().update((next) => HomePageStatus.dynamicViewerReceipt);
-          ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar("Transaction Successful!", FontAwesomeIcons.solidCircleCheck, Colors.white));
+          context.flow<HomeRouterStatus>().update((next) => HomeRouterStatus.receipt);
+          _showSuccessDialog(context, TextString.transactionSuccess);
         }
         if(state.submissionStatus.isError) {
-          ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(state.message!, FontAwesomeIcons.triangleExclamation, Colors.red));
+          _showFailureSnackbar(context, state.message);
         }
       },
-      child: SafeArea(
+      child: PopScope(
+        onPopInvoked: (didPop) {
+          if(didPop) {
+            context.read<InactivityCubit>().resumeTimer();
+          }
+        },
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              buttonModel.title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700
+              button.title,
+              style: const TextStyle(fontWeight: FontWeight.w700)
+            ),
+            automaticallyImplyLeading: false,
+            actions: [
+              IconButton(
+                onPressed: () {
+                  context.read<InactivityCubit>().resumeTimer();
+                  context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.appBar);
+                },
+                icon: const Icon(FontAwesomeIcons.x, size: 18)
               )
-            )
+            ]
           ),
-          body:  BlocBuilder<WidgetsBloc, WidgetsState>(
+          body: BlocBuilder<WidgetsBloc, WidgetsState>(
             builder: (context, state) {
               if (state.widgetStatus.isLoading) {
                 return Center(
                   child: CircularProgressIndicator(
                     strokeWidth: 5,
-                    color: colorStringParser(buttonModel.iconColor)
+                    color: colorStringParser(button.iconColor)
                   )
                 );
               }
@@ -56,43 +65,50 @@ class DynamicViewerView extends StatelessWidget {
                 return InactivityDetector(
                   onInactive: () {
                     FocusScope.of(context).requestFocus(focusNode); // close the dropdown
-                    context.flow<HomePageStatus>().complete();
-                    // Future.microtask(() {
-                    //   if (Navigator.canPop(context)) {
-                    //     Navigator.pop(context); // pop the dropdown
-                        
-                    //     if(Navigator.canPop(context)) {
-                    //       Navigator.of(context).pop(true); // pop the current page
-                    //     }
-                    //   }
-                    // });
+                    context.flow<HomeRouterStatus>().complete();
                   },
                   child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-                    child: CustomCardContainer(
-                      color: const Color(0xFFFFFFFF),
-                      children: state.widgetList.map((widget) {
-                        switch(widget.widget) {
-                          case 'dropdown':
-                            return DropdownSwitcher(focusNode: focusNode, widget: widget);
-                          case 'textfield':
-                            return DynamicTextfield(widget: widget);
-                          case 'text':
-                            return DynamicText(widget: widget);
-                          case 'multitextfield':
-                            return MultiTextfield(widget: widget);
-                          case 'button':
-                            return SubmitButton(widget: widget, buttonModel: buttonModel);
-                          default:
-                            return const SizedBox.shrink();
-                        }
-                      }).toList()
+                    child: state.dropdownHasData
+                    ? CustomCardContainer(
+                        color: const Color(0xFFFFFFFF),
+                        children: state.widgetList.map((widget) {
+                          switch(widget.widget) {
+                            case 'dropdown':
+                              return DropdownDisplay(focusNode: focusNode, pageWidget: widget);
+                            case 'textfield':
+                              return DynamicTextfield(widget: widget);
+                            case 'text':
+                              return DynamicText(widget: widget);
+                            case 'multitextfield':
+                              return MultiTextfield(widget: widget);
+                            case 'button':
+                              return SubmitButton(widget: widget, button: button);
+                            default:
+                              return const SizedBox.shrink();
+                          }
+                        }).toList()
+                      )
+                    : SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.8,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Center(
+                        child: Text(
+                          TextString.transactionDisabled,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black38,
+                            fontWeight: FontWeight.bold
+                          )
+                        )
+                      ),
                     )
-                  ),
+                  )
                 );
               }
               if (state.widgetStatus.isError) {
-                return Center(child: Text('${state.message}'));
+                return Center(child: Text(state.message));
               }
               else {
                 return const SizedBox.shrink();
@@ -102,5 +118,29 @@ class DynamicViewerView extends StatelessWidget {
         )
       )
     );
+  }
+
+    // show success dialog 
+  _showSuccessDialog(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(customSnackBar(
+      text: message,
+      icon: FontAwesomeIcons.solidCircleCheck,
+      backgroundColor: ColorString.eucalyptus,
+      foregroundColor: ColorString.mystic
+    ));
+  }
+
+  // show failure snackbar
+  _showFailureSnackbar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(customSnackBar(
+      text: message,
+      icon: FontAwesomeIcons.triangleExclamation,
+      backgroundColor: ColorString.guardsmanRed,
+      foregroundColor: ColorString.mystic
+    ));
   }
 }

@@ -1,10 +1,10 @@
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/account/account.dart';
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/utils/enums.dart';
+import '../../../utils/enums.dart';
+import '../account.dart';
 
 class PopUpMenuButton extends StatelessWidget {
   const PopUpMenuButton({super.key});
@@ -24,9 +24,9 @@ class PopUpMenuButton extends StatelessWidget {
           );
         }
         if (state.filterStatus.isSuccess) {
-          return BlocSelector<RouterBloc, RouterState, AccountModel>(
-            selector: (state) => state.accountModel,
-            builder: (_, acc) {
+          return BlocSelector<CarouselCubit, CarouselState, Account>(
+            selector: (state) => state.account,
+            builder: (_, account) {
               return PopupMenuButton(
                 icon: Icon(
                   FontAwesomeIcons.filter,
@@ -40,13 +40,13 @@ class PopUpMenuButton extends StatelessWidget {
                   ]
                 ),
                 onSelected: (value) {
-                  context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc.account, filter: value));
+                  context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(accountID: account.accountKeyID!, filter: value));
                 },
                 itemBuilder: (BuildContext context) {
                   return state.filters.map((String value) {
                     return PopupMenuItem<String>(
                       value: value,
-                      child: Text(value)
+                      child: Text(value.toLowerCase())
                     );
                   }).toList();
                 }

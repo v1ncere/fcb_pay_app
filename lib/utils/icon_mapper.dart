@@ -3,4037 +3,4037 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 IconData iconMapper(String iconName) {
   switch (iconName.trim()) {
-    case "zero":
+    case 'zero':
       return FontAwesomeIcons.zero;
-    case "one":
+    case 'one':
       return FontAwesomeIcons.one;
-    case "two":
+    case 'two':
       return FontAwesomeIcons.two;
-    case "three":
+    case 'three':
       return FontAwesomeIcons.three;
-    case "four":
+    case 'four':
       return FontAwesomeIcons.four;
-    case "five":
+    case 'five':
       return FontAwesomeIcons.five;
-    case "six":
+    case 'six':
       return FontAwesomeIcons.six;
-    case "seven":
+    case 'seven':
       return FontAwesomeIcons.seven;
-    case "eight":
+    case 'eight':
       return FontAwesomeIcons.eight;
-    case "nine":
+    case 'nine':
       return FontAwesomeIcons.nine;
-    case "fortyTwoGroup":
+    case 'fortyTwoGroup':
       return FontAwesomeIcons.fortyTwoGroup;
-    case "fiveHundredPx":
+    case 'fiveHundredPx':
       return FontAwesomeIcons.fiveHundredPx;
-    case "a":
+    case 'a':
       return FontAwesomeIcons.a;
-    case "accessibleIcon":
+    case 'accessibleIcon':
       return FontAwesomeIcons.accessibleIcon;
-    case "accusoft":
+    case 'accusoft':
       return FontAwesomeIcons.accusoft;
-    case "solidAddressBook":
+    case 'solidAddressBook':
       return FontAwesomeIcons.solidAddressBook;
-    case "addressBook":
+    case 'addressBook':
       return FontAwesomeIcons.addressBook;
-    case "solidAddressCard":
+    case 'solidAddressCard':
       return FontAwesomeIcons.solidAddressCard;
-    case "addressCard":
+    case 'addressCard':
       return FontAwesomeIcons.addressCard;
-    case "adn":
+    case 'adn':
       return FontAwesomeIcons.adn;
-    case "adversal":
+    case 'adversal':
       return FontAwesomeIcons.adversal;
-    case "affiliatetheme":
+    case 'affiliatetheme':
       return FontAwesomeIcons.affiliatetheme;
-    case "airbnb":
+    case 'airbnb':
       return FontAwesomeIcons.airbnb;
-    case "algolia":
+    case 'algolia':
       return FontAwesomeIcons.algolia;
-    case "alignCenter":
+    case 'alignCenter':
       return FontAwesomeIcons.alignCenter;
-    case "alignJustify":
+    case 'alignJustify':
       return FontAwesomeIcons.alignJustify;
-    case "alignLeft":
+    case 'alignLeft':
       return FontAwesomeIcons.alignLeft;
-    case "alignRight":
+    case 'alignRight':
       return FontAwesomeIcons.alignRight;
-    case "alipay":
+    case 'alipay':
       return FontAwesomeIcons.alipay;
-    case "amazon":
+    case 'amazon':
       return FontAwesomeIcons.amazon;
-    case "amazonPay":
+    case 'amazonPay':
       return FontAwesomeIcons.amazonPay;
-    case "amilia":
+    case 'amilia':
       return FontAwesomeIcons.amilia;
-    case "anchor":
+    case 'anchor':
       return FontAwesomeIcons.anchor;
-    case "anchorCircleCheck":
+    case 'anchorCircleCheck':
       return FontAwesomeIcons.anchorCircleCheck;
-    case "anchorCircleExclamation":
+    case 'anchorCircleExclamation':
       return FontAwesomeIcons.anchorCircleExclamation;
-    case "anchorCircleXmark":
+    case 'anchorCircleXmark':
       return FontAwesomeIcons.anchorCircleXmark;
-    case "anchorLock":
+    case 'anchorLock':
       return FontAwesomeIcons.anchorLock;
-    case "android":
+    case 'android':
       return FontAwesomeIcons.android;
-    case "angellist":
+    case 'angellist':
       return FontAwesomeIcons.angellist;
-    case "angleDown":
+    case 'angleDown':
       return FontAwesomeIcons.angleDown;
-    case "angleLeft":
+    case 'angleLeft':
       return FontAwesomeIcons.angleLeft;
-    case "angleRight":
+    case 'angleRight':
       return FontAwesomeIcons.angleRight;
-    case "angleUp":
+    case 'angleUp':
       return FontAwesomeIcons.angleUp;
-    case "anglesDown":
+    case 'anglesDown':
       return FontAwesomeIcons.anglesDown;
-    case "anglesLeft":
+    case 'anglesLeft':
       return FontAwesomeIcons.anglesLeft;
-    case "anglesRight":
+    case 'anglesRight':
       return FontAwesomeIcons.anglesRight;
-    case "anglesUp":
+    case 'anglesUp':
       return FontAwesomeIcons.anglesUp;
-    case "angrycreative":
+    case 'angrycreative':
       return FontAwesomeIcons.angrycreative;
-    case "angular":
+    case 'angular':
       return FontAwesomeIcons.angular;
-    case "ankh":
+    case 'ankh':
       return FontAwesomeIcons.ankh;
-    case "appStore":
+    case 'appStore':
       return FontAwesomeIcons.appStore;
-    case "appStoreIos":
+    case 'appStoreIos':
       return FontAwesomeIcons.appStoreIos;
-    case "apper":
+    case 'apper':
       return FontAwesomeIcons.apper;
-    case "apple":
+    case 'apple':
       return FontAwesomeIcons.apple;
-    case "applePay":
+    case 'applePay':
       return FontAwesomeIcons.applePay;
-    case "appleWhole":
+    case 'appleWhole':
       return FontAwesomeIcons.appleWhole;
-    case "archway":
+    case 'archway':
       return FontAwesomeIcons.archway;
-    case "arrowDown":
+    case 'arrowDown':
       return FontAwesomeIcons.arrowDown;
-    case "arrowDown19":
+    case 'arrowDown19':
       return FontAwesomeIcons.arrowDown19;
-    case "arrowDown91":
+    case 'arrowDown91':
       return FontAwesomeIcons.arrowDown91;
-    case "arrowDownAZ":
+    case 'arrowDownAZ':
       return FontAwesomeIcons.arrowDownAZ;
-    case "arrowDownLong":
+    case 'arrowDownLong':
       return FontAwesomeIcons.arrowDownLong;
-    case "arrowDownShortWide":
+    case 'arrowDownShortWide':
       return FontAwesomeIcons.arrowDownShortWide;
-    case "arrowDownUpAcrossLine":
+    case 'arrowDownUpAcrossLine':
       return FontAwesomeIcons.arrowDownUpAcrossLine;
-    case "arrowDownUpLock":
+    case 'arrowDownUpLock':
       return FontAwesomeIcons.arrowDownUpLock;
-    case "arrowDownWideShort":
+    case 'arrowDownWideShort':
       return FontAwesomeIcons.arrowDownWideShort;
-    case "arrowDownZA":
+    case 'arrowDownZA':
       return FontAwesomeIcons.arrowDownZA;
-    case "arrowLeft":
+    case 'arrowLeft':
       return FontAwesomeIcons.arrowLeft;
-    case "arrowLeftLong":
+    case 'arrowLeftLong':
       return FontAwesomeIcons.arrowLeftLong;
-    case "arrowPointer":
+    case 'arrowPointer':
       return FontAwesomeIcons.arrowPointer;
-    case "arrowRight":
+    case 'arrowRight':
       return FontAwesomeIcons.arrowRight;
-    case "arrowRightArrowLeft":
+    case 'arrowRightArrowLeft':
       return FontAwesomeIcons.arrowRightArrowLeft;
-    case "arrowRightFromBracket":
+    case 'arrowRightFromBracket':
       return FontAwesomeIcons.arrowRightFromBracket;
-    case "arrowRightLong":
+    case 'arrowRightLong':
       return FontAwesomeIcons.arrowRightLong;
-    case "arrowRightToBracket":
+    case 'arrowRightToBracket':
       return FontAwesomeIcons.arrowRightToBracket;
-    case "arrowRightToCity":
+    case 'arrowRightToCity':
       return FontAwesomeIcons.arrowRightToCity;
-    case "arrowRotateLeft":
+    case 'arrowRotateLeft':
       return FontAwesomeIcons.arrowRotateLeft;
-    case "arrowRotateRight":
+    case 'arrowRotateRight':
       return FontAwesomeIcons.arrowRotateRight;
-    case "arrowTrendDown":
+    case 'arrowTrendDown':
       return FontAwesomeIcons.arrowTrendDown;
-    case "arrowTrendUp":
+    case 'arrowTrendUp':
       return FontAwesomeIcons.arrowTrendUp;
-    case "arrowTurnDown":
+    case 'arrowTurnDown':
       return FontAwesomeIcons.arrowTurnDown;
-    case "arrowTurnUp":
+    case 'arrowTurnUp':
       return FontAwesomeIcons.arrowTurnUp;
-    case "arrowUp":
+    case 'arrowUp':
       return FontAwesomeIcons.arrowUp;
-    case "arrowUp19":
+    case 'arrowUp19':
       return FontAwesomeIcons.arrowUp19;
-    case "arrowUpAZ":
+    case 'arrowUpAZ':
       return FontAwesomeIcons.arrowUpAZ;
-    case "arrowUpFromBracket":
+    case 'arrowUpFromBracket':
       return FontAwesomeIcons.arrowUpFromBracket;
-    case "arrowUpFromGroundWater":
+    case 'arrowUpFromGroundWater':
       return FontAwesomeIcons.arrowUpFromGroundWater;
-    case "arrowUpFromWaterPump":
+    case 'arrowUpFromWaterPump':
       return FontAwesomeIcons.arrowUpFromWaterPump;
-    case "arrowUpLong":
+    case 'arrowUpLong':
       return FontAwesomeIcons.arrowUpLong;
-    case "arrowUpRightDots":
+    case 'arrowUpRightDots':
       return FontAwesomeIcons.arrowUpRightDots;
-    case "arrowUpRightFromSquare":
+    case 'arrowUpRightFromSquare':
       return FontAwesomeIcons.arrowUpRightFromSquare;
-    case "arrowUpShortWide":
+    case 'arrowUpShortWide':
       return FontAwesomeIcons.arrowUpShortWide;
-    case "arrowUpWideShort":
+    case 'arrowUpWideShort':
       return FontAwesomeIcons.arrowUpWideShort;
-    case "arrowUpZA":
+    case 'arrowUpZA':
       return FontAwesomeIcons.arrowUpZA;
-    case "arrowsDownToLine":
+    case 'arrowsDownToLine':
       return FontAwesomeIcons.arrowsDownToLine;
-    case "arrowsDownToPeople":
+    case 'arrowsDownToPeople':
       return FontAwesomeIcons.arrowsDownToPeople;
-    case "arrowsLeftRight":
+    case 'arrowsLeftRight':
       return FontAwesomeIcons.arrowsLeftRight;
-    case "arrowsLeftRightToLine":
+    case 'arrowsLeftRightToLine':
       return FontAwesomeIcons.arrowsLeftRightToLine;
-    case "arrowsRotate":
+    case 'arrowsRotate':
       return FontAwesomeIcons.arrowsRotate;
-    case "arrowsSpin":
+    case 'arrowsSpin':
       return FontAwesomeIcons.arrowsSpin;
-    case "arrowsSplitUpAndLeft":
+    case 'arrowsSplitUpAndLeft':
       return FontAwesomeIcons.arrowsSplitUpAndLeft;
-    case "arrowsToCircle":
+    case 'arrowsToCircle':
       return FontAwesomeIcons.arrowsToCircle;
-    case "arrowsToDot":
+    case 'arrowsToDot':
       return FontAwesomeIcons.arrowsToDot;
-    case "arrowsToEye":
+    case 'arrowsToEye':
       return FontAwesomeIcons.arrowsToEye;
-    case "arrowsTurnRight":
+    case 'arrowsTurnRight':
       return FontAwesomeIcons.arrowsTurnRight;
-    case "arrowsTurnToDots":
+    case 'arrowsTurnToDots':
       return FontAwesomeIcons.arrowsTurnToDots;
-    case "arrowsUpDown":
+    case 'arrowsUpDown':
       return FontAwesomeIcons.arrowsUpDown;
-    case "arrowsUpDownLeftRight":
+    case 'arrowsUpDownLeftRight':
       return FontAwesomeIcons.arrowsUpDownLeftRight;
-    case "arrowsUpToLine":
+    case 'arrowsUpToLine':
       return FontAwesomeIcons.arrowsUpToLine;
-    case "artstation":
+    case 'artstation':
       return FontAwesomeIcons.artstation;
-    case "asterisk":
+    case 'asterisk':
       return FontAwesomeIcons.asterisk;
-    case "asymmetrik":
+    case 'asymmetrik':
       return FontAwesomeIcons.asymmetrik;
-    case "at":
+    case 'at':
       return FontAwesomeIcons.at;
-    case "atlassian":
+    case 'atlassian':
       return FontAwesomeIcons.atlassian;
-    case "atom":
+    case 'atom':
       return FontAwesomeIcons.atom;
-    case "audible":
+    case 'audible':
       return FontAwesomeIcons.audible;
-    case "audioDescription":
+    case 'audioDescription':
       return FontAwesomeIcons.audioDescription;
-    case "australSign":
+    case 'australSign':
       return FontAwesomeIcons.australSign;
-    case "autoprefixer":
+    case 'autoprefixer':
       return FontAwesomeIcons.autoprefixer;
-    case "avianex":
+    case 'avianex':
       return FontAwesomeIcons.avianex;
-    case "aviato":
+    case 'aviato':
       return FontAwesomeIcons.aviato;
-    case "award":
+    case 'award':
       return FontAwesomeIcons.award;
-    case "aws":
+    case 'aws':
       return FontAwesomeIcons.aws;
-    case "b":
+    case 'b':
       return FontAwesomeIcons.b;
-    case "baby":
+    case 'baby':
       return FontAwesomeIcons.baby;
-    case "babyCarriage":
+    case 'babyCarriage':
       return FontAwesomeIcons.babyCarriage;
-    case "backward":
+    case 'backward':
       return FontAwesomeIcons.backward;
-    case "backwardFast":
+    case 'backwardFast':
       return FontAwesomeIcons.backwardFast;
-    case "backwardStep":
+    case 'backwardStep':
       return FontAwesomeIcons.backwardStep;
-    case "bacon":
+    case 'bacon':
       return FontAwesomeIcons.bacon;
-    case "bacteria":
+    case 'bacteria':
       return FontAwesomeIcons.bacteria;
-    case "bacterium":
+    case 'bacterium':
       return FontAwesomeIcons.bacterium;
-    case "bagShopping":
+    case 'bagShopping':
       return FontAwesomeIcons.bagShopping;
-    case "bahai":
+    case 'bahai':
       return FontAwesomeIcons.bahai;
-    case "bahtSign":
+    case 'bahtSign':
       return FontAwesomeIcons.bahtSign;
-    case "ban":
+    case 'ban':
       return FontAwesomeIcons.ban;
-    case "banSmoking":
+    case 'banSmoking':
       return FontAwesomeIcons.banSmoking;
-    case "bandage":
+    case 'bandage':
       return FontAwesomeIcons.bandage;
-    case "bandcamp":
+    case 'bandcamp':
       return FontAwesomeIcons.bandcamp;
-    case "bangladeshiTakaSign":
+    case 'bangladeshiTakaSign':
       return FontAwesomeIcons.bangladeshiTakaSign;
-    case "barcode":
+    case 'barcode':
       return FontAwesomeIcons.barcode;
-    case "bars":
+    case 'bars':
       return FontAwesomeIcons.bars;
-    case "barsProgress":
+    case 'barsProgress':
       return FontAwesomeIcons.barsProgress;
-    case "barsStaggered":
+    case 'barsStaggered':
       return FontAwesomeIcons.barsStaggered;
-    case "baseball":
+    case 'baseball':
       return FontAwesomeIcons.baseball;
-    case "baseballBatBall":
+    case 'baseballBatBall':
       return FontAwesomeIcons.baseballBatBall;
-    case "basketShopping":
+    case 'basketShopping':
       return FontAwesomeIcons.basketShopping;
-    case "basketball":
+    case 'basketball':
       return FontAwesomeIcons.basketball;
-    case "bath":
+    case 'bath':
       return FontAwesomeIcons.bath;
-    case "batteryEmpty":
+    case 'batteryEmpty':
       return FontAwesomeIcons.batteryEmpty;
-    case "batteryFull":
+    case 'batteryFull':
       return FontAwesomeIcons.batteryFull;
-    case "batteryHalf":
+    case 'batteryHalf':
       return FontAwesomeIcons.batteryHalf;
-    case "batteryQuarter":
+    case 'batteryQuarter':
       return FontAwesomeIcons.batteryQuarter;
-    case "batteryThreeQuarters":
+    case 'batteryThreeQuarters':
       return FontAwesomeIcons.batteryThreeQuarters;
-    case "battleNet":
+    case 'battleNet':
       return FontAwesomeIcons.battleNet;
-    case "bed":
+    case 'bed':
       return FontAwesomeIcons.bed;
-    case "bedPulse":
+    case 'bedPulse':
       return FontAwesomeIcons.bedPulse;
-    case "beerMugEmpty":
+    case 'beerMugEmpty':
       return FontAwesomeIcons.beerMugEmpty;
-    case "behance":
+    case 'behance':
       return FontAwesomeIcons.behance;
-    case "solidBell":
+    case 'solidBell':
       return FontAwesomeIcons.solidBell;
-    case "bell":
+    case 'bell':
       return FontAwesomeIcons.bell;
-    case "bellConcierge":
+    case 'bellConcierge':
       return FontAwesomeIcons.bellConcierge;
-    case "solidBellSlash":
+    case 'solidBellSlash':
       return FontAwesomeIcons.solidBellSlash;
-    case "bellSlash":
+    case 'bellSlash':
       return FontAwesomeIcons.bellSlash;
-    case "bezierCurve":
+    case 'bezierCurve':
       return FontAwesomeIcons.bezierCurve;
-    case "bicycle":
+    case 'bicycle':
       return FontAwesomeIcons.bicycle;
-    case "bilibili":
+    case 'bilibili':
       return FontAwesomeIcons.bilibili;
-    case "bimobject":
+    case 'bimobject':
       return FontAwesomeIcons.bimobject;
-    case "binoculars":
+    case 'binoculars':
       return FontAwesomeIcons.binoculars;
-    case "biohazard":
+    case 'biohazard':
       return FontAwesomeIcons.biohazard;
-    case "bitbucket":
+    case 'bitbucket':
       return FontAwesomeIcons.bitbucket;
-    case "bitcoin":
+    case 'bitcoin':
       return FontAwesomeIcons.bitcoin;
-    case "bitcoinSign":
+    case 'bitcoinSign':
       return FontAwesomeIcons.bitcoinSign;
-    case "bity":
+    case 'bity':
       return FontAwesomeIcons.bity;
-    case "blackTie":
+    case 'blackTie':
       return FontAwesomeIcons.blackTie;
-    case "blackberry":
+    case 'blackberry':
       return FontAwesomeIcons.blackberry;
-    case "blender":
+    case 'blender':
       return FontAwesomeIcons.blender;
-    case "blenderPhone":
+    case 'blenderPhone':
       return FontAwesomeIcons.blenderPhone;
-    case "blog":
+    case 'blog':
       return FontAwesomeIcons.blog;
-    case "blogger":
+    case 'blogger':
       return FontAwesomeIcons.blogger;
-    case "bloggerB":
+    case 'bloggerB':
       return FontAwesomeIcons.bloggerB;
-    case "bluetooth":
+    case 'bluetooth':
       return FontAwesomeIcons.bluetooth;
-    case "bluetoothB":
+    case 'bluetoothB':
       return FontAwesomeIcons.bluetoothB;
-    case "bold":
+    case 'bold':
       return FontAwesomeIcons.bold;
-    case "bolt":
+    case 'bolt':
       return FontAwesomeIcons.bolt;
-    case "boltLightning":
+    case 'boltLightning':
       return FontAwesomeIcons.boltLightning;
-    case "bomb":
+    case 'bomb':
       return FontAwesomeIcons.bomb;
-    case "bone":
+    case 'bone':
       return FontAwesomeIcons.bone;
-    case "bong":
+    case 'bong':
       return FontAwesomeIcons.bong;
-    case "book":
+    case 'book':
       return FontAwesomeIcons.book;
-    case "bookAtlas":
+    case 'bookAtlas':
       return FontAwesomeIcons.bookAtlas;
-    case "bookBible":
+    case 'bookBible':
       return FontAwesomeIcons.bookBible;
-    case "bookBookmark":
+    case 'bookBookmark':
       return FontAwesomeIcons.bookBookmark;
-    case "bookJournalWhills":
+    case 'bookJournalWhills':
       return FontAwesomeIcons.bookJournalWhills;
-    case "bookMedical":
+    case 'bookMedical':
       return FontAwesomeIcons.bookMedical;
-    case "bookOpen":
+    case 'bookOpen':
       return FontAwesomeIcons.bookOpen;
-    case "bookOpenReader":
+    case 'bookOpenReader':
       return FontAwesomeIcons.bookOpenReader;
-    case "bookQuran":
+    case 'bookQuran':
       return FontAwesomeIcons.bookQuran;
-    case "bookSkull":
+    case 'bookSkull':
       return FontAwesomeIcons.bookSkull;
-    case "bookTanakh":
+    case 'bookTanakh':
       return FontAwesomeIcons.bookTanakh;
-    case "solidBookmark":
+    case 'solidBookmark':
       return FontAwesomeIcons.solidBookmark;
-    case "bookmark":
+    case 'bookmark':
       return FontAwesomeIcons.bookmark;
-    case "bootstrap":
+    case 'bootstrap':
       return FontAwesomeIcons.bootstrap;
-    case "borderAll":
+    case 'borderAll':
       return FontAwesomeIcons.borderAll;
-    case "borderNone":
+    case 'borderNone':
       return FontAwesomeIcons.borderNone;
-    case "borderTopLeft":
+    case 'borderTopLeft':
       return FontAwesomeIcons.borderTopLeft;
-    case "boreHole":
+    case 'boreHole':
       return FontAwesomeIcons.boreHole;
-    case "bots":
+    case 'bots':
       return FontAwesomeIcons.bots;
-    case "bottleDroplet":
+    case 'bottleDroplet':
       return FontAwesomeIcons.bottleDroplet;
-    case "bottleWater":
+    case 'bottleWater':
       return FontAwesomeIcons.bottleWater;
-    case "bowlFood":
+    case 'bowlFood':
       return FontAwesomeIcons.bowlFood;
-    case "bowlRice":
+    case 'bowlRice':
       return FontAwesomeIcons.bowlRice;
-    case "bowlingBall":
+    case 'bowlingBall':
       return FontAwesomeIcons.bowlingBall;
-    case "box":
+    case 'box':
       return FontAwesomeIcons.box;
-    case "boxArchive":
+    case 'boxArchive':
       return FontAwesomeIcons.boxArchive;
-    case "boxOpen":
+    case 'boxOpen':
       return FontAwesomeIcons.boxOpen;
-    case "boxTissue":
+    case 'boxTissue':
       return FontAwesomeIcons.boxTissue;
-    case "boxesPacking":
+    case 'boxesPacking':
       return FontAwesomeIcons.boxesPacking;
-    case "boxesStacked":
+    case 'boxesStacked':
       return FontAwesomeIcons.boxesStacked;
-    case "braille":
+    case 'braille':
       return FontAwesomeIcons.braille;
-    case "brain":
+    case 'brain':
       return FontAwesomeIcons.brain;
-    case "brazilianRealSign":
+    case 'brazilianRealSign':
       return FontAwesomeIcons.brazilianRealSign;
-    case "breadSlice":
+    case 'breadSlice':
       return FontAwesomeIcons.breadSlice;
-    case "bridge":
+    case 'bridge':
       return FontAwesomeIcons.bridge;
-    case "bridgeCircleCheck":
+    case 'bridgeCircleCheck':
       return FontAwesomeIcons.bridgeCircleCheck;
-    case "bridgeCircleExclamation":
+    case 'bridgeCircleExclamation':
       return FontAwesomeIcons.bridgeCircleExclamation;
-    case "bridgeCircleXmark":
+    case 'bridgeCircleXmark':
       return FontAwesomeIcons.bridgeCircleXmark;
-    case "bridgeLock":
+    case 'bridgeLock':
       return FontAwesomeIcons.bridgeLock;
-    case "bridgeWater":
+    case 'bridgeWater':
       return FontAwesomeIcons.bridgeWater;
-    case "briefcase":
+    case 'briefcase':
       return FontAwesomeIcons.briefcase;
-    case "briefcaseMedical":
+    case 'briefcaseMedical':
       return FontAwesomeIcons.briefcaseMedical;
-    case "broom":
+    case 'broom':
       return FontAwesomeIcons.broom;
-    case "broomBall":
+    case 'broomBall':
       return FontAwesomeIcons.broomBall;
-    case "brush":
+    case 'brush':
       return FontAwesomeIcons.brush;
-    case "btc":
+    case 'btc':
       return FontAwesomeIcons.btc;
-    case "bucket":
+    case 'bucket':
       return FontAwesomeIcons.bucket;
-    case "buffer":
+    case 'buffer':
       return FontAwesomeIcons.buffer;
-    case "bug":
+    case 'bug':
       return FontAwesomeIcons.bug;
-    case "bugSlash":
+    case 'bugSlash':
       return FontAwesomeIcons.bugSlash;
-    case "bugs":
+    case 'bugs':
       return FontAwesomeIcons.bugs;
-    case "solidBuilding":
+    case 'solidBuilding':
       return FontAwesomeIcons.solidBuilding;
-    case "building":
+    case 'building':
       return FontAwesomeIcons.building;
-    case "buildingCircleArrowRight":
+    case 'buildingCircleArrowRight':
       return FontAwesomeIcons.buildingCircleArrowRight;
-    case "buildingCircleCheck":
+    case 'buildingCircleCheck':
       return FontAwesomeIcons.buildingCircleCheck;
-    case "buildingCircleExclamation":
+    case 'buildingCircleExclamation':
       return FontAwesomeIcons.buildingCircleExclamation;
-    case "buildingCircleXmark":
+    case 'buildingCircleXmark':
       return FontAwesomeIcons.buildingCircleXmark;
-    case "buildingColumns":
+    case 'buildingColumns':
       return FontAwesomeIcons.buildingColumns;
-    case "buildingFlag":
+    case 'buildingFlag':
       return FontAwesomeIcons.buildingFlag;
-    case "buildingLock":
+    case 'buildingLock':
       return FontAwesomeIcons.buildingLock;
-    case "buildingNgo":
+    case 'buildingNgo':
       return FontAwesomeIcons.buildingNgo;
-    case "buildingShield":
+    case 'buildingShield':
       return FontAwesomeIcons.buildingShield;
-    case "buildingUn":
+    case 'buildingUn':
       return FontAwesomeIcons.buildingUn;
-    case "buildingUser":
+    case 'buildingUser':
       return FontAwesomeIcons.buildingUser;
-    case "buildingWheat":
+    case 'buildingWheat':
       return FontAwesomeIcons.buildingWheat;
-    case "bullhorn":
+    case 'bullhorn':
       return FontAwesomeIcons.bullhorn;
-    case "bullseye":
+    case 'bullseye':
       return FontAwesomeIcons.bullseye;
-    case "burger":
+    case 'burger':
       return FontAwesomeIcons.burger;
-    case "buromobelexperte":
+    case 'buromobelexperte':
       return FontAwesomeIcons.buromobelexperte;
-    case "burst":
+    case 'burst':
       return FontAwesomeIcons.burst;
-    case "bus":
+    case 'bus':
       return FontAwesomeIcons.bus;
-    case "busSimple":
+    case 'busSimple':
       return FontAwesomeIcons.busSimple;
-    case "businessTime":
+    case 'businessTime':
       return FontAwesomeIcons.businessTime;
-    case "buyNLarge":
+    case 'buyNLarge':
       return FontAwesomeIcons.buyNLarge;
-    case "buysellads":
+    case 'buysellads':
       return FontAwesomeIcons.buysellads;
-    case "c":
+    case 'c':
       return FontAwesomeIcons.c;
-    case "cableCar":
+    case 'cableCar':
       return FontAwesomeIcons.cableCar;
-    case "cakeCandles":
+    case 'cakeCandles':
       return FontAwesomeIcons.cakeCandles;
-    case "calculator":
+    case 'calculator':
       return FontAwesomeIcons.calculator;
-    case "solidCalendar":
+    case 'solidCalendar':
       return FontAwesomeIcons.solidCalendar;
-    case "calendar":
+    case 'calendar':
       return FontAwesomeIcons.calendar;
-    case "solidCalendarCheck":
+    case 'solidCalendarCheck':
       return FontAwesomeIcons.solidCalendarCheck;
-    case "calendarCheck":
+    case 'calendarCheck':
       return FontAwesomeIcons.calendarCheck;
-    case "calendarDay":
+    case 'calendarDay':
       return FontAwesomeIcons.calendarDay;
-    case "solidCalendarDays":
+    case 'solidCalendarDays':
       return FontAwesomeIcons.solidCalendarDays;
-    case "calendarDays":
+    case 'calendarDays':
       return FontAwesomeIcons.calendarDays;
-    case "solidCalendarMinus":
+    case 'solidCalendarMinus':
       return FontAwesomeIcons.solidCalendarMinus;
-    case "calendarMinus":
+    case 'calendarMinus':
       return FontAwesomeIcons.calendarMinus;
-    case "solidCalendarPlus":
+    case 'solidCalendarPlus':
       return FontAwesomeIcons.solidCalendarPlus;
-    case "calendarPlus":
+    case 'calendarPlus':
       return FontAwesomeIcons.calendarPlus;
-    case "calendarWeek":
+    case 'calendarWeek':
       return FontAwesomeIcons.calendarWeek;
-    case "solidCalendarXmark":
+    case 'solidCalendarXmark':
       return FontAwesomeIcons.solidCalendarXmark;
-    case "calendarXmark":
+    case 'calendarXmark':
       return FontAwesomeIcons.calendarXmark;
-    case "camera":
+    case 'camera':
       return FontAwesomeIcons.camera;
-    case "cameraRetro":
+    case 'cameraRetro':
       return FontAwesomeIcons.cameraRetro;
-    case "cameraRotate":
+    case 'cameraRotate':
       return FontAwesomeIcons.cameraRotate;
-    case "campground":
+    case 'campground':
       return FontAwesomeIcons.campground;
-    case "canadianMapleLeaf":
+    case 'canadianMapleLeaf':
       return FontAwesomeIcons.canadianMapleLeaf;
-    case "candyCane":
+    case 'candyCane':
       return FontAwesomeIcons.candyCane;
-    case "cannabis":
+    case 'cannabis':
       return FontAwesomeIcons.cannabis;
-    case "capsules":
+    case 'capsules':
       return FontAwesomeIcons.capsules;
-    case "car":
+    case 'car':
       return FontAwesomeIcons.car;
-    case "carBattery":
+    case 'carBattery':
       return FontAwesomeIcons.carBattery;
-    case "carBurst":
+    case 'carBurst':
       return FontAwesomeIcons.carBurst;
-    case "carOn":
+    case 'carOn':
       return FontAwesomeIcons.carOn;
-    case "carRear":
+    case 'carRear':
       return FontAwesomeIcons.carRear;
-    case "carSide":
+    case 'carSide':
       return FontAwesomeIcons.carSide;
-    case "carTunnel":
+    case 'carTunnel':
       return FontAwesomeIcons.carTunnel;
-    case "caravan":
+    case 'caravan':
       return FontAwesomeIcons.caravan;
-    case "caretDown":
+    case 'caretDown':
       return FontAwesomeIcons.caretDown;
-    case "caretLeft":
+    case 'caretLeft':
       return FontAwesomeIcons.caretLeft;
-    case "caretRight":
+    case 'caretRight':
       return FontAwesomeIcons.caretRight;
-    case "caretUp":
+    case 'caretUp':
       return FontAwesomeIcons.caretUp;
-    case "carrot":
+    case 'carrot':
       return FontAwesomeIcons.carrot;
-    case "cartArrowDown":
+    case 'cartArrowDown':
       return FontAwesomeIcons.cartArrowDown;
-    case "cartFlatbed":
+    case 'cartFlatbed':
       return FontAwesomeIcons.cartFlatbed;
-    case "cartFlatbedSuitcase":
+    case 'cartFlatbedSuitcase':
       return FontAwesomeIcons.cartFlatbedSuitcase;
-    case "cartPlus":
+    case 'cartPlus':
       return FontAwesomeIcons.cartPlus;
-    case "cartShopping":
+    case 'cartShopping':
       return FontAwesomeIcons.cartShopping;
-    case "cashRegister":
+    case 'cashRegister':
       return FontAwesomeIcons.cashRegister;
-    case "cat":
+    case 'cat':
       return FontAwesomeIcons.cat;
-    case "ccAmazonPay":
+    case 'ccAmazonPay':
       return FontAwesomeIcons.ccAmazonPay;
-    case "ccAmex":
+    case 'ccAmex':
       return FontAwesomeIcons.ccAmex;
-    case "ccApplePay":
+    case 'ccApplePay':
       return FontAwesomeIcons.ccApplePay;
-    case "ccDinersClub":
+    case 'ccDinersClub':
       return FontAwesomeIcons.ccDinersClub;
-    case "ccDiscover":
+    case 'ccDiscover':
       return FontAwesomeIcons.ccDiscover;
-    case "ccJcb":
+    case 'ccJcb':
       return FontAwesomeIcons.ccJcb;
-    case "ccMastercard":
+    case 'ccMastercard':
       return FontAwesomeIcons.ccMastercard;
-    case "ccPaypal":
+    case 'ccPaypal':
       return FontAwesomeIcons.ccPaypal;
-    case "ccStripe":
+    case 'ccStripe':
       return FontAwesomeIcons.ccStripe;
-    case "ccVisa":
+    case 'ccVisa':
       return FontAwesomeIcons.ccVisa;
-    case "cediSign":
+    case 'cediSign':
       return FontAwesomeIcons.cediSign;
-    case "centSign":
+    case 'centSign':
       return FontAwesomeIcons.centSign;
-    case "centercode":
+    case 'centercode':
       return FontAwesomeIcons.centercode;
-    case "centos":
+    case 'centos':
       return FontAwesomeIcons.centos;
-    case "certificate":
+    case 'certificate':
       return FontAwesomeIcons.certificate;
-    case "chair":
+    case 'chair':
       return FontAwesomeIcons.chair;
-    case "chalkboard":
+    case 'chalkboard':
       return FontAwesomeIcons.chalkboard;
-    case "chalkboardUser":
+    case 'chalkboardUser':
       return FontAwesomeIcons.chalkboardUser;
-    case "champagneGlasses":
+    case 'champagneGlasses':
       return FontAwesomeIcons.champagneGlasses;
-    case "chargingStation":
+    case 'chargingStation':
       return FontAwesomeIcons.chargingStation;
-    case "chartArea":
+    case 'chartArea':
       return FontAwesomeIcons.chartArea;
-    case "solidChartBar":
+    case 'solidChartBar':
       return FontAwesomeIcons.solidChartBar;
-    case "chartBar":
+    case 'chartBar':
       return FontAwesomeIcons.chartBar;
-    case "chartColumn":
+    case 'chartColumn':
       return FontAwesomeIcons.chartColumn;
-    case "chartGantt":
+    case 'chartGantt':
       return FontAwesomeIcons.chartGantt;
-    case "chartLine":
+    case 'chartLine':
       return FontAwesomeIcons.chartLine;
-    case "chartPie":
+    case 'chartPie':
       return FontAwesomeIcons.chartPie;
-    case "chartSimple":
+    case 'chartSimple':
       return FontAwesomeIcons.chartSimple;
-    case "check":
+    case 'check':
       return FontAwesomeIcons.check;
-    case "checkDouble":
+    case 'checkDouble':
       return FontAwesomeIcons.checkDouble;
-    case "checkToSlot":
+    case 'checkToSlot':
       return FontAwesomeIcons.checkToSlot;
-    case "cheese":
+    case 'cheese':
       return FontAwesomeIcons.cheese;
-    case "chess":
+    case 'chess':
       return FontAwesomeIcons.chess;
-    case "solidChessBishop":
+    case 'solidChessBishop':
       return FontAwesomeIcons.solidChessBishop;
-    case "chessBishop":
+    case 'chessBishop':
       return FontAwesomeIcons.chessBishop;
-    case "chessBoard":
+    case 'chessBoard':
       return FontAwesomeIcons.chessBoard;
-    case "solidChessKing":
+    case 'solidChessKing':
       return FontAwesomeIcons.solidChessKing;
-    case "chessKing":
+    case 'chessKing':
       return FontAwesomeIcons.chessKing;
-    case "solidChessKnight":
+    case 'solidChessKnight':
       return FontAwesomeIcons.solidChessKnight;
-    case "chessKnight":
+    case 'chessKnight':
       return FontAwesomeIcons.chessKnight;
-    case "solidChessPawn":
+    case 'solidChessPawn':
       return FontAwesomeIcons.solidChessPawn;
-    case "chessPawn":
+    case 'chessPawn':
       return FontAwesomeIcons.chessPawn;
-    case "solidChessQueen":
+    case 'solidChessQueen':
       return FontAwesomeIcons.solidChessQueen;
-    case "chessQueen":
+    case 'chessQueen':
       return FontAwesomeIcons.chessQueen;
-    case "solidChessRook":
+    case 'solidChessRook':
       return FontAwesomeIcons.solidChessRook;
-    case "chessRook":
+    case 'chessRook':
       return FontAwesomeIcons.chessRook;
-    case "chevronDown":
+    case 'chevronDown':
       return FontAwesomeIcons.chevronDown;
-    case "chevronLeft":
+    case 'chevronLeft':
       return FontAwesomeIcons.chevronLeft;
-    case "chevronRight":
+    case 'chevronRight':
       return FontAwesomeIcons.chevronRight;
-    case "chevronUp":
+    case 'chevronUp':
       return FontAwesomeIcons.chevronUp;
-    case "child":
+    case 'child':
       return FontAwesomeIcons.child;
-    case "childCombatant":
+    case 'childCombatant':
       return FontAwesomeIcons.childCombatant;
-    case "childDress":
+    case 'childDress':
       return FontAwesomeIcons.childDress;
-    case "childReaching":
+    case 'childReaching':
       return FontAwesomeIcons.childReaching;
-    case "children":
+    case 'children':
       return FontAwesomeIcons.children;
-    case "chrome":
+    case 'chrome':
       return FontAwesomeIcons.chrome;
-    case "chromecast":
+    case 'chromecast':
       return FontAwesomeIcons.chromecast;
-    case "church":
+    case 'church':
       return FontAwesomeIcons.church;
-    case "solidCircle":
+    case 'solidCircle':
       return FontAwesomeIcons.solidCircle;
-    case "circle":
+    case 'circle':
       return FontAwesomeIcons.circle;
-    case "circleArrowDown":
+    case 'circleArrowDown':
       return FontAwesomeIcons.circleArrowDown;
-    case "circleArrowLeft":
+    case 'circleArrowLeft':
       return FontAwesomeIcons.circleArrowLeft;
-    case "circleArrowRight":
+    case 'circleArrowRight':
       return FontAwesomeIcons.circleArrowRight;
-    case "circleArrowUp":
+    case 'circleArrowUp':
       return FontAwesomeIcons.circleArrowUp;
-    case "solidCircleCheck":
+    case 'solidCircleCheck':
       return FontAwesomeIcons.solidCircleCheck;
-    case "circleCheck":
+    case 'circleCheck':
       return FontAwesomeIcons.circleCheck;
-    case "circleChevronDown":
+    case 'circleChevronDown':
       return FontAwesomeIcons.circleChevronDown;
-    case "circleChevronLeft":
+    case 'circleChevronLeft':
       return FontAwesomeIcons.circleChevronLeft;
-    case "circleChevronRight":
+    case 'circleChevronRight':
       return FontAwesomeIcons.circleChevronRight;
-    case "circleChevronUp":
+    case 'circleChevronUp':
       return FontAwesomeIcons.circleChevronUp;
-    case "circleDollarToSlot":
+    case 'circleDollarToSlot':
       return FontAwesomeIcons.circleDollarToSlot;
-    case "solidCircleDot":
+    case 'solidCircleDot':
       return FontAwesomeIcons.solidCircleDot;
-    case "circleDot":
+    case 'circleDot':
       return FontAwesomeIcons.circleDot;
-    case "solidCircleDown":
+    case 'solidCircleDown':
       return FontAwesomeIcons.solidCircleDown;
-    case "circleDown":
+    case 'circleDown':
       return FontAwesomeIcons.circleDown;
-    case "circleH":
+    case 'circleH':
       return FontAwesomeIcons.circleH;
-    case "circleHalfStroke":
+    case 'circleHalfStroke':
       return FontAwesomeIcons.circleHalfStroke;
-    case "circleInfo":
+    case 'circleInfo':
       return FontAwesomeIcons.circleInfo;
-    case "solidCircleLeft":
+    case 'solidCircleLeft':
       return FontAwesomeIcons.solidCircleLeft;
-    case "circleLeft":
+    case 'circleLeft':
       return FontAwesomeIcons.circleLeft;
-    case "circleMinus":
+    case 'circleMinus':
       return FontAwesomeIcons.circleMinus;
-    case "circleNodes":
+    case 'circleNodes':
       return FontAwesomeIcons.circleNodes;
-    case "circleNotch":
+    case 'circleNotch':
       return FontAwesomeIcons.circleNotch;
-    case "solidCirclePause":
+    case 'solidCirclePause':
       return FontAwesomeIcons.solidCirclePause;
-    case "circlePause":
+    case 'circlePause':
       return FontAwesomeIcons.circlePause;
-    case "solidCirclePlay":
+    case 'solidCirclePlay':
       return FontAwesomeIcons.solidCirclePlay;
-    case "circlePlay":
+    case 'circlePlay':
       return FontAwesomeIcons.circlePlay;
-    case "circlePlus":
+    case 'circlePlus':
       return FontAwesomeIcons.circlePlus;
-    case "solidCircleQuestion":
+    case 'solidCircleQuestion':
       return FontAwesomeIcons.solidCircleQuestion;
-    case "circleQuestion":
+    case 'circleQuestion':
       return FontAwesomeIcons.circleQuestion;
-    case "circleRadiation":
+    case 'circleRadiation':
       return FontAwesomeIcons.circleRadiation;
-    case "solidCircleRight":
+    case 'solidCircleRight':
       return FontAwesomeIcons.solidCircleRight;
-    case "circleRight":
+    case 'circleRight':
       return FontAwesomeIcons.circleRight;
-    case "solidCircleStop":
+    case 'solidCircleStop':
       return FontAwesomeIcons.solidCircleStop;
-    case "circleStop":
+    case 'circleStop':
       return FontAwesomeIcons.circleStop;
-    case "solidCircleUp":
+    case 'solidCircleUp':
       return FontAwesomeIcons.solidCircleUp;
-    case "circleUp":
+    case 'circleUp':
       return FontAwesomeIcons.circleUp;
-    case "solidCircleUser":
+    case 'solidCircleUser':
       return FontAwesomeIcons.solidCircleUser;
-    case "circleUser":
+    case 'circleUser':
       return FontAwesomeIcons.circleUser;
-    case "solidCircleXmark":
+    case 'solidCircleXmark':
       return FontAwesomeIcons.solidCircleXmark;
-    case "circleXmark":
+    case 'circleXmark':
       return FontAwesomeIcons.circleXmark;
-    case "city":
+    case 'city':
       return FontAwesomeIcons.city;
-    case "clapperboard":
+    case 'clapperboard':
       return FontAwesomeIcons.clapperboard;
-    case "solidClipboard":
+    case 'solidClipboard':
       return FontAwesomeIcons.solidClipboard;
-    case "clipboard":
+    case 'clipboard':
       return FontAwesomeIcons.clipboard;
-    case "clipboardCheck":
+    case 'clipboardCheck':
       return FontAwesomeIcons.clipboardCheck;
-    case "clipboardList":
+    case 'clipboardList':
       return FontAwesomeIcons.clipboardList;
-    case "clipboardQuestion":
+    case 'clipboardQuestion':
       return FontAwesomeIcons.clipboardQuestion;
-    case "clipboardUser":
+    case 'clipboardUser':
       return FontAwesomeIcons.clipboardUser;
-    case "solidClock":
+    case 'solidClock':
       return FontAwesomeIcons.solidClock;
-    case "clock":
+    case 'clock':
       return FontAwesomeIcons.clock;
-    case "clockRotateLeft":
+    case 'clockRotateLeft':
       return FontAwesomeIcons.clockRotateLeft;
-    case "solidClone":
+    case 'solidClone':
       return FontAwesomeIcons.solidClone;
-    case "clone":
+    case 'clone':
       return FontAwesomeIcons.clone;
-    case "solidClosedCaptioning":
+    case 'solidClosedCaptioning':
       return FontAwesomeIcons.solidClosedCaptioning;
-    case "closedCaptioning":
+    case 'closedCaptioning':
       return FontAwesomeIcons.closedCaptioning;
-    case "cloud":
+    case 'cloud':
       return FontAwesomeIcons.cloud;
-    case "cloudArrowDown":
+    case 'cloudArrowDown':
       return FontAwesomeIcons.cloudArrowDown;
-    case "cloudArrowUp":
+    case 'cloudArrowUp':
       return FontAwesomeIcons.cloudArrowUp;
-    case "cloudBolt":
+    case 'cloudBolt':
       return FontAwesomeIcons.cloudBolt;
-    case "cloudMeatball":
+    case 'cloudMeatball':
       return FontAwesomeIcons.cloudMeatball;
-    case "cloudMoon":
+    case 'cloudMoon':
       return FontAwesomeIcons.cloudMoon;
-    case "cloudMoonRain":
+    case 'cloudMoonRain':
       return FontAwesomeIcons.cloudMoonRain;
-    case "cloudRain":
+    case 'cloudRain':
       return FontAwesomeIcons.cloudRain;
-    case "cloudShowersHeavy":
+    case 'cloudShowersHeavy':
       return FontAwesomeIcons.cloudShowersHeavy;
-    case "cloudShowersWater":
+    case 'cloudShowersWater':
       return FontAwesomeIcons.cloudShowersWater;
-    case "cloudSun":
+    case 'cloudSun':
       return FontAwesomeIcons.cloudSun;
-    case "cloudSunRain":
+    case 'cloudSunRain':
       return FontAwesomeIcons.cloudSunRain;
-    case "cloudflare":
+    case 'cloudflare':
       return FontAwesomeIcons.cloudflare;
-    case "cloudscale":
+    case 'cloudscale':
       return FontAwesomeIcons.cloudscale;
-    case "cloudsmith":
+    case 'cloudsmith':
       return FontAwesomeIcons.cloudsmith;
-    case "cloudversify":
+    case 'cloudversify':
       return FontAwesomeIcons.cloudversify;
-    case "clover":
+    case 'clover':
       return FontAwesomeIcons.clover;
-    case "cmplid":
+    case 'cmplid':
       return FontAwesomeIcons.cmplid;
-    case "code":
+    case 'code':
       return FontAwesomeIcons.code;
-    case "codeBranch":
+    case 'codeBranch':
       return FontAwesomeIcons.codeBranch;
-    case "codeCommit":
+    case 'codeCommit':
       return FontAwesomeIcons.codeCommit;
-    case "codeCompare":
+    case 'codeCompare':
       return FontAwesomeIcons.codeCompare;
-    case "codeFork":
+    case 'codeFork':
       return FontAwesomeIcons.codeFork;
-    case "codeMerge":
+    case 'codeMerge':
       return FontAwesomeIcons.codeMerge;
-    case "codePullRequest":
+    case 'codePullRequest':
       return FontAwesomeIcons.codePullRequest;
-    case "codepen":
+    case 'codepen':
       return FontAwesomeIcons.codepen;
-    case "codiepie":
+    case 'codiepie':
       return FontAwesomeIcons.codiepie;
-    case "coins":
+    case 'coins':
       return FontAwesomeIcons.coins;
-    case "colonSign":
+    case 'colonSign':
       return FontAwesomeIcons.colonSign;
-    case "solidComment":
+    case 'solidComment':
       return FontAwesomeIcons.solidComment;
-    case "comment":
+    case 'comment':
       return FontAwesomeIcons.comment;
-    case "commentDollar":
+    case 'commentDollar':
       return FontAwesomeIcons.commentDollar;
-    case "solidCommentDots":
+    case 'solidCommentDots':
       return FontAwesomeIcons.solidCommentDots;
-    case "commentDots":
+    case 'commentDots':
       return FontAwesomeIcons.commentDots;
-    case "commentMedical":
+    case 'commentMedical':
       return FontAwesomeIcons.commentMedical;
-    case "commentSlash":
+    case 'commentSlash':
       return FontAwesomeIcons.commentSlash;
-    case "commentSms":
+    case 'commentSms':
       return FontAwesomeIcons.commentSms;
-    case "solidComments":
+    case 'solidComments':
       return FontAwesomeIcons.solidComments;
-    case "comments":
+    case 'comments':
       return FontAwesomeIcons.comments;
-    case "commentsDollar":
+    case 'commentsDollar':
       return FontAwesomeIcons.commentsDollar;
-    case "compactDisc":
+    case 'compactDisc':
       return FontAwesomeIcons.compactDisc;
-    case "solidCompass":
+    case 'solidCompass':
       return FontAwesomeIcons.solidCompass;
-    case "compass":
+    case 'compass':
       return FontAwesomeIcons.compass;
-    case "compassDrafting":
+    case 'compassDrafting':
       return FontAwesomeIcons.compassDrafting;
-    case "compress":
+    case 'compress':
       return FontAwesomeIcons.compress;
-    case "computer":
+    case 'computer':
       return FontAwesomeIcons.computer;
-    case "computerMouse":
+    case 'computerMouse':
       return FontAwesomeIcons.computerMouse;
-    case "confluence":
+    case 'confluence':
       return FontAwesomeIcons.confluence;
-    case "connectdevelop":
+    case 'connectdevelop':
       return FontAwesomeIcons.connectdevelop;
-    case "contao":
+    case 'contao':
       return FontAwesomeIcons.contao;
-    case "cookie":
+    case 'cookie':
       return FontAwesomeIcons.cookie;
-    case "cookieBite":
+    case 'cookieBite':
       return FontAwesomeIcons.cookieBite;
-    case "solidCopy":
+    case 'solidCopy':
       return FontAwesomeIcons.solidCopy;
-    case "copy":
+    case 'copy':
       return FontAwesomeIcons.copy;
-    case "solidCopyright":
+    case 'solidCopyright':
       return FontAwesomeIcons.solidCopyright;
-    case "copyright":
+    case 'copyright':
       return FontAwesomeIcons.copyright;
-    case "cottonBureau":
+    case 'cottonBureau':
       return FontAwesomeIcons.cottonBureau;
-    case "couch":
+    case 'couch':
       return FontAwesomeIcons.couch;
-    case "cow":
+    case 'cow':
       return FontAwesomeIcons.cow;
-    case "cpanel":
+    case 'cpanel':
       return FontAwesomeIcons.cpanel;
-    case "creativeCommons":
+    case 'creativeCommons':
       return FontAwesomeIcons.creativeCommons;
-    case "creativeCommonsBy":
+    case 'creativeCommonsBy':
       return FontAwesomeIcons.creativeCommonsBy;
-    case "creativeCommonsNc":
+    case 'creativeCommonsNc':
       return FontAwesomeIcons.creativeCommonsNc;
-    case "creativeCommonsNcEu":
+    case 'creativeCommonsNcEu':
       return FontAwesomeIcons.creativeCommonsNcEu;
-    case "creativeCommonsNcJp":
+    case 'creativeCommonsNcJp':
       return FontAwesomeIcons.creativeCommonsNcJp;
-    case "creativeCommonsNd":
+    case 'creativeCommonsNd':
       return FontAwesomeIcons.creativeCommonsNd;
-    case "creativeCommonsPd":
+    case 'creativeCommonsPd':
       return FontAwesomeIcons.creativeCommonsPd;
-    case "creativeCommonsPdAlt":
+    case 'creativeCommonsPdAlt':
       return FontAwesomeIcons.creativeCommonsPdAlt;
-    case "creativeCommonsRemix":
+    case 'creativeCommonsRemix':
       return FontAwesomeIcons.creativeCommonsRemix;
-    case "creativeCommonsSa":
+    case 'creativeCommonsSa':
       return FontAwesomeIcons.creativeCommonsSa;
-    case "creativeCommonsSampling":
+    case 'creativeCommonsSampling':
       return FontAwesomeIcons.creativeCommonsSampling;
-    case "creativeCommonsSamplingPlus":
+    case 'creativeCommonsSamplingPlus':
       return FontAwesomeIcons.creativeCommonsSamplingPlus;
-    case "creativeCommonsShare":
+    case 'creativeCommonsShare':
       return FontAwesomeIcons.creativeCommonsShare;
-    case "creativeCommonsZero":
+    case 'creativeCommonsZero':
       return FontAwesomeIcons.creativeCommonsZero;
-    case "solidCreditCard":
+    case 'solidCreditCard':
       return FontAwesomeIcons.solidCreditCard;
-    case "creditCard":
+    case 'creditCard':
       return FontAwesomeIcons.creditCard;
-    case "criticalRole":
+    case 'criticalRole':
       return FontAwesomeIcons.criticalRole;
-    case "crop":
+    case 'crop':
       return FontAwesomeIcons.crop;
-    case "cropSimple":
+    case 'cropSimple':
       return FontAwesomeIcons.cropSimple;
-    case "cross":
+    case 'cross':
       return FontAwesomeIcons.cross;
-    case "crosshairs":
+    case 'crosshairs':
       return FontAwesomeIcons.crosshairs;
-    case "crow":
+    case 'crow':
       return FontAwesomeIcons.crow;
-    case "crown":
+    case 'crown':
       return FontAwesomeIcons.crown;
-    case "crutch":
+    case 'crutch':
       return FontAwesomeIcons.crutch;
-    case "cruzeiroSign":
+    case 'cruzeiroSign':
       return FontAwesomeIcons.cruzeiroSign;
-    case "css3":
+    case 'css3':
       return FontAwesomeIcons.css3;
-    case "css3Alt":
+    case 'css3Alt':
       return FontAwesomeIcons.css3Alt;
-    case "cube":
+    case 'cube':
       return FontAwesomeIcons.cube;
-    case "cubes":
+    case 'cubes':
       return FontAwesomeIcons.cubes;
-    case "cubesStacked":
+    case 'cubesStacked':
       return FontAwesomeIcons.cubesStacked;
-    case "cuttlefish":
+    case 'cuttlefish':
       return FontAwesomeIcons.cuttlefish;
-    case "d":
+    case 'd':
       return FontAwesomeIcons.d;
-    case "dAndD":
+    case 'dAndD':
       return FontAwesomeIcons.dAndD;
-    case "dAndDBeyond":
+    case 'dAndDBeyond':
       return FontAwesomeIcons.dAndDBeyond;
-    case "dailymotion":
+    case 'dailymotion':
       return FontAwesomeIcons.dailymotion;
-    case "dashcube":
+    case 'dashcube':
       return FontAwesomeIcons.dashcube;
-    case "database":
+    case 'database':
       return FontAwesomeIcons.database;
-    case "deezer":
+    case 'deezer':
       return FontAwesomeIcons.deezer;
-    case "deleteLeft":
+    case 'deleteLeft':
       return FontAwesomeIcons.deleteLeft;
-    case "delicious":
+    case 'delicious':
       return FontAwesomeIcons.delicious;
-    case "democrat":
+    case 'democrat':
       return FontAwesomeIcons.democrat;
-    case "deploydog":
+    case 'deploydog':
       return FontAwesomeIcons.deploydog;
-    case "deskpro":
+    case 'deskpro':
       return FontAwesomeIcons.deskpro;
-    case "desktop":
+    case 'desktop':
       return FontAwesomeIcons.desktop;
-    case "dev":
+    case 'dev':
       return FontAwesomeIcons.dev;
-    case "deviantart":
+    case 'deviantart':
       return FontAwesomeIcons.deviantart;
-    case "dharmachakra":
+    case 'dharmachakra':
       return FontAwesomeIcons.dharmachakra;
-    case "dhl":
+    case 'dhl':
       return FontAwesomeIcons.dhl;
-    case "diagramNext":
+    case 'diagramNext':
       return FontAwesomeIcons.diagramNext;
-    case "diagramPredecessor":
+    case 'diagramPredecessor':
       return FontAwesomeIcons.diagramPredecessor;
-    case "diagramProject":
+    case 'diagramProject':
       return FontAwesomeIcons.diagramProject;
-    case "diagramSuccessor":
+    case 'diagramSuccessor':
       return FontAwesomeIcons.diagramSuccessor;
-    case "diamond":
+    case 'diamond':
       return FontAwesomeIcons.diamond;
-    case "diamondTurnRight":
+    case 'diamondTurnRight':
       return FontAwesomeIcons.diamondTurnRight;
-    case "diaspora":
+    case 'diaspora':
       return FontAwesomeIcons.diaspora;
-    case "dice":
+    case 'dice':
       return FontAwesomeIcons.dice;
-    case "diceD20":
+    case 'diceD20':
       return FontAwesomeIcons.diceD20;
-    case "diceD6":
+    case 'diceD6':
       return FontAwesomeIcons.diceD6;
-    case "diceFive":
+    case 'diceFive':
       return FontAwesomeIcons.diceFive;
-    case "diceFour":
+    case 'diceFour':
       return FontAwesomeIcons.diceFour;
-    case "diceOne":
+    case 'diceOne':
       return FontAwesomeIcons.diceOne;
-    case "diceSix":
+    case 'diceSix':
       return FontAwesomeIcons.diceSix;
-    case "diceThree":
+    case 'diceThree':
       return FontAwesomeIcons.diceThree;
-    case "diceTwo":
+    case 'diceTwo':
       return FontAwesomeIcons.diceTwo;
-    case "digg":
+    case 'digg':
       return FontAwesomeIcons.digg;
-    case "digitalOcean":
+    case 'digitalOcean':
       return FontAwesomeIcons.digitalOcean;
-    case "discord":
+    case 'discord':
       return FontAwesomeIcons.discord;
-    case "discourse":
+    case 'discourse':
       return FontAwesomeIcons.discourse;
-    case "disease":
+    case 'disease':
       return FontAwesomeIcons.disease;
-    case "display":
+    case 'display':
       return FontAwesomeIcons.display;
-    case "divide":
+    case 'divide':
       return FontAwesomeIcons.divide;
-    case "dna":
+    case 'dna':
       return FontAwesomeIcons.dna;
-    case "dochub":
+    case 'dochub':
       return FontAwesomeIcons.dochub;
-    case "docker":
+    case 'docker':
       return FontAwesomeIcons.docker;
-    case "dog":
+    case 'dog':
       return FontAwesomeIcons.dog;
-    case "dollarSign":
+    case 'dollarSign':
       return FontAwesomeIcons.dollarSign;
-    case "dolly":
+    case 'dolly':
       return FontAwesomeIcons.dolly;
-    case "dongSign":
+    case 'dongSign':
       return FontAwesomeIcons.dongSign;
-    case "doorClosed":
+    case 'doorClosed':
       return FontAwesomeIcons.doorClosed;
-    case "doorOpen":
+    case 'doorOpen':
       return FontAwesomeIcons.doorOpen;
-    case "dove":
+    case 'dove':
       return FontAwesomeIcons.dove;
-    case "downLeftAndUpRightToCenter":
+    case 'downLeftAndUpRightToCenter':
       return FontAwesomeIcons.downLeftAndUpRightToCenter;
-    case "downLong":
+    case 'downLong':
       return FontAwesomeIcons.downLong;
-    case "download":
+    case 'download':
       return FontAwesomeIcons.download;
-    case "draft2digital":
+    case 'draft2digital':
       return FontAwesomeIcons.draft2digital;
-    case "dragon":
+    case 'dragon':
       return FontAwesomeIcons.dragon;
-    case "drawPolygon":
+    case 'drawPolygon':
       return FontAwesomeIcons.drawPolygon;
-    case "dribbble":
+    case 'dribbble':
       return FontAwesomeIcons.dribbble;
-    case "dropbox":
+    case 'dropbox':
       return FontAwesomeIcons.dropbox;
-    case "droplet":
+    case 'droplet':
       return FontAwesomeIcons.droplet;
-    case "dropletSlash":
+    case 'dropletSlash':
       return FontAwesomeIcons.dropletSlash;
-    case "drum":
+    case 'drum':
       return FontAwesomeIcons.drum;
-    case "drumSteelpan":
+    case 'drumSteelpan':
       return FontAwesomeIcons.drumSteelpan;
-    case "drumstickBite":
+    case 'drumstickBite':
       return FontAwesomeIcons.drumstickBite;
-    case "drupal":
+    case 'drupal':
       return FontAwesomeIcons.drupal;
-    case "dumbbell":
+    case 'dumbbell':
       return FontAwesomeIcons.dumbbell;
-    case "dumpster":
+    case 'dumpster':
       return FontAwesomeIcons.dumpster;
-    case "dumpsterFire":
+    case 'dumpsterFire':
       return FontAwesomeIcons.dumpsterFire;
-    case "dungeon":
+    case 'dungeon':
       return FontAwesomeIcons.dungeon;
-    case "dyalog":
+    case 'dyalog':
       return FontAwesomeIcons.dyalog;
-    case "e":
+    case 'e':
       return FontAwesomeIcons.e;
-    case "earDeaf":
+    case 'earDeaf':
       return FontAwesomeIcons.earDeaf;
-    case "earListen":
+    case 'earListen':
       return FontAwesomeIcons.earListen;
-    case "earlybirds":
+    case 'earlybirds':
       return FontAwesomeIcons.earlybirds;
-    case "earthAfrica":
+    case 'earthAfrica':
       return FontAwesomeIcons.earthAfrica;
-    case "earthAmericas":
+    case 'earthAmericas':
       return FontAwesomeIcons.earthAmericas;
-    case "earthAsia":
+    case 'earthAsia':
       return FontAwesomeIcons.earthAsia;
-    case "earthEurope":
+    case 'earthEurope':
       return FontAwesomeIcons.earthEurope;
-    case "earthOceania":
+    case 'earthOceania':
       return FontAwesomeIcons.earthOceania;
-    case "ebay":
+    case 'ebay':
       return FontAwesomeIcons.ebay;
-    case "edge":
+    case 'edge':
       return FontAwesomeIcons.edge;
-    case "edgeLegacy":
+    case 'edgeLegacy':
       return FontAwesomeIcons.edgeLegacy;
-    case "egg":
+    case 'egg':
       return FontAwesomeIcons.egg;
-    case "eject":
+    case 'eject':
       return FontAwesomeIcons.eject;
-    case "elementor":
+    case 'elementor':
       return FontAwesomeIcons.elementor;
-    case "elevator":
+    case 'elevator':
       return FontAwesomeIcons.elevator;
-    case "ellipsis":
+    case 'ellipsis':
       return FontAwesomeIcons.ellipsis;
-    case "ellipsisVertical":
+    case 'ellipsisVertical':
       return FontAwesomeIcons.ellipsisVertical;
-    case "ello":
+    case 'ello':
       return FontAwesomeIcons.ello;
-    case "ember":
+    case 'ember':
       return FontAwesomeIcons.ember;
-    case "empire":
+    case 'empire':
       return FontAwesomeIcons.empire;
-    case "solidEnvelope":
+    case 'solidEnvelope':
       return FontAwesomeIcons.solidEnvelope;
-    case "envelope":
+    case 'envelope':
       return FontAwesomeIcons.envelope;
-    case "envelopeCircleCheck":
+    case 'envelopeCircleCheck':
       return FontAwesomeIcons.envelopeCircleCheck;
-    case "solidEnvelopeOpen":
+    case 'solidEnvelopeOpen':
       return FontAwesomeIcons.solidEnvelopeOpen;
-    case "envelopeOpen":
+    case 'envelopeOpen':
       return FontAwesomeIcons.envelopeOpen;
-    case "envelopeOpenText":
+    case 'envelopeOpenText':
       return FontAwesomeIcons.envelopeOpenText;
-    case "envelopesBulk":
+    case 'envelopesBulk':
       return FontAwesomeIcons.envelopesBulk;
-    case "envira":
+    case 'envira':
       return FontAwesomeIcons.envira;
-    case "equals":
+    case 'equals':
       return FontAwesomeIcons.equals;
-    case "eraser":
+    case 'eraser':
       return FontAwesomeIcons.eraser;
-    case "erlang":
+    case 'erlang':
       return FontAwesomeIcons.erlang;
-    case "ethereum":
+    case 'ethereum':
       return FontAwesomeIcons.ethereum;
-    case "ethernet":
+    case 'ethernet':
       return FontAwesomeIcons.ethernet;
-    case "etsy":
+    case 'etsy':
       return FontAwesomeIcons.etsy;
-    case "euroSign":
+    case 'euroSign':
       return FontAwesomeIcons.euroSign;
-    case "evernote":
+    case 'evernote':
       return FontAwesomeIcons.evernote;
-    case "exclamation":
+    case 'exclamation':
       return FontAwesomeIcons.exclamation;
-    case "expand":
+    case 'expand':
       return FontAwesomeIcons.expand;
-    case "expeditedssl":
+    case 'expeditedssl':
       return FontAwesomeIcons.expeditedssl;
-    case "explosion":
+    case 'explosion':
       return FontAwesomeIcons.explosion;
-    case "solidEye":
+    case 'solidEye':
       return FontAwesomeIcons.solidEye;
-    case "eye":
+    case 'eye':
       return FontAwesomeIcons.eye;
-    case "eyeDropper":
+    case 'eyeDropper':
       return FontAwesomeIcons.eyeDropper;
-    case "eyeLowVision":
+    case 'eyeLowVision':
       return FontAwesomeIcons.eyeLowVision;
-    case "solidEyeSlash":
+    case 'solidEyeSlash':
       return FontAwesomeIcons.solidEyeSlash;
-    case "eyeSlash":
+    case 'eyeSlash':
       return FontAwesomeIcons.eyeSlash;
-    case "f":
+    case 'f':
       return FontAwesomeIcons.f;
-    case "solidFaceAngry":
+    case 'solidFaceAngry':
       return FontAwesomeIcons.solidFaceAngry;
-    case "faceAngry":
+    case 'faceAngry':
       return FontAwesomeIcons.faceAngry;
-    case "solidFaceDizzy":
+    case 'solidFaceDizzy':
       return FontAwesomeIcons.solidFaceDizzy;
-    case "faceDizzy":
+    case 'faceDizzy':
       return FontAwesomeIcons.faceDizzy;
-    case "solidFaceFlushed":
+    case 'solidFaceFlushed':
       return FontAwesomeIcons.solidFaceFlushed;
-    case "faceFlushed":
+    case 'faceFlushed':
       return FontAwesomeIcons.faceFlushed;
-    case "solidFaceFrown":
+    case 'solidFaceFrown':
       return FontAwesomeIcons.solidFaceFrown;
-    case "faceFrown":
+    case 'faceFrown':
       return FontAwesomeIcons.faceFrown;
-    case "solidFaceFrownOpen":
+    case 'solidFaceFrownOpen':
       return FontAwesomeIcons.solidFaceFrownOpen;
-    case "faceFrownOpen":
+    case 'faceFrownOpen':
       return FontAwesomeIcons.faceFrownOpen;
-    case "solidFaceGrimace":
+    case 'solidFaceGrimace':
       return FontAwesomeIcons.solidFaceGrimace;
-    case "faceGrimace":
+    case 'faceGrimace':
       return FontAwesomeIcons.faceGrimace;
-    case "solidFaceGrin":
+    case 'solidFaceGrin':
       return FontAwesomeIcons.solidFaceGrin;
-    case "faceGrin":
+    case 'faceGrin':
       return FontAwesomeIcons.faceGrin;
-    case "solidFaceGrinBeam":
+    case 'solidFaceGrinBeam':
       return FontAwesomeIcons.solidFaceGrinBeam;
-    case "faceGrinBeam":
+    case 'faceGrinBeam':
       return FontAwesomeIcons.faceGrinBeam;
-    case "solidFaceGrinBeamSweat":
+    case 'solidFaceGrinBeamSweat':
       return FontAwesomeIcons.solidFaceGrinBeamSweat;
-    case "faceGrinBeamSweat":
+    case 'faceGrinBeamSweat':
       return FontAwesomeIcons.faceGrinBeamSweat;
-    case "solidFaceGrinHearts":
+    case 'solidFaceGrinHearts':
       return FontAwesomeIcons.solidFaceGrinHearts;
-    case "faceGrinHearts":
+    case 'faceGrinHearts':
       return FontAwesomeIcons.faceGrinHearts;
-    case "solidFaceGrinSquint":
+    case 'solidFaceGrinSquint':
       return FontAwesomeIcons.solidFaceGrinSquint;
-    case "faceGrinSquint":
+    case 'faceGrinSquint':
       return FontAwesomeIcons.faceGrinSquint;
-    case "solidFaceGrinSquintTears":
+    case 'solidFaceGrinSquintTears':
       return FontAwesomeIcons.solidFaceGrinSquintTears;
-    case "faceGrinSquintTears":
+    case 'faceGrinSquintTears':
       return FontAwesomeIcons.faceGrinSquintTears;
-    case "solidFaceGrinStars":
+    case 'solidFaceGrinStars':
       return FontAwesomeIcons.solidFaceGrinStars;
-    case "faceGrinStars":
+    case 'faceGrinStars':
       return FontAwesomeIcons.faceGrinStars;
-    case "solidFaceGrinTears":
+    case 'solidFaceGrinTears':
       return FontAwesomeIcons.solidFaceGrinTears;
-    case "faceGrinTears":
+    case 'faceGrinTears':
       return FontAwesomeIcons.faceGrinTears;
-    case "solidFaceGrinTongue":
+    case 'solidFaceGrinTongue':
       return FontAwesomeIcons.solidFaceGrinTongue;
-    case "faceGrinTongue":
+    case 'faceGrinTongue':
       return FontAwesomeIcons.faceGrinTongue;
-    case "solidFaceGrinTongueSquint":
+    case 'solidFaceGrinTongueSquint':
       return FontAwesomeIcons.solidFaceGrinTongueSquint;
-    case "faceGrinTongueSquint":
+    case 'faceGrinTongueSquint':
       return FontAwesomeIcons.faceGrinTongueSquint;
-    case "solidFaceGrinTongueWink":
+    case 'solidFaceGrinTongueWink':
       return FontAwesomeIcons.solidFaceGrinTongueWink;
-    case "faceGrinTongueWink":
+    case 'faceGrinTongueWink':
       return FontAwesomeIcons.faceGrinTongueWink;
-    case "solidFaceGrinWide":
+    case 'solidFaceGrinWide':
       return FontAwesomeIcons.solidFaceGrinWide;
-    case "faceGrinWide":
+    case 'faceGrinWide':
       return FontAwesomeIcons.faceGrinWide;
-    case "solidFaceGrinWink":
+    case 'solidFaceGrinWink':
       return FontAwesomeIcons.solidFaceGrinWink;
-    case "faceGrinWink":
+    case 'faceGrinWink':
       return FontAwesomeIcons.faceGrinWink;
-    case "solidFaceKiss":
+    case 'solidFaceKiss':
       return FontAwesomeIcons.solidFaceKiss;
-    case "faceKiss":
+    case 'faceKiss':
       return FontAwesomeIcons.faceKiss;
-    case "solidFaceKissBeam":
+    case 'solidFaceKissBeam':
       return FontAwesomeIcons.solidFaceKissBeam;
-    case "faceKissBeam":
+    case 'faceKissBeam':
       return FontAwesomeIcons.faceKissBeam;
-    case "solidFaceKissWinkHeart":
+    case 'solidFaceKissWinkHeart':
       return FontAwesomeIcons.solidFaceKissWinkHeart;
-    case "faceKissWinkHeart":
+    case 'faceKissWinkHeart':
       return FontAwesomeIcons.faceKissWinkHeart;
-    case "solidFaceLaugh":
+    case 'solidFaceLaugh':
       return FontAwesomeIcons.solidFaceLaugh;
-    case "faceLaugh":
+    case 'faceLaugh':
       return FontAwesomeIcons.faceLaugh;
-    case "solidFaceLaughBeam":
+    case 'solidFaceLaughBeam':
       return FontAwesomeIcons.solidFaceLaughBeam;
-    case "faceLaughBeam":
+    case 'faceLaughBeam':
       return FontAwesomeIcons.faceLaughBeam;
-    case "solidFaceLaughSquint":
+    case 'solidFaceLaughSquint':
       return FontAwesomeIcons.solidFaceLaughSquint;
-    case "faceLaughSquint":
+    case 'faceLaughSquint':
       return FontAwesomeIcons.faceLaughSquint;
-    case "solidFaceLaughWink":
+    case 'solidFaceLaughWink':
       return FontAwesomeIcons.solidFaceLaughWink;
-    case "faceLaughWink":
+    case 'faceLaughWink':
       return FontAwesomeIcons.faceLaughWink;
-    case "solidFaceMeh":
+    case 'solidFaceMeh':
       return FontAwesomeIcons.solidFaceMeh;
-    case "faceMeh":
+    case 'faceMeh':
       return FontAwesomeIcons.faceMeh;
-    case "solidFaceMehBlank":
+    case 'solidFaceMehBlank':
       return FontAwesomeIcons.solidFaceMehBlank;
-    case "faceMehBlank":
+    case 'faceMehBlank':
       return FontAwesomeIcons.faceMehBlank;
-    case "solidFaceRollingEyes":
+    case 'solidFaceRollingEyes':
       return FontAwesomeIcons.solidFaceRollingEyes;
-    case "faceRollingEyes":
+    case 'faceRollingEyes':
       return FontAwesomeIcons.faceRollingEyes;
-    case "solidFaceSadCry":
+    case 'solidFaceSadCry':
       return FontAwesomeIcons.solidFaceSadCry;
-    case "faceSadCry":
+    case 'faceSadCry':
       return FontAwesomeIcons.faceSadCry;
-    case "solidFaceSadTear":
+    case 'solidFaceSadTear':
       return FontAwesomeIcons.solidFaceSadTear;
-    case "faceSadTear":
+    case 'faceSadTear':
       return FontAwesomeIcons.faceSadTear;
-    case "solidFaceSmile":
+    case 'solidFaceSmile':
       return FontAwesomeIcons.solidFaceSmile;
-    case "faceSmile":
+    case 'faceSmile':
       return FontAwesomeIcons.faceSmile;
-    case "solidFaceSmileBeam":
+    case 'solidFaceSmileBeam':
       return FontAwesomeIcons.solidFaceSmileBeam;
-    case "faceSmileBeam":
+    case 'faceSmileBeam':
       return FontAwesomeIcons.faceSmileBeam;
-    case "solidFaceSmileWink":
+    case 'solidFaceSmileWink':
       return FontAwesomeIcons.solidFaceSmileWink;
-    case "faceSmileWink":
+    case 'faceSmileWink':
       return FontAwesomeIcons.faceSmileWink;
-    case "solidFaceSurprise":
+    case 'solidFaceSurprise':
       return FontAwesomeIcons.solidFaceSurprise;
-    case "faceSurprise":
+    case 'faceSurprise':
       return FontAwesomeIcons.faceSurprise;
-    case "solidFaceTired":
+    case 'solidFaceTired':
       return FontAwesomeIcons.solidFaceTired;
-    case "faceTired":
+    case 'faceTired':
       return FontAwesomeIcons.faceTired;
-    case "facebook":
+    case 'facebook':
       return FontAwesomeIcons.facebook;
-    case "facebookF":
+    case 'facebookF':
       return FontAwesomeIcons.facebookF;
-    case "facebookMessenger":
+    case 'facebookMessenger':
       return FontAwesomeIcons.facebookMessenger;
-    case "fan":
+    case 'fan':
       return FontAwesomeIcons.fan;
-    case "fantasyFlightGames":
+    case 'fantasyFlightGames':
       return FontAwesomeIcons.fantasyFlightGames;
-    case "faucet":
+    case 'faucet':
       return FontAwesomeIcons.faucet;
-    case "faucetDrip":
+    case 'faucetDrip':
       return FontAwesomeIcons.faucetDrip;
-    case "fax":
+    case 'fax':
       return FontAwesomeIcons.fax;
-    case "feather":
+    case 'feather':
       return FontAwesomeIcons.feather;
-    case "featherPointed":
+    case 'featherPointed':
       return FontAwesomeIcons.featherPointed;
-    case "fedex":
+    case 'fedex':
       return FontAwesomeIcons.fedex;
-    case "fedora":
+    case 'fedora':
       return FontAwesomeIcons.fedora;
-    case "ferry":
+    case 'ferry':
       return FontAwesomeIcons.ferry;
-    case "figma":
+    case 'figma':
       return FontAwesomeIcons.figma;
-    case "solidFile":
+    case 'solidFile':
       return FontAwesomeIcons.solidFile;
-    case "file":
+    case 'file':
       return FontAwesomeIcons.file;
-    case "fileArrowDown":
+    case 'fileArrowDown':
       return FontAwesomeIcons.fileArrowDown;
-    case "fileArrowUp":
+    case 'fileArrowUp':
       return FontAwesomeIcons.fileArrowUp;
-    case "solidFileAudio":
+    case 'solidFileAudio':
       return FontAwesomeIcons.solidFileAudio;
-    case "fileAudio":
+    case 'fileAudio':
       return FontAwesomeIcons.fileAudio;
-    case "fileCircleCheck":
+    case 'fileCircleCheck':
       return FontAwesomeIcons.fileCircleCheck;
-    case "fileCircleExclamation":
+    case 'fileCircleExclamation':
       return FontAwesomeIcons.fileCircleExclamation;
-    case "fileCircleMinus":
+    case 'fileCircleMinus':
       return FontAwesomeIcons.fileCircleMinus;
-    case "fileCirclePlus":
+    case 'fileCirclePlus':
       return FontAwesomeIcons.fileCirclePlus;
-    case "fileCircleQuestion":
+    case 'fileCircleQuestion':
       return FontAwesomeIcons.fileCircleQuestion;
-    case "fileCircleXmark":
+    case 'fileCircleXmark':
       return FontAwesomeIcons.fileCircleXmark;
-    case "solidFileCode":
+    case 'solidFileCode':
       return FontAwesomeIcons.solidFileCode;
-    case "fileCode":
+    case 'fileCode':
       return FontAwesomeIcons.fileCode;
-    case "fileContract":
+    case 'fileContract':
       return FontAwesomeIcons.fileContract;
-    case "fileCsv":
+    case 'fileCsv':
       return FontAwesomeIcons.fileCsv;
-    case "solidFileExcel":
+    case 'solidFileExcel':
       return FontAwesomeIcons.solidFileExcel;
-    case "fileExcel":
+    case 'fileExcel':
       return FontAwesomeIcons.fileExcel;
-    case "fileExport":
+    case 'fileExport':
       return FontAwesomeIcons.fileExport;
-    case "solidFileImage":
+    case 'solidFileImage':
       return FontAwesomeIcons.solidFileImage;
-    case "fileImage":
+    case 'fileImage':
       return FontAwesomeIcons.fileImage;
-    case "fileImport":
+    case 'fileImport':
       return FontAwesomeIcons.fileImport;
-    case "fileInvoice":
+    case 'fileInvoice':
       return FontAwesomeIcons.fileInvoice;
-    case "fileInvoiceDollar":
+    case 'fileInvoiceDollar':
       return FontAwesomeIcons.fileInvoiceDollar;
-    case "solidFileLines":
+    case 'solidFileLines':
       return FontAwesomeIcons.solidFileLines;
-    case "fileLines":
+    case 'fileLines':
       return FontAwesomeIcons.fileLines;
-    case "fileMedical":
+    case 'fileMedical':
       return FontAwesomeIcons.fileMedical;
-    case "solidFilePdf":
+    case 'solidFilePdf':
       return FontAwesomeIcons.solidFilePdf;
-    case "filePdf":
+    case 'filePdf':
       return FontAwesomeIcons.filePdf;
-    case "filePen":
+    case 'filePen':
       return FontAwesomeIcons.filePen;
-    case "solidFilePowerpoint":
+    case 'solidFilePowerpoint':
       return FontAwesomeIcons.solidFilePowerpoint;
-    case "filePowerpoint":
+    case 'filePowerpoint':
       return FontAwesomeIcons.filePowerpoint;
-    case "filePrescription":
+    case 'filePrescription':
       return FontAwesomeIcons.filePrescription;
-    case "fileShield":
+    case 'fileShield':
       return FontAwesomeIcons.fileShield;
-    case "fileSignature":
+    case 'fileSignature':
       return FontAwesomeIcons.fileSignature;
-    case "solidFileVideo":
+    case 'solidFileVideo':
       return FontAwesomeIcons.solidFileVideo;
-    case "fileVideo":
+    case 'fileVideo':
       return FontAwesomeIcons.fileVideo;
-    case "fileWaveform":
+    case 'fileWaveform':
       return FontAwesomeIcons.fileWaveform;
-    case "solidFileWord":
+    case 'solidFileWord':
       return FontAwesomeIcons.solidFileWord;
-    case "fileWord":
+    case 'fileWord':
       return FontAwesomeIcons.fileWord;
-    case "solidFileZipper":
+    case 'solidFileZipper':
       return FontAwesomeIcons.solidFileZipper;
-    case "fill":
+    case 'fill':
       return FontAwesomeIcons.fill;
-    case "fillDrip":
+    case 'fillDrip':
       return FontAwesomeIcons.fillDrip;
-    case "film":
+    case 'film':
       return FontAwesomeIcons.film;
-    case "filter":
+    case 'filter':
       return FontAwesomeIcons.filter;
-    case "filterCircleDollar":
+    case 'filterCircleDollar':
       return FontAwesomeIcons.filterCircleDollar;
-    case "filterCircleXmark":
+    case 'filterCircleXmark':
       return FontAwesomeIcons.filterCircleXmark;
-    case "fingerprint":
+    case 'fingerprint':
       return FontAwesomeIcons.fingerprint;
-    case "fire":
+    case 'fire':
       return FontAwesomeIcons.fire;
-    case "fireBurner":
+    case 'fireBurner':
       return FontAwesomeIcons.fireBurner;
-    case "fireExtinguisher":
+    case 'fireExtinguisher':
       return FontAwesomeIcons.fireExtinguisher;
-    case "fireFlameCurved":
+    case 'fireFlameCurved':
       return FontAwesomeIcons.fireFlameCurved;
-    case "fireFlameSimple":
+    case 'fireFlameSimple':
       return FontAwesomeIcons.fireFlameSimple;
-    case "firefox":
+    case 'firefox':
       return FontAwesomeIcons.firefox;
-    case "firefoxBrowser":
+    case 'firefoxBrowser':
       return FontAwesomeIcons.firefoxBrowser;
-    case "firstOrder":
+    case 'firstOrder':
       return FontAwesomeIcons.firstOrder;
-    case "firstOrderAlt":
+    case 'firstOrderAlt':
       return FontAwesomeIcons.firstOrderAlt;
-    case "firstdraft":
+    case 'firstdraft':
       return FontAwesomeIcons.firstdraft;
-    case "fish":
+    case 'fish':
       return FontAwesomeIcons.fish;
-    case "fishFins":
+    case 'fishFins':
       return FontAwesomeIcons.fishFins;
-    case "solidFlag":
+    case 'solidFlag':
       return FontAwesomeIcons.solidFlag;
-    case "flag":
+    case 'flag':
       return FontAwesomeIcons.flag;
-    case "flagCheckered":
+    case 'flagCheckered':
       return FontAwesomeIcons.flagCheckered;
-    case "flagUsa":
+    case 'flagUsa':
       return FontAwesomeIcons.flagUsa;
-    case "flask":
+    case 'flask':
       return FontAwesomeIcons.flask;
-    case "flaskVial":
+    case 'flaskVial':
       return FontAwesomeIcons.flaskVial;
-    case "flickr":
+    case 'flickr':
       return FontAwesomeIcons.flickr;
-    case "flipboard":
+    case 'flipboard':
       return FontAwesomeIcons.flipboard;
-    case "solidFloppyDisk":
+    case 'solidFloppyDisk':
       return FontAwesomeIcons.solidFloppyDisk;
-    case "floppyDisk":
+    case 'floppyDisk':
       return FontAwesomeIcons.floppyDisk;
-    case "florinSign":
+    case 'florinSign':
       return FontAwesomeIcons.florinSign;
-    case "fly":
+    case 'fly':
       return FontAwesomeIcons.fly;
-    case "solidFolder":
+    case 'solidFolder':
       return FontAwesomeIcons.solidFolder;
-    case "folder":
+    case 'folder':
       return FontAwesomeIcons.folder;
-    case "solidFolderClosed":
+    case 'solidFolderClosed':
       return FontAwesomeIcons.solidFolderClosed;
-    case "folderClosed":
+    case 'folderClosed':
       return FontAwesomeIcons.folderClosed;
-    case "folderMinus":
+    case 'folderMinus':
       return FontAwesomeIcons.folderMinus;
-    case "solidFolderOpen":
+    case 'solidFolderOpen':
       return FontAwesomeIcons.solidFolderOpen;
-    case "folderOpen":
+    case 'folderOpen':
       return FontAwesomeIcons.folderOpen;
-    case "folderPlus":
+    case 'folderPlus':
       return FontAwesomeIcons.folderPlus;
-    case "folderTree":
+    case 'folderTree':
       return FontAwesomeIcons.folderTree;
-    case "font":
+    case 'font':
       return FontAwesomeIcons.font;
-    case "solidFontAwesome":
+    case 'solidFontAwesome':
       return FontAwesomeIcons.solidFontAwesome;
-    case "fontAwesome":
+    case 'fontAwesome':
       return FontAwesomeIcons.fontAwesome;
-    case "brandsFontAwesome":
+    case 'brandsFontAwesome':
       return FontAwesomeIcons.brandsFontAwesome;
-    case "fonticons":
+    case 'fonticons':
       return FontAwesomeIcons.fonticons;
-    case "fonticonsFi":
+    case 'fonticonsFi':
       return FontAwesomeIcons.fonticonsFi;
-    case "football":
+    case 'football':
       return FontAwesomeIcons.football;
-    case "fortAwesome":
+    case 'fortAwesome':
       return FontAwesomeIcons.fortAwesome;
-    case "fortAwesomeAlt":
+    case 'fortAwesomeAlt':
       return FontAwesomeIcons.fortAwesomeAlt;
-    case "forumbee":
+    case 'forumbee':
       return FontAwesomeIcons.forumbee;
-    case "forward":
+    case 'forward':
       return FontAwesomeIcons.forward;
-    case "forwardFast":
+    case 'forwardFast':
       return FontAwesomeIcons.forwardFast;
-    case "forwardStep":
+    case 'forwardStep':
       return FontAwesomeIcons.forwardStep;
-    case "foursquare":
+    case 'foursquare':
       return FontAwesomeIcons.foursquare;
-    case "francSign":
+    case 'francSign':
       return FontAwesomeIcons.francSign;
-    case "freeCodeCamp":
+    case 'freeCodeCamp':
       return FontAwesomeIcons.freeCodeCamp;
-    case "freebsd":
+    case 'freebsd':
       return FontAwesomeIcons.freebsd;
-    case "frog":
+    case 'frog':
       return FontAwesomeIcons.frog;
-    case "fulcrum":
+    case 'fulcrum':
       return FontAwesomeIcons.fulcrum;
-    case "solidFutbol":
+    case 'solidFutbol':
       return FontAwesomeIcons.solidFutbol;
-    case "futbol":
+    case 'futbol':
       return FontAwesomeIcons.futbol;
-    case "g":
+    case 'g':
       return FontAwesomeIcons.g;
-    case "galacticRepublic":
+    case 'galacticRepublic':
       return FontAwesomeIcons.galacticRepublic;
-    case "galacticSenate":
+    case 'galacticSenate':
       return FontAwesomeIcons.galacticSenate;
-    case "gamepad":
+    case 'gamepad':
       return FontAwesomeIcons.gamepad;
-    case "gasPump":
+    case 'gasPump':
       return FontAwesomeIcons.gasPump;
-    case "gauge":
+    case 'gauge':
       return FontAwesomeIcons.gauge;
-    case "gaugeHigh":
+    case 'gaugeHigh':
       return FontAwesomeIcons.gaugeHigh;
-    case "gaugeSimple":
+    case 'gaugeSimple':
       return FontAwesomeIcons.gaugeSimple;
-    case "gaugeSimpleHigh":
+    case 'gaugeSimpleHigh':
       return FontAwesomeIcons.gaugeSimpleHigh;
-    case "gavel":
+    case 'gavel':
       return FontAwesomeIcons.gavel;
-    case "gear":
+    case 'gear':
       return FontAwesomeIcons.gear;
-    case "gears":
+    case 'gears':
       return FontAwesomeIcons.gears;
-    case "solidGem":
+    case 'solidGem':
       return FontAwesomeIcons.solidGem;
-    case "gem":
+    case 'gem':
       return FontAwesomeIcons.gem;
-    case "genderless":
+    case 'genderless':
       return FontAwesomeIcons.genderless;
-    case "getPocket":
+    case 'getPocket':
       return FontAwesomeIcons.getPocket;
-    case "gg":
+    case 'gg':
       return FontAwesomeIcons.gg;
-    case "ggCircle":
+    case 'ggCircle':
       return FontAwesomeIcons.ggCircle;
-    case "ghost":
+    case 'ghost':
       return FontAwesomeIcons.ghost;
-    case "gift":
+    case 'gift':
       return FontAwesomeIcons.gift;
-    case "gifts":
+    case 'gifts':
       return FontAwesomeIcons.gifts;
-    case "git":
+    case 'git':
       return FontAwesomeIcons.git;
-    case "gitAlt":
+    case 'gitAlt':
       return FontAwesomeIcons.gitAlt;
-    case "github":
+    case 'github':
       return FontAwesomeIcons.github;
-    case "githubAlt":
+    case 'githubAlt':
       return FontAwesomeIcons.githubAlt;
-    case "gitkraken":
+    case 'gitkraken':
       return FontAwesomeIcons.gitkraken;
-    case "gitlab":
+    case 'gitlab':
       return FontAwesomeIcons.gitlab;
-    case "gitter":
+    case 'gitter':
       return FontAwesomeIcons.gitter;
-    case "glassWater":
+    case 'glassWater':
       return FontAwesomeIcons.glassWater;
-    case "glassWaterDroplet":
+    case 'glassWaterDroplet':
       return FontAwesomeIcons.glassWaterDroplet;
-    case "glasses":
+    case 'glasses':
       return FontAwesomeIcons.glasses;
-    case "glide":
+    case 'glide':
       return FontAwesomeIcons.glide;
-    case "glideG":
+    case 'glideG':
       return FontAwesomeIcons.glideG;
-    case "globe":
+    case 'globe':
       return FontAwesomeIcons.globe;
-    case "gofore":
+    case 'gofore':
       return FontAwesomeIcons.gofore;
-    case "golang":
+    case 'golang':
       return FontAwesomeIcons.golang;
-    case "golfBallTee":
+    case 'golfBallTee':
       return FontAwesomeIcons.golfBallTee;
-    case "goodreads":
+    case 'goodreads':
       return FontAwesomeIcons.goodreads;
-    case "goodreadsG":
+    case 'goodreadsG':
       return FontAwesomeIcons.goodreadsG;
-    case "google":
+    case 'google':
       return FontAwesomeIcons.google;
-    case "googleDrive":
+    case 'googleDrive':
       return FontAwesomeIcons.googleDrive;
-    case "googlePay":
+    case 'googlePay':
       return FontAwesomeIcons.googlePay;
-    case "googlePlay":
+    case 'googlePlay':
       return FontAwesomeIcons.googlePlay;
-    case "googlePlus":
+    case 'googlePlus':
       return FontAwesomeIcons.googlePlus;
-    case "googlePlusG":
+    case 'googlePlusG':
       return FontAwesomeIcons.googlePlusG;
-    case "googleWallet":
+    case 'googleWallet':
       return FontAwesomeIcons.googleWallet;
-    case "gopuram":
+    case 'gopuram':
       return FontAwesomeIcons.gopuram;
-    case "graduationCap":
+    case 'graduationCap':
       return FontAwesomeIcons.graduationCap;
-    case "gratipay":
+    case 'gratipay':
       return FontAwesomeIcons.gratipay;
-    case "grav":
+    case 'grav':
       return FontAwesomeIcons.grav;
-    case "greaterThan":
+    case 'greaterThan':
       return FontAwesomeIcons.greaterThan;
-    case "greaterThanEqual":
+    case 'greaterThanEqual':
       return FontAwesomeIcons.greaterThanEqual;
-    case "grip":
+    case 'grip':
       return FontAwesomeIcons.grip;
-    case "gripLines":
+    case 'gripLines':
       return FontAwesomeIcons.gripLines;
-    case "gripLinesVertical":
+    case 'gripLinesVertical':
       return FontAwesomeIcons.gripLinesVertical;
-    case "gripVertical":
+    case 'gripVertical':
       return FontAwesomeIcons.gripVertical;
-    case "gripfire":
+    case 'gripfire':
       return FontAwesomeIcons.gripfire;
-    case "groupArrowsRotate":
+    case 'groupArrowsRotate':
       return FontAwesomeIcons.groupArrowsRotate;
-    case "grunt":
+    case 'grunt':
       return FontAwesomeIcons.grunt;
-    case "guaraniSign":
+    case 'guaraniSign':
       return FontAwesomeIcons.guaraniSign;
-    case "guilded":
+    case 'guilded':
       return FontAwesomeIcons.guilded;
-    case "guitar":
+    case 'guitar':
       return FontAwesomeIcons.guitar;
-    case "gulp":
+    case 'gulp':
       return FontAwesomeIcons.gulp;
-    case "gun":
+    case 'gun':
       return FontAwesomeIcons.gun;
-    case "h":
+    case 'h':
       return FontAwesomeIcons.h;
-    case "hackerNews":
+    case 'hackerNews':
       return FontAwesomeIcons.hackerNews;
-    case "hackerrank":
+    case 'hackerrank':
       return FontAwesomeIcons.hackerrank;
-    case "hammer":
+    case 'hammer':
       return FontAwesomeIcons.hammer;
-    case "hamsa":
+    case 'hamsa':
       return FontAwesomeIcons.hamsa;
-    case "solidHand":
+    case 'solidHand':
       return FontAwesomeIcons.solidHand;
-    case "hand":
+    case 'hand':
       return FontAwesomeIcons.hand;
-    case "solidHandBackFist":
+    case 'solidHandBackFist':
       return FontAwesomeIcons.solidHandBackFist;
-    case "handBackFist":
+    case 'handBackFist':
       return FontAwesomeIcons.handBackFist;
-    case "handDots":
+    case 'handDots':
       return FontAwesomeIcons.handDots;
-    case "handFist":
+    case 'handFist':
       return FontAwesomeIcons.handFist;
-    case "handHolding":
+    case 'handHolding':
       return FontAwesomeIcons.handHolding;
-    case "handHoldingDollar":
+    case 'handHoldingDollar':
       return FontAwesomeIcons.handHoldingDollar;
-    case "handHoldingDroplet":
+    case 'handHoldingDroplet':
       return FontAwesomeIcons.handHoldingDroplet;
-    case "handHoldingHand":
+    case 'handHoldingHand':
       return FontAwesomeIcons.handHoldingHand;
-    case "handHoldingHeart":
+    case 'handHoldingHeart':
       return FontAwesomeIcons.handHoldingHeart;
-    case "handHoldingMedical":
+    case 'handHoldingMedical':
       return FontAwesomeIcons.handHoldingMedical;
-    case "solidHandLizard":
+    case 'solidHandLizard':
       return FontAwesomeIcons.solidHandLizard;
-    case "handLizard":
+    case 'handLizard':
       return FontAwesomeIcons.handLizard;
-    case "handMiddleFinger":
+    case 'handMiddleFinger':
       return FontAwesomeIcons.handMiddleFinger;
-    case "solidHandPeace":
+    case 'solidHandPeace':
       return FontAwesomeIcons.solidHandPeace;
-    case "handPeace":
+    case 'handPeace':
       return FontAwesomeIcons.handPeace;
-    case "solidHandPointDown":
+    case 'solidHandPointDown':
       return FontAwesomeIcons.solidHandPointDown;
-    case "handPointDown":
+    case 'handPointDown':
       return FontAwesomeIcons.handPointDown;
-    case "solidHandPointLeft":
+    case 'solidHandPointLeft':
       return FontAwesomeIcons.solidHandPointLeft;
-    case "handPointLeft":
+    case 'handPointLeft':
       return FontAwesomeIcons.handPointLeft;
-    case "solidHandPointRight":
+    case 'solidHandPointRight':
       return FontAwesomeIcons.solidHandPointRight;
-    case "handPointRight":
+    case 'handPointRight':
       return FontAwesomeIcons.handPointRight;
-    case "solidHandPointUp":
+    case 'solidHandPointUp':
       return FontAwesomeIcons.solidHandPointUp;
-    case "handPointUp":
+    case 'handPointUp':
       return FontAwesomeIcons.handPointUp;
-    case "solidHandPointer":
+    case 'solidHandPointer':
       return FontAwesomeIcons.solidHandPointer;
-    case "handPointer":
+    case 'handPointer':
       return FontAwesomeIcons.handPointer;
-    case "solidHandScissors":
+    case 'solidHandScissors':
       return FontAwesomeIcons.solidHandScissors;
-    case "handScissors":
+    case 'handScissors':
       return FontAwesomeIcons.handScissors;
-    case "handSparkles":
+    case 'handSparkles':
       return FontAwesomeIcons.handSparkles;
-    case "solidHandSpock":
+    case 'solidHandSpock':
       return FontAwesomeIcons.solidHandSpock;
-    case "handSpock":
+    case 'handSpock':
       return FontAwesomeIcons.handSpock;
-    case "handcuffs":
+    case 'handcuffs':
       return FontAwesomeIcons.handcuffs;
-    case "hands":
+    case 'hands':
       return FontAwesomeIcons.hands;
-    case "handsAslInterpreting":
+    case 'handsAslInterpreting':
       return FontAwesomeIcons.handsAslInterpreting;
-    case "handsBound":
+    case 'handsBound':
       return FontAwesomeIcons.handsBound;
-    case "handsBubbles":
+    case 'handsBubbles':
       return FontAwesomeIcons.handsBubbles;
-    case "handsClapping":
+    case 'handsClapping':
       return FontAwesomeIcons.handsClapping;
-    case "handsHolding":
+    case 'handsHolding':
       return FontAwesomeIcons.handsHolding;
-    case "handsHoldingChild":
+    case 'handsHoldingChild':
       return FontAwesomeIcons.handsHoldingChild;
-    case "handsHoldingCircle":
+    case 'handsHoldingCircle':
       return FontAwesomeIcons.handsHoldingCircle;
-    case "handsPraying":
+    case 'handsPraying':
       return FontAwesomeIcons.handsPraying;
-    case "solidHandshake":
+    case 'solidHandshake':
       return FontAwesomeIcons.solidHandshake;
-    case "handshake":
+    case 'handshake':
       return FontAwesomeIcons.handshake;
-    case "handshakeAngle":
+    case 'handshakeAngle':
       return FontAwesomeIcons.handshakeAngle;
-    case "handshakeSimple":
+    case 'handshakeSimple':
       return FontAwesomeIcons.handshakeSimple;
-    case "handshakeSimpleSlash":
+    case 'handshakeSimpleSlash':
       return FontAwesomeIcons.handshakeSimpleSlash;
-    case "handshakeSlash":
+    case 'handshakeSlash':
       return FontAwesomeIcons.handshakeSlash;
-    case "hanukiah":
+    case 'hanukiah':
       return FontAwesomeIcons.hanukiah;
-    case "solidHardDrive":
+    case 'solidHardDrive':
       return FontAwesomeIcons.solidHardDrive;
-    case "hardDrive":
+    case 'hardDrive':
       return FontAwesomeIcons.hardDrive;
-    case "hashnode":
+    case 'hashnode':
       return FontAwesomeIcons.hashnode;
-    case "hashtag":
+    case 'hashtag':
       return FontAwesomeIcons.hashtag;
-    case "hatCowboy":
+    case 'hatCowboy':
       return FontAwesomeIcons.hatCowboy;
-    case "hatCowboySide":
+    case 'hatCowboySide':
       return FontAwesomeIcons.hatCowboySide;
-    case "hatWizard":
+    case 'hatWizard':
       return FontAwesomeIcons.hatWizard;
-    case "headSideCough":
+    case 'headSideCough':
       return FontAwesomeIcons.headSideCough;
-    case "headSideCoughSlash":
+    case 'headSideCoughSlash':
       return FontAwesomeIcons.headSideCoughSlash;
-    case "headSideMask":
+    case 'headSideMask':
       return FontAwesomeIcons.headSideMask;
-    case "headSideVirus":
+    case 'headSideVirus':
       return FontAwesomeIcons.headSideVirus;
-    case "heading":
+    case 'heading':
       return FontAwesomeIcons.heading;
-    case "headphones":
+    case 'headphones':
       return FontAwesomeIcons.headphones;
-    case "headphonesSimple":
+    case 'headphonesSimple':
       return FontAwesomeIcons.headphonesSimple;
-    case "headset":
+    case 'headset':
       return FontAwesomeIcons.headset;
-    case "solidHeart":
+    case 'solidHeart':
       return FontAwesomeIcons.solidHeart;
-    case "heart":
+    case 'heart':
       return FontAwesomeIcons.heart;
-    case "heartCircleBolt":
+    case 'heartCircleBolt':
       return FontAwesomeIcons.heartCircleBolt;
-    case "heartCircleCheck":
+    case 'heartCircleCheck':
       return FontAwesomeIcons.heartCircleCheck;
-    case "heartCircleExclamation":
+    case 'heartCircleExclamation':
       return FontAwesomeIcons.heartCircleExclamation;
-    case "heartCircleMinus":
+    case 'heartCircleMinus':
       return FontAwesomeIcons.heartCircleMinus;
-    case "heartCirclePlus":
+    case 'heartCirclePlus':
       return FontAwesomeIcons.heartCirclePlus;
-    case "heartCircleXmark":
+    case 'heartCircleXmark':
       return FontAwesomeIcons.heartCircleXmark;
-    case "heartCrack":
+    case 'heartCrack':
       return FontAwesomeIcons.heartCrack;
-    case "heartPulse":
+    case 'heartPulse':
       return FontAwesomeIcons.heartPulse;
-    case "helicopter":
+    case 'helicopter':
       return FontAwesomeIcons.helicopter;
-    case "helicopterSymbol":
+    case 'helicopterSymbol':
       return FontAwesomeIcons.helicopterSymbol;
-    case "helmetSafety":
+    case 'helmetSafety':
       return FontAwesomeIcons.helmetSafety;
-    case "helmetUn":
+    case 'helmetUn':
       return FontAwesomeIcons.helmetUn;
-    case "highlighter":
+    case 'highlighter':
       return FontAwesomeIcons.highlighter;
-    case "hillAvalanche":
+    case 'hillAvalanche':
       return FontAwesomeIcons.hillAvalanche;
-    case "hillRockslide":
+    case 'hillRockslide':
       return FontAwesomeIcons.hillRockslide;
-    case "hippo":
+    case 'hippo':
       return FontAwesomeIcons.hippo;
-    case "hips":
+    case 'hips':
       return FontAwesomeIcons.hips;
-    case "hireAHelper":
+    case 'hireAHelper':
       return FontAwesomeIcons.hireAHelper;
-    case "hive":
+    case 'hive':
       return FontAwesomeIcons.hive;
-    case "hockeyPuck":
+    case 'hockeyPuck':
       return FontAwesomeIcons.hockeyPuck;
-    case "hollyBerry":
+    case 'hollyBerry':
       return FontAwesomeIcons.hollyBerry;
-    case "hooli":
+    case 'hooli':
       return FontAwesomeIcons.hooli;
-    case "hornbill":
+    case 'hornbill':
       return FontAwesomeIcons.hornbill;
-    case "horse":
+    case 'horse':
       return FontAwesomeIcons.horse;
-    case "horseHead":
+    case 'horseHead':
       return FontAwesomeIcons.horseHead;
-    case "solidHospital":
+    case 'solidHospital':
       return FontAwesomeIcons.solidHospital;
-    case "hospital":
+    case 'hospital':
       return FontAwesomeIcons.hospital;
-    case "hospitalUser":
+    case 'hospitalUser':
       return FontAwesomeIcons.hospitalUser;
-    case "hotTubPerson":
+    case 'hotTubPerson':
       return FontAwesomeIcons.hotTubPerson;
-    case "hotdog":
+    case 'hotdog':
       return FontAwesomeIcons.hotdog;
-    case "hotel":
+    case 'hotel':
       return FontAwesomeIcons.hotel;
-    case "hotjar":
+    case 'hotjar':
       return FontAwesomeIcons.hotjar;
-    case "solidHourglass":
+    case 'solidHourglass':
       return FontAwesomeIcons.solidHourglass;
-    case "hourglass":
+    case 'hourglass':
       return FontAwesomeIcons.hourglass;
-    case "hourglassEnd":
+    case 'hourglassEnd':
       return FontAwesomeIcons.hourglassEnd;
-    case "solidHourglassHalf":
+    case 'solidHourglassHalf':
       return FontAwesomeIcons.solidHourglassHalf;
-    case "hourglassHalf":
+    case 'hourglassHalf':
       return FontAwesomeIcons.hourglassHalf;
-    case "hourglassStart":
+    case 'hourglassStart':
       return FontAwesomeIcons.hourglassStart;
-    case "house":
+    case 'house':
       return FontAwesomeIcons.house;
-    case "houseChimney":
+    case 'houseChimney':
       return FontAwesomeIcons.houseChimney;
-    case "houseChimneyCrack":
+    case 'houseChimneyCrack':
       return FontAwesomeIcons.houseChimneyCrack;
-    case "houseChimneyMedical":
+    case 'houseChimneyMedical':
       return FontAwesomeIcons.houseChimneyMedical;
-    case "houseChimneyUser":
+    case 'houseChimneyUser':
       return FontAwesomeIcons.houseChimneyUser;
-    case "houseChimneyWindow":
+    case 'houseChimneyWindow':
       return FontAwesomeIcons.houseChimneyWindow;
-    case "houseCircleCheck":
+    case 'houseCircleCheck':
       return FontAwesomeIcons.houseCircleCheck;
-    case "houseCircleExclamation":
+    case 'houseCircleExclamation':
       return FontAwesomeIcons.houseCircleExclamation;
-    case "houseCircleXmark":
+    case 'houseCircleXmark':
       return FontAwesomeIcons.houseCircleXmark;
-    case "houseCrack":
+    case 'houseCrack':
       return FontAwesomeIcons.houseCrack;
-    case "houseFire":
+    case 'houseFire':
       return FontAwesomeIcons.houseFire;
-    case "houseFlag":
+    case 'houseFlag':
       return FontAwesomeIcons.houseFlag;
-    case "houseFloodWater":
+    case 'houseFloodWater':
       return FontAwesomeIcons.houseFloodWater;
-    case "houseFloodWaterCircleArrowRight":
+    case 'houseFloodWaterCircleArrowRight':
       return FontAwesomeIcons.houseFloodWaterCircleArrowRight;
-    case "houseLaptop":
+    case 'houseLaptop':
       return FontAwesomeIcons.houseLaptop;
-    case "houseLock":
+    case 'houseLock':
       return FontAwesomeIcons.houseLock;
-    case "houseMedical":
+    case 'houseMedical':
       return FontAwesomeIcons.houseMedical;
-    case "houseMedicalCircleCheck":
+    case 'houseMedicalCircleCheck':
       return FontAwesomeIcons.houseMedicalCircleCheck;
-    case "houseMedicalCircleExclamation":
+    case 'houseMedicalCircleExclamation':
       return FontAwesomeIcons.houseMedicalCircleExclamation;
-    case "houseMedicalCircleXmark":
+    case 'houseMedicalCircleXmark':
       return FontAwesomeIcons.houseMedicalCircleXmark;
-    case "houseMedicalFlag":
+    case 'houseMedicalFlag':
       return FontAwesomeIcons.houseMedicalFlag;
-    case "houseSignal":
+    case 'houseSignal':
       return FontAwesomeIcons.houseSignal;
-    case "houseTsunami":
+    case 'houseTsunami':
       return FontAwesomeIcons.houseTsunami;
-    case "houseUser":
+    case 'houseUser':
       return FontAwesomeIcons.houseUser;
-    case "houzz":
+    case 'houzz':
       return FontAwesomeIcons.houzz;
-    case "hryvniaSign":
+    case 'hryvniaSign':
       return FontAwesomeIcons.hryvniaSign;
-    case "html5":
+    case 'html5':
       return FontAwesomeIcons.html5;
-    case "hubspot":
+    case 'hubspot':
       return FontAwesomeIcons.hubspot;
-    case "hurricane":
+    case 'hurricane':
       return FontAwesomeIcons.hurricane;
-    case "i":
+    case 'i':
       return FontAwesomeIcons.i;
-    case "iCursor":
+    case 'iCursor':
       return FontAwesomeIcons.iCursor;
-    case "iceCream":
+    case 'iceCream':
       return FontAwesomeIcons.iceCream;
-    case "icicles":
+    case 'icicles':
       return FontAwesomeIcons.icicles;
-    case "icons":
+    case 'icons':
       return FontAwesomeIcons.icons;
-    case "solidIdBadge":
+    case 'solidIdBadge':
       return FontAwesomeIcons.solidIdBadge;
-    case "idBadge":
+    case 'idBadge':
       return FontAwesomeIcons.idBadge;
-    case "solidIdCard":
+    case 'solidIdCard':
       return FontAwesomeIcons.solidIdCard;
-    case "idCard":
+    case 'idCard':
       return FontAwesomeIcons.idCard;
-    case "idCardClip":
+    case 'idCardClip':
       return FontAwesomeIcons.idCardClip;
-    case "ideal":
+    case 'ideal':
       return FontAwesomeIcons.ideal;
-    case "igloo":
+    case 'igloo':
       return FontAwesomeIcons.igloo;
-    case "solidImage":
+    case 'solidImage':
       return FontAwesomeIcons.solidImage;
-    case "image":
+    case 'image':
       return FontAwesomeIcons.image;
-    case "imagePortrait":
+    case 'imagePortrait':
       return FontAwesomeIcons.imagePortrait;
-    case "solidImages":
+    case 'solidImages':
       return FontAwesomeIcons.solidImages;
-    case "images":
+    case 'images':
       return FontAwesomeIcons.images;
-    case "imdb":
+    case 'imdb':
       return FontAwesomeIcons.imdb;
-    case "inbox":
+    case 'inbox':
       return FontAwesomeIcons.inbox;
-    case "indent":
+    case 'indent':
       return FontAwesomeIcons.indent;
-    case "indianRupeeSign":
+    case 'indianRupeeSign':
       return FontAwesomeIcons.indianRupeeSign;
-    case "industry":
+    case 'industry':
       return FontAwesomeIcons.industry;
-    case "infinity":
+    case 'infinity':
       return FontAwesomeIcons.infinity;
-    case "info":
+    case 'info':
       return FontAwesomeIcons.info;
-    case "instagram":
+    case 'instagram':
       return FontAwesomeIcons.instagram;
-    case "instalod":
+    case 'instalod':
       return FontAwesomeIcons.instalod;
-    case "intercom":
+    case 'intercom':
       return FontAwesomeIcons.intercom;
-    case "internetExplorer":
+    case 'internetExplorer':
       return FontAwesomeIcons.internetExplorer;
-    case "invision":
+    case 'invision':
       return FontAwesomeIcons.invision;
-    case "ioxhost":
+    case 'ioxhost':
       return FontAwesomeIcons.ioxhost;
-    case "italic":
+    case 'italic':
       return FontAwesomeIcons.italic;
-    case "itchIo":
+    case 'itchIo':
       return FontAwesomeIcons.itchIo;
-    case "itunes":
+    case 'itunes':
       return FontAwesomeIcons.itunes;
-    case "itunesNote":
+    case 'itunesNote':
       return FontAwesomeIcons.itunesNote;
-    case "j":
+    case 'j':
       return FontAwesomeIcons.j;
-    case "jar":
+    case 'jar':
       return FontAwesomeIcons.jar;
-    case "jarWheat":
+    case 'jarWheat':
       return FontAwesomeIcons.jarWheat;
-    case "java":
+    case 'java':
       return FontAwesomeIcons.java;
-    case "jedi":
+    case 'jedi':
       return FontAwesomeIcons.jedi;
-    case "jediOrder":
+    case 'jediOrder':
       return FontAwesomeIcons.jediOrder;
-    case "jenkins":
+    case 'jenkins':
       return FontAwesomeIcons.jenkins;
-    case "jetFighter":
+    case 'jetFighter':
       return FontAwesomeIcons.jetFighter;
-    case "jetFighterUp":
+    case 'jetFighterUp':
       return FontAwesomeIcons.jetFighterUp;
-    case "jira":
+    case 'jira':
       return FontAwesomeIcons.jira;
-    case "joget":
+    case 'joget':
       return FontAwesomeIcons.joget;
-    case "joint":
+    case 'joint':
       return FontAwesomeIcons.joint;
-    case "joomla":
+    case 'joomla':
       return FontAwesomeIcons.joomla;
-    case "js":
+    case 'js':
       return FontAwesomeIcons.js;
-    case "jsfiddle":
+    case 'jsfiddle':
       return FontAwesomeIcons.jsfiddle;
-    case "jugDetergent":
+    case 'jugDetergent':
       return FontAwesomeIcons.jugDetergent;
-    case "k":
+    case 'k':
       return FontAwesomeIcons.k;
-    case "kaaba":
+    case 'kaaba':
       return FontAwesomeIcons.kaaba;
-    case "kaggle":
+    case 'kaggle':
       return FontAwesomeIcons.kaggle;
-    case "key":
+    case 'key':
       return FontAwesomeIcons.key;
-    case "keybase":
+    case 'keybase':
       return FontAwesomeIcons.keybase;
-    case "solidKeyboard":
+    case 'solidKeyboard':
       return FontAwesomeIcons.solidKeyboard;
-    case "keyboard":
+    case 'keyboard':
       return FontAwesomeIcons.keyboard;
-    case "keycdn":
+    case 'keycdn':
       return FontAwesomeIcons.keycdn;
-    case "khanda":
+    case 'khanda':
       return FontAwesomeIcons.khanda;
-    case "kickstarter":
+    case 'kickstarter':
       return FontAwesomeIcons.kickstarter;
-    case "kickstarterK":
+    case 'kickstarterK':
       return FontAwesomeIcons.kickstarterK;
-    case "kipSign":
+    case 'kipSign':
       return FontAwesomeIcons.kipSign;
-    case "kitMedical":
+    case 'kitMedical':
       return FontAwesomeIcons.kitMedical;
-    case "kitchenSet":
+    case 'kitchenSet':
       return FontAwesomeIcons.kitchenSet;
-    case "kiwiBird":
+    case 'kiwiBird':
       return FontAwesomeIcons.kiwiBird;
-    case "korvue":
+    case 'korvue':
       return FontAwesomeIcons.korvue;
-    case "l":
+    case 'l':
       return FontAwesomeIcons.l;
-    case "landMineOn":
+    case 'landMineOn':
       return FontAwesomeIcons.landMineOn;
-    case "landmark":
+    case 'landmark':
       return FontAwesomeIcons.landmark;
-    case "landmarkDome":
+    case 'landmarkDome':
       return FontAwesomeIcons.landmarkDome;
-    case "landmarkFlag":
+    case 'landmarkFlag':
       return FontAwesomeIcons.landmarkFlag;
-    case "language":
+    case 'language':
       return FontAwesomeIcons.language;
-    case "laptop":
+    case 'laptop':
       return FontAwesomeIcons.laptop;
-    case "laptopCode":
+    case 'laptopCode':
       return FontAwesomeIcons.laptopCode;
-    case "laptopFile":
+    case 'laptopFile':
       return FontAwesomeIcons.laptopFile;
-    case "laptopMedical":
+    case 'laptopMedical':
       return FontAwesomeIcons.laptopMedical;
-    case "laravel":
+    case 'laravel':
       return FontAwesomeIcons.laravel;
-    case "lariSign":
+    case 'lariSign':
       return FontAwesomeIcons.lariSign;
-    case "lastfm":
+    case 'lastfm':
       return FontAwesomeIcons.lastfm;
-    case "layerGroup":
+    case 'layerGroup':
       return FontAwesomeIcons.layerGroup;
-    case "leaf":
+    case 'leaf':
       return FontAwesomeIcons.leaf;
-    case "leanpub":
+    case 'leanpub':
       return FontAwesomeIcons.leanpub;
-    case "leftLong":
+    case 'leftLong':
       return FontAwesomeIcons.leftLong;
-    case "leftRight":
+    case 'leftRight':
       return FontAwesomeIcons.leftRight;
-    case "solidLemon":
+    case 'solidLemon':
       return FontAwesomeIcons.solidLemon;
-    case "lemon":
+    case 'lemon':
       return FontAwesomeIcons.lemon;
-    case "less":
+    case 'less':
       return FontAwesomeIcons.less;
-    case "lessThan":
+    case 'lessThan':
       return FontAwesomeIcons.lessThan;
-    case "lessThanEqual":
+    case 'lessThanEqual':
       return FontAwesomeIcons.lessThanEqual;
-    case "solidLifeRing":
+    case 'solidLifeRing':
       return FontAwesomeIcons.solidLifeRing;
-    case "lifeRing":
+    case 'lifeRing':
       return FontAwesomeIcons.lifeRing;
-    case "solidLightbulb":
+    case 'solidLightbulb':
       return FontAwesomeIcons.solidLightbulb;
-    case "lightbulb":
+    case 'lightbulb':
       return FontAwesomeIcons.lightbulb;
-    case "line":
+    case 'line':
       return FontAwesomeIcons.line;
-    case "linesLeaning":
+    case 'linesLeaning':
       return FontAwesomeIcons.linesLeaning;
-    case "link":
+    case 'link':
       return FontAwesomeIcons.link;
-    case "linkSlash":
+    case 'linkSlash':
       return FontAwesomeIcons.linkSlash;
-    case "linkedin":
+    case 'linkedin':
       return FontAwesomeIcons.linkedin;
-    case "linkedinIn":
+    case 'linkedinIn':
       return FontAwesomeIcons.linkedinIn;
-    case "linode":
+    case 'linode':
       return FontAwesomeIcons.linode;
-    case "linux":
+    case 'linux':
       return FontAwesomeIcons.linux;
-    case "liraSign":
+    case 'liraSign':
       return FontAwesomeIcons.liraSign;
-    case "list":
+    case 'list':
       return FontAwesomeIcons.list;
-    case "listCheck":
+    case 'listCheck':
       return FontAwesomeIcons.listCheck;
-    case "listOl":
+    case 'listOl':
       return FontAwesomeIcons.listOl;
-    case "listUl":
+    case 'listUl':
       return FontAwesomeIcons.listUl;
-    case "litecoinSign":
+    case 'litecoinSign':
       return FontAwesomeIcons.litecoinSign;
-    case "locationArrow":
+    case 'locationArrow':
       return FontAwesomeIcons.locationArrow;
-    case "locationCrosshairs":
+    case 'locationCrosshairs':
       return FontAwesomeIcons.locationCrosshairs;
-    case "locationDot":
+    case 'locationDot':
       return FontAwesomeIcons.locationDot;
-    case "locationPin":
+    case 'locationPin':
       return FontAwesomeIcons.locationPin;
-    case "locationPinLock":
+    case 'locationPinLock':
       return FontAwesomeIcons.locationPinLock;
-    case "lock":
+    case 'lock':
       return FontAwesomeIcons.lock;
-    case "lockOpen":
+    case 'lockOpen':
       return FontAwesomeIcons.lockOpen;
-    case "locust":
+    case 'locust':
       return FontAwesomeIcons.locust;
-    case "lungs":
+    case 'lungs':
       return FontAwesomeIcons.lungs;
-    case "lungsVirus":
+    case 'lungsVirus':
       return FontAwesomeIcons.lungsVirus;
-    case "lyft":
+    case 'lyft':
       return FontAwesomeIcons.lyft;
-    case "m":
+    case 'm':
       return FontAwesomeIcons.m;
-    case "magento":
+    case 'magento':
       return FontAwesomeIcons.magento;
-    case "magnet":
+    case 'magnet':
       return FontAwesomeIcons.magnet;
-    case "magnifyingGlass":
+    case 'magnifyingGlass':
       return FontAwesomeIcons.magnifyingGlass;
-    case "magnifyingGlassArrowRight":
+    case 'magnifyingGlassArrowRight':
       return FontAwesomeIcons.magnifyingGlassArrowRight;
-    case "magnifyingGlassChart":
+    case 'magnifyingGlassChart':
       return FontAwesomeIcons.magnifyingGlassChart;
-    case "magnifyingGlassDollar":
+    case 'magnifyingGlassDollar':
       return FontAwesomeIcons.magnifyingGlassDollar;
-    case "magnifyingGlassLocation":
+    case 'magnifyingGlassLocation':
       return FontAwesomeIcons.magnifyingGlassLocation;
-    case "magnifyingGlassMinus":
+    case 'magnifyingGlassMinus':
       return FontAwesomeIcons.magnifyingGlassMinus;
-    case "magnifyingGlassPlus":
+    case 'magnifyingGlassPlus':
       return FontAwesomeIcons.magnifyingGlassPlus;
-    case "mailchimp":
+    case 'mailchimp':
       return FontAwesomeIcons.mailchimp;
-    case "manatSign":
+    case 'manatSign':
       return FontAwesomeIcons.manatSign;
-    case "mandalorian":
+    case 'mandalorian':
       return FontAwesomeIcons.mandalorian;
-    case "solidMap":
+    case 'solidMap':
       return FontAwesomeIcons.solidMap;
-    case "map":
+    case 'map':
       return FontAwesomeIcons.map;
-    case "mapLocation":
+    case 'mapLocation':
       return FontAwesomeIcons.mapLocation;
-    case "mapLocationDot":
+    case 'mapLocationDot':
       return FontAwesomeIcons.mapLocationDot;
-    case "mapPin":
+    case 'mapPin':
       return FontAwesomeIcons.mapPin;
-    case "markdown":
+    case 'markdown':
       return FontAwesomeIcons.markdown;
-    case "marker":
+    case 'marker':
       return FontAwesomeIcons.marker;
-    case "mars":
+    case 'mars':
       return FontAwesomeIcons.mars;
-    case "marsAndVenus":
+    case 'marsAndVenus':
       return FontAwesomeIcons.marsAndVenus;
-    case "marsAndVenusBurst":
+    case 'marsAndVenusBurst':
       return FontAwesomeIcons.marsAndVenusBurst;
-    case "marsDouble":
+    case 'marsDouble':
       return FontAwesomeIcons.marsDouble;
-    case "marsStroke":
+    case 'marsStroke':
       return FontAwesomeIcons.marsStroke;
-    case "marsStrokeRight":
+    case 'marsStrokeRight':
       return FontAwesomeIcons.marsStrokeRight;
-    case "marsStrokeUp":
+    case 'marsStrokeUp':
       return FontAwesomeIcons.marsStrokeUp;
-    case "martiniGlass":
+    case 'martiniGlass':
       return FontAwesomeIcons.martiniGlass;
-    case "martiniGlassCitrus":
+    case 'martiniGlassCitrus':
       return FontAwesomeIcons.martiniGlassCitrus;
-    case "martiniGlassEmpty":
+    case 'martiniGlassEmpty':
       return FontAwesomeIcons.martiniGlassEmpty;
-    case "mask":
+    case 'mask':
       return FontAwesomeIcons.mask;
-    case "maskFace":
+    case 'maskFace':
       return FontAwesomeIcons.maskFace;
-    case "maskVentilator":
+    case 'maskVentilator':
       return FontAwesomeIcons.maskVentilator;
-    case "masksTheater":
+    case 'masksTheater':
       return FontAwesomeIcons.masksTheater;
-    case "mastodon":
+    case 'mastodon':
       return FontAwesomeIcons.mastodon;
-    case "mattressPillow":
+    case 'mattressPillow':
       return FontAwesomeIcons.mattressPillow;
-    case "maxcdn":
+    case 'maxcdn':
       return FontAwesomeIcons.maxcdn;
-    case "maximize":
+    case 'maximize':
       return FontAwesomeIcons.maximize;
-    case "mdb":
+    case 'mdb':
       return FontAwesomeIcons.mdb;
-    case "medal":
+    case 'medal':
       return FontAwesomeIcons.medal;
-    case "medapps":
+    case 'medapps':
       return FontAwesomeIcons.medapps;
-    case "medium":
+    case 'medium':
       return FontAwesomeIcons.medium;
-    case "medrt":
+    case 'medrt':
       return FontAwesomeIcons.medrt;
-    case "meetup":
+    case 'meetup':
       return FontAwesomeIcons.meetup;
-    case "megaport":
+    case 'megaport':
       return FontAwesomeIcons.megaport;
-    case "memory":
+    case 'memory':
       return FontAwesomeIcons.memory;
-    case "mendeley":
+    case 'mendeley':
       return FontAwesomeIcons.mendeley;
-    case "menorah":
+    case 'menorah':
       return FontAwesomeIcons.menorah;
-    case "mercury":
+    case 'mercury':
       return FontAwesomeIcons.mercury;
-    case "solidMessage":
+    case 'solidMessage':
       return FontAwesomeIcons.solidMessage;
-    case "message":
+    case 'message':
       return FontAwesomeIcons.message;
-    case "meta":
+    case 'meta':
       return FontAwesomeIcons.meta;
-    case "meteor":
+    case 'meteor':
       return FontAwesomeIcons.meteor;
-    case "microblog":
+    case 'microblog':
       return FontAwesomeIcons.microblog;
-    case "microchip":
+    case 'microchip':
       return FontAwesomeIcons.microchip;
-    case "microphone":
+    case 'microphone':
       return FontAwesomeIcons.microphone;
-    case "microphoneLines":
+    case 'microphoneLines':
       return FontAwesomeIcons.microphoneLines;
-    case "microphoneLinesSlash":
+    case 'microphoneLinesSlash':
       return FontAwesomeIcons.microphoneLinesSlash;
-    case "microphoneSlash":
+    case 'microphoneSlash':
       return FontAwesomeIcons.microphoneSlash;
-    case "microscope":
+    case 'microscope':
       return FontAwesomeIcons.microscope;
-    case "microsoft":
+    case 'microsoft':
       return FontAwesomeIcons.microsoft;
-    case "millSign":
+    case 'millSign':
       return FontAwesomeIcons.millSign;
-    case "minimize":
+    case 'minimize':
       return FontAwesomeIcons.minimize;
-    case "minus":
+    case 'minus':
       return FontAwesomeIcons.minus;
-    case "mitten":
+    case 'mitten':
       return FontAwesomeIcons.mitten;
-    case "mix":
+    case 'mix':
       return FontAwesomeIcons.mix;
-    case "mixcloud":
+    case 'mixcloud':
       return FontAwesomeIcons.mixcloud;
-    case "mixer":
+    case 'mixer':
       return FontAwesomeIcons.mixer;
-    case "mizuni":
+    case 'mizuni':
       return FontAwesomeIcons.mizuni;
-    case "mobile":
+    case 'mobile':
       return FontAwesomeIcons.mobile;
-    case "mobileButton":
+    case 'mobileButton':
       return FontAwesomeIcons.mobileButton;
-    case "mobileRetro":
+    case 'mobileRetro':
       return FontAwesomeIcons.mobileRetro;
-    case "mobileScreen":
+    case 'mobileScreen':
       return FontAwesomeIcons.mobileScreen;
-    case "mobileScreenButton":
+    case 'mobileScreenButton':
       return FontAwesomeIcons.mobileScreenButton;
-    case "modx":
+    case 'modx':
       return FontAwesomeIcons.modx;
-    case "monero":
+    case 'monero':
       return FontAwesomeIcons.monero;
-    case "moneyBill":
+    case 'moneyBill':
       return FontAwesomeIcons.moneyBill;
-    case "solidMoneyBill1":
+    case 'solidMoneyBill1':
       return FontAwesomeIcons.solidMoneyBill1;
-    case "moneyBill1":
+    case 'moneyBill1':
       return FontAwesomeIcons.moneyBill1;
-    case "moneyBill1Wave":
+    case 'moneyBill1Wave':
       return FontAwesomeIcons.moneyBill1Wave;
-    case "moneyBillTransfer":
+    case 'moneyBillTransfer':
       return FontAwesomeIcons.moneyBillTransfer;
-    case "moneyBillTrendUp":
+    case 'moneyBillTrendUp':
       return FontAwesomeIcons.moneyBillTrendUp;
-    case "moneyBillWave":
+    case 'moneyBillWave':
       return FontAwesomeIcons.moneyBillWave;
-    case "moneyBillWheat":
+    case 'moneyBillWheat':
       return FontAwesomeIcons.moneyBillWheat;
-    case "moneyBills":
+    case 'moneyBills':
       return FontAwesomeIcons.moneyBills;
-    case "moneyCheck":
+    case 'moneyCheck':
       return FontAwesomeIcons.moneyCheck;
-    case "moneyCheckDollar":
+    case 'moneyCheckDollar':
       return FontAwesomeIcons.moneyCheckDollar;
-    case "monument":
+    case 'monument':
       return FontAwesomeIcons.monument;
-    case "solidMoon":
+    case 'solidMoon':
       return FontAwesomeIcons.solidMoon;
-    case "moon":
+    case 'moon':
       return FontAwesomeIcons.moon;
-    case "mortarPestle":
+    case 'mortarPestle':
       return FontAwesomeIcons.mortarPestle;
-    case "mosque":
+    case 'mosque':
       return FontAwesomeIcons.mosque;
-    case "mosquito":
+    case 'mosquito':
       return FontAwesomeIcons.mosquito;
-    case "mosquitoNet":
+    case 'mosquitoNet':
       return FontAwesomeIcons.mosquitoNet;
-    case "motorcycle":
+    case 'motorcycle':
       return FontAwesomeIcons.motorcycle;
-    case "mound":
+    case 'mound':
       return FontAwesomeIcons.mound;
-    case "mountain":
+    case 'mountain':
       return FontAwesomeIcons.mountain;
-    case "mountainCity":
+    case 'mountainCity':
       return FontAwesomeIcons.mountainCity;
-    case "mountainSun":
+    case 'mountainSun':
       return FontAwesomeIcons.mountainSun;
-    case "mugHot":
+    case 'mugHot':
       return FontAwesomeIcons.mugHot;
-    case "mugSaucer":
+    case 'mugSaucer':
       return FontAwesomeIcons.mugSaucer;
-    case "music":
+    case 'music':
       return FontAwesomeIcons.music;
-    case "n":
+    case 'n':
       return FontAwesomeIcons.n;
-    case "nairaSign":
+    case 'nairaSign':
       return FontAwesomeIcons.nairaSign;
-    case "napster":
+    case 'napster':
       return FontAwesomeIcons.napster;
-    case "neos":
+    case 'neos':
       return FontAwesomeIcons.neos;
-    case "networkWired":
+    case 'networkWired':
       return FontAwesomeIcons.networkWired;
-    case "neuter":
+    case 'neuter':
       return FontAwesomeIcons.neuter;
-    case "solidNewspaper":
+    case 'solidNewspaper':
       return FontAwesomeIcons.solidNewspaper;
-    case "newspaper":
+    case 'newspaper':
       return FontAwesomeIcons.newspaper;
-    case "nfcDirectional":
+    case 'nfcDirectional':
       return FontAwesomeIcons.nfcDirectional;
-    case "nfcSymbol":
+    case 'nfcSymbol':
       return FontAwesomeIcons.nfcSymbol;
-    case "nimblr":
+    case 'nimblr':
       return FontAwesomeIcons.nimblr;
-    case "node":
+    case 'node':
       return FontAwesomeIcons.node;
-    case "nodeJs":
+    case 'nodeJs':
       return FontAwesomeIcons.nodeJs;
-    case "notEqual":
+    case 'notEqual':
       return FontAwesomeIcons.notEqual;
-    case "notdef":
+    case 'notdef':
       return FontAwesomeIcons.notdef;
-    case "solidNoteSticky":
+    case 'solidNoteSticky':
       return FontAwesomeIcons.solidNoteSticky;
-    case "noteSticky":
+    case 'noteSticky':
       return FontAwesomeIcons.noteSticky;
-    case "notesMedical":
+    case 'notesMedical':
       return FontAwesomeIcons.notesMedical;
-    case "npm":
+    case 'npm':
       return FontAwesomeIcons.npm;
-    case "ns8":
+    case 'ns8':
       return FontAwesomeIcons.ns8;
-    case "nutritionix":
+    case 'nutritionix':
       return FontAwesomeIcons.nutritionix;
-    case "o":
+    case 'o':
       return FontAwesomeIcons.o;
-    case "solidObjectGroup":
+    case 'solidObjectGroup':
       return FontAwesomeIcons.solidObjectGroup;
-    case "objectGroup":
+    case 'objectGroup':
       return FontAwesomeIcons.objectGroup;
-    case "solidObjectUngroup":
+    case 'solidObjectUngroup':
       return FontAwesomeIcons.solidObjectUngroup;
-    case "objectUngroup":
+    case 'objectUngroup':
       return FontAwesomeIcons.objectUngroup;
-    case "octopusDeploy":
+    case 'octopusDeploy':
       return FontAwesomeIcons.octopusDeploy;
-    case "odnoklassniki":
+    case 'odnoklassniki':
       return FontAwesomeIcons.odnoklassniki;
-    case "odysee":
+    case 'odysee':
       return FontAwesomeIcons.odysee;
-    case "oilCan":
+    case 'oilCan':
       return FontAwesomeIcons.oilCan;
-    case "oilWell":
+    case 'oilWell':
       return FontAwesomeIcons.oilWell;
-    case "oldRepublic":
+    case 'oldRepublic':
       return FontAwesomeIcons.oldRepublic;
-    case "om":
+    case 'om':
       return FontAwesomeIcons.om;
-    case "opencart":
+    case 'opencart':
       return FontAwesomeIcons.opencart;
-    case "openid":
+    case 'openid':
       return FontAwesomeIcons.openid;
-    case "opera":
+    case 'opera':
       return FontAwesomeIcons.opera;
-    case "optinMonster":
+    case 'optinMonster':
       return FontAwesomeIcons.optinMonster;
-    case "orcid":
+    case 'orcid':
       return FontAwesomeIcons.orcid;
-    case "osi":
+    case 'osi':
       return FontAwesomeIcons.osi;
-    case "otter":
+    case 'otter':
       return FontAwesomeIcons.otter;
-    case "outdent":
+    case 'outdent':
       return FontAwesomeIcons.outdent;
-    case "p":
+    case 'p':
       return FontAwesomeIcons.p;
-    case "padlet":
+    case 'padlet':
       return FontAwesomeIcons.padlet;
-    case "page4":
+    case 'page4':
       return FontAwesomeIcons.page4;
-    case "pagelines":
+    case 'pagelines':
       return FontAwesomeIcons.pagelines;
-    case "pager":
+    case 'pager':
       return FontAwesomeIcons.pager;
-    case "paintRoller":
+    case 'paintRoller':
       return FontAwesomeIcons.paintRoller;
-    case "paintbrush":
+    case 'paintbrush':
       return FontAwesomeIcons.paintbrush;
-    case "palette":
+    case 'palette':
       return FontAwesomeIcons.palette;
-    case "palfed":
+    case 'palfed':
       return FontAwesomeIcons.palfed;
-    case "pallet":
+    case 'pallet':
       return FontAwesomeIcons.pallet;
-    case "panorama":
+    case 'panorama':
       return FontAwesomeIcons.panorama;
-    case "solidPaperPlane":
+    case 'solidPaperPlane':
       return FontAwesomeIcons.solidPaperPlane;
-    case "paperPlane":
+    case 'paperPlane':
       return FontAwesomeIcons.paperPlane;
-    case "paperclip":
+    case 'paperclip':
       return FontAwesomeIcons.paperclip;
-    case "parachuteBox":
+    case 'parachuteBox':
       return FontAwesomeIcons.parachuteBox;
-    case "paragraph":
+    case 'paragraph':
       return FontAwesomeIcons.paragraph;
-    case "passport":
+    case 'passport':
       return FontAwesomeIcons.passport;
-    case "solidPaste":
+    case 'solidPaste':
       return FontAwesomeIcons.solidPaste;
-    case "paste":
+    case 'paste':
       return FontAwesomeIcons.paste;
-    case "patreon":
+    case 'patreon':
       return FontAwesomeIcons.patreon;
-    case "pause":
+    case 'pause':
       return FontAwesomeIcons.pause;
-    case "paw":
+    case 'paw':
       return FontAwesomeIcons.paw;
-    case "paypal":
+    case 'paypal':
       return FontAwesomeIcons.paypal;
-    case "peace":
+    case 'peace':
       return FontAwesomeIcons.peace;
-    case "pen":
+    case 'pen':
       return FontAwesomeIcons.pen;
-    case "penClip":
+    case 'penClip':
       return FontAwesomeIcons.penClip;
-    case "penFancy":
+    case 'penFancy':
       return FontAwesomeIcons.penFancy;
-    case "penNib":
+    case 'penNib':
       return FontAwesomeIcons.penNib;
-    case "penRuler":
+    case 'penRuler':
       return FontAwesomeIcons.penRuler;
-    case "solidPenToSquare":
+    case 'solidPenToSquare':
       return FontAwesomeIcons.solidPenToSquare;
-    case "penToSquare":
+    case 'penToSquare':
       return FontAwesomeIcons.penToSquare;
-    case "pencil":
+    case 'pencil':
       return FontAwesomeIcons.pencil;
-    case "peopleArrows":
+    case 'peopleArrows':
       return FontAwesomeIcons.peopleArrows;
-    case "peopleCarryBox":
+    case 'peopleCarryBox':
       return FontAwesomeIcons.peopleCarryBox;
-    case "peopleGroup":
+    case 'peopleGroup':
       return FontAwesomeIcons.peopleGroup;
-    case "peopleLine":
+    case 'peopleLine':
       return FontAwesomeIcons.peopleLine;
-    case "peoplePulling":
+    case 'peoplePulling':
       return FontAwesomeIcons.peoplePulling;
-    case "peopleRobbery":
+    case 'peopleRobbery':
       return FontAwesomeIcons.peopleRobbery;
-    case "peopleRoof":
+    case 'peopleRoof':
       return FontAwesomeIcons.peopleRoof;
-    case "pepperHot":
+    case 'pepperHot':
       return FontAwesomeIcons.pepperHot;
-    case "perbyte":
+    case 'perbyte':
       return FontAwesomeIcons.perbyte;
-    case "percent":
+    case 'percent':
       return FontAwesomeIcons.percent;
-    case "periscope":
+    case 'periscope':
       return FontAwesomeIcons.periscope;
-    case "person":
+    case 'person':
       return FontAwesomeIcons.person;
-    case "personArrowDownToLine":
+    case 'personArrowDownToLine':
       return FontAwesomeIcons.personArrowDownToLine;
-    case "personArrowUpFromLine":
+    case 'personArrowUpFromLine':
       return FontAwesomeIcons.personArrowUpFromLine;
-    case "personBiking":
+    case 'personBiking':
       return FontAwesomeIcons.personBiking;
-    case "personBooth":
+    case 'personBooth':
       return FontAwesomeIcons.personBooth;
-    case "personBreastfeeding":
+    case 'personBreastfeeding':
       return FontAwesomeIcons.personBreastfeeding;
-    case "personBurst":
+    case 'personBurst':
       return FontAwesomeIcons.personBurst;
-    case "personCane":
+    case 'personCane':
       return FontAwesomeIcons.personCane;
-    case "personChalkboard":
+    case 'personChalkboard':
       return FontAwesomeIcons.personChalkboard;
-    case "personCircleCheck":
+    case 'personCircleCheck':
       return FontAwesomeIcons.personCircleCheck;
-    case "personCircleExclamation":
+    case 'personCircleExclamation':
       return FontAwesomeIcons.personCircleExclamation;
-    case "personCircleMinus":
+    case 'personCircleMinus':
       return FontAwesomeIcons.personCircleMinus;
-    case "personCirclePlus":
+    case 'personCirclePlus':
       return FontAwesomeIcons.personCirclePlus;
-    case "personCircleQuestion":
+    case 'personCircleQuestion':
       return FontAwesomeIcons.personCircleQuestion;
-    case "personCircleXmark":
+    case 'personCircleXmark':
       return FontAwesomeIcons.personCircleXmark;
-    case "personDigging":
+    case 'personDigging':
       return FontAwesomeIcons.personDigging;
-    case "personDotsFromLine":
+    case 'personDotsFromLine':
       return FontAwesomeIcons.personDotsFromLine;
-    case "personDress":
+    case 'personDress':
       return FontAwesomeIcons.personDress;
-    case "personDressBurst":
+    case 'personDressBurst':
       return FontAwesomeIcons.personDressBurst;
-    case "personDrowning":
+    case 'personDrowning':
       return FontAwesomeIcons.personDrowning;
-    case "personFalling":
+    case 'personFalling':
       return FontAwesomeIcons.personFalling;
-    case "personFallingBurst":
+    case 'personFallingBurst':
       return FontAwesomeIcons.personFallingBurst;
-    case "personHalfDress":
+    case 'personHalfDress':
       return FontAwesomeIcons.personHalfDress;
-    case "personHarassing":
+    case 'personHarassing':
       return FontAwesomeIcons.personHarassing;
-    case "personHiking":
+    case 'personHiking':
       return FontAwesomeIcons.personHiking;
-    case "personMilitaryPointing":
+    case 'personMilitaryPointing':
       return FontAwesomeIcons.personMilitaryPointing;
-    case "personMilitaryRifle":
+    case 'personMilitaryRifle':
       return FontAwesomeIcons.personMilitaryRifle;
-    case "personMilitaryToPerson":
+    case 'personMilitaryToPerson':
       return FontAwesomeIcons.personMilitaryToPerson;
-    case "personPraying":
+    case 'personPraying':
       return FontAwesomeIcons.personPraying;
-    case "personPregnant":
+    case 'personPregnant':
       return FontAwesomeIcons.personPregnant;
-    case "personRays":
+    case 'personRays':
       return FontAwesomeIcons.personRays;
-    case "personRifle":
+    case 'personRifle':
       return FontAwesomeIcons.personRifle;
-    case "personRunning":
+    case 'personRunning':
       return FontAwesomeIcons.personRunning;
-    case "personShelter":
+    case 'personShelter':
       return FontAwesomeIcons.personShelter;
-    case "personSkating":
+    case 'personSkating':
       return FontAwesomeIcons.personSkating;
-    case "personSkiing":
+    case 'personSkiing':
       return FontAwesomeIcons.personSkiing;
-    case "personSkiingNordic":
+    case 'personSkiingNordic':
       return FontAwesomeIcons.personSkiingNordic;
-    case "personSnowboarding":
+    case 'personSnowboarding':
       return FontAwesomeIcons.personSnowboarding;
-    case "personSwimming":
+    case 'personSwimming':
       return FontAwesomeIcons.personSwimming;
-    case "personThroughWindow":
+    case 'personThroughWindow':
       return FontAwesomeIcons.personThroughWindow;
-    case "personWalking":
+    case 'personWalking':
       return FontAwesomeIcons.personWalking;
-    case "personWalkingArrowLoopLeft":
+    case 'personWalkingArrowLoopLeft':
       return FontAwesomeIcons.personWalkingArrowLoopLeft;
-    case "personWalkingArrowRight":
+    case 'personWalkingArrowRight':
       return FontAwesomeIcons.personWalkingArrowRight;
-    case "personWalkingDashedLineArrowRight":
+    case 'personWalkingDashedLineArrowRight':
       return FontAwesomeIcons.personWalkingDashedLineArrowRight;
-    case "personWalkingLuggage":
+    case 'personWalkingLuggage':
       return FontAwesomeIcons.personWalkingLuggage;
-    case "personWalkingWithCane":
+    case 'personWalkingWithCane':
       return FontAwesomeIcons.personWalkingWithCane;
-    case "pesetaSign":
+    case 'pesetaSign':
       return FontAwesomeIcons.pesetaSign;
-    case "pesoSign":
+    case 'pesoSign':
       return FontAwesomeIcons.pesoSign;
-    case "phabricator":
+    case 'phabricator':
       return FontAwesomeIcons.phabricator;
-    case "phoenixFramework":
+    case 'phoenixFramework':
       return FontAwesomeIcons.phoenixFramework;
-    case "phoenixSquadron":
+    case 'phoenixSquadron':
       return FontAwesomeIcons.phoenixSquadron;
-    case "phone":
+    case 'phone':
       return FontAwesomeIcons.phone;
-    case "phoneFlip":
+    case 'phoneFlip':
       return FontAwesomeIcons.phoneFlip;
-    case "phoneSlash":
+    case 'phoneSlash':
       return FontAwesomeIcons.phoneSlash;
-    case "phoneVolume":
+    case 'phoneVolume':
       return FontAwesomeIcons.phoneVolume;
-    case "photoFilm":
+    case 'photoFilm':
       return FontAwesomeIcons.photoFilm;
-    case "php":
+    case 'php':
       return FontAwesomeIcons.php;
-    case "piedPiper":
+    case 'piedPiper':
       return FontAwesomeIcons.piedPiper;
-    case "piedPiperAlt":
+    case 'piedPiperAlt':
       return FontAwesomeIcons.piedPiperAlt;
-    case "piedPiperHat":
+    case 'piedPiperHat':
       return FontAwesomeIcons.piedPiperHat;
-    case "piedPiperPp":
+    case 'piedPiperPp':
       return FontAwesomeIcons.piedPiperPp;
-    case "piggyBank":
+    case 'piggyBank':
       return FontAwesomeIcons.piggyBank;
-    case "pills":
+    case 'pills':
       return FontAwesomeIcons.pills;
-    case "pinterest":
+    case 'pinterest':
       return FontAwesomeIcons.pinterest;
-    case "pinterestP":
+    case 'pinterestP':
       return FontAwesomeIcons.pinterestP;
-    case "pix":
+    case 'pix':
       return FontAwesomeIcons.pix;
-    case "pizzaSlice":
+    case 'pizzaSlice':
       return FontAwesomeIcons.pizzaSlice;
-    case "placeOfWorship":
+    case 'placeOfWorship':
       return FontAwesomeIcons.placeOfWorship;
-    case "plane":
+    case 'plane':
       return FontAwesomeIcons.plane;
-    case "planeArrival":
+    case 'planeArrival':
       return FontAwesomeIcons.planeArrival;
-    case "planeCircleCheck":
+    case 'planeCircleCheck':
       return FontAwesomeIcons.planeCircleCheck;
-    case "planeCircleExclamation":
+    case 'planeCircleExclamation':
       return FontAwesomeIcons.planeCircleExclamation;
-    case "planeCircleXmark":
+    case 'planeCircleXmark':
       return FontAwesomeIcons.planeCircleXmark;
-    case "planeDeparture":
+    case 'planeDeparture':
       return FontAwesomeIcons.planeDeparture;
-    case "planeLock":
+    case 'planeLock':
       return FontAwesomeIcons.planeLock;
-    case "planeSlash":
+    case 'planeSlash':
       return FontAwesomeIcons.planeSlash;
-    case "planeUp":
+    case 'planeUp':
       return FontAwesomeIcons.planeUp;
-    case "plantWilt":
+    case 'plantWilt':
       return FontAwesomeIcons.plantWilt;
-    case "plateWheat":
+    case 'plateWheat':
       return FontAwesomeIcons.plateWheat;
-    case "play":
+    case 'play':
       return FontAwesomeIcons.play;
-    case "playstation":
+    case 'playstation':
       return FontAwesomeIcons.playstation;
-    case "plug":
+    case 'plug':
       return FontAwesomeIcons.plug;
-    case "plugCircleBolt":
+    case 'plugCircleBolt':
       return FontAwesomeIcons.plugCircleBolt;
-    case "plugCircleCheck":
+    case 'plugCircleCheck':
       return FontAwesomeIcons.plugCircleCheck;
-    case "plugCircleExclamation":
+    case 'plugCircleExclamation':
       return FontAwesomeIcons.plugCircleExclamation;
-    case "plugCircleMinus":
+    case 'plugCircleMinus':
       return FontAwesomeIcons.plugCircleMinus;
-    case "plugCirclePlus":
+    case 'plugCirclePlus':
       return FontAwesomeIcons.plugCirclePlus;
-    case "plugCircleXmark":
+    case 'plugCircleXmark':
       return FontAwesomeIcons.plugCircleXmark;
-    case "plus":
+    case 'plus':
       return FontAwesomeIcons.plus;
-    case "plusMinus":
+    case 'plusMinus':
       return FontAwesomeIcons.plusMinus;
-    case "podcast":
+    case 'podcast':
       return FontAwesomeIcons.podcast;
-    case "poo":
+    case 'poo':
       return FontAwesomeIcons.poo;
-    case "pooStorm":
+    case 'pooStorm':
       return FontAwesomeIcons.pooStorm;
-    case "poop":
+    case 'poop':
       return FontAwesomeIcons.poop;
-    case "powerOff":
+    case 'powerOff':
       return FontAwesomeIcons.powerOff;
-    case "prescription":
+    case 'prescription':
       return FontAwesomeIcons.prescription;
-    case "prescriptionBottle":
+    case 'prescriptionBottle':
       return FontAwesomeIcons.prescriptionBottle;
-    case "prescriptionBottleMedical":
+    case 'prescriptionBottleMedical':
       return FontAwesomeIcons.prescriptionBottleMedical;
-    case "print":
+    case 'print':
       return FontAwesomeIcons.print;
-    case "productHunt":
+    case 'productHunt':
       return FontAwesomeIcons.productHunt;
-    case "pumpMedical":
+    case 'pumpMedical':
       return FontAwesomeIcons.pumpMedical;
-    case "pumpSoap":
+    case 'pumpSoap':
       return FontAwesomeIcons.pumpSoap;
-    case "pushed":
+    case 'pushed':
       return FontAwesomeIcons.pushed;
-    case "puzzlePiece":
+    case 'puzzlePiece':
       return FontAwesomeIcons.puzzlePiece;
-    case "python":
+    case 'python':
       return FontAwesomeIcons.python;
-    case "q":
+    case 'q':
       return FontAwesomeIcons.q;
-    case "qq":
+    case 'qq':
       return FontAwesomeIcons.qq;
-    case "qrcode":
+    case 'qrcode':
       return FontAwesomeIcons.qrcode;
-    case "question":
+    case 'question':
       return FontAwesomeIcons.question;
-    case "quinscape":
+    case 'quinscape':
       return FontAwesomeIcons.quinscape;
-    case "quora":
+    case 'quora':
       return FontAwesomeIcons.quora;
-    case "quoteLeft":
+    case 'quoteLeft':
       return FontAwesomeIcons.quoteLeft;
-    case "quoteRight":
+    case 'quoteRight':
       return FontAwesomeIcons.quoteRight;
-    case "r":
+    case 'r':
       return FontAwesomeIcons.r;
-    case "rProject":
+    case 'rProject':
       return FontAwesomeIcons.rProject;
-    case "radiation":
+    case 'radiation':
       return FontAwesomeIcons.radiation;
-    case "radio":
+    case 'radio':
       return FontAwesomeIcons.radio;
-    case "rainbow":
+    case 'rainbow':
       return FontAwesomeIcons.rainbow;
-    case "rankingStar":
+    case 'rankingStar':
       return FontAwesomeIcons.rankingStar;
-    case "raspberryPi":
+    case 'raspberryPi':
       return FontAwesomeIcons.raspberryPi;
-    case "ravelry":
+    case 'ravelry':
       return FontAwesomeIcons.ravelry;
-    case "react":
+    case 'react':
       return FontAwesomeIcons.react;
-    case "reacteurope":
+    case 'reacteurope':
       return FontAwesomeIcons.reacteurope;
-    case "readme":
+    case 'readme':
       return FontAwesomeIcons.readme;
-    case "rebel":
+    case 'rebel':
       return FontAwesomeIcons.rebel;
-    case "receipt":
+    case 'receipt':
       return FontAwesomeIcons.receipt;
-    case "recordVinyl":
+    case 'recordVinyl':
       return FontAwesomeIcons.recordVinyl;
-    case "rectangleAd":
+    case 'rectangleAd':
       return FontAwesomeIcons.rectangleAd;
-    case "solidRectangleList":
+    case 'solidRectangleList':
       return FontAwesomeIcons.solidRectangleList;
-    case "rectangleList":
+    case 'rectangleList':
       return FontAwesomeIcons.rectangleList;
-    case "solidRectangleXmark":
+    case 'solidRectangleXmark':
       return FontAwesomeIcons.solidRectangleXmark;
-    case "rectangleXmark":
+    case 'rectangleXmark':
       return FontAwesomeIcons.rectangleXmark;
-    case "recycle":
+    case 'recycle':
       return FontAwesomeIcons.recycle;
-    case "redRiver":
+    case 'redRiver':
       return FontAwesomeIcons.redRiver;
-    case "reddit":
+    case 'reddit':
       return FontAwesomeIcons.reddit;
-    case "redditAlien":
+    case 'redditAlien':
       return FontAwesomeIcons.redditAlien;
-    case "redhat":
+    case 'redhat':
       return FontAwesomeIcons.redhat;
-    case "solidRegistered":
+    case 'solidRegistered':
       return FontAwesomeIcons.solidRegistered;
-    case "registered":
+    case 'registered':
       return FontAwesomeIcons.registered;
-    case "renren":
+    case 'renren':
       return FontAwesomeIcons.renren;
-    case "repeat":
+    case 'repeat':
       return FontAwesomeIcons.repeat;
-    case "reply":
+    case 'reply':
       return FontAwesomeIcons.reply;
-    case "replyAll":
+    case 'replyAll':
       return FontAwesomeIcons.replyAll;
-    case "replyd":
+    case 'replyd':
       return FontAwesomeIcons.replyd;
-    case "republican":
+    case 'republican':
       return FontAwesomeIcons.republican;
-    case "researchgate":
+    case 'researchgate':
       return FontAwesomeIcons.researchgate;
-    case "resolving":
+    case 'resolving':
       return FontAwesomeIcons.resolving;
-    case "restroom":
+    case 'restroom':
       return FontAwesomeIcons.restroom;
-    case "retweet":
+    case 'retweet':
       return FontAwesomeIcons.retweet;
-    case "rev":
+    case 'rev':
       return FontAwesomeIcons.rev;
-    case "ribbon":
+    case 'ribbon':
       return FontAwesomeIcons.ribbon;
-    case "rightFromBracket":
+    case 'rightFromBracket':
       return FontAwesomeIcons.rightFromBracket;
-    case "rightLeft":
+    case 'rightLeft':
       return FontAwesomeIcons.rightLeft;
-    case "rightLong":
+    case 'rightLong':
       return FontAwesomeIcons.rightLong;
-    case "rightToBracket":
+    case 'rightToBracket':
       return FontAwesomeIcons.rightToBracket;
-    case "ring":
+    case 'ring':
       return FontAwesomeIcons.ring;
-    case "road":
+    case 'road':
       return FontAwesomeIcons.road;
-    case "roadBarrier":
+    case 'roadBarrier':
       return FontAwesomeIcons.roadBarrier;
-    case "roadBridge":
+    case 'roadBridge':
       return FontAwesomeIcons.roadBridge;
-    case "roadCircleCheck":
+    case 'roadCircleCheck':
       return FontAwesomeIcons.roadCircleCheck;
-    case "roadCircleExclamation":
+    case 'roadCircleExclamation':
       return FontAwesomeIcons.roadCircleExclamation;
-    case "roadCircleXmark":
+    case 'roadCircleXmark':
       return FontAwesomeIcons.roadCircleXmark;
-    case "roadLock":
+    case 'roadLock':
       return FontAwesomeIcons.roadLock;
-    case "roadSpikes":
+    case 'roadSpikes':
       return FontAwesomeIcons.roadSpikes;
-    case "robot":
+    case 'robot':
       return FontAwesomeIcons.robot;
-    case "rocket":
+    case 'rocket':
       return FontAwesomeIcons.rocket;
-    case "rocketchat":
+    case 'rocketchat':
       return FontAwesomeIcons.rocketchat;
-    case "rockrms":
+    case 'rockrms':
       return FontAwesomeIcons.rockrms;
-    case "rotate":
+    case 'rotate':
       return FontAwesomeIcons.rotate;
-    case "rotateLeft":
+    case 'rotateLeft':
       return FontAwesomeIcons.rotateLeft;
-    case "rotateRight":
+    case 'rotateRight':
       return FontAwesomeIcons.rotateRight;
-    case "route":
+    case 'route':
       return FontAwesomeIcons.route;
-    case "rss":
+    case 'rss':
       return FontAwesomeIcons.rss;
-    case "rubleSign":
+    case 'rubleSign':
       return FontAwesomeIcons.rubleSign;
-    case "rug":
+    case 'rug':
       return FontAwesomeIcons.rug;
-    case "ruler":
+    case 'ruler':
       return FontAwesomeIcons.ruler;
-    case "rulerCombined":
+    case 'rulerCombined':
       return FontAwesomeIcons.rulerCombined;
-    case "rulerHorizontal":
+    case 'rulerHorizontal':
       return FontAwesomeIcons.rulerHorizontal;
-    case "rulerVertical":
+    case 'rulerVertical':
       return FontAwesomeIcons.rulerVertical;
-    case "rupeeSign":
+    case 'rupeeSign':
       return FontAwesomeIcons.rupeeSign;
-    case "rupiahSign":
+    case 'rupiahSign':
       return FontAwesomeIcons.rupiahSign;
-    case "rust":
+    case 'rust':
       return FontAwesomeIcons.rust;
-    case "s":
+    case 's':
       return FontAwesomeIcons.s;
-    case "sackDollar":
+    case 'sackDollar':
       return FontAwesomeIcons.sackDollar;
-    case "sackXmark":
+    case 'sackXmark':
       return FontAwesomeIcons.sackXmark;
-    case "safari":
+    case 'safari':
       return FontAwesomeIcons.safari;
-    case "sailboat":
+    case 'sailboat':
       return FontAwesomeIcons.sailboat;
-    case "salesforce":
+    case 'salesforce':
       return FontAwesomeIcons.salesforce;
-    case "sass":
+    case 'sass':
       return FontAwesomeIcons.sass;
-    case "satellite":
+    case 'satellite':
       return FontAwesomeIcons.satellite;
-    case "satelliteDish":
+    case 'satelliteDish':
       return FontAwesomeIcons.satelliteDish;
-    case "scaleBalanced":
+    case 'scaleBalanced':
       return FontAwesomeIcons.scaleBalanced;
-    case "scaleUnbalanced":
+    case 'scaleUnbalanced':
       return FontAwesomeIcons.scaleUnbalanced;
-    case "scaleUnbalancedFlip":
+    case 'scaleUnbalancedFlip':
       return FontAwesomeIcons.scaleUnbalancedFlip;
-    case "schlix":
+    case 'schlix':
       return FontAwesomeIcons.schlix;
-    case "school":
+    case 'school':
       return FontAwesomeIcons.school;
-    case "schoolCircleCheck":
+    case 'schoolCircleCheck':
       return FontAwesomeIcons.schoolCircleCheck;
-    case "schoolCircleExclamation":
+    case 'schoolCircleExclamation':
       return FontAwesomeIcons.schoolCircleExclamation;
-    case "schoolCircleXmark":
+    case 'schoolCircleXmark':
       return FontAwesomeIcons.schoolCircleXmark;
-    case "schoolFlag":
+    case 'schoolFlag':
       return FontAwesomeIcons.schoolFlag;
-    case "schoolLock":
+    case 'schoolLock':
       return FontAwesomeIcons.schoolLock;
-    case "scissors":
+    case 'scissors':
       return FontAwesomeIcons.scissors;
-    case "screenpal":
+    case 'screenpal':
       return FontAwesomeIcons.screenpal;
-    case "screwdriver":
+    case 'screwdriver':
       return FontAwesomeIcons.screwdriver;
-    case "screwdriverWrench":
+    case 'screwdriverWrench':
       return FontAwesomeIcons.screwdriverWrench;
-    case "scribd":
+    case 'scribd':
       return FontAwesomeIcons.scribd;
-    case "scroll":
+    case 'scroll':
       return FontAwesomeIcons.scroll;
-    case "scrollTorah":
+    case 'scrollTorah':
       return FontAwesomeIcons.scrollTorah;
-    case "sdCard":
+    case 'sdCard':
       return FontAwesomeIcons.sdCard;
-    case "searchengin":
+    case 'searchengin':
       return FontAwesomeIcons.searchengin;
-    case "section":
+    case 'section':
       return FontAwesomeIcons.section;
-    case "seedling":
+    case 'seedling':
       return FontAwesomeIcons.seedling;
-    case "sellcast":
+    case 'sellcast':
       return FontAwesomeIcons.sellcast;
-    case "sellsy":
+    case 'sellsy':
       return FontAwesomeIcons.sellsy;
-    case "server":
+    case 'server':
       return FontAwesomeIcons.server;
-    case "servicestack":
+    case 'servicestack':
       return FontAwesomeIcons.servicestack;
-    case "shapes":
+    case 'shapes':
       return FontAwesomeIcons.shapes;
-    case "share":
+    case 'share':
       return FontAwesomeIcons.share;
-    case "solidShareFromSquare":
+    case 'solidShareFromSquare':
       return FontAwesomeIcons.solidShareFromSquare;
-    case "shareFromSquare":
+    case 'shareFromSquare':
       return FontAwesomeIcons.shareFromSquare;
-    case "shareNodes":
+    case 'shareNodes':
       return FontAwesomeIcons.shareNodes;
-    case "sheetPlastic":
+    case 'sheetPlastic':
       return FontAwesomeIcons.sheetPlastic;
-    case "shekelSign":
+    case 'shekelSign':
       return FontAwesomeIcons.shekelSign;
-    case "shield":
+    case 'shield':
       return FontAwesomeIcons.shield;
-    case "shieldCat":
+    case 'shieldCat':
       return FontAwesomeIcons.shieldCat;
-    case "shieldDog":
+    case 'shieldDog':
       return FontAwesomeIcons.shieldDog;
-    case "shieldHalved":
+    case 'shieldHalved':
       return FontAwesomeIcons.shieldHalved;
-    case "shieldHeart":
+    case 'shieldHeart':
       return FontAwesomeIcons.shieldHeart;
-    case "shieldVirus":
+    case 'shieldVirus':
       return FontAwesomeIcons.shieldVirus;
-    case "ship":
+    case 'ship':
       return FontAwesomeIcons.ship;
-    case "shirt":
+    case 'shirt':
       return FontAwesomeIcons.shirt;
-    case "shirtsinbulk":
+    case 'shirtsinbulk':
       return FontAwesomeIcons.shirtsinbulk;
-    case "shoePrints":
+    case 'shoePrints':
       return FontAwesomeIcons.shoePrints;
-    case "shop":
+    case 'shop':
       return FontAwesomeIcons.shop;
-    case "shopLock":
+    case 'shopLock':
       return FontAwesomeIcons.shopLock;
-    case "shopSlash":
+    case 'shopSlash':
       return FontAwesomeIcons.shopSlash;
-    case "shopify":
+    case 'shopify':
       return FontAwesomeIcons.shopify;
-    case "shopware":
+    case 'shopware':
       return FontAwesomeIcons.shopware;
-    case "shower":
+    case 'shower':
       return FontAwesomeIcons.shower;
-    case "shrimp":
+    case 'shrimp':
       return FontAwesomeIcons.shrimp;
-    case "shuffle":
+    case 'shuffle':
       return FontAwesomeIcons.shuffle;
-    case "shuttleSpace":
+    case 'shuttleSpace':
       return FontAwesomeIcons.shuttleSpace;
-    case "signHanging":
+    case 'signHanging':
       return FontAwesomeIcons.signHanging;
-    case "signal":
+    case 'signal':
       return FontAwesomeIcons.signal;
-    case "signature":
+    case 'signature':
       return FontAwesomeIcons.signature;
-    case "signsPost":
+    case 'signsPost':
       return FontAwesomeIcons.signsPost;
-    case "simCard":
+    case 'simCard':
       return FontAwesomeIcons.simCard;
-    case "simplybuilt":
+    case 'simplybuilt':
       return FontAwesomeIcons.simplybuilt;
-    case "sink":
+    case 'sink':
       return FontAwesomeIcons.sink;
-    case "sistrix":
+    case 'sistrix':
       return FontAwesomeIcons.sistrix;
-    case "sitemap":
+    case 'sitemap':
       return FontAwesomeIcons.sitemap;
-    case "sith":
+    case 'sith':
       return FontAwesomeIcons.sith;
-    case "sitrox":
+    case 'sitrox':
       return FontAwesomeIcons.sitrox;
-    case "sketch":
+    case 'sketch':
       return FontAwesomeIcons.sketch;
-    case "skull":
+    case 'skull':
       return FontAwesomeIcons.skull;
-    case "skullCrossbones":
+    case 'skullCrossbones':
       return FontAwesomeIcons.skullCrossbones;
-    case "skyatlas":
+    case 'skyatlas':
       return FontAwesomeIcons.skyatlas;
-    case "skype":
+    case 'skype':
       return FontAwesomeIcons.skype;
-    case "slack":
+    case 'slack':
       return FontAwesomeIcons.slack;
-    case "slash":
+    case 'slash':
       return FontAwesomeIcons.slash;
-    case "sleigh":
+    case 'sleigh':
       return FontAwesomeIcons.sleigh;
-    case "sliders":
+    case 'sliders':
       return FontAwesomeIcons.sliders;
-    case "slideshare":
+    case 'slideshare':
       return FontAwesomeIcons.slideshare;
-    case "smog":
+    case 'smog':
       return FontAwesomeIcons.smog;
-    case "smoking":
+    case 'smoking':
       return FontAwesomeIcons.smoking;
-    case "snapchat":
+    case 'snapchat':
       return FontAwesomeIcons.snapchat;
-    case "solidSnowflake":
+    case 'solidSnowflake':
       return FontAwesomeIcons.solidSnowflake;
-    case "snowflake":
+    case 'snowflake':
       return FontAwesomeIcons.snowflake;
-    case "snowman":
+    case 'snowman':
       return FontAwesomeIcons.snowman;
-    case "snowplow":
+    case 'snowplow':
       return FontAwesomeIcons.snowplow;
-    case "soap":
+    case 'soap':
       return FontAwesomeIcons.soap;
-    case "socks":
+    case 'socks':
       return FontAwesomeIcons.socks;
-    case "solarPanel":
+    case 'solarPanel':
       return FontAwesomeIcons.solarPanel;
-    case "sort":
+    case 'sort':
       return FontAwesomeIcons.sort;
-    case "sortDown":
+    case 'sortDown':
       return FontAwesomeIcons.sortDown;
-    case "sortUp":
+    case 'sortUp':
       return FontAwesomeIcons.sortUp;
-    case "soundcloud":
+    case 'soundcloud':
       return FontAwesomeIcons.soundcloud;
-    case "sourcetree":
+    case 'sourcetree':
       return FontAwesomeIcons.sourcetree;
-    case "spa":
+    case 'spa':
       return FontAwesomeIcons.spa;
-    case "spaceAwesome":
+    case 'spaceAwesome':
       return FontAwesomeIcons.spaceAwesome;
-    case "spaghettiMonsterFlying":
+    case 'spaghettiMonsterFlying':
       return FontAwesomeIcons.spaghettiMonsterFlying;
-    case "speakap":
+    case 'speakap':
       return FontAwesomeIcons.speakap;
-    case "speakerDeck":
+    case 'speakerDeck':
       return FontAwesomeIcons.speakerDeck;
-    case "spellCheck":
+    case 'spellCheck':
       return FontAwesomeIcons.spellCheck;
-    case "spider":
+    case 'spider':
       return FontAwesomeIcons.spider;
-    case "spinner":
+    case 'spinner':
       return FontAwesomeIcons.spinner;
-    case "splotch":
+    case 'splotch':
       return FontAwesomeIcons.splotch;
-    case "spoon":
+    case 'spoon':
       return FontAwesomeIcons.spoon;
-    case "spotify":
+    case 'spotify':
       return FontAwesomeIcons.spotify;
-    case "sprayCan":
+    case 'sprayCan':
       return FontAwesomeIcons.sprayCan;
-    case "sprayCanSparkles":
+    case 'sprayCanSparkles':
       return FontAwesomeIcons.sprayCanSparkles;
-    case "solidSquare":
+    case 'solidSquare':
       return FontAwesomeIcons.solidSquare;
-    case "square":
+    case 'square':
       return FontAwesomeIcons.square;
-    case "squareArrowUpRight":
+    case 'squareArrowUpRight':
       return FontAwesomeIcons.squareArrowUpRight;
-    case "squareBehance":
+    case 'squareBehance':
       return FontAwesomeIcons.squareBehance;
-    case "solidSquareCaretDown":
+    case 'solidSquareCaretDown':
       return FontAwesomeIcons.solidSquareCaretDown;
-    case "squareCaretDown":
+    case 'squareCaretDown':
       return FontAwesomeIcons.squareCaretDown;
-    case "solidSquareCaretLeft":
+    case 'solidSquareCaretLeft':
       return FontAwesomeIcons.solidSquareCaretLeft;
-    case "squareCaretLeft":
+    case 'squareCaretLeft':
       return FontAwesomeIcons.squareCaretLeft;
-    case "solidSquareCaretRight":
+    case 'solidSquareCaretRight':
       return FontAwesomeIcons.solidSquareCaretRight;
-    case "squareCaretRight":
+    case 'squareCaretRight':
       return FontAwesomeIcons.squareCaretRight;
-    case "solidSquareCaretUp":
+    case 'solidSquareCaretUp':
       return FontAwesomeIcons.solidSquareCaretUp;
-    case "squareCaretUp":
+    case 'squareCaretUp':
       return FontAwesomeIcons.squareCaretUp;
-    case "solidSquareCheck":
+    case 'solidSquareCheck':
       return FontAwesomeIcons.solidSquareCheck;
-    case "squareCheck":
+    case 'squareCheck':
       return FontAwesomeIcons.squareCheck;
-    case "squareDribbble":
+    case 'squareDribbble':
       return FontAwesomeIcons.squareDribbble;
-    case "squareEnvelope":
+    case 'squareEnvelope':
       return FontAwesomeIcons.squareEnvelope;
-    case "squareFacebook":
+    case 'squareFacebook':
       return FontAwesomeIcons.squareFacebook;
-    case "squareFontAwesome":
+    case 'squareFontAwesome':
       return FontAwesomeIcons.squareFontAwesome;
-    case "squareFontAwesomeStroke":
+    case 'squareFontAwesomeStroke':
       return FontAwesomeIcons.squareFontAwesomeStroke;
-    case "solidSquareFull":
+    case 'solidSquareFull':
       return FontAwesomeIcons.solidSquareFull;
-    case "squareFull":
+    case 'squareFull':
       return FontAwesomeIcons.squareFull;
-    case "squareGit":
+    case 'squareGit':
       return FontAwesomeIcons.squareGit;
-    case "squareGithub":
+    case 'squareGithub':
       return FontAwesomeIcons.squareGithub;
-    case "squareGitlab":
+    case 'squareGitlab':
       return FontAwesomeIcons.squareGitlab;
-    case "squareGooglePlus":
+    case 'squareGooglePlus':
       return FontAwesomeIcons.squareGooglePlus;
-    case "squareH":
+    case 'squareH':
       return FontAwesomeIcons.squareH;
-    case "squareHackerNews":
+    case 'squareHackerNews':
       return FontAwesomeIcons.squareHackerNews;
-    case "squareInstagram":
+    case 'squareInstagram':
       return FontAwesomeIcons.squareInstagram;
-    case "squareJs":
+    case 'squareJs':
       return FontAwesomeIcons.squareJs;
-    case "squareLastfm":
+    case 'squareLastfm':
       return FontAwesomeIcons.squareLastfm;
-    case "solidSquareMinus":
+    case 'solidSquareMinus':
       return FontAwesomeIcons.solidSquareMinus;
-    case "squareMinus":
+    case 'squareMinus':
       return FontAwesomeIcons.squareMinus;
-    case "squareNfi":
+    case 'squareNfi':
       return FontAwesomeIcons.squareNfi;
-    case "squareOdnoklassniki":
+    case 'squareOdnoklassniki':
       return FontAwesomeIcons.squareOdnoklassniki;
-    case "squareParking":
+    case 'squareParking':
       return FontAwesomeIcons.squareParking;
-    case "squarePen":
+    case 'squarePen':
       return FontAwesomeIcons.squarePen;
-    case "squarePersonConfined":
+    case 'squarePersonConfined':
       return FontAwesomeIcons.squarePersonConfined;
-    case "squarePhone":
+    case 'squarePhone':
       return FontAwesomeIcons.squarePhone;
-    case "squarePhoneFlip":
+    case 'squarePhoneFlip':
       return FontAwesomeIcons.squarePhoneFlip;
-    case "squarePiedPiper":
+    case 'squarePiedPiper':
       return FontAwesomeIcons.squarePiedPiper;
-    case "squarePinterest":
+    case 'squarePinterest':
       return FontAwesomeIcons.squarePinterest;
-    case "solidSquarePlus":
+    case 'solidSquarePlus':
       return FontAwesomeIcons.solidSquarePlus;
-    case "squarePlus":
+    case 'squarePlus':
       return FontAwesomeIcons.squarePlus;
-    case "squarePollHorizontal":
+    case 'squarePollHorizontal':
       return FontAwesomeIcons.squarePollHorizontal;
-    case "squarePollVertical":
+    case 'squarePollVertical':
       return FontAwesomeIcons.squarePollVertical;
-    case "squareReddit":
+    case 'squareReddit':
       return FontAwesomeIcons.squareReddit;
-    case "squareRootVariable":
+    case 'squareRootVariable':
       return FontAwesomeIcons.squareRootVariable;
-    case "squareRss":
+    case 'squareRss':
       return FontAwesomeIcons.squareRss;
-    case "squareShareNodes":
+    case 'squareShareNodes':
       return FontAwesomeIcons.squareShareNodes;
-    case "squareSnapchat":
+    case 'squareSnapchat':
       return FontAwesomeIcons.squareSnapchat;
-    case "squareSteam":
+    case 'squareSteam':
       return FontAwesomeIcons.squareSteam;
-    case "squareTumblr":
+    case 'squareTumblr':
       return FontAwesomeIcons.squareTumblr;
-    case "squareTwitter":
+    case 'squareTwitter':
       return FontAwesomeIcons.squareTwitter;
-    case "squareUpRight":
+    case 'squareUpRight':
       return FontAwesomeIcons.squareUpRight;
-    case "squareViadeo":
+    case 'squareViadeo':
       return FontAwesomeIcons.squareViadeo;
-    case "squareVimeo":
+    case 'squareVimeo':
       return FontAwesomeIcons.squareVimeo;
-    case "squareVirus":
+    case 'squareVirus':
       return FontAwesomeIcons.squareVirus;
-    case "squareWhatsapp":
+    case 'squareWhatsapp':
       return FontAwesomeIcons.squareWhatsapp;
-    case "squareXing":
+    case 'squareXing':
       return FontAwesomeIcons.squareXing;
-    case "squareXmark":
+    case 'squareXmark':
       return FontAwesomeIcons.squareXmark;
-    case "squareYoutube":
+    case 'squareYoutube':
       return FontAwesomeIcons.squareYoutube;
-    case "squarespace":
+    case 'squarespace':
       return FontAwesomeIcons.squarespace;
-    case "stackExchange":
+    case 'stackExchange':
       return FontAwesomeIcons.stackExchange;
-    case "stackOverflow":
+    case 'stackOverflow':
       return FontAwesomeIcons.stackOverflow;
-    case "stackpath":
+    case 'stackpath':
       return FontAwesomeIcons.stackpath;
-    case "staffSnake":
+    case 'staffSnake':
       return FontAwesomeIcons.staffSnake;
-    case "stairs":
+    case 'stairs':
       return FontAwesomeIcons.stairs;
-    case "stamp":
+    case 'stamp':
       return FontAwesomeIcons.stamp;
-    case "stapler":
+    case 'stapler':
       return FontAwesomeIcons.stapler;
-    case "solidStar":
+    case 'solidStar':
       return FontAwesomeIcons.solidStar;
-    case "star":
+    case 'star':
       return FontAwesomeIcons.star;
-    case "starAndCrescent":
+    case 'starAndCrescent':
       return FontAwesomeIcons.starAndCrescent;
-    case "solidStarHalf":
+    case 'solidStarHalf':
       return FontAwesomeIcons.solidStarHalf;
-    case "starHalf":
+    case 'starHalf':
       return FontAwesomeIcons.starHalf;
-    case "solidStarHalfStroke":
+    case 'solidStarHalfStroke':
       return FontAwesomeIcons.solidStarHalfStroke;
-    case "starHalfStroke":
+    case 'starHalfStroke':
       return FontAwesomeIcons.starHalfStroke;
-    case "starOfDavid":
+    case 'starOfDavid':
       return FontAwesomeIcons.starOfDavid;
-    case "starOfLife":
+    case 'starOfLife':
       return FontAwesomeIcons.starOfLife;
-    case "staylinked":
+    case 'staylinked':
       return FontAwesomeIcons.staylinked;
-    case "steam":
+    case 'steam':
       return FontAwesomeIcons.steam;
-    case "steamSymbol":
+    case 'steamSymbol':
       return FontAwesomeIcons.steamSymbol;
-    case "sterlingSign":
+    case 'sterlingSign':
       return FontAwesomeIcons.sterlingSign;
-    case "stethoscope":
+    case 'stethoscope':
       return FontAwesomeIcons.stethoscope;
-    case "stickerMule":
+    case 'stickerMule':
       return FontAwesomeIcons.stickerMule;
-    case "stop":
+    case 'stop':
       return FontAwesomeIcons.stop;
-    case "stopwatch":
+    case 'stopwatch':
       return FontAwesomeIcons.stopwatch;
-    case "stopwatch20":
+    case 'stopwatch20':
       return FontAwesomeIcons.stopwatch20;
-    case "store":
+    case 'store':
       return FontAwesomeIcons.store;
-    case "storeSlash":
+    case 'storeSlash':
       return FontAwesomeIcons.storeSlash;
-    case "strava":
+    case 'strava':
       return FontAwesomeIcons.strava;
-    case "streetView":
+    case 'streetView':
       return FontAwesomeIcons.streetView;
-    case "strikethrough":
+    case 'strikethrough':
       return FontAwesomeIcons.strikethrough;
-    case "stripe":
+    case 'stripe':
       return FontAwesomeIcons.stripe;
-    case "stripeS":
+    case 'stripeS':
       return FontAwesomeIcons.stripeS;
-    case "stroopwafel":
+    case 'stroopwafel':
       return FontAwesomeIcons.stroopwafel;
-    case "stubber":
+    case 'stubber':
       return FontAwesomeIcons.stubber;
-    case "studiovinari":
+    case 'studiovinari':
       return FontAwesomeIcons.studiovinari;
-    case "stumbleupon":
+    case 'stumbleupon':
       return FontAwesomeIcons.stumbleupon;
-    case "stumbleuponCircle":
+    case 'stumbleuponCircle':
       return FontAwesomeIcons.stumbleuponCircle;
-    case "subscript":
+    case 'subscript':
       return FontAwesomeIcons.subscript;
-    case "suitcase":
+    case 'suitcase':
       return FontAwesomeIcons.suitcase;
-    case "suitcaseMedical":
+    case 'suitcaseMedical':
       return FontAwesomeIcons.suitcaseMedical;
-    case "suitcaseRolling":
+    case 'suitcaseRolling':
       return FontAwesomeIcons.suitcaseRolling;
-    case "solidSun":
+    case 'solidSun':
       return FontAwesomeIcons.solidSun;
-    case "sun":
+    case 'sun':
       return FontAwesomeIcons.sun;
-    case "sunPlantWilt":
+    case 'sunPlantWilt':
       return FontAwesomeIcons.sunPlantWilt;
-    case "superpowers":
+    case 'superpowers':
       return FontAwesomeIcons.superpowers;
-    case "superscript":
+    case 'superscript':
       return FontAwesomeIcons.superscript;
-    case "supple":
+    case 'supple':
       return FontAwesomeIcons.supple;
-    case "suse":
+    case 'suse':
       return FontAwesomeIcons.suse;
-    case "swatchbook":
+    case 'swatchbook':
       return FontAwesomeIcons.swatchbook;
-    case "swift":
+    case 'swift':
       return FontAwesomeIcons.swift;
-    case "symfony":
+    case 'symfony':
       return FontAwesomeIcons.symfony;
-    case "synagogue":
+    case 'synagogue':
       return FontAwesomeIcons.synagogue;
-    case "syringe":
+    case 'syringe':
       return FontAwesomeIcons.syringe;
-    case "t":
+    case 't':
       return FontAwesomeIcons.t;
-    case "table":
+    case 'table':
       return FontAwesomeIcons.table;
-    case "tableCells":
+    case 'tableCells':
       return FontAwesomeIcons.tableCells;
-    case "tableCellsLarge":
+    case 'tableCellsLarge':
       return FontAwesomeIcons.tableCellsLarge;
-    case "tableColumns":
+    case 'tableColumns':
       return FontAwesomeIcons.tableColumns;
-    case "tableList":
+    case 'tableList':
       return FontAwesomeIcons.tableList;
-    case "tableTennisPaddleBall":
+    case 'tableTennisPaddleBall':
       return FontAwesomeIcons.tableTennisPaddleBall;
-    case "tablet":
+    case 'tablet':
       return FontAwesomeIcons.tablet;
-    case "tabletButton":
+    case 'tabletButton':
       return FontAwesomeIcons.tabletButton;
-    case "tabletScreenButton":
+    case 'tabletScreenButton':
       return FontAwesomeIcons.tabletScreenButton;
-    case "tablets":
+    case 'tablets':
       return FontAwesomeIcons.tablets;
-    case "tachographDigital":
+    case 'tachographDigital':
       return FontAwesomeIcons.tachographDigital;
-    case "tag":
+    case 'tag':
       return FontAwesomeIcons.tag;
-    case "tags":
+    case 'tags':
       return FontAwesomeIcons.tags;
-    case "tape":
+    case 'tape':
       return FontAwesomeIcons.tape;
-    case "tarp":
+    case 'tarp':
       return FontAwesomeIcons.tarp;
-    case "tarpDroplet":
+    case 'tarpDroplet':
       return FontAwesomeIcons.tarpDroplet;
-    case "taxi":
+    case 'taxi':
       return FontAwesomeIcons.taxi;
-    case "teamspeak":
+    case 'teamspeak':
       return FontAwesomeIcons.teamspeak;
-    case "teeth":
+    case 'teeth':
       return FontAwesomeIcons.teeth;
-    case "teethOpen":
+    case 'teethOpen':
       return FontAwesomeIcons.teethOpen;
-    case "telegram":
+    case 'telegram':
       return FontAwesomeIcons.telegram;
-    case "temperatureArrowDown":
+    case 'temperatureArrowDown':
       return FontAwesomeIcons.temperatureArrowDown;
-    case "temperatureArrowUp":
+    case 'temperatureArrowUp':
       return FontAwesomeIcons.temperatureArrowUp;
-    case "temperatureEmpty":
+    case 'temperatureEmpty':
       return FontAwesomeIcons.temperatureEmpty;
-    case "temperatureFull":
+    case 'temperatureFull':
       return FontAwesomeIcons.temperatureFull;
-    case "temperatureHalf":
+    case 'temperatureHalf':
       return FontAwesomeIcons.temperatureHalf;
-    case "temperatureHigh":
+    case 'temperatureHigh':
       return FontAwesomeIcons.temperatureHigh;
-    case "temperatureLow":
+    case 'temperatureLow':
       return FontAwesomeIcons.temperatureLow;
-    case "temperatureQuarter":
+    case 'temperatureQuarter':
       return FontAwesomeIcons.temperatureQuarter;
-    case "temperatureThreeQuarters":
+    case 'temperatureThreeQuarters':
       return FontAwesomeIcons.temperatureThreeQuarters;
-    case "tencentWeibo":
+    case 'tencentWeibo':
       return FontAwesomeIcons.tencentWeibo;
-    case "tengeSign":
+    case 'tengeSign':
       return FontAwesomeIcons.tengeSign;
-    case "tent":
+    case 'tent':
       return FontAwesomeIcons.tent;
-    case "tentArrowDownToLine":
+    case 'tentArrowDownToLine':
       return FontAwesomeIcons.tentArrowDownToLine;
-    case "tentArrowLeftRight":
+    case 'tentArrowLeftRight':
       return FontAwesomeIcons.tentArrowLeftRight;
-    case "tentArrowTurnLeft":
+    case 'tentArrowTurnLeft':
       return FontAwesomeIcons.tentArrowTurnLeft;
-    case "tentArrowsDown":
+    case 'tentArrowsDown':
       return FontAwesomeIcons.tentArrowsDown;
-    case "tents":
+    case 'tents':
       return FontAwesomeIcons.tents;
-    case "terminal":
+    case 'terminal':
       return FontAwesomeIcons.terminal;
-    case "textHeight":
+    case 'textHeight':
       return FontAwesomeIcons.textHeight;
-    case "textSlash":
+    case 'textSlash':
       return FontAwesomeIcons.textSlash;
-    case "textWidth":
+    case 'textWidth':
       return FontAwesomeIcons.textWidth;
-    case "theRedYeti":
+    case 'theRedYeti':
       return FontAwesomeIcons.theRedYeti;
-    case "themeco":
+    case 'themeco':
       return FontAwesomeIcons.themeco;
-    case "themeisle":
+    case 'themeisle':
       return FontAwesomeIcons.themeisle;
-    case "thermometer":
+    case 'thermometer':
       return FontAwesomeIcons.thermometer;
-    case "thinkPeaks":
+    case 'thinkPeaks':
       return FontAwesomeIcons.thinkPeaks;
-    case "solidThumbsDown":
+    case 'solidThumbsDown':
       return FontAwesomeIcons.solidThumbsDown;
-    case "thumbsDown":
+    case 'thumbsDown':
       return FontAwesomeIcons.thumbsDown;
-    case "solidThumbsUp":
+    case 'solidThumbsUp':
       return FontAwesomeIcons.solidThumbsUp;
-    case "thumbsUp":
+    case 'thumbsUp':
       return FontAwesomeIcons.thumbsUp;
-    case "thumbtack":
+    case 'thumbtack':
       return FontAwesomeIcons.thumbtack;
-    case "ticket":
+    case 'ticket':
       return FontAwesomeIcons.ticket;
-    case "ticketSimple":
+    case 'ticketSimple':
       return FontAwesomeIcons.ticketSimple;
-    case "tiktok":
+    case 'tiktok':
       return FontAwesomeIcons.tiktok;
-    case "timeline":
+    case 'timeline':
       return FontAwesomeIcons.timeline;
-    case "toggleOff":
+    case 'toggleOff':
       return FontAwesomeIcons.toggleOff;
-    case "toggleOn":
+    case 'toggleOn':
       return FontAwesomeIcons.toggleOn;
-    case "toilet":
+    case 'toilet':
       return FontAwesomeIcons.toilet;
-    case "toiletPaper":
+    case 'toiletPaper':
       return FontAwesomeIcons.toiletPaper;
-    case "toiletPaperSlash":
+    case 'toiletPaperSlash':
       return FontAwesomeIcons.toiletPaperSlash;
-    case "toiletPortable":
+    case 'toiletPortable':
       return FontAwesomeIcons.toiletPortable;
-    case "toiletsPortable":
+    case 'toiletsPortable':
       return FontAwesomeIcons.toiletsPortable;
-    case "toolbox":
+    case 'toolbox':
       return FontAwesomeIcons.toolbox;
-    case "tooth":
+    case 'tooth':
       return FontAwesomeIcons.tooth;
-    case "toriiGate":
+    case 'toriiGate':
       return FontAwesomeIcons.toriiGate;
-    case "tornado":
+    case 'tornado':
       return FontAwesomeIcons.tornado;
-    case "towerBroadcast":
+    case 'towerBroadcast':
       return FontAwesomeIcons.towerBroadcast;
-    case "towerCell":
+    case 'towerCell':
       return FontAwesomeIcons.towerCell;
-    case "towerObservation":
+    case 'towerObservation':
       return FontAwesomeIcons.towerObservation;
-    case "tractor":
+    case 'tractor':
       return FontAwesomeIcons.tractor;
-    case "tradeFederation":
+    case 'tradeFederation':
       return FontAwesomeIcons.tradeFederation;
-    case "trademark":
+    case 'trademark':
       return FontAwesomeIcons.trademark;
-    case "trafficLight":
+    case 'trafficLight':
       return FontAwesomeIcons.trafficLight;
-    case "trailer":
+    case 'trailer':
       return FontAwesomeIcons.trailer;
-    case "train":
+    case 'train':
       return FontAwesomeIcons.train;
-    case "trainSubway":
+    case 'trainSubway':
       return FontAwesomeIcons.trainSubway;
-    case "trainTram":
+    case 'trainTram':
       return FontAwesomeIcons.trainTram;
-    case "transgender":
+    case 'transgender':
       return FontAwesomeIcons.transgender;
-    case "trash":
+    case 'trash':
       return FontAwesomeIcons.trash;
-    case "trashArrowUp":
+    case 'trashArrowUp':
       return FontAwesomeIcons.trashArrowUp;
-    case "solidTrashCan":
+    case 'solidTrashCan':
       return FontAwesomeIcons.solidTrashCan;
-    case "trashCan":
+    case 'trashCan':
       return FontAwesomeIcons.trashCan;
-    case "trashCanArrowUp":
+    case 'trashCanArrowUp':
       return FontAwesomeIcons.trashCanArrowUp;
-    case "tree":
+    case 'tree':
       return FontAwesomeIcons.tree;
-    case "treeCity":
+    case 'treeCity':
       return FontAwesomeIcons.treeCity;
-    case "trello":
+    case 'trello':
       return FontAwesomeIcons.trello;
-    case "triangleExclamation":
+    case 'triangleExclamation':
       return FontAwesomeIcons.triangleExclamation;
-    case "trophy":
+    case 'trophy':
       return FontAwesomeIcons.trophy;
-    case "trowel":
+    case 'trowel':
       return FontAwesomeIcons.trowel;
-    case "trowelBricks":
+    case 'trowelBricks':
       return FontAwesomeIcons.trowelBricks;
-    case "truck":
+    case 'truck':
       return FontAwesomeIcons.truck;
-    case "truckArrowRight":
+    case 'truckArrowRight':
       return FontAwesomeIcons.truckArrowRight;
-    case "truckDroplet":
+    case 'truckDroplet':
       return FontAwesomeIcons.truckDroplet;
-    case "truckFast":
+    case 'truckFast':
       return FontAwesomeIcons.truckFast;
-    case "truckField":
+    case 'truckField':
       return FontAwesomeIcons.truckField;
-    case "truckFieldUn":
+    case 'truckFieldUn':
       return FontAwesomeIcons.truckFieldUn;
-    case "truckFront":
+    case 'truckFront':
       return FontAwesomeIcons.truckFront;
-    case "truckMedical":
+    case 'truckMedical':
       return FontAwesomeIcons.truckMedical;
-    case "truckMonster":
+    case 'truckMonster':
       return FontAwesomeIcons.truckMonster;
-    case "truckMoving":
+    case 'truckMoving':
       return FontAwesomeIcons.truckMoving;
-    case "truckPickup":
+    case 'truckPickup':
       return FontAwesomeIcons.truckPickup;
-    case "truckPlane":
+    case 'truckPlane':
       return FontAwesomeIcons.truckPlane;
-    case "truckRampBox":
+    case 'truckRampBox':
       return FontAwesomeIcons.truckRampBox;
-    case "tty":
+    case 'tty':
       return FontAwesomeIcons.tty;
-    case "tumblr":
+    case 'tumblr':
       return FontAwesomeIcons.tumblr;
-    case "turkishLiraSign":
+    case 'turkishLiraSign':
       return FontAwesomeIcons.turkishLiraSign;
-    case "turnDown":
+    case 'turnDown':
       return FontAwesomeIcons.turnDown;
-    case "turnUp":
+    case 'turnUp':
       return FontAwesomeIcons.turnUp;
-    case "tv":
+    case 'tv':
       return FontAwesomeIcons.tv;
-    case "twitch":
+    case 'twitch':
       return FontAwesomeIcons.twitch;
-    case "twitter":
+    case 'twitter':
       return FontAwesomeIcons.twitter;
-    case "typo3":
+    case 'typo3':
       return FontAwesomeIcons.typo3;
-    case "u":
+    case 'u':
       return FontAwesomeIcons.u;
-    case "uber":
+    case 'uber':
       return FontAwesomeIcons.uber;
-    case "ubuntu":
+    case 'ubuntu':
       return FontAwesomeIcons.ubuntu;
-    case "uikit":
+    case 'uikit':
       return FontAwesomeIcons.uikit;
-    case "umbraco":
+    case 'umbraco':
       return FontAwesomeIcons.umbraco;
-    case "umbrella":
+    case 'umbrella':
       return FontAwesomeIcons.umbrella;
-    case "umbrellaBeach":
+    case 'umbrellaBeach':
       return FontAwesomeIcons.umbrellaBeach;
-    case "uncharted":
+    case 'uncharted':
       return FontAwesomeIcons.uncharted;
-    case "underline":
+    case 'underline':
       return FontAwesomeIcons.underline;
-    case "uniregistry":
+    case 'uniregistry':
       return FontAwesomeIcons.uniregistry;
-    case "unity":
+    case 'unity':
       return FontAwesomeIcons.unity;
-    case "universalAccess":
+    case 'universalAccess':
       return FontAwesomeIcons.universalAccess;
-    case "unlock":
+    case 'unlock':
       return FontAwesomeIcons.unlock;
-    case "unlockKeyhole":
+    case 'unlockKeyhole':
       return FontAwesomeIcons.unlockKeyhole;
-    case "unsplash":
+    case 'unsplash':
       return FontAwesomeIcons.unsplash;
-    case "untappd":
+    case 'untappd':
       return FontAwesomeIcons.untappd;
-    case "upDown":
+    case 'upDown':
       return FontAwesomeIcons.upDown;
-    case "upDownLeftRight":
+    case 'upDownLeftRight':
       return FontAwesomeIcons.upDownLeftRight;
-    case "upLong":
+    case 'upLong':
       return FontAwesomeIcons.upLong;
-    case "upRightAndDownLeftFromCenter":
+    case 'upRightAndDownLeftFromCenter':
       return FontAwesomeIcons.upRightAndDownLeftFromCenter;
-    case "upRightFromSquare":
+    case 'upRightFromSquare':
       return FontAwesomeIcons.upRightFromSquare;
-    case "upload":
+    case 'upload':
       return FontAwesomeIcons.upload;
-    case "ups":
+    case 'ups':
       return FontAwesomeIcons.ups;
-    case "usb":
+    case 'usb':
       return FontAwesomeIcons.usb;
-    case "solidUser":
+    case 'solidUser':
       return FontAwesomeIcons.solidUser;
-    case "user":
+    case 'user':
       return FontAwesomeIcons.user;
-    case "userAstronaut":
+    case 'userAstronaut':
       return FontAwesomeIcons.userAstronaut;
-    case "userCheck":
+    case 'userCheck':
       return FontAwesomeIcons.userCheck;
-    case "userClock":
+    case 'userClock':
       return FontAwesomeIcons.userClock;
-    case "userDoctor":
+    case 'userDoctor':
       return FontAwesomeIcons.userDoctor;
-    case "userGear":
+    case 'userGear':
       return FontAwesomeIcons.userGear;
-    case "userGraduate":
+    case 'userGraduate':
       return FontAwesomeIcons.userGraduate;
-    case "userGroup":
+    case 'userGroup':
       return FontAwesomeIcons.userGroup;
-    case "userInjured":
+    case 'userInjured':
       return FontAwesomeIcons.userInjured;
-    case "userLarge":
+    case 'userLarge':
       return FontAwesomeIcons.userLarge;
-    case "userLargeSlash":
+    case 'userLargeSlash':
       return FontAwesomeIcons.userLargeSlash;
-    case "userLock":
+    case 'userLock':
       return FontAwesomeIcons.userLock;
-    case "userMinus":
+    case 'userMinus':
       return FontAwesomeIcons.userMinus;
-    case "userNinja":
+    case 'userNinja':
       return FontAwesomeIcons.userNinja;
-    case "userNurse":
+    case 'userNurse':
       return FontAwesomeIcons.userNurse;
-    case "userPen":
+    case 'userPen':
       return FontAwesomeIcons.userPen;
-    case "userPlus":
+    case 'userPlus':
       return FontAwesomeIcons.userPlus;
-    case "userSecret":
+    case 'userSecret':
       return FontAwesomeIcons.userSecret;
-    case "userShield":
+    case 'userShield':
       return FontAwesomeIcons.userShield;
-    case "userSlash":
+    case 'userSlash':
       return FontAwesomeIcons.userSlash;
-    case "userTag":
+    case 'userTag':
       return FontAwesomeIcons.userTag;
-    case "userTie":
+    case 'userTie':
       return FontAwesomeIcons.userTie;
-    case "userXmark":
+    case 'userXmark':
       return FontAwesomeIcons.userXmark;
-    case "users":
+    case 'users':
       return FontAwesomeIcons.users;
-    case "usersBetweenLines":
+    case 'usersBetweenLines':
       return FontAwesomeIcons.usersBetweenLines;
-    case "usersGear":
+    case 'usersGear':
       return FontAwesomeIcons.usersGear;
-    case "usersLine":
+    case 'usersLine':
       return FontAwesomeIcons.usersLine;
-    case "usersRays":
+    case 'usersRays':
       return FontAwesomeIcons.usersRays;
-    case "usersRectangle":
+    case 'usersRectangle':
       return FontAwesomeIcons.usersRectangle;
-    case "usersSlash":
+    case 'usersSlash':
       return FontAwesomeIcons.usersSlash;
-    case "usersViewfinder":
+    case 'usersViewfinder':
       return FontAwesomeIcons.usersViewfinder;
-    case "usps":
+    case 'usps':
       return FontAwesomeIcons.usps;
-    case "ussunnah":
+    case 'ussunnah':
       return FontAwesomeIcons.ussunnah;
-    case "utensils":
+    case 'utensils':
       return FontAwesomeIcons.utensils;
-    case "v":
+    case 'v':
       return FontAwesomeIcons.v;
-    case "vaadin":
+    case 'vaadin':
       return FontAwesomeIcons.vaadin;
-    case "vanShuttle":
+    case 'vanShuttle':
       return FontAwesomeIcons.vanShuttle;
-    case "vault":
+    case 'vault':
       return FontAwesomeIcons.vault;
-    case "vectorSquare":
+    case 'vectorSquare':
       return FontAwesomeIcons.vectorSquare;
-    case "venus":
+    case 'venus':
       return FontAwesomeIcons.venus;
-    case "venusDouble":
+    case 'venusDouble':
       return FontAwesomeIcons.venusDouble;
-    case "venusMars":
+    case 'venusMars':
       return FontAwesomeIcons.venusMars;
-    case "vest":
+    case 'vest':
       return FontAwesomeIcons.vest;
-    case "vestPatches":
+    case 'vestPatches':
       return FontAwesomeIcons.vestPatches;
-    case "viacoin":
+    case 'viacoin':
       return FontAwesomeIcons.viacoin;
-    case "viadeo":
+    case 'viadeo':
       return FontAwesomeIcons.viadeo;
-    case "vial":
+    case 'vial':
       return FontAwesomeIcons.vial;
-    case "vialCircleCheck":
+    case 'vialCircleCheck':
       return FontAwesomeIcons.vialCircleCheck;
-    case "vialVirus":
+    case 'vialVirus':
       return FontAwesomeIcons.vialVirus;
-    case "vials":
+    case 'vials':
       return FontAwesomeIcons.vials;
-    case "viber":
+    case 'viber':
       return FontAwesomeIcons.viber;
-    case "video":
+    case 'video':
       return FontAwesomeIcons.video;
-    case "videoSlash":
+    case 'videoSlash':
       return FontAwesomeIcons.videoSlash;
-    case "vihara":
+    case 'vihara':
       return FontAwesomeIcons.vihara;
-    case "vimeo":
+    case 'vimeo':
       return FontAwesomeIcons.vimeo;
-    case "vimeoV":
+    case 'vimeoV':
       return FontAwesomeIcons.vimeoV;
-    case "vine":
+    case 'vine':
       return FontAwesomeIcons.vine;
-    case "virus":
+    case 'virus':
       return FontAwesomeIcons.virus;
-    case "virusCovid":
+    case 'virusCovid':
       return FontAwesomeIcons.virusCovid;
-    case "virusCovidSlash":
+    case 'virusCovidSlash':
       return FontAwesomeIcons.virusCovidSlash;
-    case "virusSlash":
+    case 'virusSlash':
       return FontAwesomeIcons.virusSlash;
-    case "viruses":
+    case 'viruses':
       return FontAwesomeIcons.viruses;
-    case "vk":
+    case 'vk':
       return FontAwesomeIcons.vk;
-    case "vnv":
+    case 'vnv':
       return FontAwesomeIcons.vnv;
-    case "voicemail":
+    case 'voicemail':
       return FontAwesomeIcons.voicemail;
-    case "volcano":
+    case 'volcano':
       return FontAwesomeIcons.volcano;
-    case "volleyball":
+    case 'volleyball':
       return FontAwesomeIcons.volleyball;
-    case "volumeHigh":
+    case 'volumeHigh':
       return FontAwesomeIcons.volumeHigh;
-    case "volumeLow":
+    case 'volumeLow':
       return FontAwesomeIcons.volumeLow;
-    case "volumeOff":
+    case 'volumeOff':
       return FontAwesomeIcons.volumeOff;
-    case "volumeXmark":
+    case 'volumeXmark':
       return FontAwesomeIcons.volumeXmark;
-    case "vrCardboard":
+    case 'vrCardboard':
       return FontAwesomeIcons.vrCardboard;
-    case "vuejs":
+    case 'vuejs':
       return FontAwesomeIcons.vuejs;
-    case "w":
+    case 'w':
       return FontAwesomeIcons.w;
-    case "walkieTalkie":
+    case 'walkieTalkie':
       return FontAwesomeIcons.walkieTalkie;
-    case "wallet":
+    case 'wallet':
       return FontAwesomeIcons.wallet;
-    case "wandMagic":
+    case 'wandMagic':
       return FontAwesomeIcons.wandMagic;
-    case "wandMagicSparkles":
+    case 'wandMagicSparkles':
       return FontAwesomeIcons.wandMagicSparkles;
-    case "wandSparkles":
+    case 'wandSparkles':
       return FontAwesomeIcons.wandSparkles;
-    case "warehouse":
+    case 'warehouse':
       return FontAwesomeIcons.warehouse;
-    case "watchmanMonitoring":
+    case 'watchmanMonitoring':
       return FontAwesomeIcons.watchmanMonitoring;
-    case "water":
+    case 'water':
       return FontAwesomeIcons.water;
-    case "waterLadder":
+    case 'waterLadder':
       return FontAwesomeIcons.waterLadder;
-    case "waveSquare":
+    case 'waveSquare':
       return FontAwesomeIcons.waveSquare;
-    case "waze":
+    case 'waze':
       return FontAwesomeIcons.waze;
-    case "weebly":
+    case 'weebly':
       return FontAwesomeIcons.weebly;
-    case "weibo":
+    case 'weibo':
       return FontAwesomeIcons.weibo;
-    case "weightHanging":
+    case 'weightHanging':
       return FontAwesomeIcons.weightHanging;
-    case "weightScale":
+    case 'weightScale':
       return FontAwesomeIcons.weightScale;
-    case "whatsapp":
+    case 'whatsapp':
       return FontAwesomeIcons.whatsapp;
-    case "wheatAwn":
+    case 'wheatAwn':
       return FontAwesomeIcons.wheatAwn;
-    case "wheatAwnCircleExclamation":
+    case 'wheatAwnCircleExclamation':
       return FontAwesomeIcons.wheatAwnCircleExclamation;
-    case "wheelchair":
+    case 'wheelchair':
       return FontAwesomeIcons.wheelchair;
-    case "wheelchairMove":
+    case 'wheelchairMove':
       return FontAwesomeIcons.wheelchairMove;
-    case "whiskeyGlass":
+    case 'whiskeyGlass':
       return FontAwesomeIcons.whiskeyGlass;
-    case "whmcs":
+    case 'whmcs':
       return FontAwesomeIcons.whmcs;
-    case "wifi":
+    case 'wifi':
       return FontAwesomeIcons.wifi;
-    case "wikipediaW":
+    case 'wikipediaW':
       return FontAwesomeIcons.wikipediaW;
-    case "wind":
+    case 'wind':
       return FontAwesomeIcons.wind;
-    case "solidWindowMaximize":
+    case 'solidWindowMaximize':
       return FontAwesomeIcons.solidWindowMaximize;
-    case "windowMaximize":
+    case 'windowMaximize':
       return FontAwesomeIcons.windowMaximize;
-    case "solidWindowMinimize":
+    case 'solidWindowMinimize':
       return FontAwesomeIcons.solidWindowMinimize;
-    case "windowMinimize":
+    case 'windowMinimize':
       return FontAwesomeIcons.windowMinimize;
-    case "solidWindowRestore":
+    case 'solidWindowRestore':
       return FontAwesomeIcons.solidWindowRestore;
-    case "windowRestore":
+    case 'windowRestore':
       return FontAwesomeIcons.windowRestore;
-    case "windows":
+    case 'windows':
       return FontAwesomeIcons.windows;
-    case "wineBottle":
+    case 'wineBottle':
       return FontAwesomeIcons.wineBottle;
-    case "wineGlass":
+    case 'wineGlass':
       return FontAwesomeIcons.wineGlass;
-    case "wineGlassEmpty":
+    case 'wineGlassEmpty':
       return FontAwesomeIcons.wineGlassEmpty;
-    case "wirsindhandwerk":
+    case 'wirsindhandwerk':
       return FontAwesomeIcons.wirsindhandwerk;
-    case "wix":
+    case 'wix':
       return FontAwesomeIcons.wix;
-    case "wizardsOfTheCoast":
+    case 'wizardsOfTheCoast':
       return FontAwesomeIcons.wizardsOfTheCoast;
-    case "wodu":
+    case 'wodu':
       return FontAwesomeIcons.wodu;
-    case "wolfPackBattalion":
+    case 'wolfPackBattalion':
       return FontAwesomeIcons.wolfPackBattalion;
-    case "wonSign":
+    case 'wonSign':
       return FontAwesomeIcons.wonSign;
-    case "wordpress":
+    case 'wordpress':
       return FontAwesomeIcons.wordpress;
-    case "wordpressSimple":
+    case 'wordpressSimple':
       return FontAwesomeIcons.wordpressSimple;
-    case "worm":
+    case 'worm':
       return FontAwesomeIcons.worm;
-    case "wpbeginner":
+    case 'wpbeginner':
       return FontAwesomeIcons.wpbeginner;
-    case "wpexplorer":
+    case 'wpexplorer':
       return FontAwesomeIcons.wpexplorer;
-    case "wpforms":
+    case 'wpforms':
       return FontAwesomeIcons.wpforms;
-    case "wpressr":
+    case 'wpressr':
       return FontAwesomeIcons.wpressr;
-    case "wrench":
+    case 'wrench':
       return FontAwesomeIcons.wrench;
-    case "x":
+    case 'x':
       return FontAwesomeIcons.x;
-    case "xRay":
+    case 'xRay':
       return FontAwesomeIcons.xRay;
-    case "xbox":
+    case 'xbox':
       return FontAwesomeIcons.xbox;
-    case "xing":
+    case 'xing':
       return FontAwesomeIcons.xing;
-    case "xmark":
+    case 'xmark':
       return FontAwesomeIcons.xmark;
-    case "xmarksLines":
+    case 'xmarksLines':
       return FontAwesomeIcons.xmarksLines;
-    case "y":
+    case 'y':
       return FontAwesomeIcons.y;
-    case "yCombinator":
+    case 'yCombinator':
       return FontAwesomeIcons.yCombinator;
-    case "yahoo":
+    case 'yahoo':
       return FontAwesomeIcons.yahoo;
-    case "yammer":
+    case 'yammer':
       return FontAwesomeIcons.yammer;
-    case "yandex":
+    case 'yandex':
       return FontAwesomeIcons.yandex;
-    case "yandexInternational":
+    case 'yandexInternational':
       return FontAwesomeIcons.yandexInternational;
-    case "yarn":
+    case 'yarn':
       return FontAwesomeIcons.yarn;
-    case "yelp":
+    case 'yelp':
       return FontAwesomeIcons.yelp;
-    case "yenSign":
+    case 'yenSign':
       return FontAwesomeIcons.yenSign;
-    case "yinYang":
+    case 'yinYang':
       return FontAwesomeIcons.yinYang;
-    case "yoast":
+    case 'yoast':
       return FontAwesomeIcons.yoast;
-    case "youtube":
+    case 'youtube':
       return FontAwesomeIcons.youtube;
-    case "z":
+    case 'z':
       return FontAwesomeIcons.z;
-    case "zhihu":
+    case 'zhihu':
       return FontAwesomeIcons.zhihu;
     default:
       return FontAwesomeIcons.circleQuestion;

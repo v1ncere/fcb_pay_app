@@ -6,12 +6,12 @@ class CircleButtonWithLabel extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.color,
-    required this.function
+    required this.onTap
   });
   final IconData icon;
   final String text;
   final Color color;
-  final Function()? function;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class CircleButtonWithLabel extends StatelessWidget {
               color: const Color(0xFF25C166),
               child: InkWell(
                 splashColor: Colors.white60,
-                onTap: function,
+                onTap: onTap,
                 child: Icon(icon, color: color)
               )
             )

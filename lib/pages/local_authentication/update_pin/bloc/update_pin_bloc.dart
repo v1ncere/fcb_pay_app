@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_pin_repository/hive_pin_repository.dart';
 
@@ -17,28 +18,29 @@ class UpdatePinBloc extends Bloc<UpdatePinEvent, UpdatePinState> {
   final HivePinRepository _hiveRepository;
 
   void _onChangePinAdded(UpdatePinAdded event, Emitter<UpdatePinState> emit) async {
-    final currentPin = "${state.currentPin}${event.pin}";
+    final uid = FirebaseAuth.instance.currentUser?.uid ?? '';
+    final currentPin = '${state.currentPin}${event.pin}';
     if (state.status.isEnterCurrent && currentPin.length < 6) {
       emit(state.copyWith(status: UpdatePinStatus.enterCurrent, currentPin: currentPin));
-    } else if (await _hiveRepository.pinEquals(currentPin)) {
+    } else if (await _hiveRepository.pinAuthEquals(uid: uid, pin: currentPin)) {
       emit(state.copyWith(status: UpdatePinStatus.currentEquals, currentPin: currentPin));
       await Future.delayed(
         Duration.zero,
         () => emit(state.copyWith(status: UpdatePinStatus.enterNew, currentPin: currentPin)) 
       );
     } else if (state.status.isEnterNew && state.newPin.length < 6) {
-      final newPin = "${state.newPin}${event.pin}";
+      final newPin = '${state.newPin}${event.pin}';
       if (newPin.length < 6) {
         emit(state.copyWith(status: UpdatePinStatus.enterNew, newPin: newPin));
       } else {
         emit(state.copyWith(status: UpdatePinStatus.enterConfirm, newPin: newPin));
       }
     } else if (state.status.isEnterConfirm && state.confirmedPin.length < 6) {
-      final confirmedPin = "${state.confirmedPin}${event.pin}";
+      final confirmedPin = '${state.confirmedPin}${event.pin}';
       if (confirmedPin.length < 6) {
         emit(state.copyWith(status: UpdatePinStatus.enterConfirm, confirmedPin: confirmedPin));
       } else if (confirmedPin == state.newPin) {
-        _hiveRepository.addPin(confirmedPin);
+        _hiveRepository.addPinAuth(uid: uid, pin: confirmedPin);
         emit(state.copyWith(status: UpdatePinStatus.updateEquals, confirmedPin: confirmedPin));
         await Future.delayed(Duration.zero, () => add(UpdatePinNulled()));
       } else {
@@ -80,7 +82,7 @@ class UpdatePinBloc extends Bloc<UpdatePinEvent, UpdatePinState> {
 
   @override
   Future<void> close() async {
-    _hiveRepository.closePinBox();
+    _hiveRepository.closePinAuthBox();
     return super.close();
   }
 }

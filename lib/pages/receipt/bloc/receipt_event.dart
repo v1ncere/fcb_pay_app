@@ -1,18 +1,18 @@
 part of 'receipt_bloc.dart';
 
-abstract class ReceiptEvent extends Equatable {
+sealed class ReceiptEvent extends Equatable {
   const ReceiptEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class ReceiptDisplayLoaded extends ReceiptEvent {}
+final class ReceiptDisplayLoaded extends ReceiptEvent {}
 
-class ReceiptDisplayUpdated extends ReceiptEvent {
-  const ReceiptDisplayUpdated(this.receipts);
-  final Map<String, dynamic> receipts;
+final class ReceiptDisplayUpdated extends ReceiptEvent {
+  const ReceiptDisplayUpdated(this.receiptMap);
+  final Map<String, dynamic> receiptMap;
 
   @override
-  List<Object> get props => [receipts];
+  List<Object> get props => [receiptMap];
 }

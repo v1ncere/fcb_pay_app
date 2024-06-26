@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../../home_flow/home_flow.dart';
+import '../scanner_transaction.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({super.key});
@@ -17,15 +18,25 @@ class SubmitButton extends StatelessWidget {
       listenWhen: (previous, current) => previous.formStatus != current.formStatus,
       listener: (context, state) {
         if(state.formStatus.isSuccess) {
-          context.flow<HomePageStatus>().update((next) => HomePageStatus.scannerTransactionReceipt);
+          context.flow<HomeRouterStatus>().update((next) => HomeRouterStatus.scannerTransactionReceipt);
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar("Payment sent!", FontAwesomeIcons.solidCircleCheck,Colors.white));
+          ..showSnackBar(customSnackBar(
+            text: 'Payment sent!',
+            icon: FontAwesomeIcons.solidCircleCheck,
+            backgroundColor: ColorString.eucalyptus,
+            foregroundColor: ColorString.mystic,
+          ));
         }
         if(state.formStatus.isFailure) {
           ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(customSnackBar(state.message, FontAwesomeIcons.triangleExclamation,Colors.red));
+          ..showSnackBar(customSnackBar(
+            text: state.message, 
+            icon: FontAwesomeIcons.triangleExclamation,
+            backgroundColor: ColorString.guardsmanRed,
+            foregroundColor: ColorString.mystic,
+          ));
         }
       },
       buildWhen: (previous, current) => previous.formStatus != current.formStatus || current.isValid,
@@ -37,9 +48,9 @@ class SubmitButton extends StatelessWidget {
           ? () => context.read<ScannerTransactionBloc>().add(ScannerTransactionSubmitted())
           : null,
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
-            elevation: MaterialStateProperty.all(2),
-            backgroundColor: MaterialStateProperty.all(const Color(0xFF25C166)) 
+            padding: WidgetStateProperty.all(const EdgeInsets.all(10)),
+            elevation: WidgetStateProperty.all(2),
+            backgroundColor: WidgetStateProperty.all(const Color(0xFF25C166)) 
           ),
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,

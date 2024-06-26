@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:fcb_pay_app/pages/scanner_transaction/widgets/widgets.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../widgets/widgets.dart';
+import '../widgets/widgets.dart';
 
 class ScannerTransactionView extends StatelessWidget {
   const ScannerTransactionView({super.key});
@@ -29,7 +29,7 @@ class ScannerTransactionView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    CustomText(text: "Account:", color: Colors.black54)
+                    CustomText(text: 'Account:', color: Colors.black54)
                   ]
                 ),
                 SizedBox(height: 5),
@@ -40,7 +40,7 @@ class ScannerTransactionView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    CustomText(text: "Amount:", color: Colors.black54),
+                    CustomText(text: 'Amount:', color: Colors.black54),
                   ]
                 ),
                 SizedBox(height: 5),
@@ -48,7 +48,7 @@ class ScannerTransactionView extends StatelessWidget {
                 SizedBox(height: 10), 
                 Divider(thickness: 2), // line divider ---------------------
                 SizedBox(height: 5),
-                CustomText(text: "Please verify your data for accuracy and completeness before proceeding with the payment.",
+                CustomText(text: 'Please verify your data for accuracy and completeness before proceeding with the payment.',
                   fontSize: 12,
                   color: Colors.teal
                 ),

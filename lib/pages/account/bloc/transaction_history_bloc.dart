@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
 
 part 'transaction_history_event.dart';
 part 'transaction_history_state.dart';
@@ -20,18 +20,20 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
   final FirebaseRealtimeDBRepository _firebaseRepository;
 
   void _onTransactionHistoryLoaded(TransactionHistoryLoaded event,  Emitter<TransactionHistoryState> emit) async {
+    emit(state.copyWith(status: Status.loading));
+    const limit = 20;
     await emit.forEach(
-      _firebaseRepository.getTransactionHistoryListStream(event.account), // stream data from firebase
+      _firebaseRepository.getTransactionHistoryListStream(event.accountID, limit + event.limit), // stream data from firebase database
       onData: (data) {
-        List<TransactionHistory> filteredTransactions = data;
+        List<TransactionHistory> filteredTransactions = data; // leave this non final
         final query = event.searchQuery.trim().toLowerCase(); // case insensitive
         final filter = event.filter.trim().toLowerCase(); // case insensitive
 
         if (event.filter.isNotEmpty) {
           if (filter == 'newest') {
-            filteredTransactions.sort((a, b) => b.timeStamp.compareTo(a.timeStamp));
+            filteredTransactions.sort((a, b) => b.timeStamp!.compareTo(a.timeStamp!));
           } else if (filter == 'oldest') {
-            filteredTransactions.sort((a, b) => a.timeStamp.compareTo(b.timeStamp));
+            filteredTransactions.sort((a, b) => a.timeStamp!.compareTo(b.timeStamp!));
           } else {
             filteredTransactions = filteredTransactions.where((trans) {
               return trans.accountType.trim().toLowerCase().contains(filter);
@@ -46,7 +48,7 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
         }
         
         if (filteredTransactions.isNotEmpty) {
-          return state.copyWith(status: Status.success, transactions: filteredTransactions);
+          return state.copyWith(status: Status.success, transactionList: filteredTransactions);
         } else {
           return state.copyWith(status: Status.error, message: 'empty');
         }
@@ -61,6 +63,8 @@ class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHi
     emit(state.copyWith(searchQuery: search));
   }
 }
+
+
 
 // class TransactionHistoryBloc extends Bloc<TransactionHistoryEvent, TransactionHistoryState> {
 //   TransactionHistoryBloc({

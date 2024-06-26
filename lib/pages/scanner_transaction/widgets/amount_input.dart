@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
+import '../scanner_transaction.dart';
 
 class AmountInput extends StatelessWidget {
   const AmountInput({super.key});

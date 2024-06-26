@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../../utils/utils.dart';
+import '../../../../widgets/widgets.dart';
+import '../../local_authentication.dart';
 
 class InputPin extends StatelessWidget {
   const InputPin({super.key});
@@ -22,8 +22,8 @@ class InputPin extends StatelessWidget {
               flex: 2,
               child: Text(
                 state.status == PinStatus.enterNew 
-                ? AppString.createPin 
-                : AppString.confirmPin,
+                ? TextString.createPin 
+                : TextString.confirmPin,
                 style: const TextStyle(
                   color: Color(0xFF687ea1),
                   fontWeight: FontWeight.w700,

@@ -2,7 +2,7 @@ part of 'dropdown_bloc.dart';
 
 class DropdownState extends Equatable {
   const DropdownState({
-    this.dropdowns = const [],
+    this.dropdowns = const <String>[],
     this.status = Status.initial,
     this.message = ''
   });

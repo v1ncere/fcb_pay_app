@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -18,8 +18,7 @@ class CustomCard extends StatelessWidget {
       child: Stack(
         children: [
           Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
@@ -33,7 +32,7 @@ class CustomCard extends StatelessWidget {
                     var key = receipts.keys.elementAt(index);
                     if (key.toString() == 'time_stamp') {
                       return CustomRowText(
-                        title: key.toString().replaceAll("_", " "),
+                        title: key.toString().replaceAll('_', ' '),
                         titleColor: Colors.black45,
                         content: getDateStringfromMillis(int.parse(receipts[key].toString())),
                         contentColor: Colors.green,
@@ -49,7 +48,7 @@ class CustomCard extends StatelessWidget {
                     }
                     else {
                       return CustomRowText(
-                        title: key.toString().replaceAll("_", " "),
+                        title: key.toString().replaceAll('_', ' '),
                         titleColor: Colors.black45,
                         content: receipts[key].toString(),
                         contentColor: Colors.green,
@@ -70,10 +69,18 @@ class CustomCard extends StatelessWidget {
               child: CircleAvatar(
                 radius: 35.0,
                 backgroundColor: Colors.teal,
-                child: CustomText(
-                  text: "RECEIPT",
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+                child: FittedBox(
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(
+                      'RECEIPT',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        
+                      )
+                    )
+                  )
                 )
               )
             )

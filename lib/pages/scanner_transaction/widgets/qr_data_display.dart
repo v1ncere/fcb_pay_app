@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/pages/scanner_transaction/scanner_transaction.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../scanner_transaction.dart';
 
 class QrDataDisplay extends StatelessWidget {
   const QrDataDisplay({super.key});
@@ -28,7 +28,7 @@ class QrDataDisplay extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: const AssetImage("assets/bg.png"),
+                  image: const AssetImage('assets/bg.png'),
                   colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
                   fit: BoxFit.cover
                 )
@@ -147,7 +147,7 @@ class QrDataDisplay extends StatelessWidget {
       return Column(
         children: [
           CustomRowText(
-            title: "Convenience Fee",
+            title: 'Convenience Fee',
             titleColor: Colors.white,
             titleFontSize: 12,
             contentColor: Colors.white,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class QrScannerOverlayShape extends ShapeBorder {
   QrScannerOverlayShape({
-    this.borderColor = Colors.red,
+    this.borderColor = Colors.green,
     this.borderWidth = 3.0,
     this.overlayColor = const Color.fromRGBO(0, 0, 0, 80),
     this.borderRadius = 0,
@@ -16,14 +16,13 @@ class QrScannerOverlayShape extends ShapeBorder {
   })  : cutOutWidth = cutOutWidth ?? cutOutSize ?? 250,
         cutOutHeight = cutOutHeight ?? cutOutSize ?? 250 {
     assert(
-      borderLength <= min(this.cutOutWidth, this.cutOutHeight) / 2 + borderWidth * 2,
-      "Border can't be larger than ${min(this.cutOutWidth, this.cutOutHeight) / 2 + borderWidth * 2}",
+    borderLength <= min(this.cutOutWidth, this.cutOutHeight) / 2 + borderWidth * 2,
+    "Border can't be larger than ${min(this.cutOutWidth, this.cutOutHeight) / 2 + borderWidth * 2}",
     );
     assert(
-      (cutOutWidth == null && cutOutHeight == null)
-      || (cutOutSize == null && cutOutWidth != null && cutOutHeight != null),
-      'Use only cutOutWidth and cutOutHeight or only cutOutSize'
-    );
+    (cutOutWidth == null && cutOutHeight == null) ||
+        (cutOutSize == null && cutOutWidth != null && cutOutHeight != null),
+    'Use only cutOutWidth and cutOutHeight or only cutOutSize');
   }
 
   final Color borderColor;
@@ -75,15 +74,14 @@ class QrScannerOverlayShape extends ShapeBorder {
     final borderWidthSize = width / 2;
     final height = rect.height;
     final borderOffset = borderWidth / 2;
-    final mBorderLength = borderLength > min(cutOutHeight, cutOutHeight) / 2 + borderWidth * 2
-      ? borderWidthSize / 2
-      : borderLength;
-    final mCutOutWidth = cutOutWidth < width 
-      ? cutOutWidth
-      : width - borderOffset;
-    final mCutOutHeight = cutOutHeight < height
-      ? cutOutHeight
-      : height - borderOffset;
+    final mBorderLength =
+    borderLength > min(cutOutHeight, cutOutHeight) / 2 + borderWidth * 2
+        ? borderWidthSize / 2
+        : borderLength;
+    final mCutOutWidth =
+    cutOutWidth < width ? cutOutWidth : width - borderOffset;
+    final mCutOutHeight =
+    cutOutHeight < height ? cutOutHeight : height - borderOffset;
 
     final backgroundPaint = Paint()
       ..color = overlayColor
@@ -100,12 +98,8 @@ class QrScannerOverlayShape extends ShapeBorder {
       ..blendMode = BlendMode.dstOut;
 
     final cutOutRect = Rect.fromLTWH(
-      rect.left + width / 2 - mCutOutWidth / 2 + borderOffset,
-      -cutOutBottomOffset +
-          rect.top +
-          height / 2 -
-          mCutOutHeight / 2 +
-          borderOffset,
+      rect.left + (width - mCutOutWidth) / 2,
+      -cutOutBottomOffset + rect.top + (height - mCutOutHeight) / 2,
       mCutOutWidth - borderOffset * 2,
       mCutOutHeight - borderOffset * 2,
     );

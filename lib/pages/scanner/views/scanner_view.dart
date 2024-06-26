@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/pages/scanner/scanner.dart';
-import 'package:fcb_pay_app/pages/scanner/widgets/widgets.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
+import '../../home_flow/home_flow.dart';
+import '../scanner.dart';
+import '../widgets/widgets.dart';
 
 class ScannerView extends StatefulWidget {
   const ScannerView({super.key});
@@ -17,14 +17,32 @@ class ScannerView extends StatefulWidget {
 }
 
 class ScannerViewState extends State<ScannerView> {
-  final _controller = MobileScannerController(detectionSpeed: DetectionSpeed.normal);
+  final _controller = MobileScannerController(
+    formats: const [BarcodeFormat.qrCode],
+    detectionSpeed: DetectionSpeed.normal
+  );
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     double area = screen.width < 400 || screen.height < 400 ? 250.0 : 360.0;
-    final rect = Rect.fromLTWH((screen.width - area)/ 2, (screen.height - area)/ 2, area, area);
-
+    // final scanWindow = Rect.fromLTWH((screen.width - area)/ 2, (screen.height - area)/ 2, area, area);
+    final scanWindow = Rect.fromCenter(
+      center: MediaQuery.of(context).size.center(Offset.zero),
+      width: area,
+      height: area,
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('QR SCANNER', 
@@ -35,11 +53,11 @@ class ScannerViewState extends State<ScannerView> {
         ),
         actions: [toggleTorch()]
       ),
-      body: BlocListener<ScannerCubit, ScannerState>(
+      body: BlocListener<ScannerCubit, ScannerState>( 
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
           if (state.status.isSuccess) {
-            context.flow<HomePageStatus>().update((state) => HomePageStatus.scannerTransaction);
+            context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.scannerTransaction);
           }
           if (state.status.isError) {
             ScaffoldMessenger.of(context)
@@ -52,8 +70,10 @@ class ScannerViewState extends State<ScannerView> {
             MobileScanner(
               controller: _controller,
               placeholderBuilder: (_, __) => Container(color: Colors.black),
-              errorBuilder: (_, __, ___) => ScannerErrorText(area: area),
-              scanWindow: rect,
+              errorBuilder: (context, error, child) {
+                return ScannerErrorWidget(error: error, area: area);
+              },
+              scanWindow: scanWindow,
               onDetect: (capture) {
                 final List<Barcode> barcodes = capture.barcodes;
                 for (final barcode in barcodes) {
@@ -61,19 +81,20 @@ class ScannerViewState extends State<ScannerView> {
                 }
               }
             ),
-            Positioned.fill(
-              child: Container(
-                decoration: ShapeDecoration(
-                  shape: QrScannerOverlayShape(
-                    borderColor: const Color(0xFF02AE08),
-                    borderRadius: 10,
-                    borderLength: 20,
-                    borderWidth: 8,
-                    cutOutSize: area
-                  )
-                )
-              )
-            ),
+            CustomPaint(painter: ScannerOverlay(scanWindow)),
+            // Positioned.fill(
+            //   child: Container(
+            //     decoration: ShapeDecoration(
+            //       shape: QrScannerOverlayShape(
+            //         borderColor: const Color(0xFF02AE08),
+            //         borderRadius: 10,
+            //         borderLength: 20,
+            //         borderWidth: 8,
+            //         cutOutSize: area
+            //       )
+            //     )
+            //   )
+            // ),
             const ScannerText()
           ]
         )
@@ -101,16 +122,12 @@ class ScannerViewState extends State<ScannerView> {
                 size: 18, 
                 color:Colors.yellow
               );
+            default:
+              return const SizedBox.shrink();
           }
         }
       ),
       onPressed: () => _controller.toggleTorch()
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

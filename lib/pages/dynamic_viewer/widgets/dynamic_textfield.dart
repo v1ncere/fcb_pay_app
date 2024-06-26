@@ -2,9 +2,9 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../dynamic_viewer.dart';
 
 class DynamicTextfield extends StatelessWidget {
   const DynamicTextfield({
@@ -54,7 +54,7 @@ class DynamicTextfield extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onChanged: (value) {
             context.read<WidgetsBloc>().add(DynamicWidgetsValueChanged(
-              keyId: widget.keyId ?? "",
+              keyId: widget.keyId ?? '',
               title: widget.title,
               value: value,
               type: widget.dataType,

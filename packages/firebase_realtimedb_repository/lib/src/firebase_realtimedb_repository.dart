@@ -3,20 +3,19 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
+import '../firebase_realtimedb_repository.dart';
 
 class FirebaseRealtimeDBRepository {
-  final FirebaseDatabase _firebaseDatabase;
-  
   FirebaseRealtimeDBRepository({
     FirebaseDatabase? firebaseDatabase
   })  : _firebaseDatabase = firebaseDatabase ?? FirebaseDatabase.instance;
-
+  final FirebaseDatabase _firebaseDatabase;
+  
   // USER_AUTH_ID
   String userId() => FirebaseAuth.instance.currentUser!.uid;
 
-  // ===================================== ACCOUNT ===========================
-  // =========================================================================
+  // ==================================================================================== ACCOUNT =====
+  // ==================================================================================================
   // GET accounts list (stream)
   Stream<List<Account>> getAccountListStream() {
     return _firebaseDatabase.ref('account/${userId()}')
@@ -40,40 +39,8 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // GET account (stream)
-  Stream<Account> getAccountStream() {
-    return _firebaseDatabase.ref('account')
-    .child(userId())
-    .limitToFirst(1)
-    .onValue.map((event) {
-      return Account.fromSnapshot(event.snapshot);
-    });
-  }
-
-  // GET account
-  Future<Account?> getAccounts() async {
-    final parentNodeRef = _firebaseDatabase.ref('account');
-    final valueQuery = parentNodeRef
-    .child(userId());
-    // .orderByChild("owner_id")
-    // .equalTo(userId());
-
-    final snap = await valueQuery.get();
-
-    if (snap.value != null) {
-      final values = snap.value as Map<dynamic, dynamic>;
-      final childNodeKey = values.keys.first;
-      final snapshot = await parentNodeRef.child(childNodeKey).get();
-
-      final reply = Account.fromSnapshot(snapshot);
-      return reply;
-    } else {
-      return null;
-    }
-  }
-
-  // ===================== USER REQUEST ========================
-  // ===========================================================
+  // =============================================================================== USER REQUEST =====
+  // ==================================================================================================
   // ADD user request
   Future<String?> addUserRequest(UserRequest request) async {
     try {
@@ -85,11 +52,13 @@ class FirebaseRealtimeDBRepository {
     }
   }
 
-  // ======================================== TRANSACTION HISTORY =====================================
+  // ======================================================================== TRANSACTION HISTORY =====
   // ==================================================================================================
   // GET transaction history list (stream)
-  Stream<List<TransactionHistory>> getTransactionHistoryListStream(String accountId) {
-    Query query = _firebaseDatabase.ref('transaction_history/${userId()}/${accountId}');
+  Stream<List<TransactionHistory>> getTransactionHistoryListStream(String accountId, int limit) {
+    Query query = _firebaseDatabase
+    .ref('transaction_history/${userId()}/${accountId}')
+    .limitToFirst(limit);
 
     return query.onValue.map((event) {
       List<TransactionHistory> transactionList = [];
@@ -110,18 +79,25 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // GET transaction history (stream)
-  Stream<TransactionHistory> getTransactionHistoryStream() {
-    return _firebaseDatabase.ref('transaction_history')
-    .child(userId())
-    .limitToFirst(1)
-    .onValue.map((event) {
-      return TransactionHistory.fromSnapshot(event.snapshot);
-    });
+  // GET transaction history
+  Future<TransactionHistory> getTransactionHistory(String reference) async {
+    try {
+      final snapshot = await _firebaseDatabase
+      .ref('transaction_history/$userId()/$reference') // reference is 'accountId/detailsId'
+      .get();
+      
+      if (snapshot.exists) {
+        return TransactionHistory.fromSnapshot(snapshot);
+      } else {
+        throw(Exception('Something went wrong!'));
+      }
+    } catch (e) {
+      throw(Exception(e.toString()));
+    }
   }
 
-  // ============================= USERS WIDGET =============================
-  // ========================================================================
+  // =================================================================== INSTITUTION EXTRA WIDGET =====
+  // ==================================================================================================
   // GET user widgets list
   Future<List<ExtraWidget>> getInstitutionExtraWidgetList(String instId) {
     return _firebaseDatabase.ref('institution_extra_widget/${instId}')
@@ -143,39 +119,42 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // ============================ RECEIPTS ==================
-  // ========================================================
+  // ==================================================================================== RECEIPT =====
+  // ==================================================================================================
   // GET receipt
   Stream<Receipt> getReceiptStream(String id) {
     return _firebaseDatabase.ref('receipt/${userId()}/${id}')
     .onValue
     .map((event) {
-      return Receipt.fromSnapshot(event.snapshot);
+      if (event.snapshot.exists) {
+        return Receipt.fromSnapshot(event.snapshot);
+      } else {
+        return Receipt.empty;
+      }
     });
   }
 
   // GET receipt
   Stream<Map<String, dynamic>> getDynamicReceiptStream(String id) {
-    return _firebaseDatabase.ref('receipt/${userId()}/${id}')
+    return _firebaseDatabase
+    .ref('receipt/${userId()}/${id}')
     .onValue
     .map((event) {
-      Map<String, dynamic> mapper = {};
+      Map<String, dynamic> map = {};
 
       if (event.snapshot.exists) {
-      final snapshotValue = event.snapshot.value as Map<dynamic, dynamic>;
-      
-      snapshotValue.forEach((key, values) {
-        Map<String, dynamic> newMap = {key: values};
-        mapper.addEntries(newMap.entries);
-      });
-    }
-
-      return mapper;
+        final snapshotValue = event.snapshot.value as Map<dynamic, dynamic>;
+        snapshotValue.forEach((key, values) {
+          Map<String, dynamic> newMap = {key: values};
+          map.addEntries(newMap.entries);
+        });
+      }
+      return map;
     });
   }
 
-  // ====================================== NOTIFICATION ===================================
-  // =======================================================================================
+  // =============================================================================== NOTIFICATION =====
+  // ==================================================================================================
   // GET notification list (stream)
   Stream<List<Notification>> getNotificationListStream() {
     return _firebaseDatabase.ref('notification/${userId()}')
@@ -210,7 +189,7 @@ class FirebaseRealtimeDBRepository {
       } else {
         throw Exception('Notification with ID $id not found');
       }
-    } catch (error) {
+    } catch (_) {
       throw Exception('Failed to retrieve notification');
     }
   }
@@ -237,48 +216,46 @@ class FirebaseRealtimeDBRepository {
     }
   }
 
-  // ========================================== HOME BUTTONS =========================
-  // =================================================================================
-  // GET home_button list (stream)
-  Stream<List<HomeButton>> getHomeButtonsListStream() {
-    return _firebaseDatabase.ref('home_button')
+  // ==================================================================================== BUTTONS =====
+  // ==================================================================================================
+  // GET button list (stream)
+  Stream<List<Button>> getButtonListStream() {
+    return _firebaseDatabase.ref('button')
     .onValue
     .map((event) {
-      List<HomeButton> homeButtonsList = [];
+      List<Button> buttonList = [];
 
       if (event.snapshot.exists) {
         final snapshotValues = event.snapshot.value as Map<dynamic, dynamic>;
         
         snapshotValues.forEach((key, values) {
-          HomeButton homeButton = HomeButton.fromSnapShot(event.snapshot.child(key));
-          homeButtonsList.add(homeButton);
+          Button button = Button.fromSnapShot(event.snapshot.child(key));
+          buttonList.add(button);
         });
       }
       
-      return homeButtonsList;
-    }).handleError((error) {
-      print('Error occurred: $error');
+      return buttonList;
+    }).handleError((_) {
       return [];
     });
   }
 
-  // GET home_button (specific data)
-  Future<HomeButton?> getHomeButton(String id) {
-    return _firebaseDatabase.ref('home_button/$id')
+  // GET button (specific data)
+  Future<Button?> getButton(String id) {
+    return _firebaseDatabase.ref('button/$id')
     .get()
     .then((snapshot) {
       if (snapshot.exists) {
-        return HomeButton.fromSnapShot(snapshot);
+        return Button.fromSnapShot(snapshot);
       }
       return null;
     }).onError((error, stackTrace) {
-      print(error);
       return null;
     });
   }
 
-  // =============================== DYNAMIC VIEWER WIDGETS =======================
-  // ==============================================================================
+  // ===================================================================== DYNAMIC VIEWER WIDGETS =====
+  // ==================================================================================================
   // GET page_widget list (stream)
   Stream<List<PageWidget>> getWidgetsListStream(String originId) {
     return _firebaseDatabase
@@ -308,11 +285,12 @@ class FirebaseRealtimeDBRepository {
     });
   }
 
-  // ============================ LIST STRING DATA =========================
-  // =======================================================================
+  // =========================================================================== LIST STRING DATA =====
+  // ==================================================================================================
   // GET dynamic dropdown list
   Future<List<String>> getDynamicListStringData(String reference) async {
-    return _firebaseDatabase.ref(reference)
+    return _firebaseDatabase
+    .ref(reference)
     .get()
     .then((snapshot) {
       List<String> filters = [];
@@ -331,6 +309,79 @@ class FirebaseRealtimeDBRepository {
       return filters;
     }).onError((error, stackTrace) {
       print('Error occurred: $error');
+      return [];
+    });
+  }
+
+  // ============================================================================= SIGN UP VERIFY =====
+  // ==================================================================================================
+  // SEND VERIFICATION DETAILS
+  Future<String?> addAccountVerification(AccountVerify req) async {
+    try {
+      final ref = _firebaseDatabase.ref('signup_verify').push();
+      await ref.set(req.toJson());
+      
+      return ref.key;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  // ======================================================================= SIGN UP VERIFY REPLY =====
+  // ==================================================================================================
+  // GET VERIFICATION
+  Stream<AccountVerify> getSignupVerifyReply(String id) {
+    return _firebaseDatabase.ref('signup_verify_reply/${id}')
+    .onValue
+    .map((event) {
+      if (event.snapshot.exists) {
+        return AccountVerify.fromSnapshot(event.snapshot);
+      } else {
+        return AccountVerify.empty;
+      }
+    });
+  }
+
+  // ============================================================================= ACCOUNT PUBLIC =====
+  // ==================================================================================================
+  // ACCOUNT EXISTS
+  Future<bool> isAccountUsed(String encryptedAccount) async {
+    try {
+      final snapshot = await _firebaseDatabase
+      .ref('account_public/${encryptedAccount}')
+      .get();
+
+      return snapshot.exists;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  // =============================================================================== USER DETAILS =====
+  // ==================================================================================================
+
+  // add user details
+  Future<String?> addUserDetails(UserDetails userDetails) async {
+    try {
+      final ref = _firebaseDatabase.ref('user_details/${userId()}');
+      await ref.set(userDetails.toJson())
+      .catchError((e) {
+        throw Exception(e.toString());
+      });
+      
+      return ref.key;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+  
+  // add get user details
+  Stream<UserDetails> getUserDetails() {
+    return _firebaseDatabase.ref('user_details/${userId()}')
+    .onValue
+    .map((event) {
+      return UserDetails.fromSnapshot(event.snapshot);
+    }).handleError((error) {
       return [];
     });
   }

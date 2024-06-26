@@ -1,17 +1,17 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class TransactionHistory {
-  TransactionHistory({
+  const TransactionHistory({
     this.keyId,
     required this.accountNumber,
     required this.accountType,
     required this.details,
-    required this.timeStamp,
+    this.timeStamp,
   });
-  String? keyId;
+  final String? keyId;
   final String accountNumber;
   final String accountType;
-  final DateTime timeStamp;
+  final DateTime? timeStamp;
   final String details;
 
   TransactionHistory copyWith({
@@ -29,6 +29,10 @@ class TransactionHistory {
       timeStamp: timeStamp ?? this.timeStamp
     );
   }
+
+  static const empty = TransactionHistory(accountNumber: '', accountType: '', details: '');
+  bool get isEmpty => this == TransactionHistory.empty;
+  bool get isNotEmpty => this != TransactionHistory.empty;
 
   factory TransactionHistory.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
@@ -48,10 +52,10 @@ class TransactionHistory {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["account_number"] = accountNumber;
-    data["account_type"] = accountType;
-    data["details"] = details;
-    data["time_stamp"] = timeStamp;
+    data['account_number'] = accountNumber;
+    data['account_type'] = accountType;
+    data['details'] = details;
+    data['time_stamp'] = timeStamp;
     return data;
   }
 }

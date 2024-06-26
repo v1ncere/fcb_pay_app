@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/local_authentication/local_authentication.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../../widgets/widgets.dart';
+import '../../local_authentication.dart';
 
 class NumPad extends StatelessWidget {
   const NumPad({super.key});
@@ -20,21 +20,21 @@ class NumPad extends StatelessWidget {
               children: [
                 Expanded(
                   child: ButtonNumPad(
-                    num: "1",
+                    num: '1',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(1))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "2",
+                    num: '2',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(2))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "3",
+                    num: '3',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(3))
                   )
                 )
@@ -47,21 +47,21 @@ class NumPad extends StatelessWidget {
               children: [
                 Expanded(
                   child: ButtonNumPad(
-                    num: "4",
+                    num: '4',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(4))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "5",
+                    num: '5',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(5))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "6",
+                    num: '6',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(6))
                   )
                 )
@@ -74,21 +74,21 @@ class NumPad extends StatelessWidget {
               children: [
                 Expanded(
                   child: ButtonNumPad(
-                    num: "7",
+                    num: '7',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(7))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "8",
+                    num: '8',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(8))
                   )
                 ),
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "9",
+                    num: '9',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(9))
                   )
                 )
@@ -104,7 +104,7 @@ class NumPad extends StatelessWidget {
                 const SizedBox(width: 30),
                 Expanded(
                   child: ButtonNumPad(
-                    num: "0",
+                    num: '0',
                     onPressed: () => BlocProvider.of<CreatePinBloc>(context).add(const CreatePinAdded(0))
                   )
                 ),

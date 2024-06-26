@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
 
 part 'filter_event.dart';
 part 'filter_state.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/account/account.dart';
-import 'package:fcb_pay_app/pages/account/widgets/widgets.dart';
+import '../account.dart';
+import 'widgets.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({super.key});

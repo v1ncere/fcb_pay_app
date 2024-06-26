@@ -12,5 +12,5 @@ export 'src/message.dart';
 export 'src/mobile_number.dart';
 export 'src/name.dart';
 export 'src/password.dart';
+export 'src/pin.dart';
 export 'src/search.dart';
-

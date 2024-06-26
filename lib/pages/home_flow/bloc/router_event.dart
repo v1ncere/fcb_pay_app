@@ -7,12 +7,12 @@ sealed class RouterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class RouterAccountsModelPassed extends RouterEvent {
-  const RouterAccountsModelPassed(this.accountModel);
-  final AccountModel accountModel;
+final class RouterAccountsPassed extends RouterEvent {
+  const RouterAccountsPassed(this.account);
+  final Account account;
 
   @override
-  List<Object> get props => [accountModel];
+  List<Object> get props => [account];
 }
 
 final class RouterNotificationArgsPassed extends RouterEvent {
@@ -23,18 +23,26 @@ final class RouterNotificationArgsPassed extends RouterEvent {
   List<Object> get props => [args];
 }
 
-final class RouterDynamicButtonModelPassed extends RouterEvent {
-  const RouterDynamicButtonModelPassed(this.buttonModel);
-  final ButtonModel buttonModel;
+final class RouterPaymentsButtonPassed extends RouterEvent {
+  const RouterPaymentsButtonPassed(this.button);
+  final Button button;
 
   @override
-  List<Object> get props => [buttonModel];
+  List<Object> get props => [button];
 }
 
-final class RouterAccountDynamicButtonModelPassed extends RouterEvent {
-  const RouterAccountDynamicButtonModelPassed(this.buttonModel);
-  final ButtonModel buttonModel;
+final class RouterTransfersButtonPassed extends RouterEvent {
+  const RouterTransfersButtonPassed(this.button);
+  final Button button;
 
   @override
-  List<Object> get props => [buttonModel];
+  List<Object> get props => [button];
+}
+
+final class RouterAccountsButtonPassed extends RouterEvent {
+  const RouterAccountsButtonPassed(this.button);
+  final Button button;
+
+  @override
+  List<Object> get props => [button];
 }

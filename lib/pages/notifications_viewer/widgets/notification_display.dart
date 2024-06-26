@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/notifications_viewer/notifications_viewer.dart';
-import 'package:fcb_pay_app/pages/notifications_viewer/widgets/widgets.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
+import '../notifications_viewer.dart';
+import 'widgets.dart';
 
 class NotificationDisplay extends StatelessWidget {
   const NotificationDisplay({super.key});

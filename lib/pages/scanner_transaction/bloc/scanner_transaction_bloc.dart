@@ -6,7 +6,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
 
 part 'scanner_transaction_event.dart';
 part 'scanner_transaction_state.dart';
@@ -31,25 +31,21 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
 
   void _onScannerTransactionDisplayLoaded(ScannerTransactionDisplayLoaded event, Emitter<ScannerTransactionState> emit) async {
     emit(state.copyWith(status: Status.loading));
-    
     try {
-      final dataList = List<QRModel>.from(await _hiveRepository.getQRData());
-      
+      final dataList = List<QRModel>.from(await _hiveRepository.getQRDataList());
       if (dataList.isNotEmpty) {
         emit(state.copyWith(status: Status.success, qrDataList: dataList));
-        // ====================================================================== 
+        // =====================================================================
         final index2805 = dataList.indexWhere((e) => e.id == 'subs2805'); // Proxy-Notify Flags
         if (index2805 != -1) {
           final updatedDataList = List<QRModel>.from(dataList);
           emit(state.copyWith(notifyFlag: updatedDataList[index2805].data));
         }
-
         final index54 = dataList.indexWhere((e) => e.id == 'main54'); // transaction amount
         if (index54 != -1) {
           final updatedDataList = List<QRModel>.from(dataList);
           add(ScannerAmountValueChanged(updatedDataList[index54].data));
         }
-
         final index55 = dataList.indexWhere((e) => e.id == 'main55'); // tip
         if (index55 != -1) {
           final newList = List<QRModel>.from(dataList);
@@ -73,7 +69,7 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
               break;
           }
         }
-        // ======================================================================
+        // =====================================================================
       } else {
         emit(state.copyWith(status: Status.error, message: 'Empty'));
       }
@@ -139,14 +135,14 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
           
           final id = await _firebaseRepository.addUserRequest(
             UserRequest(
-              dataRequest: "qr_transaction|${state.accountDropdown.value}|${state.inputAmount.value}$tipCon|$result$extra",
+              dataRequest: 'qr_transaction|${state.accountDropdown.value}|${state.inputAmount.value}$tipCon|$result$extra',
               extraData: rawQR,
               ownerId: FirebaseAuth.instance.currentUser!.uid,
               timeStamp: DateTime.now()
             )
           );
 
-          _hiveRepository.addID(id!); // add [id] to hive (local DB)
+          _hiveRepository.addId(id!); // add [id] to hive (local DB)
           emit(state.copyWith(formStatus: FormzSubmissionStatus.success));
         } catch (e) {
           emit(state.copyWith(formStatus: FormzSubmissionStatus.failure, message: e.toString()));
@@ -154,13 +150,13 @@ class ScannerTransactionBloc extends Bloc<ScannerTransactionEvent, ScannerTransa
       } else {
         emit(state.copyWith(
           formStatus: FormzSubmissionStatus.failure,
-          message: "Incomplete Form: Please review the form and fill in all required fields."
+          message: 'Incomplete Form: Please review the form and fill in all required fields.'
         ));
       }
     } else {
       emit(state.copyWith(
         formStatus: FormzSubmissionStatus.failure,
-        message: "Incomplete Form: Please review the form and fill in all required fields."
+        message: 'Incomplete Form: Please review the form and fill in all required fields.'
       ));
     }
   }

@@ -24,7 +24,7 @@ extension AccountNumberValidationErrorX on AccountNumberValidationError {
       case AccountNumberValidationError.required:
         return 'Account number is required';
       case AccountNumberValidationError.invalid:
-        return 'This account number is invalid. Please try again.';
+        return 'Account number is invalid.';
     }
   }
 }

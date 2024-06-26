@@ -2,8 +2,8 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/bottom_appbar/bottom_appbar.dart';
-import 'package:fcb_pay_app/pages/notifications/notifications.dart';
+import '../../bottom_navbar/bottom_navbar.dart';
+import '../notifications.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});

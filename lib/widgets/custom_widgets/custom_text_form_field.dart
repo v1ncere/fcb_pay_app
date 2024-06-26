@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../utils/utils.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/account_settings/account_settings.dart';
-import 'package:fcb_pay_app/pages/account_settings/widgets/widgets.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../account_settings.dart';
+import '../widgets/widgets.dart';
 
 class AccountSettingsView extends StatelessWidget {
   const AccountSettingsView({super.key});
@@ -15,6 +15,7 @@ class AccountSettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      maintainBottomViewPadding: true,
       child: Scaffold(
         body: BlocListener<AccountSettingsBloc, AccountSettingsState>(
           listener: (context, state) {
@@ -54,14 +55,15 @@ class AccountSettingsView extends StatelessWidget {
               ),
               ContainerBody(
                 children: [
-                  AddAccountButton(),
+                  // AddAccountButton(),
+                  SizedBox(height: 10),
                   AccountListViewDisplay()
                 ]
               )
             ]
-          ),
+          )
         )
-      ),
+      )
     );
   }
 }

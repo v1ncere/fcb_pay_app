@@ -1,6 +1,7 @@
-import 'package:fcb_pay_app/widgets/widgets.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/widgets.dart';
 
 class DynamicText extends StatelessWidget {
   const DynamicText({

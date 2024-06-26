@@ -1,14 +1,13 @@
-import 'package:fcb_pay_app/pages/bottom_appbar/widgets/widgets.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/pages/notifications_viewer/notifications_viewer.dart';
-import 'package:fcb_pay_app/pages/notifications_viewer/widgets/widgets.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../widgets/widgets.dart';
+import '../../bottom_navbar/widgets/widgets.dart';
+import '../../home_flow/home_flow.dart';
+import '../notifications_viewer.dart';
+import '../widgets/widgets.dart';
 
 class NotificationsViewerView extends StatelessWidget {
   const NotificationsViewerView({super.key});
@@ -19,7 +18,7 @@ class NotificationsViewerView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Notification",
+            'Notification',
             style: TextStyle(
               color: Colors.green,
               fontWeight: FontWeight.w700
@@ -33,7 +32,7 @@ class NotificationsViewerView extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.trashCan, color: Color.fromARGB(255, 97, 97, 97)),
                   onPressed: () {
                     context.read<NotificationsViewerBloc>().add(NotificationDelete(id));
-                    context.flow<HomePageStatus>().update((state) => HomePageStatus.notifications);
+                    context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.notifications);
                   }
                 );
               }
@@ -42,7 +41,7 @@ class NotificationsViewerView extends StatelessWidget {
         ),
         body: InactivityDetector(
           onInactive: () {
-            context.flow<HomePageStatus>().complete();
+            context.flow<HomeRouterStatus>().complete();
           },
           child: const Column(
             children: [

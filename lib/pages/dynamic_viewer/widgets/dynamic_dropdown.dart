@@ -2,9 +2,9 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../dynamic_viewer.dart';
 
 class DynamicDropdown extends StatelessWidget {
   const DynamicDropdown({

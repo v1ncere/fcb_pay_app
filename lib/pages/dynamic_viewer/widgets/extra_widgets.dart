@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../dynamic_viewer.dart';
 
 class ExtraWidgets extends StatelessWidget {
   const ExtraWidgets({super.key});
@@ -34,8 +34,8 @@ class ExtraWidgets extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: state.extraWidgetList.map((item) {
                   switch (item.widget) {
-                    case "textfield":
-                      if(item.dataType == "int") {
+                    case 'textfield':
+                      if(item.dataType == 'int') {
                         return Padding(
                           padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                           child: CustomTextFormField(
@@ -60,7 +60,7 @@ class ExtraWidgets extends StatelessWidget {
                             }
                           )
                         );
-                      } else if(item.dataType == "string") {
+                      } else if(item.dataType == 'string') {
                         return Padding(
                           padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                           child: CustomTextFormField(
@@ -84,7 +84,7 @@ class ExtraWidgets extends StatelessWidget {
                       } else {
                         return const SizedBox.shrink();
                       }
-                    case "text":
+                    case 'text':
                       return Padding(
                         padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                         child: Text(item.content.toString(),
@@ -105,7 +105,7 @@ class ExtraWidgets extends StatelessWidget {
         } 
         if (state.extraWidgetStatus.isError) {
           return Text(
-            state.message!,
+            state.message,
             style: const TextStyle(
               color: Colors.black54,
               fontWeight: FontWeight.w700
@@ -122,7 +122,7 @@ class ExtraWidgets extends StatelessWidget {
   Widget _description() {
     return const Row(
       children: [
-        Text("Extra Widgets",
+        Text('Extra Widgets',
           style: TextStyle(
             color: Color(0xFF25C166),
             fontWeight: FontWeight.w700

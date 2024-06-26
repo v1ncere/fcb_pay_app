@@ -26,10 +26,18 @@ class BiometricState extends Equatable {
   List<Object> get props => [status, message, biometricsEnabled];
 }
 
-enum BiometricStatus { initial, authenticated, unauthenticated, unsupported, disabled }
+enum BiometricStatus {
+  initial,
+  enabled,
+  authenticated,
+  unauthenticated,
+  unsupported,
+  disabled
+}
 
 extension BiometricStatusX on BiometricStatus {
   bool get isInitial => this == BiometricStatus.initial;
+  bool get isEnabled => this == BiometricStatus.enabled;
   bool get isAuthenticated => this == BiometricStatus.authenticated;
   bool get isUnauthenticated => this == BiometricStatus.unauthenticated;
   bool get isUnsupported => this == BiometricStatus.unsupported;

@@ -44,9 +44,9 @@ class Institutions {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data["id"] = id;
-    data["name"] = name;
-    data["time_stamp"] = timeStamp.millisecondsSinceEpoch;
+    data['id'] = id;
+    data['name'] = name;
+    data['time_stamp'] = timeStamp.millisecondsSinceEpoch;
     return data;
   }
 }

@@ -22,6 +22,7 @@ class CustomText extends StatelessWidget {
         color: color,
         fontWeight: fontWeight ?? FontWeight.w700,
         fontSize: fontSize,
+        overflow: TextOverflow.ellipsis,
         shadows: <Shadow>[
           Shadow(
             color: Colors.black.withOpacity(0.15), // Shadow color

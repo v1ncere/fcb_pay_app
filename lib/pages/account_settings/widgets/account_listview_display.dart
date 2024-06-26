@@ -2,35 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/pages/account_settings/widgets/widgets.dart';
-import 'package:fcb_pay_app/pages/home/home.dart';
+import '../../../utils/utils.dart';
+import '../../home/home.dart';
+import 'widgets.dart';
 
 class AccountListViewDisplay extends StatelessWidget {
   const AccountListViewDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountsBloc, AccountsState> (
+    return BlocBuilder<AccountsHomeBloc, AccountsHomeState> (
       builder: (context, state) {
-        if(state is AccountsLoading) {
+        if(state.status.isLoading) {
           return const ListViewShimmer();
         }
-        if (state is AccountsSuccess) {
+        if (state.status.isSuccess) {
           return ListView.separated(
             separatorBuilder: (context, index) => const Divider(height: 10.0,),
             shrinkWrap: true,
             padding: const EdgeInsets.all(20),
-            itemCount: state.accounts.length,
+            itemCount: state.accountList.length,
             itemBuilder: (context, index) {
               return AccountCard(
                 colors: Colors.white,
                 icon: FontAwesomeIcons.coins,
-                account: state.accounts[index].keyId!
+                account: state.accountList[index].accountKeyID!
               );
             }
           );
         }
-        if (state is AccountsError) {
+        if (state.status.isError) {
           return Center(
             child: Text(state.message,
               style: const TextStyle(

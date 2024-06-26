@@ -1,77 +1,72 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HivePinRepository {
-  static const String _boxName = 'PIN_BOX';
-  static const String _keyName = 'PIN_KEY';
 
-  static const String _biometricBox = 'BIO_BOX';
-  static const String _biometricKey = 'BIO_KEY';
+  // ============= PIN ===============================
+    static const String _pinAuthBox = 'PIN_AUTH_BOX';
+  // =================================================
 
-  // ============= PIN =================================
-  // ===================================================
-
-  void addPin(String pin) async {
-    Box<String> box = Hive.isBoxOpen(_boxName)
-    ? Hive.box(_boxName)
-    : await Hive.openBox(_boxName);
-    
-    box.put(_keyName, pin);
+  Future<void> addPinAuth({
+    required String uid,
+    required String pin
+  }) async {
+    final box = await Hive.openBox<String>(_pinAuthBox);
+    await box.put(uid, pin);
   }
 
-  Future<bool> pinEquals(String pin) async {
-    Box<String> box = Hive.isBoxOpen(_boxName)
-    ? Hive.box(_boxName)
-    : await Hive.openBox(_boxName);
-    
-    return box.get(_keyName, defaultValue: _keyName) == pin;
-  }
-
-  Future<bool> pinExists() async {
-    Box<String> box = Hive.isBoxOpen(_boxName)
-    ? Hive.box(_boxName)
-    : await Hive.openBox(_boxName);
-    
-    return box.get(_keyName)?.isNotEmpty == true;
-  }
-  
-  Future<void> deletePin() async {
-    Box<String> box = Hive.isBoxOpen(_boxName)
-    ? Hive.box(_boxName)
-    : await Hive.openBox(_boxName);
-    
-    return box.delete(_keyName);
-  }
-
-  // ============= BIOMETRICS =============================
-  // ======================================================
-
-  void addBiometrics(bool isEnabled) async {
-    Box<bool> box = Hive.isBoxOpen(_biometricBox)
-    ? Hive.box(_biometricBox)
-    : await Hive.openBox(_biometricBox);
-    
-    box.put(_biometricKey, isEnabled);
-  }
-
-  Future<bool> isBiometricsUserEnable() async {
-    Box<bool> _box = Hive.isBoxOpen(_biometricBox)
-    ? Hive.box(_biometricBox)
-    : await Hive.openBox(_biometricBox);
-    
-    return _box.get(_biometricKey) ?? false;
-  }
-
-  void closePinBox() async {
-    if (Hive.isBoxOpen(_boxName)) {
-      Box<String> _box = Hive.box(_boxName);
-      return await _box.close();
+  Future<bool> pinAuthEquals({
+    required String uid,
+    required String pin
+  }) async {
+    try {
+      final box = await Hive.openBox<String>(_pinAuthBox);
+      final authPin = box.get(uid);
+      return authPin != null && authPin == pin;
+    } catch (_) {
+      return false;
     }
   }
 
-  void closeBioBox() async {
+  Future<bool> isPinAuthExist(String uid) async {
+    final box = await Hive.openBox<String>(_pinAuthBox);
+    return box.containsKey(uid);
+  }
+  
+  Future<void> deletePinAuth(String uid) async {
+    final box = await Hive.openBox<String>(_pinAuthBox);
+    await box.delete(uid);
+  }
+
+  Future<void> closePinAuthBox() async {
+    if (Hive.isBoxOpen(_pinAuthBox)) {
+      final box = Hive.box<String>(_pinAuthBox);
+      await box.close();
+    }
+  }
+
+  // ========================== BIOMETRICS ==============
+    static const String _biometricBox = 'BIOMETRIC_BOX';
+    static const String _biometricStaticKey = '4249';
+  // ====================================================
+
+  Future<void> addBiometricStatus(bool status) async {
+    final box = await Hive.openBox<bool>(_biometricBox);
+    await box.put(_biometricStaticKey, status);
+  }
+
+  Future<bool> getBiometricStatus() async {
+    try {
+      final box = await Hive.openBox<bool>(_biometricBox);
+      return box.get(_biometricStaticKey) ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> closeBiometricBox() async {
     if (Hive.isBoxOpen(_biometricBox)) {
-      Box<bool> _box = Hive.box(_biometricBox);
-      return await _box.close();
+      final box = Hive.box<bool>(_biometricBox);
+      await box.close();
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../../utils/utils.dart';
 
 part 'scanner_state.dart';
 
@@ -25,7 +25,7 @@ class ScannerCubit extends Cubit<ScannerState> {
         final qrObjectList = qrDataParser(data); // parse qr data into List<QRModel>
         
         if (_validateQRObjects(qrObjectList)) {
-          _hiveRepository.addQRData(qrObjectList); // add the parsed qr data
+          _hiveRepository.addQRDataList(qrObjectList); // add the parsed qr data
           _hiveRepository.addRawQR(data); // add raw qr data
           emit(state.copyWith(status: Status.success));
         }

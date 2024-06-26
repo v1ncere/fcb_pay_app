@@ -2,12 +2,11 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/home_flow/bloc/router_bloc.dart';
-import 'package:fcb_pay_app/pages/home_flow/routes/routes.dart';
+import '../home_flow.dart';
 
 class HomeFlow extends StatelessWidget {
   const HomeFlow._();
-  static Route<HomePageStatus> route() => MaterialPageRoute(
+  static Route<HomeRouterStatus> route() => MaterialPageRoute(
     builder: (_) => BlocProvider(
       create: (_) => RouterBloc(),
       child: const HomeFlow._()
@@ -16,7 +15,7 @@ class HomeFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlowBuilder<HomePageStatus>(
+    return FlowBuilder<HomeRouterStatus>(
       state: context.select((RouterBloc bloc) => bloc.state.status),
       onGeneratePages: onGenerateHomePages
     );

@@ -3,20 +3,20 @@ import 'package:firebase_database/firebase_database.dart';
 class Receipt {
   const Receipt({
     this.keyId,
-    required this.amount,
-    required this.confirm,
+    this.amount,
+    this.confirm,
     required this.description,
-    required this.reference,
+    this.reference,
     required this.title,
-    required this.timeStamp
+    this.timeStamp
   });
   final String? keyId;
-  final double amount;
-  final bool confirm;
+  final double? amount;
+  final bool? confirm;
   final String description;
-  final int reference;
+  final int? reference;
   final String title;
-  final DateTime timeStamp;
+  final DateTime? timeStamp;
 
   Receipt copyWith({
     String? keyId,
@@ -37,6 +37,10 @@ class Receipt {
       title: title ?? this.title
     );
   }
+
+  static const empty = Receipt(description: '', title: '');
+  bool get isEmpty => this == Receipt.empty;
+  bool get isNotEmpty => this != Receipt.empty;
 
   factory Receipt.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
@@ -68,7 +72,7 @@ class Receipt {
     data['confirm'] = confirm;
     data['reason'] = description;
     data['reference'] = reference;
-    data["time_stamp"] = timeStamp.millisecondsSinceEpoch;
+    data['time_stamp'] = timeStamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch;
     data['title'] = title;
     return data;
   }

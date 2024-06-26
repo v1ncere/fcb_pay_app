@@ -2,27 +2,27 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/dynamic_viewer/dynamic_viewer.dart';
-import 'package:fcb_pay_app/pages/home_flow/home_flow.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
-import 'package:fcb_pay_app/widgets/widgets.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/widgets.dart';
+import '../dynamic_viewer.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
     super.key,
     required this.widget,
-    required this.buttonModel
+    required this.button
   });
   final PageWidget widget;
-  final ButtonModel buttonModel;
+  final Button button;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Divider(thickness: 2), // line divider ---------------------
+        const Divider(thickness: 2), // line divider
         const SizedBox(height: 5),
-        const CustomText(text: "Please verify your data for accuracy and completeness before proceeding with the transaction.",
+        _note(
+          text: TextString.transactionNote,
           fontSize: 12,
           color: Colors.teal
         ),
@@ -31,14 +31,48 @@ class SubmitButton extends StatelessWidget {
           buttonColor: const Color(0xFF25C166),
           title: widget.title,
           titleColor: Colors.white,
-          icon: iconMapper(buttonModel.icon),
+          icon: iconMapper(button.icon),
           iconColor: Colors.white,
-          onPressed: () {
-            context.read<WidgetsBloc>().add(SubmissionStatusRefresher());
-            context.read<WidgetsBloc>().add(ButtonSubmitted(buttonModel.title));
-          }
+          onPressed: () => showDialog(
+            context: context,
+            builder: (ctx) => BlocProvider.value(
+              value: BlocProvider.of<WidgetsBloc>(context),
+              child: CustomAlertDialog(
+                description: 'Are you sure you want to proceed?', 
+                title: button.title, 
+                onPressed: () {
+                  context.read<WidgetsBloc>().add(ButtonSubmitted(button.title));
+                  Navigator.of(ctx).pop();
+                }
+              )
+            )
+          )
         )
       ]
+    );
+  }
+
+  Text _note({
+    required String text,
+    required double? fontSize,
+    required Color color,
+    FontWeight? fontWeight,
+  }) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: color,
+        fontWeight: fontWeight ?? FontWeight.w700,
+        fontSize: fontSize,
+        shadows: <Shadow>[
+          Shadow(
+            color: Colors.black.withOpacity(0.15), // Shadow color
+            blurRadius: 1,
+            offset: const Offset(0, 1)
+          )
+        ]
+      )
     );
   }
 }
