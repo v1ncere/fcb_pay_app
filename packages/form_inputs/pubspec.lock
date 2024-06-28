@@ -5,18 +5,18 @@ packages:
     dependency: "direct main"
     description:
       name: formz
-      sha256: b2b4cb99b228020d2c7185500eed1c02ca290dd4cc19edaf42df17f5dc546d5a
+      sha256: a58eb48d84685b7ffafac1d143bf47d585bf54c7db89fe81c175dfd6e53201c7
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.7.0"
   meta:
     dependency: transitive
     description:
       name: meta
-      sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
+      sha256: bdb68674043280c3428e9ec998512fb681678676b3c54e773629ffe74419f8c7
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.1"
+    version: "1.15.0"
   very_good_analysis:
     dependency: "direct dev"
     description:

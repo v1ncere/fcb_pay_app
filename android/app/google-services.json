@@ -38,6 +38,13 @@
             {
               "client_id": "1032216805729-8pdet7p4inqugn2n3tbmqlaunvg8dk5k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1032216805729-4tq18mijplo64ngvvsja1otusuvlnfel.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fcbPayApp.RunnerTests"
+              }
             }
           ]
         }

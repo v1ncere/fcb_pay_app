@@ -37,7 +37,7 @@ String encryption(String data) {
 
 /// DECRYPT
 String decryption(String data) {
-  final List<String> date = ("${dayOfYear() + 2557}").split('');
+  final List<String> date = ('${dayOfYear() + 2557}').split('');
   final List<String> splitData = data.split('');
   String decryptedData = '';
   int index = 0;

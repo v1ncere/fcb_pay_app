@@ -60,7 +60,7 @@ class ThousandsFormatter extends TextInputFormatter {
           }
         }
         if (allowFraction && filteredString.contains('.')) {
-          List<String> decimalPlacesValue = filteredString.split(".");
+          List<String> decimalPlacesValue = filteredString.split('.');
           String decimalOnly = decimalPlacesValue[1];
           String decimalTruncated = decimalOnly.substring(0, min(decimalPlaces, decimalOnly.length));
           double digitsOnly = double.tryParse(decimalPlacesValue[0]) ?? 0.0;

@@ -11,7 +11,7 @@ class NotificationsViewerLoading extends NotificationsViewerState {}
 
 class NotificationsViewerSuccess extends NotificationsViewerState {
   const NotificationsViewerSuccess({required this.notification});
-  final Notifications notification;
+  final Notification notification;
 
   @override
   List<Object> get props => [notification];

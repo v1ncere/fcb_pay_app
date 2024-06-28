@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/pages/account/account.dart';
+import '../account.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final acc = context.select((AppBloc bloc) => bloc.state.args);
+    final account = context.select((CarouselCubit cubit) => cubit.state.account);
     return BlocBuilder<TransactionHistoryBloc, TransactionHistoryState>(
       builder: (context, state) {
         return IconButton(
@@ -26,11 +25,13 @@ class SearchButton extends StatelessWidget {
             ]
           ),
           onPressed: () {
-            context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc, searchQuery: state.searchQuery.value));
+            context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(
+              accountID: account.accountKeyID!,
+              searchQuery: state.searchQuery.value
+            ));
           }
         );
       }
     );
   }
 }
-

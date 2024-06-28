@@ -1,19 +1,17 @@
-import 'package:fcb_pay_app/pages/account_settings/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets.dart';
 
 class AccountCard extends StatelessWidget {
   const AccountCard({
     super.key,
     required this.icon,
-    required this.text,
-    required this.colors,
-    required this.function
+    required this.account,
+    required this.colors
   });
-
   final IconData icon;
-  final String text;
+  final String account;
   final Color colors;
-  final Function function;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class AccountCard extends StatelessWidget {
                 ),
                 Flexible(
                   child: FittedBox(
-                    child: Text(text,
+                    child: Text(account,
                       textAlign: TextAlign.center,
                       style:  TextStyle(
                         color: const Color(0xFFFFFFFF),
@@ -65,7 +63,7 @@ class AccountCard extends StatelessWidget {
                     )
                   )
                 ),
-                const PopUpSettingsButton(),
+                PopUpSettingsButton(account: account)
               ]
             )
           )

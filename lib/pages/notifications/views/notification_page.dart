@@ -2,7 +2,7 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fcb_pay_app/pages/notifications/notifications.dart';
+import '../notifications.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
@@ -12,10 +12,13 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => FirebaseRealtimeDBRepository(),
-      child: BlocProvider(
-        create: (context) => NotificationsBloc(
-          firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-        )..add(NotificationsLoaded()),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => NotificationsBloc(
+              firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
+            )..add(NotificationsLoaded()))
+        ],
         child: const NotificationView()
       )
     );

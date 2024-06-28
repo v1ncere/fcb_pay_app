@@ -6,7 +6,7 @@ part 'qr_model.g.dart';
 
 @HiveType(typeId: 1)
 class QRModel {
-  QRModel({
+  const QRModel({
     required this.id,
     required this.title,
     required this.data,
@@ -37,6 +37,8 @@ class QRModel {
       widget: widget ?? this.widget
     );
   }
+
+  static const empty = QRModel(id: '', title: '', data: '', widget: '');
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{

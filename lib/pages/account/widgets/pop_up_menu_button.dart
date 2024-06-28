@@ -1,18 +1,19 @@
+import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/pages/account/account.dart';
+import '../../../utils/enums.dart';
+import '../account.dart';
 
 class PopUpMenuButton extends StatelessWidget {
   const PopUpMenuButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionFilterBloc, TransactionFilterState>(
+    return BlocBuilder<FilterBloc, FilterState>(
       builder: (context, state) {
-        if (state is TransactionFilterLoading) {
+        if (state.filterStatus.isLoading) {
           return const Padding(
             padding: EdgeInsets.only(left: 14, right: 14),
             child: SizedBox(
@@ -22,10 +23,10 @@ class PopUpMenuButton extends StatelessWidget {
             )
           );
         }
-        if (state is TransactionFilterSuccess) {
-          return BlocSelector<AppBloc, AppState, String>(
-            selector: (state) => state.args,
-            builder: (_, acc) {
+        if (state.filterStatus.isSuccess) {
+          return BlocSelector<CarouselCubit, CarouselState, Account>(
+            selector: (state) => state.account,
+            builder: (_, account) {
               return PopupMenuButton(
                 icon: Icon(
                   FontAwesomeIcons.filter,
@@ -39,14 +40,13 @@ class PopUpMenuButton extends StatelessWidget {
                   ]
                 ),
                 onSelected: (value) {
-                  context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(account: acc, filter: value));
+                  context.read<TransactionHistoryBloc>().add(TransactionHistoryLoaded(accountID: account.accountKeyID!, filter: value));
                 },
                 itemBuilder: (BuildContext context) {
-                  final filter = state.filter.filter.trim().split(',');
-                  return filter.map((String value) {
+                  return state.filters.map((String value) {
                     return PopupMenuItem<String>(
                       value: value,
-                      child: Text(value)
+                      child: Text(value.toLowerCase())
                     );
                   }).toList();
                 }
@@ -54,8 +54,8 @@ class PopUpMenuButton extends StatelessWidget {
             }
           );
         }
-        if (state is TransactionFilterError) {
-          return Center(child: Text(state.error));
+        if (state.filterStatus.isError) {
+          return Center(child: Text(state.message));
         }
         else {
           return const SizedBox.shrink();

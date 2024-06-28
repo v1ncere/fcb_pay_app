@@ -1,24 +1,24 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class Receipts {
-  const Receipts({
+class Receipt {
+  const Receipt({
     this.keyId,
-    required this.amount,
-    required this.confirm,
+    this.amount,
+    this.confirm,
     required this.description,
-    required this.reference,
+    this.reference,
     required this.title,
-    required this.timeStamp
+    this.timeStamp
   });
   final String? keyId;
-  final double amount;
-  final bool confirm;
+  final double? amount;
+  final bool? confirm;
   final String description;
-  final int reference;
+  final int? reference;
   final String title;
-  final DateTime timeStamp;
+  final DateTime? timeStamp;
 
-  Receipts copyWith({
+  Receipt copyWith({
     String? keyId,
     double? amount,
     bool? confirm,
@@ -27,7 +27,7 @@ class Receipts {
     String? title,
     DateTime? timeStamp
   }) {
-    return Receipts(
+    return Receipt(
       keyId: keyId ?? this.keyId,
       amount: amount ?? this.amount,
       confirm: confirm ?? this.confirm,
@@ -38,7 +38,11 @@ class Receipts {
     );
   }
 
-  factory Receipts.fromSnapshot(DataSnapshot snapshot) {
+  static const empty = Receipt(description: '', title: '');
+  bool get isEmpty => this == Receipt.empty;
+  bool get isNotEmpty => this != Receipt.empty;
+
+  factory Receipt.fromSnapshot(DataSnapshot snapshot) {
     final data = snapshot.value as Map?;
 
     final intTimestamp = data?['time_stamp'] as int?;
@@ -51,7 +55,7 @@ class Receipts {
     ? dynamicAmount.toDouble()
     : dynamicAmount as double?;
 
-    return Receipts(
+    return Receipt(
       keyId: snapshot.key, // has already value in it, be careful!
       amount: doubleAmount ?? 0.0,
       confirm: data?['confirm'] as bool? ?? false,
@@ -68,7 +72,7 @@ class Receipts {
     data['confirm'] = confirm;
     data['reason'] = description;
     data['reference'] = reference;
-    data["time_stamp"] = timeStamp.millisecondsSinceEpoch;
+    data['time_stamp'] = timeStamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch;
     data['title'] = title;
     return data;
   }

@@ -1,82 +1,93 @@
 import 'dart:async';
 
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_repository/hive_repository.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
+import '../app/app.dart';
+import '../pages/walk_through/walk_through.dart';
+import '../utils/utils.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
-
-  static Page<void> page() => const MaterialPage<void>(child: Splash());
-
+  static Route<void> route() => MaterialPageRoute(builder: (context) => const Splash());
+  
   @override
   State<Splash> createState() => SplashState();
 }
 
 class SplashState extends State<Splash> with SingleTickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   late AnimationController animationController;
   late Animation<double> animation;
+  final _hiveRepository = HiveRepository();
   bool _visible = true;
 
   @override
   void initState() {
+    super.initState();
     animationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
     animation = CurvedAnimation(parent: animationController, curve: Curves.easeOut);
     animation.addListener(() => setState(() {}));
     animationController.forward();
     setState(() { _visible = !_visible; });
     startTime();
-    super.initState();
   }
 
   @override
   void dispose() {
-    animationController.dispose();
+    _hiveRepository.closeOnboardingBox();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: key,
-      backgroundColor: Colors.white,
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 30.0),
-                child: Text("Where Quality Service is a Commitment.", style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic, fontFamily: 'Open Sans'))
-              )
-            ]
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset('assets/fcb-logo.png', width: animation.value * 250, height: animation.value * 250)
-            ]
-          ),
-        ],
-      ),
-    );
+        backgroundColor: Colors.white,
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            const Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 30.0),
+                  child: Text(
+                    TextString.slogan, 
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontStyle: FontStyle.italic,
+                      fontFamily: 'Open Sans'
+                    )
+                  )
+                )
+              ]
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  AssetString.splashLogo,
+                  width: animation.value * 200,
+                  height: animation.value * 200
+                )
+              ]
+            )
+          ]
+        )
+      );
   }
 
   Future<Timer> startTime() async {
-    Duration duration = const Duration(seconds: 2);
-    return Timer(duration, navigationPage);
-  }
-
-  void navigationPage() {
-    if (key.currentContext != null) {
-      final appBloc = BlocProvider.of<AppBloc>(key.currentContext!);
-      final appStatus = appBloc.state.status;
-      key.currentContext!.flow<AppStatus>().update((state) => appStatus);
-    }
+    final isOnboarded = await _hiveRepository.isOnboarded();
+    return Timer(const Duration(seconds: 3), () async {
+      if (!isOnboarded) {
+        _hiveRepository.updateOnboarding(true);
+        await Navigator.of(context).pushAndRemoveUntil(WalkThroughPage.route(), (route) => false);
+        if (!mounted) return;
+      } else {
+        await Navigator.of(context).pushAndRemoveUntil(App.route(), (route) => false);
+        if (!mounted) return;
+      }
+    });
   }
 }

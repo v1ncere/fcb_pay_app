@@ -10,13 +10,14 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required FirebaseAuthRepository firebaseAuthRepository
-  })  : _firebaseAuthRepository = firebaseAuthRepository, 
+  }) : _firebaseAuthRepository = firebaseAuthRepository,
   super(
-    firebaseAuthRepository.currentUser.isNotEmpty &&
-    firebaseAuthRepository.currentUser.isVerified == true
-    ? AppState.authenticated(firebaseAuthRepository.currentUser)
+    firebaseAuthRepository.currentUser.isNotEmpty && firebaseAuthRepository.currentUser.isVerified == true
+    ? AppState.authenticated(firebaseAuthRepository.currentUser) 
     : const AppState.unauthenticated()
   ) {
+    _streamSubscription = _firebaseAuthRepository.user.listen((user) => add(AppUserChanged(user)));
+
     on<AppUserChanged>((event, emit) {
       emit(
         event.user.isNotEmpty && event.user.isVerified == true
@@ -25,28 +26,19 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       );
     });
 
+    on<PhoneNumberPassed>((event, emit) {
+      emit(AppState.otpVerification(event.phoneNumber));
+    });
+    
     on<AppLogoutRequested>((event, emit) {
       unawaited(_firebaseAuthRepository.logOut());
     });
-    
-    on<AccountArgumentPassed>((event, emit) {
-      emit(AppState.accounts(event.args));
-    });
-
-
-    on<NotificationIdPassed>((event, emit) {
-      emit(AppState.notificationViewer(event.args));
-    });
-    
-    _streamSubscription = _firebaseAuthRepository
-    .user
-    .listen((user) => add(AppUserChanged(user)));
   }
   final FirebaseAuthRepository _firebaseAuthRepository;
   late final StreamSubscription<User> _streamSubscription;
 
   @override
-  Future<void> close() {
+  Future<void> close() async {
     _streamSubscription.cancel();
     return super.close();
   }

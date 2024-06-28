@@ -2,23 +2,25 @@ import 'package:firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import 'package:fcb_pay_app/app/app.dart';
-import 'package:fcb_pay_app/utils/utils.dart';
+import '../../utils/utils.dart';
+import '../app.dart';
 
 class App extends StatelessWidget {
-  const App({
-    super.key,
-    required FirebaseAuthRepository firebaseAuthRepository
-  }) : _firebaseAuthRepository = firebaseAuthRepository;
-  final FirebaseAuthRepository _firebaseAuthRepository;
+  const App({super.key});
+  static Route<AppStatus> route() => MaterialPageRoute(builder: (_) => const App());
+  static final _firebaseAuth = FirebaseAuthRepository();
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
-      value: _firebaseAuthRepository,
-      child: BlocProvider(
-        create: (context) => AppBloc(firebaseAuthRepository: _firebaseAuthRepository),
+      value: _firebaseAuth,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AppBloc(firebaseAuthRepository: _firebaseAuth)),
+          BlocProvider(create: (context) => InactivityCubit())
+        ],
         child: const AppView()
       )
     );
@@ -31,11 +33,14 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: FlutterTheme(context: context).light,
+      theme: CustomTheme.lightThemeData(context),
+      // themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
       home: FlowBuilder<AppStatus>(
         state: context.select((AppBloc bloc) => bloc.state.status),
         onGeneratePages: onGeneratePages,
-      )
+      ),
+      builder: EasyLoading.init(),
     );
   }
 }

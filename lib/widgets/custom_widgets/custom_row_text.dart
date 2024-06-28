@@ -26,6 +26,7 @@ class CustomRowText extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
       children: [
         Flexible(
           child: Text(

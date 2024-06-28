@@ -9,13 +9,13 @@ class SignInText extends StatelessWidget {
       'Sign In',
       style: TextStyle(
         fontSize: 30,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w900,
         color: const Color(0xFF25C166),
         shadows: [
           Shadow(
-            blurRadius: 4,
+            blurRadius: 3,
             color: Colors.black.withOpacity(0.2),
-            offset: const Offset(0.3, 1.5)
+            offset: const Offset(0.2, 1.0)
           )
         ]
       )

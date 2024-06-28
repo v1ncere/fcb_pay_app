@@ -2,19 +2,19 @@ part of 'notifications_bloc.dart';
 
 class NotificationsState extends Equatable {
   const NotificationsState({
-    this.unreadNotifications = const <Notifications>[],
-    this.readNotifications = const <Notifications>[],
+    this.unreadNotifications = const <Notification>[],
+    this.readNotifications = const <Notification>[],
     this.status = Status.initial,
     this.message = ''
   });
-  final List<Notifications> unreadNotifications;
-  final List<Notifications> readNotifications;
+  final List<Notification> unreadNotifications;
+  final List<Notification> readNotifications;
   final Status status;
   final String message;
 
   NotificationsState copyWith({
-    List<Notifications>? unreadNotifications,
-    List<Notifications>? readNotifications,
+    List<Notification>? unreadNotifications,
+    List<Notification>? readNotifications,
     Status? status,
     String? message
   }) {

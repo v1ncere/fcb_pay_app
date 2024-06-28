@@ -23,11 +23,20 @@ class AppBlocObserver extends BlocObserver {
   }
 
   @override
-  void onTransition(
-    Bloc<dynamic, dynamic> bloc,
-    Transition<dynamic, dynamic> transition,
-  ) {
+  void onTransition(Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
     super.onTransition(bloc, transition);
     print(transition);
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    super.onClose(bloc);
+    print('CLOSED $bloc');
+  }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    print('CREATED $bloc');
+    super.onCreate(bloc);
   }
 }

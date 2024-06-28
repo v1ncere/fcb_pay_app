@@ -21,15 +21,21 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
-        elevation: MaterialStateProperty.all(2),
-        backgroundColor: MaterialStateProperty.all(buttonColor)
+        padding: WidgetStateProperty.all(const EdgeInsets.all(10)),
+        elevation: WidgetStateProperty.all(2),
+        backgroundColor: WidgetStateProperty.all(buttonColor)
       ),
       onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(title, style: TextStyle(color: titleColor, fontWeight: FontWeight.w700)),
+          Text(
+            title, 
+            style: TextStyle(
+              color: titleColor,
+              fontWeight: FontWeight.w700
+            )
+          ),
           const SizedBox(width: 5),
           Icon(icon, color: iconColor, size: 20)
         ]

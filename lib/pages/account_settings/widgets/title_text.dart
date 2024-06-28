@@ -7,7 +7,7 @@ class TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
-      child: Text("Account settings",
+      child: Text('Account settings',
         style: TextStyle(
           color: Colors.green,
           fontWeight: FontWeight.w700,

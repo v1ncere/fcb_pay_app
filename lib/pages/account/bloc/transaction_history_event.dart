@@ -1,35 +1,29 @@
 part of 'transaction_history_bloc.dart';
 
-abstract class TransactionHistoryEvent extends Equatable {
+sealed class TransactionHistoryEvent extends Equatable {
   const TransactionHistoryEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class TransactionHistoryLoaded extends TransactionHistoryEvent {
+final class TransactionHistoryLoaded extends TransactionHistoryEvent {
   const TransactionHistoryLoaded({
-    required this.account,
+    required this.accountID,
     this.searchQuery = '',
     this.filter = '',
+    this.limit = 0
   });
-  final String account;
+  final String accountID;
   final String searchQuery;
   final String filter;
+  final int limit;
 
   @override
-  List<Object> get props => [account, searchQuery, filter];
+  List<Object> get props => [accountID, searchQuery, filter, limit];
 }
 
-class TransactionHistoryUpdated extends TransactionHistoryEvent {
-  const TransactionHistoryUpdated(this.transactions);
-  final List<TransactionHistory> transactions;
-
-  @override
-  List<Object> get props => [transactions];
-}
-
-class SearchTextFieldChanged extends TransactionHistoryEvent {
+final class SearchTextFieldChanged extends TransactionHistoryEvent {
   const SearchTextFieldChanged(this.searchQuery);
   final String searchQuery;
 
