@@ -2,6 +2,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/app.dart';
 import '../../account_settings/account_settings.dart';
 import '../../home/home.dart';
 import '../../home_flow/home_flow.dart';
@@ -19,9 +20,9 @@ class BottomNavbarView extends StatelessWidget {
       selector: (state) => state,
       builder: (context, tab) {
         final controller = PageController(initialPage: tab.index);
-        context.read<InactivityCubit>().resumeTimer();
+        _inactivityResume(context);
         return InactivityDetector(
-          onInactive: () => context.flow<HomeRouterStatus>().complete((_) => HomeRouterStatus.appBar),
+          onInactive: () => context.flow<HomeRouterStatus>().complete(),
           child: Scaffold(
             extendBody: true, // for QR scanner to occupy the whole screen
             drawer: const SideDrawer(),
@@ -45,4 +46,6 @@ class BottomNavbarView extends StatelessWidget {
       }
     );
   }
+  // UTILITY METHODS
+  void _inactivityResume(BuildContext context) => context.read<InactivityCubit>().resumeTimer();
 }

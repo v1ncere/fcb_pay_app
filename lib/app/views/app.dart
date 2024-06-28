@@ -16,8 +16,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: _firebaseAuth,
-      child: BlocProvider(
-        create: (context) => AppBloc(firebaseAuthRepository: _firebaseAuth),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AppBloc(firebaseAuthRepository: _firebaseAuth)),
+          BlocProvider(create: (context) => InactivityCubit())
+        ],
         child: const AppView()
       )
     );

@@ -36,7 +36,6 @@ enum HomeRouterStatus {
   accountsViewer,
   accountsViewerReciept,
   paymentsView,
-  otp,
   paymentsReceipt,
   transfersView,
   transfersReceipt,

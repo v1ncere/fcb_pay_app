@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../utils/utils.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../home.dart';
 import 'widgets.dart';
@@ -71,8 +70,6 @@ Card depositsCard({
             InkWell(
               borderRadius: BorderRadius.circular(10),
               onTap: () {
-                // Timer pause for inactivity cubit
-                context.read<InactivityCubit>().pauseTimer();
                 context.read<RouterBloc>().add(RouterAccountsPassed(account));
                 context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account);
               },

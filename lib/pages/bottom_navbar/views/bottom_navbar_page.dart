@@ -20,15 +20,14 @@ class BottomNavbarPage extends StatelessWidget {
       create: (context) => _firebaseRepository,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => BottomNavbarCubit()),
-          BlocProvider(create: (context) => InactivityCubit()..resetTimer()),
           BlocProvider(create: (context) => PaymentButtonsBloc(firebaseRealtimeDBRepository: _firebaseRepository)
           ..add(PaymentButtonsLoaded())),
           BlocProvider(create: (context) => TransferButtonsBloc(firebaseRealtimeDBRepository: _firebaseRepository)
           ..add(TransferButtonsLoaded())),
           BlocProvider(create: (context) => AccountsHomeBloc(firebaseRealtimeDBRepository: _firebaseRepository, hiveRepository: _hiveRepository)
           ..add(UserDetailsStreamed())
-          ..add(AccountsHomeLoaded()))
+          ..add(AccountsHomeLoaded())),
+          BlocProvider(create: (context) => BottomNavbarCubit())
         ],
         child: const BottomNavbarView()
       )

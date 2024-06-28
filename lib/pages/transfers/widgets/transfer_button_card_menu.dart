@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/utils.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../transfers.dart';
 import 'widgets.dart';
@@ -36,8 +35,6 @@ class TransferButtonCardMenu extends StatelessWidget {
                 iconColor: colorStringParser(button.iconColor),
                 bgColor: colorStringParser(button.bgColor),
                 function: () {
-                  // timer paused, halt the navigation process
-                  context.read<InactivityCubit>().pauseTimer();
                   context.read<RouterBloc>().add(RouterPaymentsButtonPassed(button));
                   context.flow<HomeRouterStatus>().update((next) => HomeRouterStatus.transfersView);
                 }

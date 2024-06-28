@@ -31,3 +31,11 @@ final class AccountsRefreshed extends AccountsEvent {
   @override 
   List<Object> get props => [account];
 }
+
+final class AccountsBalanceRequested extends AccountsEvent {
+  const AccountsBalanceRequested(this.account);
+  final Account account;
+
+  @override
+  List<Object> get props => [account];
+}

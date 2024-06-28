@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../app/app.dart';
 import '../../../utils/utils.dart';
 import '../../../widgets/widgets.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../dynamic_viewer.dart';
 import '../widgets/widgets.dart';
@@ -28,11 +28,10 @@ class DynamicViewerView extends StatelessWidget {
           _showFailureSnackbar(context, state.message);
         }
       },
-      child: PopScope(
-        onPopInvoked: (didPop) {
-          if(didPop) {
-            context.read<InactivityCubit>().resumeTimer();
-          }
+      child: InactivityDetector(
+        onInactive: () {
+          FocusScope.of(context).requestFocus(focusNode); // close the dropdown
+          context.flow<HomeRouterStatus>().complete();
         },
         child: Scaffold(
           appBar: AppBar(
@@ -62,48 +61,42 @@ class DynamicViewerView extends StatelessWidget {
                 );
               }
               if (state.widgetStatus.isSuccess) {
-                return InactivityDetector(
-                  onInactive: () {
-                    FocusScope.of(context).requestFocus(focusNode); // close the dropdown
-                    context.flow<HomeRouterStatus>().complete();
-                  },
-                  child: SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-                    child: state.dropdownHasData
-                    ? CustomCardContainer(
-                        color: const Color(0xFFFFFFFF),
-                        children: state.widgetList.map((widget) {
-                          switch(widget.widget) {
-                            case 'dropdown':
-                              return DropdownDisplay(focusNode: focusNode, pageWidget: widget);
-                            case 'textfield':
-                              return DynamicTextfield(widget: widget);
-                            case 'text':
-                              return DynamicText(widget: widget);
-                            case 'multitextfield':
-                              return MultiTextfield(widget: widget);
-                            case 'button':
-                              return SubmitButton(widget: widget, button: button);
-                            default:
-                              return const SizedBox.shrink();
-                          }
-                        }).toList()
-                      )
-                    : SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.8,
-                      width: MediaQuery.of(context).size.width,
-                      child: const Center(
-                        child: Text(
-                          TextString.transactionDisabled,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.bold
-                          )
-                        )
-                      ),
+                return SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                  child: state.dropdownHasData
+                  ? CustomCardContainer(
+                      color: const Color(0xFFFFFFFF),
+                      children: state.widgetList.map((widget) {
+                        switch(widget.widget) {
+                          case 'dropdown':
+                            return DropdownDisplay(focusNode: focusNode, pageWidget: widget);
+                          case 'textfield':
+                            return DynamicTextfield(widget: widget);
+                          case 'text':
+                            return DynamicText(widget: widget);
+                          case 'multitextfield':
+                            return MultiTextfield(widget: widget);
+                          case 'button':
+                            return SubmitButton(widget: widget, button: button);
+                          default:
+                            return const SizedBox.shrink();
+                        }
+                      }).toList()
                     )
+                  : SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    width: MediaQuery.of(context).size.width,
+                    child: const Center(
+                      child: Text(
+                        TextString.transactionDisabled,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black38,
+                          fontWeight: FontWeight.bold
+                        )
+                      )
+                    ),
                   )
                 );
               }
@@ -115,7 +108,7 @@ class DynamicViewerView extends StatelessWidget {
               }
             }
           )
-        )
+        ),
       )
     );
   }

@@ -3,8 +3,8 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/app.dart';
 import '../../../utils/utils.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../account.dart';
 import 'widgets.dart';

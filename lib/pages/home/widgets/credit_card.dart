@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../utils/utils.dart';
 import '../../../widgets/widgets.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../home.dart';
 import 'widgets.dart';
@@ -76,7 +75,6 @@ Card creditCard({
             InkWell(
               borderRadius: BorderRadius.circular(10),
               onTap: () {
-                context.read<InactivityCubit>().pauseTimer(); // pause timer of inactivity cubit
                 context.read<RouterBloc>().add(RouterAccountsPassed(account));
                 context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account); // navigate to other page
               },

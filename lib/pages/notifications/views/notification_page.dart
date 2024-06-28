@@ -2,7 +2,6 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../notifications.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -18,8 +17,7 @@ class NotificationPage extends StatelessWidget {
           BlocProvider(
             create: (context) => NotificationsBloc(
               firebaseRealtimeDBRepository: FirebaseRealtimeDBRepository()
-            )..add(NotificationsLoaded())),
-          BlocProvider(create: (context) => InactivityCubit()..resumeTimer()) // [resume timer] after you pause from previous page
+            )..add(NotificationsLoaded()))
         ],
         child: const NotificationView()
       )

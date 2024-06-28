@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_repository/hive_repository.dart';
 
-import '../../bottom_navbar/bottom_navbar.dart';
+import '../../../app/app.dart';
 import '../../home/home.dart';
 import '../../home_flow/home_flow.dart';
 import '../dynamic_viewer.dart';

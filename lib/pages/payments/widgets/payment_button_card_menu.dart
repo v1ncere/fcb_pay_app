@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/utils.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../payments.dart';
 import 'widgets.dart';
@@ -36,8 +35,6 @@ class PaymentButtonCardMenu extends StatelessWidget {
                 iconColor: colorStringParser(button.iconColor),
                 bgColor: colorStringParser(button.bgColor),
                 function: () {
-                  // pause timer because it'll continue even after you navigate to other pages
-                  context.read<InactivityCubit>().pauseTimer();
                   context.read<RouterBloc>().add(RouterPaymentsButtonPassed(button));
                   context.flow<HomeRouterStatus>().update((next) => HomeRouterStatus.paymentsView);
                 }

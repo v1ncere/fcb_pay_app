@@ -6,7 +6,6 @@ import '../../bottom_navbar/bottom_navbar.dart';
 import '../../dynamic_viewer/dynamic_viewer.dart';
 import '../../notifications/notifications.dart';
 import '../../notifications_viewer/notifications_viewer.dart';
-import '../../otp_verification/otp_verification.dart';
 import '../../re_authenticate/re_authenticate.dart';
 import '../../receipt/receipt.dart';
 import '../../scanner_transaction/scanner_transaction.dart';
@@ -39,10 +38,6 @@ List<Page<dynamic>> onGenerateHomePages(HomeRouterStatus state, List<Page<dynami
       return [BottomNavbarPage.page(), DynamicViewerPage.page()];
     case HomeRouterStatus.transfersReceipt:
       return [BottomNavbarPage.page(), DynamicViewerPage.page(),  ReceiptPage.page()];
-    
-    //OTP
-    case HomeRouterStatus.otp:
-      return [BottomNavbarPage.page(), OTPVerificationPage.page()];
 
     // RECIEPT
     case HomeRouterStatus.receipt:

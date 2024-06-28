@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +18,7 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
     on<AccountsLoaded>(_onAccountsLoaded);
     on<AccountsUpdated>(_onAccountsUpdated);
     on<AccountsRefreshed>(_onAccountsRefreshed);
+    on<AccountsBalanceRequested>(_onAccountsBalanceRequested);
   }
   final FirebaseRealtimeDBRepository _firebaseDatabase;
   StreamSubscription<List<Account>>? _streamSubscription;
@@ -58,7 +60,19 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
 
   FutureOr<void> _onAccountsRefreshed(AccountsRefreshed event, Emitter<AccountsState> emit) {
     emit(state.copyWith(status: Status.loading));
-    add(AccountsLoaded(event.account));
+    add(AccountsBalanceRequested(event.account)); // balance request
+    add(AccountsLoaded(event.account)); // actual refresh data
+  }
+
+  Future<void> _onAccountsBalanceRequested(AccountsBalanceRequested event, Emitter<AccountsState> emit) async {
+    await _firebaseDatabase.addUserRequest(
+      UserRequest(
+        dataRequest: 'request_balance|${event.account.accountKeyID}|hashed_data_for_security',
+        extraData: '',
+        ownerId: FirebaseAuth.instance.currentUser!.uid,
+        timeStamp: DateTime.now()
+      )
+    );
   }
 
   @override

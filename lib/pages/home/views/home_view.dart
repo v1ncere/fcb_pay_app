@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../utils/utils.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../home.dart';
 import '../widgets/widgets.dart';
@@ -37,11 +36,7 @@ class AccountHomeView extends StatelessWidget {
                   FontAwesomeIcons.solidBell,
                   color: ColorString.eucalyptus
                 ),
-                onPressed: () {
-                  // pause timer, to halt the navigation process
-                  context.read<InactivityCubit>().pauseTimer();
-                  context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.notifications);
-                }
+                onPressed: () => context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.notifications)
               ),
               IconButton(
                 splashRadius: 25,

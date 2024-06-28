@@ -2,7 +2,6 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../account.dart';
 
@@ -28,8 +27,7 @@ class AccountPage extends StatelessWidget {
               ..add(WidgetsFetched(account.type))),
               BlocProvider(create: (context) => AccountsBloc(firebaseRepository: _firebaseRepository)
               ..add(AccountsLoaded(account))),
-              BlocProvider(create: (context) => InactivityCubit()..resumeTimer()),
-              BlocProvider(create: (context) => CarouselCubit()..setAccount(account: account))
+              BlocProvider(create: (context) => CarouselCubit()..setAccount(account: account)),
             ],
             child: AccountView(account: account)
           )

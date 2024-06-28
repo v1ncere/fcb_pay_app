@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../utils/utils.dart';
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import 'widgets.dart';
 
@@ -64,8 +63,6 @@ Card walletCard({
               borderRadius: BorderRadius.circular(10),
               onTap: () {
                 context.read<RouterBloc>().add(RouterAccountsPassed(account));
-                // pause the timer because it'll continue even after you navigate to other page
-                context.read<InactivityCubit>().pauseTimer();
                 context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.account);
               },
               child: Column(

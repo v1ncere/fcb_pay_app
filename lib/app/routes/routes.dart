@@ -8,12 +8,14 @@ import '../app.dart';
 
 List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) {
   switch (state) {
+    // login
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
     case AppStatus.signupVerify:
       return [LoginPage.page(), SignUpVerifyPage.page()];
     case AppStatus.signup:
       return [LoginPage.page(), SignUpPage.page()];
+    
     // local authentication
     case AppStatus.authenticated:
       return [AuthPinPage.page()];
@@ -21,6 +23,8 @@ List<Page<dynamic>> onGeneratePages(AppStatus state, List<Page<dynamic>> pages) 
       return [AuthPinPage.page(), CreatePinPage.page()];
     case AppStatus.updatePin:
       return [AuthPinPage.page(), UpdatePinPage.page()];
+    
+    // default
     default:
       return [LoginPage.page()];
   }

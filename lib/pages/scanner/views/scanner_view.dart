@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
+import '../../../app/app.dart';
 import '../../../utils/utils.dart';
 import '../../home_flow/home_flow.dart';
 import '../scanner.dart';
@@ -23,11 +24,6 @@ class ScannerViewState extends State<ScannerView> {
   );
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -43,62 +39,66 @@ class ScannerViewState extends State<ScannerView> {
       width: area,
       height: area,
     );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('QR SCANNER', 
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700
-          )
+    return InactivityDetector(
+      onInactive: () => context.flow<HomeRouterStatus>().complete(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'QR SCANNER', 
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700
+            )
+          ),
+          actions: [toggleTorch()]
         ),
-        actions: [toggleTorch()]
-      ),
-      body: BlocListener<ScannerCubit, ScannerState>( 
-        listenWhen: (previous, current) => previous.status != current.status,
-        listener: (context, state) {
-          if (state.status.isSuccess) {
-            context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.scannerTransaction);
-          }
-          if (state.status.isError) {
-            ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(state.message)));
-          }
-        },
-        child: Stack(
-          children: [
-            MobileScanner(
-              controller: _controller,
-              placeholderBuilder: (_, __) => Container(color: Colors.black),
-              errorBuilder: (context, error, child) {
-                return ScannerErrorWidget(error: error, area: area);
-              },
-              scanWindow: scanWindow,
-              onDetect: (capture) {
-                final List<Barcode> barcodes = capture.barcodes;
-                for (final barcode in barcodes) {
-                  context.read<ScannerCubit>().saveQRCode(barcode.rawValue!);
+        body: BlocListener<ScannerCubit, ScannerState>(
+          listenWhen: (previous, current) => previous.status != current.status,
+          listener: (context, state) {
+            if (state.status.isSuccess) {
+              context.flow<HomeRouterStatus>().update((state) => HomeRouterStatus.scannerTransaction);
+            }
+            if (state.status.isError) {
+              ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(state.message)));
+            }
+          },
+          child: Stack(
+            children: [
+              MobileScanner(
+                controller: _controller,
+                placeholderBuilder: (_, __) => Container(color: Colors.black),
+                errorBuilder: (context, error, child) {
+                  return ScannerErrorWidget(error: error, area: area);
+                },
+                scanWindow: scanWindow,
+                onDetect: (capture) {
+                  final List<Barcode> barcodes = capture.barcodes;
+                  for (final barcode in barcodes) {
+                    context.read<ScannerCubit>().saveQRCode(barcode.rawValue!);
+                  }
                 }
-              }
-            ),
-            CustomPaint(painter: ScannerOverlay(scanWindow)),
-            // Positioned.fill(
-            //   child: Container(
-            //     decoration: ShapeDecoration(
-            //       shape: QrScannerOverlayShape(
-            //         borderColor: const Color(0xFF02AE08),
-            //         borderRadius: 10,
-            //         borderLength: 20,
-            //         borderWidth: 8,
-            //         cutOutSize: area
-            //       )
-            //     )
-            //   )
-            // ),
-            const ScannerText()
-          ]
+              ),
+              CustomPaint(painter: ScannerOverlay(scanWindow)),
+              // Positioned.fill(
+              //   child: Container(
+              //     decoration: ShapeDecoration(
+              //       shape: QrScannerOverlayShape(
+              //         borderColor: const Color(0xFF02AE08),
+              //         borderRadius: 10,
+              //         borderLength: 20,
+              //         borderWidth: 8,
+              //         cutOutSize: area
+              //       )
+              //     )
+              //   )
+              // ),
+              const ScannerText()
+            ]
+          )
         )
-      )
+      ),
     );
   }
 

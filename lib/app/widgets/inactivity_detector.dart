@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bottom_navbar.dart';
+import '../app.dart';
 
 class InactivityDetector extends StatelessWidget {
   const InactivityDetector({
@@ -26,11 +26,10 @@ class InactivityDetector extends StatelessWidget {
           }
         },
         child: BlocListener<InactivityCubit, InactivityState>(
-          listenWhen: (previous, current) => true,
           listener: (context, state) {
+            // inactivity will trigger this event
             if (state.status.isInactive) {
               onInactive();
-              debugPrint('INACTIVITY ACTION TRIGGERED');
             }
           },
           child: child

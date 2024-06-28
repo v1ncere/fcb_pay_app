@@ -2,7 +2,6 @@ import 'package:firebase_realtimedb_repository/firebase_realtimedb_repository.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bottom_navbar/bottom_navbar.dart';
 import '../../home_flow/home_flow.dart';
 import '../notifications_viewer.dart';
 
@@ -21,7 +20,6 @@ class NotificationsViewerPage extends StatelessWidget {
             providers: [
               BlocProvider(create: (context) => NotificationsViewerBloc(firebaseRepository: FirebaseRealtimeDBRepository())
               ..add(NotificationViewerLoaded(args))),
-              BlocProvider(create: (context) => InactivityCubit()..resetTimer())
             ],
             child: const NotificationsViewerView(),
           )

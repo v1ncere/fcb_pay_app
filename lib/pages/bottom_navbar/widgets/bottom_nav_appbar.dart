@@ -21,7 +21,7 @@ BottomAppBar bottomNavAppBar({
           controller: controller,
           icon: Icon(
             FontAwesomeIcons.creditCard, 
-            shadows: BottomNavbarTab.home == tab
+            shadows: tab.isHome
             ? [Shadow(color: Colors.black.withOpacity(0.2), blurRadius: 4.0)]
             : null
           )
@@ -32,7 +32,7 @@ BottomAppBar bottomNavAppBar({
           controller: controller,
           icon: Icon(
             FontAwesomeIcons.receipt,
-            shadows: BottomNavbarTab.payments == tab
+            shadows: tab.isPayments
             ? [Shadow(color: Colors.black.withOpacity(0.2), blurRadius: 4.0)]
             : null
           )
@@ -44,7 +44,7 @@ BottomAppBar bottomNavAppBar({
           controller: controller,
           icon: Icon(
             FontAwesomeIcons.moneyBillTransfer,
-            shadows: BottomNavbarTab.transfers == tab
+            shadows: tab.isTransfers
             ? [Shadow(color: Colors.black.withOpacity(0.2), blurRadius: 4.0)]
             : null
           )
@@ -55,7 +55,7 @@ BottomAppBar bottomNavAppBar({
           controller: controller,
           icon: Icon(
             FontAwesomeIcons.barsStaggered,
-            shadows: BottomNavbarTab.accounts == tab
+            shadows: tab.isAccounts
             ? [Shadow(color: Colors.black.withOpacity(0.2), blurRadius: 4.0)]
             : null
           )
